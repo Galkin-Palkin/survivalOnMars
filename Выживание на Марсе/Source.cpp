@@ -7,6 +7,16 @@
 using namespace std;
 
 //////////////////////////////////////////////////////////////////////////////////////
+
+enum HumanInfo{
+	hi_HP,
+	hi_FP,
+	hi_EP,
+	hi_PHP,
+	hi_Sol,
+	hi_Hour
+};
+
 class Game {
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 	class Text {
@@ -57,14 +67,33 @@ class Game {
 		int Sol = 0; // Сол - сутки на Марсе
 		int Hour = 7;
 	public:
-		int GetI(string Type) {
-			if (Type == "HP") return HP;
-			else if (Type == "FP") return FP;
-			else if (Type == "EP") return EP;
-			else if (Type == "PHP") return PHP;
-			else if (Type == "Sol") return Sol;
-			else if (Type == "Hour") return Hour;
-			else return -100000;
+		int GetI(HumanInfo Type) {
+			switch (Type)
+			{
+				case hi_HP: {
+					return HP;
+					break;
+				}case hi_FP: {
+					return HP;
+					break;
+				}case hi_EP: {
+					return HP;
+					break;
+				}case hi_PHP: {
+					return HP;
+					break;
+				}case hi_Sol: {
+					return HP;
+					break;
+				}case hi_Hour: {
+					return HP;
+					break;
+				}
+				default: {
+					return -100000;
+					break;
+				}
+			}
 		}
 		double GetD(string Type) {
 			if (Type == "DP") return DP;
@@ -638,13 +667,13 @@ class Game {
 			// Загрузка из файла
 			ofstream fout("Do not open this file.txt");
 			fout << NewGame << endl;
-			fout << H.GetI("HP") << endl;
-			fout << H.GetI("FP") << endl;
-			fout << H.GetI("EP") << endl;
-			fout << H.GetI("PHP") << endl;
+			fout << H.GetI(hi_HP) << endl;
+			fout << H.GetI(hi_FP) << endl;
+			fout << H.GetI(hi_EP) << endl;
+			fout << H.GetI(hi_PHP) << endl;
 			fout << H.GetD("DP") << endl;
-			fout << H.GetI("Sol") << endl;
-			fout << H.GetI("Hour") << endl;
+			fout << H.GetI(hi_Sol) << endl;
+			fout << H.GetI(hi_Hour) << endl;
 			fout << IsExit << endl;
 		}
 		bool GetNew() {
@@ -677,7 +706,7 @@ class Game {
 		SetConsoleTextAttribute(h, 3);
 		cout << "Сол ";
 		SetConsoleTextAttribute(h, 15);
-		cout << H.GetI("Sol") << endl;
+		cout << H.GetI(hi_Sol) << endl;
 		T.V(4, 15);
 		SetConsoleTextAttribute(h, 15);
 		cout << Hour << ":00" << endl;
@@ -845,43 +874,43 @@ class Game {
 	void Changes(bool& Life, int& Hour, bool& Working) {
 		// Система организма персонажа, функция вызывается каждый игровой час
 		H.Set("FP", '-', 5);
-		if (H.GetI("HP") > 100) H.Set("HP", 'N', 100);
-		if (H.GetI("FP") >= 75) H.Set("EP", '+', 10);
-		if (H.GetI("EP") > 100) H.Set("EP", 'N', 100);
-		else if (H.GetI("FP") >= 50) H.Set("EP", '+', 8);
-		else if (H.GetI("FP") >= 25) H.Set("EP", '+', 5);
-		if (H.GetI("FP") < 0) H.Set("FP", '0', 1);
-		if (H.GetI("FP") == 0) {
+		if (H.GetI(hi_HP) > 100) H.Set("HP", 'N', 100);
+		if (H.GetI(hi_FP) >= 75) H.Set("EP", '+', 10);
+		if (H.GetI(hi_EP) > 100) H.Set("EP", 'N', 100);
+		else if (H.GetI(hi_FP) >= 50) H.Set("EP", '+', 8);
+		else if (H.GetI(hi_FP) >= 25) H.Set("EP", '+', 5);
+		if (H.GetI(hi_FP) < 0) H.Set("FP", '0', 1);
+		if (H.GetI(hi_FP) == 0) {
 			H.Set("HP", '-', 1);
 			H.Set("EP", '-', 5);
 			H.Set("PHP", '-', 2);
 			H.Set("DP", '+', 0, 0.25);
 		}
-		if (H.GetI("PHP") < 0) H.Set("PHP", '0', 0);
-		if (H.GetI("PHP") > 100) H.Set("PHP", 'N', 100);
+		if (H.GetI(hi_PHP) < 0) H.Set("PHP", '0', 0);
+		if (H.GetI(hi_PHP) > 100) H.Set("PHP", 'N', 100);
 		if (H.GetD("DP") < 0.0) H.Set("DP", '0', 0);
-		if (H.GetI("HP") > 75 && H.GetI("FP") >= 30) {
+		if (H.GetI(hi_HP) > 75 && H.GetI(hi_FP) >= 30) {
 			H.Set("DP", '-', 0, 1.0);
 			H.Set("PHP", '+', 2);
 		}
-		else if (H.GetI("HP") > 50 && H.GetI("FP") >= 30) {
+		else if (H.GetI(hi_HP) > 50 && H.GetI(hi_FP) >= 30) {
 			H.Set("DP", '-', 0, 0.5);
 			H.Set("PHP", '+', 1);
 		}
-		if (H.GetI("EP") > 100) H.Set("EP", 'N', 100);
-		if (H.GetI("EP") < 0) H.Set("EP", '0', 0);
-		if (H.GetI("EP") > 100) H.Set("EP", 'N', 100);
-		if (H.GetI("EP") < 0) H.Set("EP", '0', 0);
-		if (H.GetI("HP") < 0) H.Set("HP", '0', 0);
-		if (H.GetI("HP") >= 25 && H.GetI("HP") < 50) {
+		if (H.GetI(hi_EP) > 100) H.Set("EP", 'N', 100);
+		if (H.GetI(hi_EP) < 0) H.Set("EP", '0', 0);
+		if (H.GetI(hi_EP) > 100) H.Set("EP", 'N', 100);
+		if (H.GetI(hi_EP) < 0) H.Set("EP", '0', 0);
+		if (H.GetI(hi_HP) < 0) H.Set("HP", '0', 0);
+		if (H.GetI(hi_HP) >= 25 && H.GetI(hi_HP) < 50) {
 			H.Set("DP", '+', 0, 0.1);
 			H.Set("PHP", '-', 2);
 		}
-		else if (H.GetI("HP") < 25 && H.GetI("HP") > 0) {
+		else if (H.GetI(hi_HP) < 25 && H.GetI(hi_HP) > 0) {
 			H.Set("DP", '+', 0, 0.5);
 			H.Set("PHP", '-', 3);
 		}
-		else if (H.GetI("HP") == 0) {
+		else if (H.GetI(hi_HP) == 0) {
 			H.Set("DP", '+', 0, 1.0);
 			H.Set("PHP", '-', 5);
 		}
@@ -1073,19 +1102,19 @@ class Game {
 	void ChangesDay(bool IsExit) {
 		// Изменения, проходящие после каждой ночи
 		H.Set("Sol", '+', 1);
-		if (H.GetI("Sol") != 1 && !IsExit) {
+		if (H.GetI(hi_Sol) != 1 && !IsExit) {
 			Sleeping();
 			H.Set("HP", '+', 5);
 			H.Set("DP", '-', 0, 1.0);
 			H.Set("EP", '+', 50);
 			H.Set("FP", '-', 15);
 		}
-		if (H.GetI("HP") > 100) H.Set("HP", 'N', 100);
-		else if (H.GetI("HP") < 0) H.Set("HP", '0', 0);
-		if (H.GetI("FP") > 100) H.Set("FP", 'N', 100);
-		else if (H.GetI("FP") < 0) H.Set("FP", '0', 0);
-		if (H.GetI("EP") > 100) H.Set("EP", 'N', 100);
-		else if (H.GetI("EP") < 0) H.Set("EP", '0', 0);
+		if (H.GetI(hi_HP) > 100) H.Set("HP", 'N', 100);
+		else if (H.GetI(hi_HP) < 0) H.Set("HP", '0', 0);
+		if (H.GetI(hi_FP) > 100) H.Set("FP", 'N', 100);
+		else if (H.GetI(hi_FP) < 0) H.Set("FP", '0', 0);
+		if (H.GetI(hi_EP) > 100) H.Set("EP", 'N', 100);
+		else if (H.GetI(hi_EP) < 0) H.Set("EP", '0', 0);
 		if (H.GetD("DP") > 100) H.Set("DP", 'N', 0, 100.0);
 		else if (H.GetD("DP") < 0) H.Set("DP", '0', 0, 0.0);
 	}
@@ -1148,20 +1177,20 @@ public:
 			S.Download(H, isExit);
 			ChangesDay(isExit);
 			isExit = false;
-			if (H.GetI("Hour") >= 23) H.Set("Hour", 'N', 7);
-			for (; H.GetI("Hour") <= 22; H.Set("Hour", '+', 1)) {
+			if (H.GetI(hi_Hour) >= 23) H.Set("Hour", 'N', 7);
+			for (; H.GetI(hi_Hour) <= 22; H.Set("Hour", '+', 1)) {
 				if (!Life) {
 					H.Set("Hour", '-', 1);
 					break;
 					continue;
 				}
 				system("cls");
-				InfoShowing(H.GetI("HP"), H.GetI("FP"), H.GetI("EP"), H.GetI("PHP"), H.GetD("DP"), H.GetI("Sol"), H.GetI("Hour"));
-				int Choose = ActionsChoose(H.GetI("Sol"), H.GetI("Hour"));
-				int Hour = H.GetI("Hour");
+				InfoShowing(H.GetI(hi_HP), H.GetI(hi_FP), H.GetI(hi_EP), H.GetI(hi_PHP), H.GetD("DP"), H.GetI(hi_Sol), H.GetI(hi_Hour));
+				int Choose = ActionsChoose(H.GetI(hi_Sol), H.GetI(hi_Hour));
+				int Hour = H.GetI(hi_Hour);
 				Actions(Choose, Life, Hour);
 				H.Set("Hour", 'N', Hour);
-				if (!(H.GetI("Sol") == 1 && Hour == 7) && Choose != 5) Changes(Life, Hour, Working);
+				if (!(H.GetI(hi_Sol) == 1 && Hour == 7) && Choose != 5) Changes(Life, Hour, Working);
 			}
 		}
 	}
