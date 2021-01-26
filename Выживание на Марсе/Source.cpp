@@ -9,12 +9,14 @@ using namespace std;
 //////////////////////////////////////////////////////////////////////////////////////
 
 enum HumanInfo{
+	hi_NULL,
 	hi_HP,
 	hi_FP,
 	hi_EP,
 	hi_PHP,
 	hi_Sol,
-	hi_Hour
+	hi_Hour,
+	hi_DP
 };
 
 class Game {
@@ -95,67 +97,81 @@ class Game {
 				}
 			}
 		}
-		double GetD(string Type) {
-			if (Type == "DP") return DP;
-			else return -100000;
+		double GetD(HumanInfo Type) {
+			switch (Type) {
+			case hi_DP:
+				return DP; break;
+			default:
+				return -100000;
+			}
 		}
-		void Set(string Type, char Sign, int NumberI, double NumberD = 0.0) {
+		void Set(HumanInfo Type, char Sign, int NumberI, double NumberD = 0.0) {
 			// Реализовано криво, потом переделаю. Нужно заменить 'N' на '=', убрать '0'. Перегрузить функцию для вещественных чисел
-			if (Type == "HP") {
+			switch (Type) {
+			case hi_HP: {
 				switch (Sign) {
 				case '+': HP += NumberI; break;
 				case '0': HP = 0; break;
 				case '-': HP -= NumberI; break;
 				case 'N': HP = NumberI; break;
 				}
+				break;
 			}
-			else if (Type == "FP") {
+			case hi_FP:
+			{
 				switch (Sign) {
 				case '+': FP += NumberI; break;
 				case '0': FP = 0; break;
 				case '-': FP -= NumberI; break;
 				case 'N': FP = NumberI; break;
 				}
+				break;
 			}
-			else if (Type == "EP") {
+			case hi_EP: {
 				switch (Sign) {
 				case '+': EP += NumberI; break;
 				case '0': EP = 0; break;
 				case '-': EP -= NumberI; break;
 				case 'N': EP = NumberI; break;
 				}
+				break;
 			}
-			else if (Type == "PHP") {
+			case hi_PHP: {
 				switch (Sign) {
 				case '+': PHP += NumberI; break;
 				case '0': PHP = 0; break;
 				case '-': PHP -= NumberI; break;
 				case 'N': PHP = NumberI; break;
 				}
+				break;
 			}
-			else if (Type == "DP") {
+			case hi_DP: {
 				switch (Sign) {
 				case '+': DP += NumberD; break;
 				case '0': DP = 0.0; break;
 				case '-': DP -= NumberD; break;
 				case 'N': DP = NumberD; break;
 				}
+				break;
 			}
-			else if (Type == "Sol") {
+			case hi_Sol: {
 				switch (Sign) {
 				case '+': Sol += NumberI; break;
 				case '0': Sol = 0; break;
 				case '-': Sol -= NumberI; break;
 				case 'N': Sol = NumberI; break;
 				}
+				break;
 			}
-			else if (Type == "Hour") {
+			case hi_Hour: {
 				switch (Sign) {
 				case '+': Hour += NumberI; break;
 				case '0': Hour = 0; break;
 				case '-': Hour -= NumberI; break;
 				case 'N': Hour = NumberI; break;
 				}
+				break;
+			}
 			}
 		}
 		void Null(); // Обнуление данных
@@ -256,9 +272,9 @@ class Game {
 	static vector<Consumable*> ConsumableVector;
 	static int ConsumableCount;
 	class Consumable : public Item {
-		string FirstType = ""; // Здесь и далее - типы, которые меняет объект класса
-		string SecondType = "";
-		string ThirdType = "";
+		HumanInfo FirstType; // Здесь и далее - типы, которые меняет объект класса
+		HumanInfo SecondType;
+		HumanInfo ThirdType;
 		int FirstNumber = 0; // Здесь и далее - значение, на которое изменяет первый и так далее тип объект класса
 		double DFirstNumber = 0.0;
 		int SecondNumber = 0;
@@ -269,30 +285,30 @@ class Game {
 		Consumable() {
 
 		}
-		Consumable(string Name, double Weight, string FirstType, int FirstNumber, string SecondType = "Nan", int SecondNumber = -10000, string ThirdType = "Nan", int ThirdNumber = -10000) {
+		Consumable(string Name, double Weight, HumanInfo FirstType, int FirstNumber, HumanInfo SecondType = hi_NULL, int SecondNumber = -10000, HumanInfo ThirdType = hi_NULL, int ThirdNumber = -10000) {
 			this->FirstType = FirstType;
 			this->FirstNumber = FirstNumber;
 			this->Name = Name;
 			this->Weight = Weight;
-			if (SecondType != "Nan" && SecondNumber != -10000) {
+			if (SecondType != hi_NULL && SecondNumber != -10000) {
 				this->SecondType = SecondType;
 				this->SecondNumber = SecondNumber;
 			}
-			if (ThirdType != "Nan" && ThirdNumber != -10000) {
+			if (ThirdType != hi_NULL && ThirdNumber != -10000) {
 				this->ThirdType = ThirdType;
 				this->ThirdNumber = ThirdNumber;
 			}
 		}
-		Consumable(string Name, double Weight, string FirstType, double FirstNumber, string SecondType = "Nan", int SecondNumber = -10000, string ThirdType = "Nan", int ThirdNumber = -10000) {
+		Consumable(string Name, double Weight, HumanInfo FirstType, double FirstNumber, HumanInfo SecondType = hi_NULL, int SecondNumber = -10000, HumanInfo ThirdType = hi_NULL, int ThirdNumber = -10000) {
 			this->FirstType = FirstType;
 			this->DFirstNumber = FirstNumber;
 			this->Name = Name;
 			this->Weight = Weight;
-			if (SecondType != "Nan" && SecondNumber != -10000) {
+			if (SecondType != hi_NULL && SecondNumber != -10000) {
 				this->SecondType = SecondType;
 				this->SecondNumber = SecondNumber;
 			}
-			if (ThirdType != "Nan" && ThirdNumber != -10000) {
+			if (ThirdType != hi_NULL && ThirdNumber != -10000) {
 				this->ThirdType = ThirdType;
 				this->ThirdNumber = ThirdNumber;
 			}
@@ -300,10 +316,10 @@ class Game {
 		bool Taking(Human& H) {
 			// Употребление
 			if (this->Count > 0) {
-				if (this->FirstType != "DP") H.Set(this->FirstType, '+', this->FirstNumber);
-				else H.Set("DP", '+', 0, this->DFirstNumber);
-				if (this->SecondType != "") H.Set(this->SecondType, '+', this->SecondNumber);
-				if (this->ThirdType != "") H.Set(this->ThirdType, '+', this->ThirdNumber);
+				if (this->FirstType != hi_DP) H.Set(this->FirstType, '+', this->FirstNumber);
+				else H.Set(hi_DP, '+', 0, this->DFirstNumber);
+				if (this->SecondType != hi_NULL) H.Set(this->SecondType, '+', this->SecondNumber);
+				if (this->ThirdType != hi_NULL) H.Set(this->ThirdType, '+', this->ThirdNumber);
 				this->Count--;
 			}
 			else return false;
@@ -348,33 +364,33 @@ class Game {
 			}
 			T.V(4, 60);
 		}
-		void Constructor(string Name, double Weight, string FirstType, double FirstNumber, string SecondType = "Nan", int SecondNumber = -10000, string ThirdType = "Nan", int ThirdNumber = -10000) {
+		void Constructor(string Name, double Weight, HumanInfo FirstType, double FirstNumber, HumanInfo SecondType = hi_NULL, int SecondNumber = -10000, HumanInfo ThirdType = hi_NULL, int ThirdNumber = -10000) {
 			// Обычный конструктор нельзя вызвать в классе вне функции, поэтому, такой аналог
 			ConsumableCount = 0;
 			this->FirstType = FirstType;
 			this->DFirstNumber = FirstNumber;
 			this->Name = Name;
 			this->Weight = Weight;
-			if (SecondType != "Nan" && SecondNumber != -10000) {
+			if (SecondType != hi_NULL && SecondNumber != -10000) {
 				this->SecondType = SecondType;
 				this->SecondNumber = SecondNumber;
 			}
-			if (ThirdType != "Nan" && ThirdNumber != -10000) {
+			if (ThirdType != hi_NULL && ThirdNumber != -10000) {
 				this->ThirdType = ThirdType;
 				this->ThirdNumber = ThirdNumber;
 			}
 		}
-		void Constructor(string Name, double Weight, string FirstType, int FirstNumber, string SecondType = "Nan", int SecondNumber = -10000, string ThirdType = "Nan", int ThirdNumber = -10000) {
+		void Constructor(string Name, double Weight, HumanInfo FirstType, int FirstNumber, HumanInfo SecondType = hi_NULL, int SecondNumber = -10000, HumanInfo ThirdType = hi_NULL, int ThirdNumber = -10000) {
 			ConsumableCount = 0;
 			this->FirstType = FirstType;
 			this->FirstNumber = FirstNumber;
 			this->Name = Name;
 			this->Weight = Weight;
-			if (SecondType != "Nan" && SecondNumber != -10000) {
+			if (SecondType != hi_NULL && SecondNumber != -10000) {
 				this->SecondType = SecondType;
 				this->SecondNumber = SecondNumber;
 			}
-			if (ThirdType != "Nan" && ThirdNumber != -10000) {
+			if (ThirdType != hi_NULL && ThirdNumber != -10000) {
 				this->ThirdType = ThirdType;
 				this->ThirdNumber = ThirdNumber;
 			}
@@ -401,15 +417,15 @@ class Game {
 			Jigsaw.Constructor("Пила", 2.0);
 			Axe.Constructor("Топор", 4.5);
 
-			Palont.Constructor("Мазь \"Палонт\"", 0.1, "DP", -2.0, "HP", 20);
-			Aspirin.Constructor("Гранула аспирина", 0.025, "DP", -0.5, "HP", 15);
-			Trivoclisine.Constructor("Ампула с тривоклизином", 0.01, "DP", -15.0, "EP", -70);
-			CannedBeef.Constructor("Консервированная говядина", 0.25, "FP", 30, "EP", 25);
-			Hardtack.Constructor("Пачка галет", 0.15, "FP", 20);
-			EnergyBar.Constructor("Энергетический батончик", 0.05, "FP", 10, "EP", 30);
-			MushroomSoup.Constructor("Грибной суп в тюбиках", 0.3, "FP", 40, "EP", 20);
-			DarkChocolateBar.Constructor("Плитка горького шоколада", 0.1, "FP", 25, "EP", 40, "PHP", 30);
-			BartonsDrug.Constructor("Сыворотка профессора Бартона", 0.4, "DP", -10.0, "HP", 40, "EP", 20);
+			Palont.Constructor("Мазь \"Палонт\"", 0.1, hi_DP, -2.0, hi_HP, 20);
+			Aspirin.Constructor("Гранула аспирина", 0.025, hi_DP, -0.5, hi_HP, 15);
+			Trivoclisine.Constructor("Ампула с тривоклизином", 0.01, hi_DP, -15.0, hi_EP, -70);
+			CannedBeef.Constructor("Консервированная говядина", 0.25, hi_FP, 30, hi_EP, 25);
+			Hardtack.Constructor("Пачка галет", 0.15, hi_FP, 20);
+			EnergyBar.Constructor("Энергетический батончик", 0.05, hi_FP, 10, hi_EP, 30);
+			MushroomSoup.Constructor("Грибной суп в тюбиках", 0.3, hi_FP, 40, hi_EP, 20);
+			DarkChocolateBar.Constructor("Плитка горького шоколада", 0.1, hi_FP, 25, hi_EP, 40, hi_PHP, 30);
+			BartonsDrug.Constructor("Сыворотка профессора Бартона", 0.4, hi_DP, -10.0, hi_HP, 40, hi_EP, 20);
 		}
 	};
 	class Buildings {
@@ -468,7 +484,7 @@ class Game {
 				cout << "Открыв дверь " << RoomType << ", ты увидел лишь руины: всё было завалено грудами пористого бетона" << endl;
 				if (rand() % 5 == 0) {
 					cout << "Под одним из обломков ты увидел чью-то расплющенную кисть... Тебе стало дурно от этого и ты поспешил закрыть дверь" << endl;
-					H.Set("PHP", '-', 40);
+					H.Set(hi_PHP, '-', 40);
 				}
 				else cout << "Искать тебе здесь явно нечего, и ты закрыл дверь" << endl;
 				Entering = false;
@@ -631,7 +647,7 @@ class Game {
 		int Power;
 		string Name = "";
 		void Attack(Human& H) {
-			H.Set("HP", '-', Power);
+			H.Set(hi_HP, '-', Power);
 		}
 	};
 	Buildings B;
@@ -648,19 +664,19 @@ class Game {
 			double NumberDouble;
 			fin >> NewGame;
 			fin >> Number;
-			H.Set("HP", 'N', Number);
+			H.Set(hi_HP, 'N', Number);
 			fin >> Number;
-			H.Set("FP", 'N', Number);
+			H.Set(hi_FP, 'N', Number);
 			fin >> Number;
-			H.Set("EP", 'N', Number);
+			H.Set(hi_EP, 'N', Number);
 			fin >> Number;
-			H.Set("PHP", 'N', Number);
+			H.Set(hi_PHP, 'N', Number);
 			fin >> NumberDouble;
-			H.Set("DP", 'N', 0, NumberDouble);
+			H.Set(hi_DP, 'N', 0, NumberDouble);
 			fin >> Number;
-			H.Set("Sol", 'N', Number);
+			H.Set(hi_Sol, 'N', Number);
 			fin >> Number;
-			H.Set("Hour", 'N', Number);
+			H.Set(hi_Hour, 'N', Number);
 			fin >> IsExit;
 		}
 		void Download(Human& H, bool IsExit = false) {
@@ -671,7 +687,7 @@ class Game {
 			fout << H.GetI(hi_FP) << endl;
 			fout << H.GetI(hi_EP) << endl;
 			fout << H.GetI(hi_PHP) << endl;
-			fout << H.GetD("DP") << endl;
+			fout << H.GetD(hi_DP) << endl;
 			fout << H.GetI(hi_Sol) << endl;
 			fout << H.GetI(hi_Hour) << endl;
 			fout << IsExit << endl;
@@ -873,49 +889,49 @@ class Game {
 	}
 	void Changes(bool& Life, int& Hour, bool& Working) {
 		// Система организма персонажа, функция вызывается каждый игровой час
-		H.Set("FP", '-', 5);
-		if (H.GetI(hi_HP) > 100) H.Set("HP", 'N', 100);
-		if (H.GetI(hi_FP) >= 75) H.Set("EP", '+', 10);
-		if (H.GetI(hi_EP) > 100) H.Set("EP", 'N', 100);
-		else if (H.GetI(hi_FP) >= 50) H.Set("EP", '+', 8);
-		else if (H.GetI(hi_FP) >= 25) H.Set("EP", '+', 5);
-		if (H.GetI(hi_FP) < 0) H.Set("FP", '0', 1);
+		H.Set(hi_FP, '-', 5);
+		if (H.GetI(hi_HP) > 100) H.Set(hi_HP, 'N', 100);
+		if (H.GetI(hi_FP) >= 75) H.Set(hi_EP, '+', 10);
+		if (H.GetI(hi_EP) > 100) H.Set(hi_EP, 'N', 100);
+		else if (H.GetI(hi_FP) >= 50) H.Set(hi_EP, '+', 8);
+		else if (H.GetI(hi_FP) >= 25) H.Set(hi_EP, '+', 5);
+		if (H.GetI(hi_FP) < 0) H.Set(hi_FP, '0', 1);
 		if (H.GetI(hi_FP) == 0) {
-			H.Set("HP", '-', 1);
-			H.Set("EP", '-', 5);
-			H.Set("PHP", '-', 2);
-			H.Set("DP", '+', 0, 0.25);
+			H.Set(hi_HP, '-', 1);
+			H.Set(hi_EP, '-', 5);
+			H.Set(hi_PHP, '-', 2);
+			H.Set(hi_DP, '+', 0, 0.25);
 		}
-		if (H.GetI(hi_PHP) < 0) H.Set("PHP", '0', 0);
-		if (H.GetI(hi_PHP) > 100) H.Set("PHP", 'N', 100);
-		if (H.GetD("DP") < 0.0) H.Set("DP", '0', 0);
+		if (H.GetI(hi_PHP) < 0) H.Set(hi_PHP, '0', 0);
+		if (H.GetI(hi_PHP) > 100) H.Set(hi_PHP, 'N', 100);
+		if (H.GetD(hi_DP) < 0.0) H.Set(hi_DP, '0', 0);
 		if (H.GetI(hi_HP) > 75 && H.GetI(hi_FP) >= 30) {
-			H.Set("DP", '-', 0, 1.0);
-			H.Set("PHP", '+', 2);
+			H.Set(hi_DP, '-', 0, 1.0);
+			H.Set(hi_PHP, '+', 2);
 		}
 		else if (H.GetI(hi_HP) > 50 && H.GetI(hi_FP) >= 30) {
-			H.Set("DP", '-', 0, 0.5);
-			H.Set("PHP", '+', 1);
+			H.Set(hi_DP, '-', 0, 0.5);
+			H.Set(hi_PHP, '+', 1);
 		}
-		if (H.GetI(hi_EP) > 100) H.Set("EP", 'N', 100);
-		if (H.GetI(hi_EP) < 0) H.Set("EP", '0', 0);
-		if (H.GetI(hi_EP) > 100) H.Set("EP", 'N', 100);
-		if (H.GetI(hi_EP) < 0) H.Set("EP", '0', 0);
-		if (H.GetI(hi_HP) < 0) H.Set("HP", '0', 0);
+		if (H.GetI(hi_EP) > 100) H.Set(hi_EP, 'N', 100);
+		if (H.GetI(hi_EP) < 0) H.Set(hi_EP, '0', 0);
+		if (H.GetI(hi_EP) > 100) H.Set(hi_EP, 'N', 100);
+		if (H.GetI(hi_EP) < 0) H.Set(hi_EP, '0', 0);
+		if (H.GetI(hi_HP) < 0) H.Set(hi_HP, '0', 0);
 		if (H.GetI(hi_HP) >= 25 && H.GetI(hi_HP) < 50) {
-			H.Set("DP", '+', 0, 0.1);
-			H.Set("PHP", '-', 2);
+			H.Set(hi_DP, '+', 0, 0.1);
+			H.Set(hi_PHP, '-', 2);
 		}
 		else if (H.GetI(hi_HP) < 25 && H.GetI(hi_HP) > 0) {
-			H.Set("DP", '+', 0, 0.5);
-			H.Set("PHP", '-', 3);
+			H.Set(hi_DP, '+', 0, 0.5);
+			H.Set(hi_PHP, '-', 3);
 		}
 		else if (H.GetI(hi_HP) == 0) {
-			H.Set("DP", '+', 0, 1.0);
-			H.Set("PHP", '-', 5);
+			H.Set(hi_DP, '+', 0, 1.0);
+			H.Set(hi_PHP, '-', 5);
 		}
-		if (H.GetD("DP") > 100.0) H.Set("DP", 'N', 0, 100.0);
-		if (H.GetD("DP") >= 100.0) {
+		if (H.GetD(hi_DP) > 100.0) H.Set(hi_DP, 'N', 0, 100.0);
+		if (H.GetD(hi_DP) >= 100.0) {
 			Life = false;
 			Hour = 23;
 			S.SetNew(true);
@@ -1039,7 +1055,7 @@ class Game {
 			int Click = _getch();
 			if (Click == 49) {
 				Life = false;
-				H.Set("Sol", '-', 1);
+				H.Set(hi_Sol, '-', 1);
 				S.Download(H, true);
 				break;
 			}
@@ -1101,22 +1117,22 @@ class Game {
 	}
 	void ChangesDay(bool IsExit) {
 		// Изменения, проходящие после каждой ночи
-		H.Set("Sol", '+', 1);
+		H.Set(hi_Sol, '+', 1);
 		if (H.GetI(hi_Sol) != 1 && !IsExit) {
 			Sleeping();
-			H.Set("HP", '+', 5);
-			H.Set("DP", '-', 0, 1.0);
-			H.Set("EP", '+', 50);
-			H.Set("FP", '-', 15);
+			H.Set(hi_HP, '+', 5);
+			H.Set(hi_DP, '-', 0, 1.0);
+			H.Set(hi_EP, '+', 50);
+			H.Set(hi_FP, '-', 15);
 		}
-		if (H.GetI(hi_HP) > 100) H.Set("HP", 'N', 100);
-		else if (H.GetI(hi_HP) < 0) H.Set("HP", '0', 0);
-		if (H.GetI(hi_FP) > 100) H.Set("FP", 'N', 100);
-		else if (H.GetI(hi_FP) < 0) H.Set("FP", '0', 0);
-		if (H.GetI(hi_EP) > 100) H.Set("EP", 'N', 100);
-		else if (H.GetI(hi_EP) < 0) H.Set("EP", '0', 0);
-		if (H.GetD("DP") > 100) H.Set("DP", 'N', 0, 100.0);
-		else if (H.GetD("DP") < 0) H.Set("DP", '0', 0, 0.0);
+		if (H.GetI(hi_HP) > 100) H.Set(hi_HP, 'N', 100);
+		else if (H.GetI(hi_HP) < 0) H.Set(hi_HP, '0', 0);
+		if (H.GetI(hi_FP) > 100) H.Set(hi_FP, 'N', 100);
+		else if (H.GetI(hi_FP) < 0) H.Set(hi_FP, '0', 0);
+		if (H.GetI(hi_EP) > 100) H.Set(hi_EP, 'N', 100);
+		else if (H.GetI(hi_EP) < 0) H.Set(hi_EP, '0', 0);
+		if (H.GetD(hi_DP) > 100) H.Set(hi_DP, 'N', 0, 100.0);
+		else if (H.GetD(hi_DP) < 0) H.Set(hi_DP, '0', 0, 0.0);
 	}
 public:
 	Game() {
@@ -1177,19 +1193,19 @@ public:
 			S.Download(H, isExit);
 			ChangesDay(isExit);
 			isExit = false;
-			if (H.GetI(hi_Hour) >= 23) H.Set("Hour", 'N', 7);
-			for (; H.GetI(hi_Hour) <= 22; H.Set("Hour", '+', 1)) {
+			if (H.GetI(hi_Hour) >= 23) H.Set(hi_Hour, 'N', 7);
+			for (; H.GetI(hi_Hour) <= 22; H.Set(hi_Hour, '+', 1)) {
 				if (!Life) {
-					H.Set("Hour", '-', 1);
+					H.Set(hi_Hour, '-', 1);
 					break;
 					continue;
 				}
 				system("cls");
-				InfoShowing(H.GetI(hi_HP), H.GetI(hi_FP), H.GetI(hi_EP), H.GetI(hi_PHP), H.GetD("DP"), H.GetI(hi_Sol), H.GetI(hi_Hour));
+				InfoShowing(H.GetI(hi_HP), H.GetI(hi_FP), H.GetI(hi_EP), H.GetI(hi_PHP), H.GetD(hi_DP), H.GetI(hi_Sol), H.GetI(hi_Hour));
 				int Choose = ActionsChoose(H.GetI(hi_Sol), H.GetI(hi_Hour));
 				int Hour = H.GetI(hi_Hour);
 				Actions(Choose, Life, Hour);
-				H.Set("Hour", 'N', Hour);
+				H.Set(hi_Hour, 'N', Hour);
 				if (!(H.GetI(hi_Sol) == 1 && Hour == 7) && Choose != 5) Changes(Life, Hour, Working);
 			}
 		}
