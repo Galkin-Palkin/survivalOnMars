@@ -76,19 +76,19 @@ class Game {
 					return HP;
 					break;
 				}case hi_FP: {
-					return HP;
+					return FP;
 					break;
 				}case hi_EP: {
-					return HP;
+					return EP;
 					break;
 				}case hi_PHP: {
-					return HP;
+					return PHP;
 					break;
 				}case hi_Sol: {
-					return HP;
+					return Sol;
 					break;
 				}case hi_Hour: {
-					return HP;
+					return Hour;
 					break;
 				}
 				default: {
@@ -189,7 +189,7 @@ class Game {
 	class Instrument : public Item {
 	protected:
 		double Durability = 100.0; // Прочность
-		double BreakQualityPerUse = 0.1; // Трата прочностиза 1 использование
+		double BreakQualityPerUse = 0.1; // Трата прочности за 1 использование
 		double Damage = 0.0; // Урон
 	public:
 		vector<Instrument> InstrumentsVector;
@@ -637,6 +637,7 @@ class Game {
 						break;
 					}
 				}
+				FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 				CountOfRooms--;
 			}
 		}
@@ -968,6 +969,7 @@ class Game {
 				else if (Click == 27) return 5;
 			}
 		}
+		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 	}
 	void Eating(Inventory& I) {
 		Consumable::Show(T);
@@ -1022,6 +1024,7 @@ class Game {
 			}
 			}
 		}
+		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 	}
 	void TakingMed(Inventory &I) {
 		
@@ -1064,6 +1067,7 @@ class Game {
 				break;
 			}
 		}
+		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 	}
 	void Actions(int Choose, bool &Life, int& Hour) {
 		switch (Choose) {
@@ -1089,6 +1093,7 @@ class Game {
 		I.CannedBeef.SetNew(rand() % 3 + 1);
 		I.EnergyBar.SetNew(1 + rand() % 2);
 		I.Hardtack.SetNew(rand() % 3 + 2);
+		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 	}
 	void MenuReturning(bool& Working) {
 		system("cls");
@@ -1113,6 +1118,7 @@ class Game {
 				break;
 			}
 		}
+		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 		if (Click == 2) Working = false;
 	}
 	void ChangesDay(bool IsExit) {
