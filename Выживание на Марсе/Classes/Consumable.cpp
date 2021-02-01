@@ -30,25 +30,31 @@ void Game::Consumable::Clear() {
 	this->Count = 0;
 	this->IsBeing = false;
 }
-void Game::Consumable::Show(Text& T) {
+void Game::Consumable::Show(Text& T, int Page) {
 	// Показ списка
 	system("cls");
 	T.PRC(13, "Пища и медикаменты\n");
 	T.V(4, 60);
-	for (int i = 0; i < ConsumableCount; i++) {
+	int Size = (ConsumableCount - Page * 9 > 8)? 9 : ConsumableCount - Page * 9;
+	if (ConsumableCount < 9) Size = ConsumableCount;
+	int TotalPage = (ConsumableCount % 9 == 0) ? ConsumableCount / 9 : ConsumableCount / 9 + 1;
+	for (int i = 0; i < Size; i++) {
 		T.PRC(10, "[");
 		T.PRC(15, "");
 		cout << i + 1;
 		T.PRC(10, "] ");
-		T.PRC(1, (*ConsumableVector[i]).Name);
+		T.PRC(1, (*ConsumableVector[i + Page * 9]).Name);
 		T.PRC(6, " x");
 		T.PRC(15, "");
-		cout << (*ConsumableVector[i]).Count << "    ";
-		cout << (*ConsumableVector[i]).Weight * (*ConsumableVector[i]).Count;
+		cout << (*ConsumableVector[i + Page * 9]).Count << "    ";
+		cout << (*ConsumableVector[i + Page * 9]).Weight * (*ConsumableVector[i + Page * 9]).Count;
 		T.PRC(8, " кг\n");
-		if (i != ConsumableCount - 1) T.V(4, 50);
+		if (i != Size - 1) T.V(4, 50);
 	}
 	T.V(4, 60);
+	if (!Page && TotalPage > 1) T.PRC(15, "  ------------------->  \n");
+	else if (Page == TotalPage - 1 && TotalPage > 1) T.PRC(15, "  <-------------------  \n");
+	else if (Page > 0 && Page < TotalPage - 1) T.PRC(15, "  <-------------------                ------------------->  \n");
 }
 void Game::Consumable::Constructor(string Name, double Weight, HumanInfo FirstType, double FirstNumber, HumanInfo SecondType, int SecondNumber, HumanInfo ThirdType, int ThirdNumber) {
 	// Обычный конструктор нельзя вызвать в классе вне функции, поэтому, такой аналог

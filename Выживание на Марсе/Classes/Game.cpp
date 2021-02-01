@@ -250,7 +250,7 @@ int Game::ActionsChoose(int Sol, int Hour) {
 		T.V(4, 15);
 		T.HV(13, 2, 15, "Принять пищу");
 		T.V(4, 15);
-		T.HV(13, 4, 15, "Сесть за рабочий стол");
+		T.HV(13, 3, 15, "Сесть за рабочий стол");
 	}
 	while (true) {
 		int Click = _getch();
@@ -265,55 +265,112 @@ int Game::ActionsChoose(int Sol, int Hour) {
 	}
 	FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 }
-void Game::Eating(Inventory& I) {
-	Consumable::Show(T);
-	bool Refresh = true;
-	while (Refresh) {
+void Game::Eating(Inventory& I, bool& IsBack, int &Hour) {
+	int CurrentPage = 0;
+	int TotalPage = (ConsumableCount % 9 == 0) ? ConsumableCount / 9 : ConsumableCount / 9 + 1;
+	while (true) {
+		int Size = (ConsumableCount - CurrentPage * 9 > 8) ? 9 : ConsumableCount - CurrentPage * 9;
+		if (ConsumableCount < 9) Size = ConsumableCount;
+		Consumable::Show(T, CurrentPage);
 		int Click = _getch();
 		switch (Click) {
+		case 27: {
+			Back(Hour, IsBack);
+			return;
+		}
 		case 49: {
-			if (ConsumableCount >= 1) (*ConsumableVector[0]).Taking(H);
-			Refresh = false;
+			if (Size >= 1) {
+				(*ConsumableVector[0 + int(CurrentPage * 9)]).Taking(H);
+				return;
+			}
 			break;
 		}
 		case 50: {
-			if (ConsumableCount >= 2) (*ConsumableVector[1]).Taking(H);
-			Refresh = false;
+			if (Size >= 2) {
+				(*ConsumableVector[1 + CurrentPage * 9]).Taking(H);
+				return;
+			}
 			break;
 		}
 		case 51: {
-			if (ConsumableCount >= 3) (*ConsumableVector[2]).Taking(H);
-			Refresh = false;
+			if (Size >= 3) {
+				(*ConsumableVector[2 + int(CurrentPage * 9)]).Taking(H);
+				return;
+			}
 			break;
 		}
 		case 52: {
-			if (ConsumableCount >= 4) (*ConsumableVector[3]).Taking(H);
-			Refresh = false;
+			if (Size >= 4) {
+				(*ConsumableVector[3 + int(CurrentPage * 9)]).Taking(H);
+				return;
+			}
 			break;
 		}
 		case 53: {
-			if (ConsumableCount >= 5) (*ConsumableVector[4]).Taking(H);
-			Refresh = false;
+			if (Size >= 5) {
+				(*ConsumableVector[4 + int(CurrentPage * 9)]).Taking(H);
+				return;
+			}
 			break;
 		}
 		case 54: {
-			if (ConsumableCount >= 6) (*ConsumableVector[5]).Taking(H);
-			Refresh = false;
+			if (Size >= 6) {
+				(*ConsumableVector[5 + int(CurrentPage * 9)]).Taking(H);
+				return;
+			}
 			break;
 		}
 		case 55: {
-			if (ConsumableCount >= 7) (*ConsumableVector[6]).Taking(H);
-			Refresh = false;
+			if (Size >= 7) {
+				(*ConsumableVector[6 + int(CurrentPage * 9)]).Taking(H);
+				return;
+			}
 			break;
 		}
 		case 56: {
-			if (ConsumableCount >= 8) (*ConsumableVector[7]).Taking(H);
-			Refresh = false;
+			if (Size >= 8) {
+				(*ConsumableVector[7 + int(CurrentPage * 9)]).Taking(H);
+				return;
+			}
 			break;
 		}
 		case 57: {
-			if (ConsumableCount >= 9) (*ConsumableVector[8]).Taking(H);
-			Refresh = false;
+			if (Size >= 9) {
+				(*ConsumableVector[8 + int(CurrentPage * 9)]).Taking(H);
+				return;
+			}
+			break;
+		}
+		case 65: {
+			if (CurrentPage) CurrentPage--;
+			break;
+		}
+		case 68: {
+			if (CurrentPage < TotalPage - 1) CurrentPage++;
+			break;
+		}
+		case 97: {
+			if (CurrentPage) CurrentPage--;
+			break;
+		}
+		case 100: {
+			if (CurrentPage < TotalPage - 1) CurrentPage++;
+			break;
+		}
+		case 194: {
+			if (CurrentPage < TotalPage - 1) CurrentPage++;
+			break;
+		}
+		case 212: {
+			if (CurrentPage) CurrentPage--;
+			break;
+		}
+		case 226: {
+			if (CurrentPage < TotalPage - 1) CurrentPage++;
+			break;
+		}
+		case 244: {
+			if (CurrentPage) CurrentPage--;
 			break;
 		}
 		}
@@ -360,11 +417,15 @@ void Game::Escape(bool& Life, int& Hour) {
 	}
 	FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 }
-void Game::Actions(int Choose, bool& Life, int& Hour) {
+void Game::Back(int &Hour, bool& IsBack) {
+	Hour--;
+	IsBack = true;
+}
+void Game::Actions(int Choose, bool& Life, int& Hour, bool &IsBack) {
 	switch (Choose) {
 	case 0: RoomLooking(I); break;
 	case 1: Outing(); break;
-	case 2: Eating(I); break;
+	case 2: Eating(I, IsBack, Hour); break;
 	case 3: break;
 	case 4: {
 		break;
@@ -384,6 +445,18 @@ void Game::RoomLooking(Inventory& I) {
 	I.CannedBeef.SetNew(rand() % 3 + 1);
 	I.EnergyBar.SetNew(1 + rand() % 2);
 	I.Hardtack.SetNew(rand() % 3 + 2);
+
+	I.FishSoup.SetNew(rand() % 3 + 2);
+	I.CannedApple.SetNew(rand() % 3 + 2);
+	I.MeatBriquette.SetNew(rand() % 3 + 2);
+	I.Gericline.SetNew(rand() % 3 + 2);
+	I.BartonsDrug.SetNew(rand() % 3 + 2);
+	I.MushroomSoup.SetNew(rand() % 3 + 2);
+	I.Phenothan.SetNew(rand() % 3 + 2);
+	I.RicePurge.SetNew(rand() % 3 + 2);
+	I.Trivoclisine.SetNew(rand() % 3 + 2);
+	I.DarkChocolateBar.SetNew(rand() % 3 + 2);
+
 	FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 }
 void Game::MenuReturning(bool& Working) {
@@ -500,7 +573,8 @@ void Game::GamingProcess(bool& Working) {
 			InfoShowing(H.GetI(hi_HP), H.GetI(hi_FP), H.GetI(hi_EP), H.GetI(hi_PHP), H.GetD(hi_DP), H.GetI(hi_Sol), H.GetI(hi_Hour));
 			int Choose = ActionsChoose(H.GetI(hi_Sol), H.GetI(hi_Hour));
 			int Hour = H.GetI(hi_Hour);
-			Actions(Choose, Life, Hour);
+			bool IsBack = false;
+			Actions(Choose, Life, Hour, IsBack);
 			H.Set(hi_Hour, 'N', Hour);
 			if (!(H.GetI(hi_Sol) == 1 && Hour == 7) && Choose != 5) Changes(Life, Hour, Working);
 		}
@@ -536,9 +610,10 @@ void Game::Menu_3(bool& Working) {
 	SetConsoleTextAttribute(h, 4);
 	T.V(4, 45);
 	SetConsoleTextAttribute(h, 13);
-	cout << "Ответственный за разработку: ";
+	cout << "Ответственные за разработку: ";
 	SetConsoleTextAttribute(h, 15);
 	cout << "Галкин Захар" << endl;
+	T.PRC(15, "Роман Доббиков");
 	SetConsoleTextAttribute(h, 4);
 	T.V(4, 25);
 	SetConsoleTextAttribute(h, 13);

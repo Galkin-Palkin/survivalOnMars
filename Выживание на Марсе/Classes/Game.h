@@ -101,7 +101,7 @@ class Game {
 		bool Taking(Human& H);
 		void SetNew(int Count = 1) override;
 		void Clear();
-		static void Show(Text& T);
+		static void Show(Text& T, int Page);
 		void Constructor(string Name, double Weight, HumanInfo FirstType, double FirstNumber, HumanInfo SecondType = hi_NULL, int SecondNumber = -10000, HumanInfo ThirdType = hi_NULL, int ThirdNumber = -10000);
 		void Constructor(string Name, double Weight, HumanInfo FirstType, int FirstNumber, HumanInfo SecondType = hi_NULL, int SecondNumber = -10000, HumanInfo ThirdType = hi_NULL, int ThirdNumber = -10000);
 	};
@@ -167,14 +167,15 @@ class Game {
 	int NewGame();
 	void Changes(bool& Life, int& Hour, bool& Working);
 	int ActionsChoose(int Sol, int Hour);
-	void Eating(Inventory& I);
+	void Eating(Inventory& I, bool &IsBack, int &Hour);
 	void Outing();
 	void Sleeping();
 	void Escape(bool& Life, int& Hour);
-	void Actions(int Choose, bool& Life, int& Hour);
+	void Actions(int Choose, bool& Life, int& Hour, bool& IsBack);
 	void RoomLooking(Inventory& I);
 	void MenuReturning(bool& Working);
 	void ChangesDay(bool IsExit);
+	void Back(int &Hour, bool& IsBack);
 public:
 	Game();
 	int Menu();

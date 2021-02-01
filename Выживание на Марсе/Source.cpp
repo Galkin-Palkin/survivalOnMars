@@ -1,7 +1,6 @@
 #include <iostream>
 #include <Windows.h>
 #include <ctime>
-#include <conio.h>
 #include <vector>
 #include <fstream>
 #include "Classes/Game.h"
