@@ -19,8 +19,25 @@ class Game {
 		HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 		// Служебный класс для более удобного оформления в консоли
 	public:
+		/// <summary>
+		/// Функция для вывода текста меню.
+		/// </summary>
+		/// <param name="Number">Что нужно вывести.</param>
+		/// <param name="count">Количеств нижних подчеркиваний.</param>
 		void V(int Number, int count = 20);
+		/// <summary>
+		/// Функция вывода сообщения с цыфрой.
+		/// </summary>
+		/// <param name="Color1">Цвет номера.</param>
+		/// <param name="Number">Номер.</param>
+		/// <param name="Color2">Цвет текста.</param>
+		/// <param name="String">Текст сообщения.</param>
 		void HV(int Color1, int Number, int Color2, string String);
+		/// <summary>
+		/// Функция вывода цветного текста без номеров.
+		/// </summary>
+		/// <param name="Colour">Цвет.</param>
+		/// <param name="String">Текст.</param>
 		void PRC(int Colour, string String);
 	};
 	class Human {
@@ -167,6 +184,7 @@ class Game {
 	int NewGame();
 	void Changes(bool& Life, int& Hour, bool& Working);
 	int ActionsChoose(int Sol, int Hour);
+	/*void Eating(Inventory& I, bool& IsBack, int& Hour);*/
 	void Eating(Inventory& I, bool &IsBack, int &Hour);
 	void Outing();
 	void Sleeping();
