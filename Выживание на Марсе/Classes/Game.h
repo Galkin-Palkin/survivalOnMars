@@ -155,11 +155,11 @@ class Game {
 		HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 		Human H;
 		Text T;
-		void Storage();
-		void Laboratory();
-		void Bedrooms();
-		void Cantin(Inventory& I);
-		void Hospital();
+		void EnterStorage();
+		void EnterLaboratory();
+		void EnterBedrooms();
+		void EnterCantin(Inventory& I);
+		void EnterHospital();
 		void DenyToGoIn(Human& H, Text& T, int Type, string RoomType, bool& Entering);
 	public:
 		void LocationGeneration();

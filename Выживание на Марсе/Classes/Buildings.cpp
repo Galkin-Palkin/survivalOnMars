@@ -1,27 +1,27 @@
 #include "Game.h"
 #include <conio.h>
-void Game::Buildings::Storage() {
+void Game::Buildings::EnterStorage() {
 	bool Entering = true;
 	if (rand() % 8 == 0) {
 		int DenyType = 1 + rand() % 3;
 		DenyToGoIn(H, T, DenyType, "от склада", Entering);
 	}
 }
-void Game::Buildings::Laboratory() {
+void Game::Buildings::EnterLaboratory() {
 	bool Entering = true;
 	if (rand() % 8 == 0) {
 		int DenyType = 1 + rand() % 3;
 		DenyToGoIn(H, T, DenyType, "от лаборатории", Entering);
 	}
 }
-void Game::Buildings::Bedrooms() {
+void Game::Buildings::EnterBedrooms() {
 	bool Entering = true;
 	if (rand() % 8 == 0) {
 		int DenyType = 1 + rand() % 3;
 		DenyToGoIn(H, T, DenyType, "от казарм", Entering);
 	}
 }
-void Game::Buildings::Cantin(Inventory& I) {
+void Game::Buildings::EnterCantin(Inventory& I) {
 	bool Entering = true;
 	if (rand() % 8 == 0) {
 		int DenyType = 1 + rand() % 3;
@@ -29,7 +29,7 @@ void Game::Buildings::Cantin(Inventory& I) {
 	}
 	I.DarkChocolateBar.SetNew();
 }
-void Game::Buildings::Hospital() {
+void Game::Buildings::EnterHospital() {
 	bool Entering = true;
 	if (rand() % 8 == 0) {
 		int DenyType = 1 + rand() % 3;
@@ -155,16 +155,26 @@ void Game::Buildings::DenyToGoIn(Human& H, Text& T, int Type, string RoomType, b
 	SetConsoleTextAttribute(h, 15);
 	system("pause");
 }
+
+
 void Game::Buildings::LocationGeneration() {
 	// "Генерирует" помещения
 	int CountOfRooms = 2 + rand() % 4;
+
+
 	system("cls");
+	
+	
 	SetConsoleTextAttribute(h, 3);
 	cout << "Ты зашёл в здание" << endl;
 	SetConsoleTextAttribute(h, 4);
 	cout << "________________________________________" << endl;
 	SetConsoleTextAttribute(h, 15);
+
+
 	system("pause");
+
+
 	while (CountOfRooms != 0) {
 		SetConsoleTextAttribute(h, 3);
 		system("cls");
@@ -189,15 +199,17 @@ void Game::Buildings::LocationGeneration() {
 		case 4: cout << "Пойти в медпункт" << endl; break;
 		case 5: cout << "Пойти в лабораторию" << endl; break;
 		}
+
+
 		while (true) {
 			int Click = _getch();
 			if (Click == 49) {
 				switch (RoomType) {
-				case 1: Bedrooms(); break;
-				case 2: Cantin(I); break;
-				case 3: Storage(); break;
-				case 4: Hospital(); break;
-				case 5: Laboratory(); break;
+				case 1: EnterBedrooms(); break;
+				case 2: EnterCantin(I); break;
+				case 3: EnterStorage(); break;
+				case 4: EnterHospital(); break;
+				case 5: EnterLaboratory(); break;
 				}
 				break;
 			}
