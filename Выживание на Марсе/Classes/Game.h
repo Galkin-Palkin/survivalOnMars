@@ -155,6 +155,7 @@ class Game {
 		HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 		Human H;
 		Text T;
+		void RoomMap(int, int);
 		void EnterStorage();
 		void EnterLaboratory();
 		void EnterBedrooms();

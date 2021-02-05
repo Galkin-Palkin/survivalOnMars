@@ -1,5 +1,89 @@
 #include "Game.h"
 #include <conio.h>
+void Game::Buildings::RoomMap(int RoomType, int Variety) {
+	system("cls");
+	T.PRC(1, "План помещения:\n");
+	// Отрисовка плана помещения
+	switch (RoomType) { // Проверка на тип комнаты
+	case 1: {
+		// Казармы
+		switch (Variety) {
+		case 1: { // Первая разновидность казарм
+			break;
+		}
+		case 2: { // Вторая разновидность казарм
+			break;
+		}
+		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break; // При указании варианта комнаты, которого нет, нам выведет это сообщение
+		}
+		break;
+	}
+	case 2: {
+		// Столовая
+		switch (Variety) {
+		case 1: {
+			T.PRC(15, "");
+			cout << " _______________________________ \n";
+			cout << "|      |                        |\n";
+			cout << "|      |                        |\n";
+			cout << "|   3  |                        |\n";
+			cout << "|      |                        |\n";
+			cout << "|__  __|           1             \n";
+			cout << "|      |                        |\n";
+			cout << "|   2  |                        |\n";
+			cout << "|                               |\n";
+			cout << "|______|________________________|\n";
+			break;
+		}
+		case 2: {
+			break;
+		}
+		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break;
+		}
+		break;
+	}
+	case 3: {
+		// Склад
+		switch (Variety) {
+		case 1: {
+			break;
+		}
+		case 2: {
+			break;
+		}
+		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break;
+		}
+		break;
+	}
+	case 4: {
+		// Медпункт
+		switch (Variety) {
+		case 1: {
+			break;
+		}
+		case 2: {
+			break;
+		}
+		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break;
+		}
+		break;
+	}
+	case 5: {
+		// Лаборатория
+		switch (Variety) {
+		case 1: {
+			break;
+		}
+		case 2: {
+			break;
+		}
+		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break;
+		}
+		break;
+	}
+	default: T.PRC(4, "Отсутствует комната с таким номером\n"); break; // При отсутствии указанного типа комнаты выводит следующее
+	}
+}
 void Game::Buildings::EnterStorage() {
 	bool Entering = true;
 	if (rand() % 8 == 0) {
@@ -27,7 +111,18 @@ void Game::Buildings::EnterCantin(Inventory& I) {
 		int DenyType = 1 + rand() % 3;
 		DenyToGoIn(H, T, DenyType, "от столовой", Entering);
 	}
-	I.DarkChocolateBar.SetNew();
+	if (Entering) {
+		int RoomType = 1 + rand() % 2;
+		switch (RoomType) {
+		case 1: {
+			RoomMap(2, 1);
+			system("pause");
+		}
+		case 2: {
+			RoomMap(2, 2);
+		}
+		}
+	}
 }
 void Game::Buildings::EnterHospital() {
 	bool Entering = true;
@@ -71,13 +166,13 @@ void Game::Buildings::DenyToGoIn(Human& H, Text& T, int Type, string RoomType, b
 			system("cls");
 			if (UsedDoor && Chance == 0) {
 				switch (Type) {
-				case 1: 
+				case 1:
 					T.PRC(1, "Ты подошёл к двери " + RoomType + ". На ней виднеются следы высохшей крови какого-то бедолаги... Похоже, какому-то сотрудинку несладко досталось...\n");
 					break;
 				case 2:
 					T.PRC(1, "У шлюза из сплава титана есть сенсорный монитор. Там необходимо ввести ключ, либо же провести картой в терминале ниже. Судя по количеству попыток и слегка треснутому экрану можно полагать, что кто-то безуспешно пытался разблокировать эту дверь.\n");
 					break;
-				case 3: 
+				case 3:
 					T.PRC(1, "У широкого входа есть компьютерный механизм. Он издаёт потрескивания. На пыльном, с паутиной мониторе требуют ввести код. Однако, твоё внимание привлекло другое: клавиатура была заляпана какой-то жёлтой вязкой\nжидкостью, из-за чего некоторые кнопки не работали. А ещё, похоже, кто-то пытался ввести код до тебя\n");
 					break;
 				case 4:
@@ -136,7 +231,7 @@ void Game::Buildings::DenyToGoIn(Human& H, Text& T, int Type, string RoomType, b
 							T.PRC(1, "Дверь издала ужасный скрежет, похожий на чьи-то вопли... Тут же послышался треск тока порвавшихся проводов, и массивная стальная дверь грохнулась на пол, чуть не убив тебя\n");
 							H.Set(hi_PHP, '-', 10);
 						}
-							break;
+						break;
 					}
 				}
 				else T.PRC(13, "Раздался грохот, и дверь медленно поднялась вверх. Путь был открыт\n");
@@ -148,16 +243,16 @@ void Game::Buildings::DenyToGoIn(Human& H, Text& T, int Type, string RoomType, b
 				system("cls");
 				int DenyingType = 1 + rand() % 4;
 				switch (DenyingType) {
-				case 1: 
+				case 1:
 					T.PRC(1, "\n");
 					break;
 				case 2:
 					T.PRC(1, "\n");
 					break;
-				case 3: 
+				case 3:
 					T.PRC(1, "\n");
 					break;
-				case 4: 
+				case 4:
 					T.PRC(1, "\n");
 					break;
 				}
@@ -179,8 +274,8 @@ void Game::Buildings::LocationGeneration() {
 
 
 	system("cls");
-	
-	
+
+
 	SetConsoleTextAttribute(h, 3);
 	cout << "Ты зашёл в здание" << endl;
 	SetConsoleTextAttribute(h, 4);
