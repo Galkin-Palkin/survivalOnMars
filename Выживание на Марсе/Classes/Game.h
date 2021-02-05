@@ -155,12 +155,13 @@ class Game {
 		HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 		Human H;
 		Text T;
+		/// <summary>
+		/// Функция, которая выводит план комнаты.
+		/// </summary>
+		/// <param name="RoomType">Тип комнаты: Казарма, Больница, Столовая и так далее.</param>
+		/// <param name="Variety">Разновидность плана комнаты.</param>
 		void RoomMap(int, int);
-		void EnterStorage();
-		void EnterLaboratory();
-		void EnterBedrooms();
-		void EnterCantin(Inventory& I);
-		void EnterHospital();
+		void EnterRoom(int RoomType, Inventory* I);
 		void DenyToGoIn(Human& H, Text& T, int Type, string RoomType, bool& Entering);
 	public:
 		void LocationGeneration();
