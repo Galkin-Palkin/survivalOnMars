@@ -97,9 +97,40 @@ void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string> &RoomVar
 		
 		switch (Variety) {
 		case 1: {
+			T.PRC(15, "");
+			cout << " ____________________________________ " << endl;
+			cout << "|                     |              |" << endl;
+			cout << "|          1                         |" << endl;
+			cout << "|                     |       3      |" << endl;
+			cout << "|_________  __________|              |" << endl;
+			cout << "|                   |  |_  __________|" << endl;
+			cout << "|                   |   _  __________ " << endl;
+			cout << "|_________  ________|__|             |" << endl;
+			cout << "|                     |              |" << endl;
+			cout << "|          2          |       4      |" << endl;
+			cout << "|                                    |" << endl;
+			cout << "|_____________________|______________|\n" << endl;
+			RoomVarietyVector.push_back("Первый сектор");
+			RoomVarietyVector.push_back("Второй сектор");
+			RoomVarietyVector.push_back("Третий сектор");
+			RoomVarietyVector.push_back("Четвёртый сектор");
 			break;
 		}
 		case 2: {
+			T.PRC(15, "");
+			cout << " _____________________ " << endl;
+			cout << "|     |         |     |" << endl;
+			cout << "|           1   |  2  |" << endl;
+			cout << "|     |               |" << endl;
+			cout << "|     |_________|_____|" << endl;
+			cout << "|      _______________ " << endl;
+			cout << "|     |               |" << endl;
+			cout << "|     |       3       |" << endl;
+			cout << "|                     |" << endl;
+			cout << "|_____|_______________|\n" << endl;
+			RoomVarietyVector.push_back("Первый сектор");
+			RoomVarietyVector.push_back("Второй сектор");
+			RoomVarietyVector.push_back("Третий сектор");
 			break;
 		}
 		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break;
@@ -138,7 +169,7 @@ void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string> &RoomVar
 	}
 }
 void Game::Buildings::RoomVarietyPrint(vector<string> RoomVarietyVector) {
-	T.PRC(1, "Выберите отдел комнаты:\n");
+	T.PRC(1, "Выберите отдел помещения:\n");
 	T.V(4, 45);
 	int Size = RoomVarietyVector.size();
 	for (int i = 0; i < Size; i++) {

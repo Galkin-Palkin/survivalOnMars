@@ -56,6 +56,9 @@ void Game::Consumable::Show(Text& T, int Page) {
 	else if (Page == TotalPage - 1 && TotalPage > 1) T.PRC(15, "  <-------------------  \n");
 	else if (Page > 0 && Page < TotalPage - 1) T.PRC(15, "  <-------------------                ------------------->  \n");
 }
+int Game::Consumable::GetCount() {
+	return this->Count;
+}
 void Game::Consumable::Constructor(string Name, double Weight, HumanInfo FirstType, double FirstNumber, HumanInfo SecondType, int SecondNumber, HumanInfo ThirdType, int ThirdNumber) {
 	// Обычный конструктор нельзя вызвать в классе вне функции, поэтому, такой аналог
 	ConsumableCount = 0;

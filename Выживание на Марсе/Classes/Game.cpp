@@ -445,18 +445,6 @@ void Game::RoomLooking(Inventory& I) {
 	I.CannedBeef.SetNew(rand() % 3 + 1);
 	I.EnergyBar.SetNew(1 + rand() % 2);
 	I.Hardtack.SetNew(rand() % 3 + 2);
-
-	I.FishSoup.SetNew(rand() % 3 + 2);
-	I.CannedApple.SetNew(rand() % 3 + 2);
-	I.MeatBriquette.SetNew(rand() % 3 + 2);
-	I.Gericline.SetNew(rand() % 3 + 2);
-	I.BartonsDrug.SetNew(rand() % 3 + 2);
-	I.MushroomSoup.SetNew(rand() % 3 + 2);
-	I.Phenothan.SetNew(rand() % 3 + 2);
-	I.RicePurge.SetNew(rand() % 3 + 2);
-	I.Trivoclisine.SetNew(rand() % 3 + 2);
-	I.DarkChocolateBar.SetNew(rand() % 3 + 2);
-
 	FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 }
 void Game::MenuReturning(bool& Working) {
