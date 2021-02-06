@@ -11,6 +11,7 @@ void Game::Buildings::RoomMap(int RoomType, int Variety) {
 		
 		switch (Variety) {
 		case 1: { // Первая разновидность казарм
+			T.PRC(15, "");
 			cout << " ___________________________________ " << endl;
 			cout << "|          |    |  |                |" << endl;
 			cout << "|          |    |  |        2       |" << endl;
@@ -20,10 +21,11 @@ void Game::Buildings::RoomMap(int RoomType, int Variety) {
 			cout << "|          |    |  |        3       |" << endl;
 			cout << "|____  ____|____|  |________________|" << endl;
 			cout << "|                               4   |" << endl;
-			cout << "|________________   ________|_______|" << endl;
+			cout << "|________________   ________|_______|\n" << endl;
 			break;
 		}
 		case 2: { // Вторая разновидность казарм
+			T.PRC(15, "");
 			cout << " ___________________________________ " << endl;
 			cout << "|         |                         |" << endl;
 			cout << "|    1    |____  ____    _____  ____|" << endl;
@@ -32,7 +34,7 @@ void Game::Buildings::RoomMap(int RoomType, int Variety) {
 			cout << "|         |          |  |           |" << endl;
 			cout << "|         |__________|  |___________|" << endl;
 			cout << "|                                   |" << endl;
-			cout << "|_________|__________________   ____|" << endl;
+			cout << "|_________|__________________   ____|\n" << endl;
 			break;
 		}
 		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break; // При указании варианта комнаты, которого нет, нам выведет это сообщение
@@ -54,12 +56,12 @@ void Game::Buildings::RoomMap(int RoomType, int Variety) {
 			cout << "|      |                        |\n";
 			cout << "|   2  |                        |\n";
 			cout << "|                               |\n";
-			cout << "|______|________________________|\n";
+			cout << "|______|________________________|\n\n";
 			break;
 		}
 		case 2: {
 			T.PRC(15, "");
-			cout << " ______________________________" << endl;
+			cout << " ______________________________ " << endl;
 			cout << "|          |                   |" << endl;
 			cout << "|     1    |         2         |" << endl;
 			cout << "|          |                   |" << endl;
@@ -70,7 +72,7 @@ void Game::Buildings::RoomMap(int RoomType, int Variety) {
 			cout << "|   |  |   |                   |" << endl;
 			cout << "|   |  |   |         3         |" << endl;
 			cout << "|          |                   |" << endl;
-			cout << "|___|__|___|___________________|" << endl;
+			cout << "|___|__|___|___________________|\n" << endl;
 			break;
 		}
 		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break;
@@ -124,66 +126,30 @@ void Game::Buildings::RoomMap(int RoomType, int Variety) {
 }
 
 #pragma region Enters
-void Game::Buildings::EnterRoom(int RoomType, Inventory* I = new Inventory())
+void Game::Buildings::EnterRoom(int RoomType, Inventory &I)
 {
+	string RoomDenyType; // Говорит, доступ в какое помещение невозможен
 	switch (RoomType) {
-		//BedRooms
-	case 1: {
-		bool Entering = true;
-		if (rand() % 8 == 0) {
-			int DenyType = 1 + rand() % 3;
-			DenyToGoIn(H, T, DenyType, "от казарм", Entering);
-		}
-		break;
+		//Bedrooms
+	case 1: RoomDenyType = "от казарм"; break;
+		//Cantin
+	case 2: RoomDenyType = "от столовой"; break;
+		//Storage
+	case 3: RoomDenyType = "от склада"; break;
+		//Hospital
+	case 4: RoomDenyType = "от медпункта"; break;
+		//Laboratory
+	case 5: RoomDenyType = "от лаборатории"; break;
 	}
-		  //Cantin
-	case 2: {
-		bool Entering = true;
-		if (rand() % 8 == 0) {
-			int DenyType = 1 + rand() % 3;
-			DenyToGoIn(H, T, DenyType, "от столовой", Entering);
-		}
-		if (Entering) {
-			int RoomType = 1 + rand() % 2;
-			switch (RoomType) {
-			case 1: {
-				RoomMap(2, 1);
-				system("pause");
-			}
-			case 2: {
-				RoomMap(2, 2);
-				system("pause");
-			}
-			}
-		}
+	bool Entering = true;
+	if (rand() % 8 == 0) {
+		int DenyType = 1 + rand() % 3;
+		DenyToGoIn(H, T, DenyType, RoomDenyType, Entering);
 	}
-		  //Storage
-	case 3: {
-		bool Entering = true;
-		if (rand() % 8 == 0) {
-			int DenyType = 1 + rand() % 3;
-			DenyToGoIn(H, T, DenyType, "от склада", Entering);
-		}
-		break;
-	}
-		  //Hospital
-	case 4: {
-		bool Entering = true;
-		if (rand() % 8 == 0) {
-			int DenyType = 1 + rand() % 3;
-			DenyToGoIn(H, T, DenyType, "от медпункта", Entering);
-		}
-		break;
-	}
-		  //Laboratory
-	case 5: {
-		bool Entering = true;
-		if (rand() % 8 == 0) {
-			int DenyType = 1 + rand() % 3;
-			DenyToGoIn(H, T, DenyType, "от лаборатории", Entering);
-		}
-		break;
-	}
+	if (Entering) {
+		int RoomVariety = 1 + rand() % 2;
+		RoomMap(RoomType, RoomVariety);
+		system("pause");
 	}
 }
 #pragma endregion
@@ -375,7 +341,7 @@ void Game::Buildings::LocationGeneration() {
 		while (true) {
 			int Click = _getch();
 			if (Click == 49) {
-				EnterRoom(RoomType, &I);
+				EnterRoom(RoomType, I);
 				break;
 			}
 		}
