@@ -160,7 +160,8 @@ class Game {
 		/// </summary>
 		/// <param name="RoomType">Тип комнаты: Казарма, Больница, Столовая и так далее.</param>
 		/// <param name="Variety">Разновидность плана комнаты.</param>
-		void RoomMap(int, int);
+		void RoomMap(int, int, vector<string>&);
+		void RoomVarietyPrint(vector<string>);
 		void EnterRoom(int RoomType, Inventory& I);
 		void DenyToGoIn(Human& H, Text& T, int Type, string RoomType, bool& Entering);
 	public:

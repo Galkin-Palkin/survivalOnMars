@@ -1,6 +1,6 @@
 #include "Game.h"
 #include <conio.h>
-void Game::Buildings::RoomMap(int RoomType, int Variety) {
+void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string> &RoomVarietyVector) {
 	system("cls");
 	T.PRC(1, "План помещения:\n");
 	// Отрисовка плана помещения
@@ -22,6 +22,10 @@ void Game::Buildings::RoomMap(int RoomType, int Variety) {
 			cout << "|____  ____|____|  |________________|" << endl;
 			cout << "|                               4   |" << endl;
 			cout << "|________________   ________|_______|\n" << endl;
+			RoomVarietyVector.push_back("Первый блок");
+			RoomVarietyVector.push_back("Второй блок");
+			RoomVarietyVector.push_back("Третий блок");
+			RoomVarietyVector.push_back("Офис охраны");
 			break;
 		}
 		case 2: { // Вторая разновидность казарм
@@ -35,6 +39,9 @@ void Game::Buildings::RoomMap(int RoomType, int Variety) {
 			cout << "|         |__________|  |___________|" << endl;
 			cout << "|                                   |" << endl;
 			cout << "|_________|__________________   ____|\n" << endl;
+			RoomVarietyVector.push_back("Техническое помещение");
+			RoomVarietyVector.push_back("Первый блок");
+			RoomVarietyVector.push_back("Второй блок");
 			break;
 		}
 		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break; // При указании варианта комнаты, которого нет, нам выведет это сообщение
@@ -57,6 +64,9 @@ void Game::Buildings::RoomMap(int RoomType, int Variety) {
 			cout << "|   2  |                        |\n";
 			cout << "|                               |\n";
 			cout << "|______|________________________|\n\n";
+			RoomVarietyVector.push_back("Основной зал");
+			RoomVarietyVector.push_back("Подсобное помещение");
+			RoomVarietyVector.push_back("Кухня");
 			break;
 		}
 		case 2: {
@@ -73,6 +83,9 @@ void Game::Buildings::RoomMap(int RoomType, int Variety) {
 			cout << "|   |  |   |         3         |" << endl;
 			cout << "|          |                   |" << endl;
 			cout << "|___|__|___|___________________|\n" << endl;
+			RoomVarietyVector.push_back("Кухня");
+			RoomVarietyVector.push_back("Первый зал");
+			RoomVarietyVector.push_back("Второй зал");
 			break;
 		}
 		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break;
@@ -124,11 +137,26 @@ void Game::Buildings::RoomMap(int RoomType, int Variety) {
 	default: T.PRC(4, "Отсутствует комната с таким номером\n"); break; // При отсутствии указанного типа комнаты выводит следующее
 	}
 }
-
+void Game::Buildings::RoomVarietyPrint(vector<string> RoomVarietyVector) {
+	T.PRC(1, "Выберите отдел комнаты:\n");
+	T.V(4, 45);
+	int Size = RoomVarietyVector.size();
+	for (int i = 0; i < Size; i++) {
+		T.PRC(3, "(");
+		cout << i + 1 << ") ";
+		T.PRC(15, RoomVarietyVector[i]);
+		cout << endl;
+		if (Size - i - 1) T.V(4, 30);
+	}
+	T.V(4, 45);
+	T.PRC(15, "");
+	system("pause");
+}
 #pragma region Enters
 void Game::Buildings::EnterRoom(int RoomType, Inventory &I)
 {
 	string RoomDenyType; // Говорит, доступ в какое помещение невозможен
+	vector<string> RoomVarietyVector;
 	switch (RoomType) {
 		//Bedrooms
 	case 1: RoomDenyType = "от казарм"; break;
@@ -148,8 +176,8 @@ void Game::Buildings::EnterRoom(int RoomType, Inventory &I)
 	}
 	if (Entering) {
 		int RoomVariety = 1 + rand() % 2;
-		RoomMap(RoomType, RoomVariety);
-		system("pause");
+		RoomMap(RoomType, RoomVariety, RoomVarietyVector);
+		RoomVarietyPrint(RoomVarietyVector);
 	}
 }
 #pragma endregion
