@@ -493,7 +493,22 @@ void Game::ChangesDay(bool IsExit) {
 	else if (H.GetD(hi_DP) < 0) H.Set(hi_DP, '0', 0, 0.0);
 }
 Game::Game() {
-
+	ConsumableMap["Aspirin"] = I.Aspirin;
+	ConsumableMap["BartonsDrug"] = I.BartonsDrug;
+	ConsumableMap["CannedApple"] = I.CannedApple;
+	ConsumableMap["CannedBeef"] = I.CannedBeef;
+	ConsumableMap["DarkChocolateBar"] = I.DarkChocolateBar;
+	ConsumableMap["EnergyBar"] = I.EnergyBar;
+	ConsumableMap["FishSoup"] = I.FishSoup;
+	ConsumableMap["Gericline"] = I.Gericline;
+	ConsumableMap["Hardtack"] = I.Hardtack;
+	ConsumableMap["MeatBriquette"] = I.MeatBriquette;
+	ConsumableMap["MeltedCheese"] = I.MeltedCheese;
+	ConsumableMap["MushroomSoup"] = I.MushroomSoup;
+	ConsumableMap["Palont"] = I.Palont;
+	ConsumableMap["Phenotan"] = I.Phenothan;
+	ConsumableMap["RicePurge"] = I.RicePurge;
+	ConsumableMap["Trivoclisine"] = I.Trivoclisine;
 }
 int Game::Menu() {
 	system("cls");
@@ -545,7 +560,6 @@ void Game::GamingProcess(bool& Working) {
 		H.Null();
 		Introduction();
 	}
-	else if (GameType == 2) S.Load(H, isExit);
 	while (Life) {
 		S.Download(H, isExit);
 		ChangesDay(isExit);

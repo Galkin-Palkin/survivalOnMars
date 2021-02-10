@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
+#include <map>
 #include <vector>
+#include <ctime>
 #include <Windows.h>
 using namespace std;
 class Game {
@@ -108,6 +110,7 @@ class Game {
 		HumanInfo FirstType; // Здесь и далее - типы, которые меняет объект класса
 		HumanInfo SecondType;
 		HumanInfo ThirdType;
+		string Type;
 		int FirstNumber = 0; // Здесь и далее - значение, на которое изменяет первый и так далее тип объект класса
 		double DFirstNumber = 0.0;
 		int SecondNumber = 0;
@@ -119,9 +122,11 @@ class Game {
 		void SetNew(int Count = 1) override;
 		void Clear();
 		static void Show(Text& T, int Page);
+		string GetType();
 		int GetCount();
-		void Constructor(string Name, double Weight, HumanInfo FirstType, double FirstNumber, HumanInfo SecondType = hi_NULL, int SecondNumber = -10000, HumanInfo ThirdType = hi_NULL, int ThirdNumber = -10000);
-		void Constructor(string Name, double Weight, HumanInfo FirstType, int FirstNumber, HumanInfo SecondType = hi_NULL, int SecondNumber = -10000, HumanInfo ThirdType = hi_NULL, int ThirdNumber = -10000);
+		void SetCount(int Value);
+		void Constructor(string Type, string Name, double Weight, HumanInfo FirstType, double FirstNumber, HumanInfo SecondType = hi_NULL, int SecondNumber = -10000, HumanInfo ThirdType = hi_NULL, int ThirdNumber = -10000);
+		void Constructor(string Type, string Name, double Weight, HumanInfo FirstType, int FirstNumber, HumanInfo SecondType = hi_NULL, int SecondNumber = -10000, HumanInfo ThirdType = hi_NULL, int ThirdNumber = -10000);
 	};
 	class Inventory {
 	public:
@@ -150,6 +155,7 @@ class Game {
 		Consumable FishSoup;
 		Inventory();
 	};
+	static map<string, Consumable> ConsumableMap;
 	class Buildings {
 		// Здания
 		Inventory I;
@@ -189,7 +195,7 @@ class Game {
 	void Changes(bool& Life, int& Hour, bool& Working);
 	int ActionsChoose(int Sol, int Hour);
 	/*void Eating(Inventory& I, bool& IsBack, int& Hour);*/
-	void Eating(Inventory& I, bool &IsBack, int &Hour);
+	void Eating(Inventory& I, bool& IsBack, int& Hour);
 	void Outing();
 	void Sleeping();
 	void Escape(bool& Life, int& Hour);
@@ -197,7 +203,7 @@ class Game {
 	void RoomLooking(Inventory& I);
 	void MenuReturning(bool& Working);
 	void ChangesDay(bool IsExit);
-	void Back(int &Hour, bool& IsBack);
+	void Back(int& Hour, bool& IsBack);
 public:
 	Game();
 	int Menu();

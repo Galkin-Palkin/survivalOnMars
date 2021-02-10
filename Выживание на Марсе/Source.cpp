@@ -1,12 +1,8 @@
-#include <iostream>
-#include <Windows.h>
-#include <ctime>
-#include <vector>
-#include <fstream>
 #include "Classes/Game.h"
 using namespace std;
 int Game::ConsumableCount = 0;
 vector<Game::Consumable*> Game::ConsumableVector;
+map<string, Game::Consumable> Game::ConsumableMap;
 int main() {
 	srand(time(NULL));
 	setlocale(LC_ALL, "Rus");

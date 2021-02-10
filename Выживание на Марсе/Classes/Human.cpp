@@ -112,4 +112,6 @@ void Game::Human::Null() {
 	DP = rand() % 21;
 	Sol = 0;
 	Hour = 7;
+	ConsumableVector.clear();
+	ConsumableCount = 0;
 }

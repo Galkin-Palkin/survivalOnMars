@@ -1,8 +1,10 @@
 #include "Game.h"
+#include <map>
 #include <fstream>
 void Game::Saves::Load(Human& H, bool& IsExit) {
 	// Загрузка в файл
 	ifstream fin("Do not open this file.txt");
+	string String;
 	int Number;
 	double NumberDouble;
 	fin >> NewGame;
@@ -13,13 +15,20 @@ void Game::Saves::Load(Human& H, bool& IsExit) {
 	fin >> Number;
 	H.Set(hi_EP, 'N', Number);
 	fin >> Number;
-	H.Set(hi_PHP, 'N', Number);
+	H.Set(hi_PHP, 'N', Number); 
 	fin >> NumberDouble;
 	H.Set(hi_DP, 'N', 0, NumberDouble);
 	fin >> Number;
 	H.Set(hi_Sol, 'N', Number);
 	fin >> Number;
 	H.Set(hi_Hour, 'N', Number);
+	fin >> Number;
+	ConsumableCount = Number;
+	for (int i = 0; i < ConsumableCount; i++) {
+		fin >> String >> Number;
+		ConsumableVector.push_back(&Game::ConsumableMap[String]);
+		ConsumableVector[i]->SetCount(Number);
+	}
 	fin >> IsExit;
 }
 void Game::Saves::Download(Human& H, bool IsExit) {
@@ -33,6 +42,11 @@ void Game::Saves::Download(Human& H, bool IsExit) {
 	fout << H.GetD(hi_DP) << endl;
 	fout << H.GetI(hi_Sol) << endl;
 	fout << H.GetI(hi_Hour) << endl;
+	fout << ConsumableCount << endl;
+	for (int i = 0; i < ConsumableCount; i++) {
+		fout << ConsumableVector[i]->GetType() << endl;
+		fout << ConsumableVector[i]->GetCount() << endl;
+	}
 	fout << IsExit << endl;
 }
 bool Game::Saves::GetNew() {
