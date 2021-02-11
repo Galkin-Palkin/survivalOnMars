@@ -1,6 +1,6 @@
 #include "Game.h"
 #include <conio.h>
-void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string> &RoomVarietyVector) {
+void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string> &RoomVarietyVector, string Info, bool IsFirst) {
 	system("cls");
 	T.PRC(1, "План помещения:\n");
 	// Отрисовка плана помещения
@@ -22,10 +22,12 @@ void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string> &RoomVar
 			cout << "|____  ____|____|  |________________|" << endl;
 			cout << "|                               4   |" << endl;
 			cout << "|________________   ________|_______|\n" << endl;
-			RoomVarietyVector.push_back("Первый блок");
-			RoomVarietyVector.push_back("Второй блок");
-			RoomVarietyVector.push_back("Третий блок");
-			RoomVarietyVector.push_back("Офис охраны");
+			if (IsFirst) {
+				RoomVarietyVector.push_back("Первый блок");
+				RoomVarietyVector.push_back("Второй блок");
+				RoomVarietyVector.push_back("Третий блок");
+				RoomVarietyVector.push_back("Офис охраны");
+			}
 			break;
 		}
 		case 2: { // Вторая разновидность казарм
@@ -39,9 +41,11 @@ void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string> &RoomVar
 			cout << "|         |__________|  |___________|" << endl;
 			cout << "|                                   |" << endl;
 			cout << "|_________|__________________   ____|\n" << endl;
-			RoomVarietyVector.push_back("Техническое помещение");
-			RoomVarietyVector.push_back("Первый блок");
-			RoomVarietyVector.push_back("Второй блок");
+			if (IsFirst) {
+				RoomVarietyVector.push_back("Техническое помещение");
+				RoomVarietyVector.push_back("Первый блок");
+				RoomVarietyVector.push_back("Второй блок");
+			}
 			break;
 		}
 		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break; // При указании варианта комнаты, которого нет, нам выведет это сообщение
@@ -64,9 +68,11 @@ void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string> &RoomVar
 			cout << "|   2  |                        |\n";
 			cout << "|                               |\n";
 			cout << "|______|________________________|\n\n";
-			RoomVarietyVector.push_back("Основной зал");
-			RoomVarietyVector.push_back("Подсобное помещение");
-			RoomVarietyVector.push_back("Кухня");
+			if (IsFirst) {
+				RoomVarietyVector.push_back("Основной зал");
+				RoomVarietyVector.push_back("Подсобное помещение");
+				RoomVarietyVector.push_back("Кухня");
+			}
 			break;
 		}
 		case 2: {
@@ -83,9 +89,11 @@ void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string> &RoomVar
 			cout << "|   |  |   |         3         |" << endl;
 			cout << "|          |                   |" << endl;
 			cout << "|___|__|___|___________________|\n" << endl;
-			RoomVarietyVector.push_back("Кухня");
-			RoomVarietyVector.push_back("Первый зал");
-			RoomVarietyVector.push_back("Второй зал");
+			if (IsFirst) {
+				RoomVarietyVector.push_back("Кухня");
+				RoomVarietyVector.push_back("Первый зал");
+				RoomVarietyVector.push_back("Второй зал");
+			}
 			break;
 		}
 		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break;
@@ -110,10 +118,12 @@ void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string> &RoomVar
 			cout << "|          2          |       4      |" << endl;
 			cout << "|                                    |" << endl;
 			cout << "|_____________________|______________|\n" << endl;
-			RoomVarietyVector.push_back("Первый сектор");
-			RoomVarietyVector.push_back("Второй сектор");
-			RoomVarietyVector.push_back("Третий сектор");
-			RoomVarietyVector.push_back("Четвёртый сектор");
+			if (IsFirst) {
+				RoomVarietyVector.push_back("Первый сектор");
+				RoomVarietyVector.push_back("Второй сектор");
+				RoomVarietyVector.push_back("Третий сектор");
+				RoomVarietyVector.push_back("Четвёртый сектор");
+			}
 			break;
 		}
 		case 2: {
@@ -128,9 +138,11 @@ void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string> &RoomVar
 			cout << "|     |       3       |" << endl;
 			cout << "|                     |" << endl;
 			cout << "|_____|_______________|\n" << endl;
-			RoomVarietyVector.push_back("Первый сектор");
-			RoomVarietyVector.push_back("Второй сектор");
-			RoomVarietyVector.push_back("Третий сектор");
+			if (IsFirst) {
+				RoomVarietyVector.push_back("Первый сектор");
+				RoomVarietyVector.push_back("Второй сектор");
+				RoomVarietyVector.push_back("Третий сектор");
+			}
 			break;
 		}
 		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break;
@@ -181,13 +193,40 @@ void Game::Buildings::RoomVarietyPrint(vector<string> RoomVarietyVector) {
 	}
 	T.V(4, 45);
 	T.PRC(15, "");
-	system("pause");
+}
+int Game::Buildings::RoomChoose(vector<string> &RoomVarietyVector) {
+	while (true) {
+		int Click = _getch(); // Считываем аскии-код символа. У единицы он 49, у двойки - 50 и так далее
+		switch (Click) {
+		case 49:
+			if (RoomVarietyVector.size() < 1) break;
+			RoomVarietyVector.erase(RoomVarietyVector.begin());
+			return 1;
+		case 50:
+			if (RoomVarietyVector.size() < 2) break;
+			RoomVarietyVector.erase(RoomVarietyVector.begin() + 1);
+			return 2;
+		case 51:
+			if (RoomVarietyVector.size() < 3) break; // Проверка на то, есть ли достаточное количество мест для поиска в комнате
+			RoomVarietyVector.erase(RoomVarietyVector.begin() + 2);
+			return 3;
+		case 52:
+			if (RoomVarietyVector.size() < 4) break;
+			RoomVarietyVector.erase(RoomVarietyVector.begin() + 3);
+			return 4;
+		}
+	}
+}
+void Game::Buildings::RoomSearching(string Info) {
+	system("cls");
+	T.PRC(3, Info);
 }
 #pragma region Enters
-void Game::Buildings::EnterRoom(int RoomType, Inventory &I)
+void Game::Buildings::EnterRoom(int RoomType)
 {
 	string RoomDenyType; // Говорит, доступ в какое помещение невозможен
-	vector<string> RoomVarietyVector;
+	string Info; // Информация о комнате помещения
+	vector<string> RoomVarietyVector; // Вектор названий комнат помещения
 	switch (RoomType) {
 		//Bedrooms
 	case 1: RoomDenyType = "от казарм"; break;
@@ -203,17 +242,24 @@ void Game::Buildings::EnterRoom(int RoomType, Inventory &I)
 	bool Entering = true;
 	if (rand() % 8 == 0) {
 		int DenyType = 1 + rand() % 3;
-		DenyToGoIn(H, T, DenyType, RoomDenyType, Entering);
+		DenyToGoIn(DenyType, RoomDenyType, Entering);
 	}
 	if (Entering) {
 		int RoomVariety = 1 + rand() % 2;
-		RoomMap(RoomType, RoomVariety, RoomVarietyVector);
+		RoomMap(RoomType, RoomVariety, RoomVarietyVector, Info, true); // Делает всю грязную работу)
 		RoomVarietyPrint(RoomVarietyVector);
+		int Choose = RoomChoose(RoomVarietyVector);
+		while (RoomVarietyVector.size() > 0) {
+			RoomMap(RoomType, RoomVariety, RoomVarietyVector, Info, false);
+			RoomVarietyPrint(RoomVarietyVector);
+			int Choose = RoomChoose(RoomVarietyVector);
+			RoomSearching(Info);
+		}
 	}
 }
 #pragma endregion
 
-void Game::Buildings::DenyToGoIn(Human& H, Text& T, int Type, string RoomType, bool& Entering) {
+void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 	// Запрет на вход внутрь помещения
 	system("cls");
 	SetConsoleTextAttribute(h, 13);
@@ -400,7 +446,7 @@ void Game::Buildings::LocationGeneration() {
 		while (true) {
 			int Click = _getch();
 			if (Click == 49) {
-				EnterRoom(RoomType, I);
+				EnterRoom(RoomType);
 				break;
 			}
 		}
