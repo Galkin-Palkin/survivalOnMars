@@ -273,6 +273,10 @@ void Game::Eating(Inventory& I, bool& IsBack, int &Hour) {
 		if (ConsumableCount < 9) Size = ConsumableCount;
 		Consumable::Show(T, CurrentPage);
 		int Click = _getch();
+		if (!ConsumableCount) {
+			Back(Hour, IsBack);
+			return;
+		}
 		switch (Click) {
 		case 27: {
 			Back(Hour, IsBack);

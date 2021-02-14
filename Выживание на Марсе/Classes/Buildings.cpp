@@ -22,6 +22,7 @@ void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string> &RoomVar
 			cout << "|____  ____|____|  |________________|" << endl;
 			cout << "|                               4   |" << endl;
 			cout << "|________________   ________|_______|\n" << endl;
+			Info = "Сектор, выделенный под жильё. Присутствуют 3 блока, душевые, а также пост с охраной\n";
 			if (IsFirst) {
 				RoomVarietyVector.push_back("Первый блок");
 				RoomVarietyVector.push_back("Второй блок");
@@ -41,6 +42,7 @@ void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string> &RoomVar
 			cout << "|         |__________|  |___________|" << endl;
 			cout << "|                                   |" << endl;
 			cout << "|_________|__________________   ____|\n" << endl;
+			Info = "Небольшое отделение с казармами. Люди распределены по двум жилым блокам. Зал в западной части служит плацом. Там же присутсвует техническое помещение\n";
 			if (IsFirst) {
 				RoomVarietyVector.push_back("Техническое помещение");
 				RoomVarietyVector.push_back("Первый блок");
@@ -68,6 +70,7 @@ void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string> &RoomVar
 			cout << "|   2  |                        |\n";
 			cout << "|                               |\n";
 			cout << "|______|________________________|\n\n";
+			Info = "Простая столовая с одним большим залом, занимающим большую часть помещения. Левее зала находится кухня с подсобкой\n";
 			if (IsFirst) {
 				RoomVarietyVector.push_back("Основной зал");
 				RoomVarietyVector.push_back("Подсобное помещение");
@@ -89,6 +92,7 @@ void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string> &RoomVar
 			cout << "|   |  |   |         3         |" << endl;
 			cout << "|          |                   |" << endl;
 			cout << "|___|__|___|___________________|\n" << endl;
+			Info = "Крупное помещение столовой. Присутствуют 2 зала, уборные и непосредственно кухня. Получить свою порцию можно только через первый зал\n";
 			if (IsFirst) {
 				RoomVarietyVector.push_back("Кухня");
 				RoomVarietyVector.push_back("Первый зал");
@@ -154,9 +158,44 @@ void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string> &RoomVar
 		
 		switch (Variety) {
 		case 1: {
+			T.PRC(15, "");
+			cout << " _________________________________ " << endl;
+			cout << "|                |    |       |   |" << endl;
+			cout << "|______   _______|    |           |" << endl;
+			cout << "|______ 1 _______      _______|   |" << endl;
+			cout << "|                |    |     2     |" << endl;
+			cout << "|________________|_  _|___________|" << endl;
+			cout << "                 |    |________  _|" << endl;
+			cout << "                 |          3     |" << endl;
+			cout << "                 |    |___________|" << endl;
+			cout << "                 \\_______  _______/\n" << endl;
+			if (IsFirst) {
+				RoomVarietyVector.push_back("Блок с палатами");
+				RoomVarietyVector.push_back("Склад и техническое помещение");
+				RoomVarietyVector.push_back("Регистратура");
+			}
 			break;
 		}
 		case 2: {
+			T.PRC(15, "");
+			cout << " __________________________________ " << endl;
+			cout << "|      |      |      |      |      |" << endl;
+			cout << "|      |      |   1  |      |      |" << endl;
+			cout << "|__  __|__  __|__  __|__  __|__  __|" << endl;
+			cout << "|_______________    _______________|" << endl;
+			cout << "       |    2   |  |                " << endl;
+			cout << "   ____|_____  _|  |_____________   " << endl;
+			cout << "  |             |  |_  __    __  |  " << endl;
+			cout << "  |______  _____|  |_____|  |____|  " << endl;
+			cout << "  |                              |  " << endl;
+			cout << "  |      3      |  |       4     |  " << endl;
+			cout << "  |_____________|  |_____________|  \n" << endl;
+			if (IsFirst) {
+				RoomVarietyVector.push_back("Сектор с палатами");
+				RoomVarietyVector.push_back("Склад медикаментов");
+				RoomVarietyVector.push_back("Левый блок");
+				RoomVarietyVector.push_back("Столовая");
+			}
 			break;
 		}
 		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break;
@@ -217,9 +256,12 @@ int Game::Buildings::RoomChoose(vector<string> &RoomVarietyVector) {
 		}
 	}
 }
-void Game::Buildings::RoomSearching(string Info) {
+void Game::Buildings::RoomSearching(vector<string> &RoomPlacesVector, string Info) {
 	system("cls");
 	T.PRC(3, Info);
+	T.V(4, 50);
+	int Choose = RoomChoose(RoomPlacesVector);
+	T.V(4, 50);
 }
 #pragma region Enters
 void Game::Buildings::EnterRoom(int RoomType)
@@ -227,6 +269,8 @@ void Game::Buildings::EnterRoom(int RoomType)
 	string RoomDenyType; // Говорит, доступ в какое помещение невозможен
 	string Info; // Информация о комнате помещения
 	vector<string> RoomVarietyVector; // Вектор названий комнат помещения
+	vector<string> RoomPlacesVector; // Вектор с названиями мест для поиска в комнате
+	map<string, vector<Game::Consumable>> Map; // Словарь, хранящий по названию места вектор Consumable`ов, которые можно найти в этом месте
 	switch (RoomType) {
 		//Bedrooms
 	case 1: RoomDenyType = "от казарм"; break;
@@ -249,11 +293,12 @@ void Game::Buildings::EnterRoom(int RoomType)
 		RoomMap(RoomType, RoomVariety, RoomVarietyVector, Info, true); // Делает всю грязную работу)
 		RoomVarietyPrint(RoomVarietyVector);
 		int Choose = RoomChoose(RoomVarietyVector);
+		RoomSearching(RoomPlacesVector, Info);
 		while (RoomVarietyVector.size() > 0) {
 			RoomMap(RoomType, RoomVariety, RoomVarietyVector, Info, false);
 			RoomVarietyPrint(RoomVarietyVector);
 			int Choose = RoomChoose(RoomVarietyVector);
-			RoomSearching(Info);
+			RoomSearching(RoomPlacesVector, Info);
 		}
 	}
 }
@@ -401,48 +446,33 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 
 void Game::Buildings::LocationGeneration() {
 	// "Генерирует" помещения
-	int CountOfRooms = 2 + rand() % 4;
-
-
 	system("cls");
-
-
-	SetConsoleTextAttribute(h, 3);
-	cout << "Ты зашёл в здание" << endl;
-	SetConsoleTextAttribute(h, 4);
-	cout << "________________________________________" << endl;
-	SetConsoleTextAttribute(h, 15);
-
-
+	T.PRC(3, "Ты зашёл в здание\n");
+	T.V(4, 40);
+	T.PRC(15, "");
 	system("pause");
-
-
+	int CountOfRooms = 2 + rand() % 4;
 	while (CountOfRooms != 0) {
-		SetConsoleTextAttribute(h, 3);
 		system("cls");
-		cout << "Ты находишься в помещении" << endl;
-		cout << "Осталось неосмотренных отделов: ";
-		SetConsoleTextAttribute(h, 15);
+		T.PRC(3, "Ты находишься в помещении\n");
+		T.PRC(3, "Осталось неосмотренных отделов: ");
+		T.PRC(15, "");
 		cout << CountOfRooms << endl;
-		SetConsoleTextAttribute(h, 4);
-		cout << "________________________________________" << endl;
-		SetConsoleTextAttribute(h, 13);
-		cout << "(1) ";
-		SetConsoleTextAttribute(h, 15);
+		T.V(4, 40);
 		int RoomType = 1;
-		if (rand() % 2 == 0) RoomType++;
-		if (rand() % 3 == 0) RoomType++;
-		if (rand() % 4 == 0) RoomType++;
-		if (rand() % 5 == 0) RoomType++;
+		string Variety;
+		if (rand() % 20 == 0) RoomType = 5;
+		else if (rand() % 15 == 0) RoomType = 4;
+		else if (rand() % 10 == 0) RoomType = 3;
+		else if (rand() % 6 == 0) RoomType = 2;
 		switch (RoomType) {
-		case 1: cout << "Пойти в казармы" << endl; break;
-		case 2: cout << "Пойти в столовую" << endl; break;
-		case 3: cout << "Пойти на склад" << endl; break;
-		case 4: cout << "Пойти в медпункт" << endl; break;
-		case 5: cout << "Пойти в лабораторию" << endl; break;
+		case 1: Variety = "Пойти в казармы"; break;
+		case 2: Variety = "Пойти в столовую"; break;
+		case 3: Variety = "Пойти на склад"; break;
+		case 4: Variety = "Пойти в медпункт"; break;
+		case 5: Variety = "Пойти в лабораторию"; break;
 		}
-
-
+		T.HV(13, 1, 15, Variety);
 		while (true) {
 			int Click = _getch();
 			if (Click == 49) {
