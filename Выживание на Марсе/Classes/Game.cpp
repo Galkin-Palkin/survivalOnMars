@@ -602,44 +602,36 @@ void Game::Menu_2(bool& Working) {
 	SetConsoleTextAttribute(h, 4);
 	T.V(4, 25);
 	SetConsoleTextAttribute(h, 15);
-	int variety = _getch();
-	switch (variety) {
-	case 49: variety = 1; break;
-	case 50: variety = 2; break;
+	int Variety = _getch();
+	switch (Variety) {
+	case 49: Variety = 1; break;
+	case 50: Variety = 2; break;
 	}
-	if (variety != 1) Working = false;
+	if (Variety != 1) Working = false;
 }
 void Game::Menu_3(bool& Working) {
 	system("cls");
-	SetConsoleTextAttribute(h, 13);
-	cout << "Разработчики" << endl;
-	SetConsoleTextAttribute(h, 4);
+	T.PRC(13, "Разработчики\n");
 	T.V(4, 45);
-	SetConsoleTextAttribute(h, 13);
-	cout << "Ответственные за разработку: ";
-	SetConsoleTextAttribute(h, 15);
-	cout << "Галкин Захар" << endl;
-	T.PRC(15, "Роман Доббиков");
-	SetConsoleTextAttribute(h, 4);
+	T.PRC(13, "Ответственные за разработку: ");
+	T.PRC(15, "\n- Programming Harius\n");
+	T.PRC(15, "- DobbikoV\n");
+	T.PRC(15, "- GoogeTan\n");
 	T.V(4, 25);
-	SetConsoleTextAttribute(h, 13);
-	cout << "Тестировка: ";
-	SetConsoleTextAttribute(h, 15);
-	cout << "Галкин Захар" << endl;
-	SetConsoleTextAttribute(h, 4);
+	T.PRC(13, "Тестировка: ");
+	T.PRC(15, "\n- Programming Harius\n");
 	T.V(4, 45);
-	SetConsoleTextAttribute(h, 15);
+	T.PRC(15, "");
 	T.V(3);
 	T.V(2);
-	SetConsoleTextAttribute(h, 4);
 	T.V(4, 25);
-	SetConsoleTextAttribute(h, 15);
-	int variety = _getch();
-	switch (variety) {
-	case 49: variety = 1; break;
-	case 50: variety = 2; break;
+	T.PRC(15, "");
+	int Variety = _getch();
+	switch (Variety) {
+	case 49: Variety = 1; break;
+	case 50: Variety = 2; break;
 	}
-	if (variety != 1) Working = false;
+	if (Variety != 1) Working = false;
 }
 void Game::Menu_4(bool& Working) {
 	system("cls");
@@ -648,10 +640,10 @@ void Game::Menu_4(bool& Working) {
 	T.V(2);
 	T.V(4, 25);
 	SetConsoleTextAttribute(h, 15);
-	int variety = _getch();
-	switch (variety) {
-	case 49: variety = 1; break;
-	case 50: variety = 2; break;
+	int Variety = _getch();
+	switch (Variety) {
+	case 49: Variety = 1; break;
+	case 50: Variety = 2; break;
 	}
-	if (variety == 1) Working = false;
+	if (Variety == 1) Working = false;
 }
