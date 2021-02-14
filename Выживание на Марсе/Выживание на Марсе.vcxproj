@@ -139,12 +139,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Classes\Action.cpp" />
     <ClCompile Include="Classes\Buildings.cpp" />
     <ClCompile Include="Classes\Consumable.cpp" />
     <ClCompile Include="Classes\Game.cpp" />
     <ClCompile Include="Classes\Human.cpp" />
     <ClCompile Include="Classes\Instrument.cpp" />
     <ClCompile Include="Classes\Inventory.cpp" />
+    <ClCompile Include="Classes\Room.cpp" />
     <ClCompile Include="Classes\Saves.cpp" />
     <ClCompile Include="Classes\Text.cpp" />
     <ClCompile Include="Classes\Weapon.cpp" />
