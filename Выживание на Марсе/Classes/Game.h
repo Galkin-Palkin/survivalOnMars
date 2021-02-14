@@ -155,6 +155,24 @@ class Game {
 		Consumable FishSoup;
 		Inventory();
 	};
+	class Action
+	{
+	public:
+		Action(ifstream file);
+		void Print();
+	};
+    class Room
+    {
+    private:
+        vector<vector<Action>> roomToActions;
+		vector<vector<string>> roomToName;
+		vector<string> floorPlan;
+    public:
+		Room(string filename);
+        void Print();
+        void Select(int index);
+        void PrintActions();
+    };
 	static map<string, Consumable> ConsumableMap;
 	class Buildings {
 		// Здания
