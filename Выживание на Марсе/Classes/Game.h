@@ -25,7 +25,7 @@ class Game {
 		/// Функция для вывода текста меню.
 		/// </summary>
 		/// <param name="Number">Что нужно вывести.</param>
-		/// <param name="count">Количеств нижних подчеркиваний.</param>
+		/// <param name="count">Количество нижних подчеркиваний.</param>
 		void V(int Number, int count = 20);
 		/// <summary>
 		/// Функция вывода сообщения с цыфрой.
@@ -194,7 +194,7 @@ class Game {
 		void RoomMap(int, int, vector<string>&, string, bool);
 		void RoomVarietyPrint(vector<string>);
 		int RoomChoose(vector<string>&);
-		void RoomSearching(string);
+		void RoomSearching(vector<string> &, string);
 		void EnterRoom(int RoomType);
 		void DenyToGoIn(int Type, string RoomType, bool& Entering);
 	public:

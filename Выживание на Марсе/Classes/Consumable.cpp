@@ -51,6 +51,7 @@ void Game::Consumable::Show(Text& T, int Page) {
 		T.PRC(8, " кг\n");
 		if (i != Size - 1) T.V(4, 50);
 	}
+	if (!Size) T.PRC(3, "Пища и медикаменты отсутствуют\n");
 	T.V(4, 60);
 	if (!Page && TotalPage > 1) T.PRC(15, "  ------------------->  \n");
 	else if (Page == TotalPage - 1 && TotalPage > 1) T.PRC(15, "  <-------------------  \n");

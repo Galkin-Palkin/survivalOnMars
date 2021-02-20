@@ -2,15 +2,15 @@
 #include <conio.h>
 void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string> &RoomVarietyVector, string Info, bool IsFirst) {
 	system("cls");
-	T.PRC(1, "План помещения:\n");
-	// Отрисовка плана помещения
-	switch (RoomType) { // Проверка на тип комнаты
+	T.PRC(1, "ГЏГ«Г Г­ ГЇГ®Г¬ГҐГ№ГҐГ­ГЁГї:\n");
+	// ГЋГІГ°ГЁГ±Г®ГўГЄГ  ГЇГ«Г Г­Г  ГЇГ®Г¬ГҐГ№ГҐГ­ГЁГї
+	switch (RoomType) { // ГЏГ°Г®ГўГҐГ°ГЄГ  Г­Г  ГІГЁГЇ ГЄГ®Г¬Г­Г ГІГ»
 
-		// Казармы
+		// ГЉГ Г§Г Г°Г¬Г»
 	case 1: {
 		
 		switch (Variety) {
-		case 1: { // Первая разновидность казарм
+		case 1: { // ГЏГҐГ°ГўГ Гї Г°Г Г§Г­Г®ГўГЁГ¤Г­Г®Г±ГІГј ГЄГ Г§Г Г°Г¬
 			T.PRC(15, "");
 			Room room = rooms[0];
 			room.Print();
@@ -30,15 +30,15 @@ void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string> &RoomVar
 				room.AddRoomsTo(RoomVarietyVector);
 			/*
 			if (IsFirst) {
-				RoomVarietyVector.push_back("Первый блок");
-				RoomVarietyVector.push_back("Второй блок");
-				RoomVarietyVector.push_back("Третий блок");
-				RoomVarietyVector.push_back("Офис охраны");
+				RoomVarietyVector.push_back("ГЏГҐГ°ГўГ»Г© ГЎГ«Г®ГЄ");
+				RoomVarietyVector.push_back("Г‚ГІГ®Г°Г®Г© ГЎГ«Г®ГЄ");
+				RoomVarietyVector.push_back("Г’Г°ГҐГІГЁГ© ГЎГ«Г®ГЄ");
+				RoomVarietyVector.push_back("ГЋГґГЁГ± Г®ГµГ°Г Г­Г»");
 			}
 			*/
 			break;
 		}
-		case 2: { // Вторая разновидность казарм
+		case 2: { // Г‚ГІГ®Г°Г Гї Г°Г Г§Г­Г®ГўГЁГ¤Г­Г®Г±ГІГј ГЄГ Г§Г Г°Г¬
 			T.PRC(15, "");
 			Room room = rooms[0];
 			room.Print();
@@ -54,17 +54,17 @@ void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string> &RoomVar
 			//cout << "|                                   |" << endl;
 			//cout << "|_________|__________________   ____|\n" << endl;
 			//if (IsFirst) {
-			//	RoomVarietyVector.push_back("Техническое помещение");
-			//	RoomVarietyVector.push_back("Первый блок");
-			//	RoomVarietyVector.push_back("Второй блок");
+			//	RoomVarietyVector.push_back("Г’ГҐГµГ­ГЁГ·ГҐГ±ГЄГ®ГҐ ГЇГ®Г¬ГҐГ№ГҐГ­ГЁГҐ");
+			//	RoomVarietyVector.push_back("ГЏГҐГ°ГўГ»Г© ГЎГ«Г®ГЄ");
+			//	RoomVarietyVector.push_back("Г‚ГІГ®Г°Г®Г© ГЎГ«Г®ГЄ");
 			//}
 			break;
 		}
-		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break; // При указании варианта комнаты, которого нет, нам выведет это сообщение
+		default: T.PRC(4, "ГЋГІГ±ГіГІГ±ГІГўГіГҐГІ Г°Г Г§Г­Г®ГўГЁГ¤Г­Г®Г±ГІГј Г¤Г Г­Г­Г®Г© ГЄГ®Г¬Г­Г ГІГ» Г± ГІГ ГЄГЁГ¬ Г­Г®Г¬ГҐГ°Г®Г¬\n"); break; // ГЏГ°ГЁ ГіГЄГ Г§Г Г­ГЁГЁ ГўГ Г°ГЁГ Г­ГІГ  ГЄГ®Г¬Г­Г ГІГ», ГЄГ®ГІГ®Г°Г®ГЈГ® Г­ГҐГІ, Г­Г Г¬ ГўГ»ГўГҐГ¤ГҐГІ ГЅГІГ® Г±Г®Г®ГЎГ№ГҐГ­ГЁГҐ
 		}
 		break;
 	}
-		  // Столовая
+		  // Г‘ГІГ®Г«Г®ГўГ Гї
 	case 2: {
 		
 		switch (Variety) {
@@ -85,9 +85,9 @@ void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string> &RoomVar
 			//cout << "|                               |\n";
 			//cout << "|______|________________________|\n\n";
 			//if (IsFirst) {
-			//	RoomVarietyVector.push_back("Основной зал");
-			//	RoomVarietyVector.push_back("Подсобное помещение");
-			//	RoomVarietyVector.push_back("Кухня");
+			//	RoomVarietyVector.push_back("ГЋГ±Г­Г®ГўГ­Г®Г© Г§Г Г«");
+			//	RoomVarietyVector.push_back("ГЏГ®Г¤Г±Г®ГЎГ­Г®ГҐ ГЇГ®Г¬ГҐГ№ГҐГ­ГЁГҐ");
+			//	RoomVarietyVector.push_back("ГЉГіГµГ­Гї");
 			//}
 			break;
 		}
@@ -110,17 +110,17 @@ void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string> &RoomVar
 			//cout << "|          |                   |" << endl;
 			//cout << "|___|__|___|___________________|\n" << endl;
 			//if (IsFirst) {
-			//	RoomVarietyVector.push_back("Кухня");
-			//	RoomVarietyVector.push_back("Первый зал");
-			//	RoomVarietyVector.push_back("Второй зал");
+			//	RoomVarietyVector.push_back("ГЉГіГµГ­Гї");
+			//	RoomVarietyVector.push_back("ГЏГҐГ°ГўГ»Г© Г§Г Г«");
+			//	RoomVarietyVector.push_back("Г‚ГІГ®Г°Г®Г© Г§Г Г«");
 			//}
 			break;
 		}
-		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break;
+		default: T.PRC(4, "ГЋГІГ±ГіГІГ±ГІГўГіГҐГІ Г°Г Г§Г­Г®ГўГЁГ¤Г­Г®Г±ГІГј Г¤Г Г­Г­Г®Г© ГЄГ®Г¬Г­Г ГІГ» Г± ГІГ ГЄГЁГ¬ Г­Г®Г¬ГҐГ°Г®Г¬\n"); break;
 		}
 		break;
 	}
-		  // Склад
+		  // Г‘ГЄГ«Г Г¤
 	case 3: {
 		
 		switch (Variety) {
@@ -145,10 +145,10 @@ void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string> &RoomVar
 			cout << "|                                    |" << endl;
 			cout << "|_____________________|______________|\n" << endl;
 			if (IsFirst) {
-				RoomVarietyVector.push_back("Первый сектор");
-				RoomVarietyVector.push_back("Второй сектор");
-				RoomVarietyVector.push_back("Третий сектор");
-				RoomVarietyVector.push_back("Четвёртый сектор");
+				RoomVarietyVector.push_back("ГЏГҐГ°ГўГ»Г© Г±ГҐГЄГІГ®Г°");
+				RoomVarietyVector.push_back("Г‚ГІГ®Г°Г®Г© Г±ГҐГЄГІГ®Г°");
+				RoomVarietyVector.push_back("Г’Г°ГҐГІГЁГ© Г±ГҐГЄГІГ®Г°");
+				RoomVarietyVector.push_back("Г—ГҐГІГўВёГ°ГІГ»Г© Г±ГҐГЄГІГ®Г°");
 			}
 			*/
 			break;
@@ -171,32 +171,67 @@ void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string> &RoomVar
 			cout << "|                     |" << endl;
 			cout << "|_____|_______________|\n" << endl;
 			if (IsFirst) {
-				RoomVarietyVector.push_back("Первый сектор");
-				RoomVarietyVector.push_back("Второй сектор");
-				RoomVarietyVector.push_back("Третий сектор");
+				RoomVarietyVector.push_back("ГЏГҐГ°ГўГ»Г© Г±ГҐГЄГІГ®Г°");
+				RoomVarietyVector.push_back("Г‚ГІГ®Г°Г®Г© Г±ГҐГЄГІГ®Г°");
+				RoomVarietyVector.push_back("Г’Г°ГҐГІГЁГ© Г±ГҐГЄГІГ®Г°");
 			}
 			*/
 			break;
 		}
-		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break;
+		default: T.PRC(4, "ГЋГІГ±ГіГІГ±ГІГўГіГҐГІ Г°Г Г§Г­Г®ГўГЁГ¤Г­Г®Г±ГІГј Г¤Г Г­Г­Г®Г© ГЄГ®Г¬Г­Г ГІГ» Г± ГІГ ГЄГЁГ¬ Г­Г®Г¬ГҐГ°Г®Г¬\n"); break;
 		}
 		break;
 	}
-		  // Медпункт
+		  // ГЊГҐГ¤ГЇГіГ­ГЄГІ
 	case 4: {
 		
 		switch (Variety) {
 		case 1: {
+			T.PRC(15, "");
+			cout << " _________________________________ " << endl;
+			cout << "|                |    |       |   |" << endl;
+			cout << "|______   _______|    |           |" << endl;
+			cout << "|______ 1 _______      _______|   |" << endl;
+			cout << "|                |    |     2     |" << endl;
+			cout << "|________________|_  _|___________|" << endl;
+			cout << "                 |    |________  _|" << endl;
+			cout << "                 |          3     |" << endl;
+			cout << "                 |    |___________|" << endl;
+			cout << "                 \\_______  _______/\n" << endl;
+			if (IsFirst) {
+				RoomVarietyVector.push_back("ГЃГ«Г®ГЄ Г± ГЇГ Г«Г ГІГ Г¬ГЁ");
+				RoomVarietyVector.push_back("Г‘ГЄГ«Г Г¤ ГЁ ГІГҐГµГ­ГЁГ·ГҐГ±ГЄГ®ГҐ ГЇГ®Г¬ГҐГ№ГҐГ­ГЁГҐ");
+				RoomVarietyVector.push_back("ГђГҐГЈГЁГ±ГІГ°Г ГІГіГ°Г ");
+			}
 			break;
 		}
 		case 2: {
+			T.PRC(15, "");
+			cout << " __________________________________ " << endl;
+			cout << "|      |      |      |      |      |" << endl;
+			cout << "|      |      |   1  |      |      |" << endl;
+			cout << "|__  __|__  __|__  __|__  __|__  __|" << endl;
+			cout << "|_______________    _______________|" << endl;
+			cout << "       |    2   |  |                " << endl;
+			cout << "   ____|_____  _|  |_____________   " << endl;
+			cout << "  |             |  |_  __    __  |  " << endl;
+			cout << "  |______  _____|  |_____|  |____|  " << endl;
+			cout << "  |                              |  " << endl;
+			cout << "  |      3      |  |       4     |  " << endl;
+			cout << "  |_____________|  |_____________|  \n" << endl;
+			if (IsFirst) {
+				RoomVarietyVector.push_back("Г‘ГҐГЄГІГ®Г° Г± ГЇГ Г«Г ГІГ Г¬ГЁ");
+				RoomVarietyVector.push_back("Г‘ГЄГ«Г Г¤ Г¬ГҐГ¤ГЁГЄГ Г¬ГҐГ­ГІГ®Гў");
+				RoomVarietyVector.push_back("Г‹ГҐГўГ»Г© ГЎГ«Г®ГЄ");
+				RoomVarietyVector.push_back("Г‘ГІГ®Г«Г®ГўГ Гї");
+			}
 			break;
 		}
-		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break;
+		default: T.PRC(4, "ГЋГІГ±ГіГІГ±ГІГўГіГҐГІ Г°Г Г§Г­Г®ГўГЁГ¤Г­Г®Г±ГІГј Г¤Г Г­Г­Г®Г© ГЄГ®Г¬Г­Г ГІГ» Г± ГІГ ГЄГЁГ¬ Г­Г®Г¬ГҐГ°Г®Г¬\n"); break;
 		}
 		break;
 	}
-		  // Лаборатория
+		  // Г‹Г ГЎГ®Г°Г ГІГ®Г°ГЁГї
 	case 5: {
 		
 		switch (Variety) {
@@ -206,15 +241,15 @@ void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string> &RoomVar
 		case 2: {
 			break;
 		}
-		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break;
+		default: T.PRC(4, "ГЋГІГ±ГіГІГ±ГІГўГіГҐГІ Г°Г Г§Г­Г®ГўГЁГ¤Г­Г®Г±ГІГј Г¤Г Г­Г­Г®Г© ГЄГ®Г¬Г­Г ГІГ» Г± ГІГ ГЄГЁГ¬ Г­Г®Г¬ГҐГ°Г®Г¬\n"); break;
 		}
 		break;
 	}
-	default: T.PRC(4, "Отсутствует комната с таким номером\n"); break; // При отсутствии указанного типа комнаты выводит следующее
+	default: T.PRC(4, "ГЋГІГ±ГіГІГ±ГІГўГіГҐГІ ГЄГ®Г¬Г­Г ГІГ  Г± ГІГ ГЄГЁГ¬ Г­Г®Г¬ГҐГ°Г®Г¬\n"); break; // ГЏГ°ГЁ Г®ГІГ±ГіГІГ±ГІГўГЁГЁ ГіГЄГ Г§Г Г­Г­Г®ГЈГ® ГІГЁГЇГ  ГЄГ®Г¬Г­Г ГІГ» ГўГ»ГўГ®Г¤ГЁГІ Г±Г«ГҐГ¤ГіГѕГ№ГҐГҐ
 	}
 }
 void Game::Buildings::RoomVarietyPrint(vector<string> RoomVarietyVector) {
-	T.PRC(1, "Выберите отдел помещения:\n");
+	T.PRC(1, "Г‚Г»ГЎГҐГ°ГЁГІГҐ Г®ГІГ¤ГҐГ« ГЇГ®Г¬ГҐГ№ГҐГ­ГЁГї:\n");
 	T.V(4, 45);
 	int Size = RoomVarietyVector.size();
 	for (int i = 0; i < Size; i++) {
@@ -229,7 +264,7 @@ void Game::Buildings::RoomVarietyPrint(vector<string> RoomVarietyVector) {
 }
 int Game::Buildings::RoomChoose(vector<string> &RoomVarietyVector) {
 	while (true) {
-		int Click = _getch(); // Считываем аскии-код символа. У единицы он 49, у двойки - 50 и так далее
+		int Click = _getch(); // Г‘Г·ГЁГІГ»ГўГ ГҐГ¬ Г Г±ГЄГЁГЁ-ГЄГ®Г¤ Г±ГЁГ¬ГўГ®Г«Г . Г“ ГҐГ¤ГЁГ­ГЁГ¶Г» Г®Г­ 49, Гі Г¤ГўГ®Г©ГЄГЁ - 50 ГЁ ГІГ ГЄ Г¤Г Г«ГҐГҐ
 		switch (Click) {
 		case 49:
 			if (RoomVarietyVector.size() < 1) break;
@@ -240,7 +275,7 @@ int Game::Buildings::RoomChoose(vector<string> &RoomVarietyVector) {
 			RoomVarietyVector.erase(RoomVarietyVector.begin() + 1);
 			return 2;
 		case 51:
-			if (RoomVarietyVector.size() < 3) break; // Проверка на то, есть ли достаточное количество мест для поиска в комнате
+			if (RoomVarietyVector.size() < 3) break; // ГЏГ°Г®ГўГҐГ°ГЄГ  Г­Г  ГІГ®, ГҐГ±ГІГј Г«ГЁ Г¤Г®Г±ГІГ ГІГ®Г·Г­Г®ГҐ ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г¬ГҐГ±ГІ Г¤Г«Гї ГЇГ®ГЁГ±ГЄГ  Гў ГЄГ®Г¬Г­Г ГІГҐ
 			RoomVarietyVector.erase(RoomVarietyVector.begin() + 2);
 			return 3;
 		case 52:
@@ -250,27 +285,32 @@ int Game::Buildings::RoomChoose(vector<string> &RoomVarietyVector) {
 		}
 	}
 }
-void Game::Buildings::RoomSearching(string Info) {
+void Game::Buildings::RoomSearching(vector<string> &RoomPlacesVector, string Info) {
 	system("cls");
 	T.PRC(3, Info);
+	T.V(4, 50);
+	int Choose = RoomChoose(RoomPlacesVector);
+	T.V(4, 50);
 }
 #pragma region Enters
 void Game::Buildings::EnterRoom(int RoomType)
 {
-	string RoomDenyType; // Говорит, доступ в какое помещение невозможен
-	string Info; // Информация о комнате помещения
-	vector<string> RoomVarietyVector; // Вектор названий комнат помещения
+	string RoomDenyType; // ГѓГ®ГўГ®Г°ГЁГІ, Г¤Г®Г±ГІГіГЇ Гў ГЄГ ГЄГ®ГҐ ГЇГ®Г¬ГҐГ№ГҐГ­ГЁГҐ Г­ГҐГўГ®Г§Г¬Г®Г¦ГҐГ­
+	string Info; // Г€Г­ГґГ®Г°Г¬Г Г¶ГЁГї Г® ГЄГ®Г¬Г­Г ГІГҐ ГЇГ®Г¬ГҐГ№ГҐГ­ГЁГї
+	vector<string> RoomVarietyVector; // Г‚ГҐГЄГІГ®Г° Г­Г Г§ГўГ Г­ГЁГ© ГЄГ®Г¬Г­Г ГІ ГЇГ®Г¬ГҐГ№ГҐГ­ГЁГї
+	vector<string> RoomPlacesVector; // Г‚ГҐГЄГІГ®Г° Г± Г­Г Г§ГўГ Г­ГЁГїГ¬ГЁ Г¬ГҐГ±ГІ Г¤Г«Гї ГЇГ®ГЁГ±ГЄГ  Гў ГЄГ®Г¬Г­Г ГІГҐ
+	map<string, vector<Game::Consumable>> Map; // Г‘Г«Г®ГўГ Г°Гј, ГµГ°Г Г­ГїГ№ГЁГ© ГЇГ® Г­Г Г§ГўГ Г­ГЁГѕ Г¬ГҐГ±ГІГ  ГўГҐГЄГІГ®Г° Consumable`Г®Гў, ГЄГ®ГІГ®Г°Г»ГҐ Г¬Г®Г¦Г­Г® Г­Г Г©ГІГЁ Гў ГЅГІГ®Г¬ Г¬ГҐГ±ГІГҐ
 	switch (RoomType) {
 		//Bedrooms
-	case 1: RoomDenyType = "от казарм"; break;
+	case 1: RoomDenyType = "Г®ГІ ГЄГ Г§Г Г°Г¬"; break;
 		//Cantin
-	case 2: RoomDenyType = "от столовой"; break;
+	case 2: RoomDenyType = "Г®ГІ Г±ГІГ®Г«Г®ГўГ®Г©"; break;
 		//Storage
-	case 3: RoomDenyType = "от склада"; break;
+	case 3: RoomDenyType = "Г®ГІ Г±ГЄГ«Г Г¤Г "; break;
 		//Hospital
-	case 4: RoomDenyType = "от медпункта"; break;
+	case 4: RoomDenyType = "Г®ГІ Г¬ГҐГ¤ГЇГіГ­ГЄГІГ "; break;
 		//Laboratory
-	case 5: RoomDenyType = "от лаборатории"; break;
+	case 5: RoomDenyType = "Г®ГІ Г«Г ГЎГ®Г°Г ГІГ®Г°ГЁГЁ"; break;
 	}
 	bool Entering = true;
 	if (rand() % 8 == 0) {
@@ -279,42 +319,43 @@ void Game::Buildings::EnterRoom(int RoomType)
 	}
 	if (Entering) {
 		int RoomVariety = 1 + rand() % 2;
-		RoomMap(RoomType, RoomVariety, RoomVarietyVector, Info, true); // Делает всю грязную работу)
+		RoomMap(RoomType, RoomVariety, RoomVarietyVector, Info, true); // Г„ГҐГ«Г ГҐГІ ГўГ±Гѕ ГЈГ°ГїГ§Г­ГіГѕ Г°Г ГЎГ®ГІГі)
 		RoomVarietyPrint(RoomVarietyVector);
 		int Choose = RoomChoose(RoomVarietyVector);
+		RoomSearching(RoomPlacesVector, Info);
 		while (RoomVarietyVector.size() > 0) {
 			RoomMap(RoomType, RoomVariety, RoomVarietyVector, Info, false);
 			RoomVarietyPrint(RoomVarietyVector);
 			int Choose = RoomChoose(RoomVarietyVector);
-			RoomSearching(Info);
+			RoomSearching(RoomPlacesVector, Info);
 		}
 	}
 }
 #pragma endregion
 
 void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
-	// Запрет на вход внутрь помещения
+	// Г‡Г ГЇГ°ГҐГІ Г­Г  ГўГµГ®Г¤ ГўГ­ГіГІГ°Гј ГЇГ®Г¬ГҐГ№ГҐГ­ГЁГї
 	system("cls");
 	SetConsoleTextAttribute(h, 13);
 	switch (Type) {
-		//дверь заблокирована
+		//Г¤ГўГҐГ°Гј Г§Г ГЎГ«Г®ГЄГЁГ°Г®ГўГ Г­Г 
 	case 1: {
-		cout << "Дверь " << RoomType << " заблокирована. В этот отдел через эту дверь войти больше нельзя" << endl;
+		cout << "Г„ГўГҐГ°Гј " << RoomType << " Г§Г ГЎГ«Г®ГЄГЁГ°Г®ГўГ Г­Г . Г‚ ГЅГІГ®ГІ Г®ГІГ¤ГҐГ« Г·ГҐГ°ГҐГ§ ГЅГІГі Г¤ГўГҐГ°Гј ГўГ®Г©ГІГЁ ГЎГ®Г«ГјГёГҐ Г­ГҐГ«ГјГ§Гї" << endl;
 		Entering = false;
 		break;
 	}
-		  //все разрушено, но в одном из случаев находится чьята кисть
+		  //ГўГ±ГҐ Г°Г Г§Г°ГіГёГҐГ­Г®, Г­Г® Гў Г®Г¤Г­Г®Г¬ ГЁГ§ Г±Г«ГіГ·Г ГҐГў Г­Г ГµГ®Г¤ГЁГІГ±Гї Г·ГјГїГІГ  ГЄГЁГ±ГІГј
 	case 2: {
-		cout << "Открыв дверь " << RoomType << ", ты увидел лишь руины: всё было завалено грудами пористого бетона" << endl;
+		cout << "ГЋГІГЄГ°Г»Гў Г¤ГўГҐГ°Гј " << RoomType << ", ГІГ» ГіГўГЁГ¤ГҐГ« Г«ГЁГёГј Г°ГіГЁГ­Г»: ГўГ±Вё ГЎГ»Г«Г® Г§Г ГўГ Г«ГҐГ­Г® ГЈГ°ГіГ¤Г Г¬ГЁ ГЇГ®Г°ГЁГ±ГІГ®ГЈГ® ГЎГҐГІГ®Г­Г " << endl;
 		if (rand() % 5 == 0) {
-			cout << "Под одним из обломков ты увидел чью-то расплющенную кисть... Тебе стало дурно от этого и ты поспешил закрыть дверь" << endl;
+			cout << "ГЏГ®Г¤ Г®Г¤Г­ГЁГ¬ ГЁГ§ Г®ГЎГ«Г®Г¬ГЄГ®Гў ГІГ» ГіГўГЁГ¤ГҐГ« Г·ГјГѕ-ГІГ® Г°Г Г±ГЇГ«ГѕГ№ГҐГ­Г­ГіГѕ ГЄГЁГ±ГІГј... Г’ГҐГЎГҐ Г±ГІГ Г«Г® Г¤ГіГ°Г­Г® Г®ГІ ГЅГІГ®ГЈГ® ГЁ ГІГ» ГЇГ®Г±ГЇГҐГёГЁГ« Г§Г ГЄГ°Г»ГІГј Г¤ГўГҐГ°Гј" << endl;
 			H.Set(hi_PHP, '-', 40);
 		}
-		else cout << "Искать тебе здесь явно нечего, и ты закрыл дверь" << endl;
+		else cout << "Г€Г±ГЄГ ГІГј ГІГҐГЎГҐ Г§Г¤ГҐГ±Гј ГїГўГ­Г® Г­ГҐГ·ГҐГЈГ®, ГЁ ГІГ» Г§Г ГЄГ°Г»Г« Г¤ГўГҐГ°Гј" << endl;
 		Entering = false;
 		break;
 	}
-		  //иной случай
+		  //ГЁГ­Г®Г© Г±Г«ГіГ·Г Г©
 	case 3: {
 		int CountOfTry = 3 + rand() % 8;
 		bool UsedDoor = CountOfTry < 10;
@@ -331,31 +372,31 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 			if (UsedDoor && Chance == 0) {
 				switch (Type) {
 				case 1:
-					T.PRC(1, "Ты подошёл к двери " + RoomType + ". На ней виднеются следы высохшей крови какого-то бедолаги... Похоже, какому-то сотрудинку несладко досталось...\n");
+					T.PRC(1, "Г’Г» ГЇГ®Г¤Г®ГёВёГ« ГЄ Г¤ГўГҐГ°ГЁ " + RoomType + ". ГЌГ  Г­ГҐГ© ГўГЁГ¤Г­ГҐГѕГІГ±Гї Г±Г«ГҐГ¤Г» ГўГ»Г±Г®ГµГёГҐГ© ГЄГ°Г®ГўГЁ ГЄГ ГЄГ®ГЈГ®-ГІГ® ГЎГҐГ¤Г®Г«Г ГЈГЁ... ГЏГ®ГµГ®Г¦ГҐ, ГЄГ ГЄГ®Г¬Гі-ГІГ® Г±Г®ГІГ°ГіГ¤ГЁГ­ГЄГі Г­ГҐГ±Г«Г Г¤ГЄГ® Г¤Г®Г±ГІГ Г«Г®Г±Гј...\n");
 					break;
 				case 2:
-					T.PRC(1, "У шлюза из сплава титана есть сенсорный монитор. Там необходимо ввести ключ, либо же провести картой в терминале ниже. Судя по количеству попыток и слегка треснутому экрану можно полагать, что кто-то безуспешно пытался разблокировать эту дверь.\n");
+					T.PRC(1, "Г“ ГёГ«ГѕГ§Г  ГЁГ§ Г±ГЇГ«Г ГўГ  ГІГЁГІГ Г­Г  ГҐГ±ГІГј Г±ГҐГ­Г±Г®Г°Г­Г»Г© Г¬Г®Г­ГЁГІГ®Г°. Г’Г Г¬ Г­ГҐГ®ГЎГµГ®Г¤ГЁГ¬Г® ГўГўГҐГ±ГІГЁ ГЄГ«ГѕГ·, Г«ГЁГЎГ® Г¦ГҐ ГЇГ°Г®ГўГҐГ±ГІГЁ ГЄГ Г°ГІГ®Г© Гў ГІГҐГ°Г¬ГЁГ­Г Г«ГҐ Г­ГЁГ¦ГҐ. Г‘ГіГ¤Гї ГЇГ® ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГі ГЇГ®ГЇГ»ГІГ®ГЄ ГЁ Г±Г«ГҐГЈГЄГ  ГІГ°ГҐГ±Г­ГіГІГ®Г¬Гі ГЅГЄГ°Г Г­Гі Г¬Г®Г¦Г­Г® ГЇГ®Г«Г ГЈГ ГІГј, Г·ГІГ® ГЄГІГ®-ГІГ® ГЎГҐГ§ГіГ±ГЇГҐГёГ­Г® ГЇГ»ГІГ Г«Г±Гї Г°Г Г§ГЎГ«Г®ГЄГЁГ°Г®ГўГ ГІГј ГЅГІГі Г¤ГўГҐГ°Гј.\n");
 					break;
 				case 3:
-					T.PRC(1, "У широкого входа есть компьютерный механизм. Он издаёт потрескивания. На пыльном, с паутиной мониторе требуют ввести код. Однако, твоё внимание привлекло другое: клавиатура была заляпана какой-то жёлтой вязкой\nжидкостью, из-за чего некоторые кнопки не работали. А ещё, похоже, кто-то пытался ввести код до тебя\n");
+					T.PRC(1, "Г“ ГёГЁГ°Г®ГЄГ®ГЈГ® ГўГµГ®Г¤Г  ГҐГ±ГІГј ГЄГ®Г¬ГЇГјГѕГІГҐГ°Г­Г»Г© Г¬ГҐГµГ Г­ГЁГ§Г¬. ГЋГ­ ГЁГ§Г¤Г ВёГІ ГЇГ®ГІГ°ГҐГ±ГЄГЁГўГ Г­ГЁГї. ГЌГ  ГЇГ»Г«ГјГ­Г®Г¬, Г± ГЇГ ГіГІГЁГ­Г®Г© Г¬Г®Г­ГЁГІГ®Г°ГҐ ГІГ°ГҐГЎГіГѕГІ ГўГўГҐГ±ГІГЁ ГЄГ®Г¤. ГЋГ¤Г­Г ГЄГ®, ГІГўГ®Вё ГўГ­ГЁГ¬Г Г­ГЁГҐ ГЇГ°ГЁГўГ«ГҐГЄГ«Г® Г¤Г°ГіГЈГ®ГҐ: ГЄГ«Г ГўГЁГ ГІГіГ°Г  ГЎГ»Г«Г  Г§Г Г«ГїГЇГ Г­Г  ГЄГ ГЄГ®Г©-ГІГ® Г¦ВёГ«ГІГ®Г© ГўГїГ§ГЄГ®Г©\nГ¦ГЁГ¤ГЄГ®Г±ГІГјГѕ, ГЁГ§-Г§Г  Г·ГҐГЈГ® Г­ГҐГЄГ®ГІГ®Г°Г»ГҐ ГЄГ­Г®ГЇГЄГЁ Г­ГҐ Г°Г ГЎГ®ГІГ Г«ГЁ. ГЂ ГҐГ№Вё, ГЇГ®ГµГ®Г¦ГҐ, ГЄГІГ®-ГІГ® ГЇГ»ГІГ Г«Г±Гї ГўГўГҐГ±ГІГЁ ГЄГ®Г¤ Г¤Г® ГІГҐГЎГї\n");
 					break;
 				case 4:
-					T.PRC(1, "Стальная дверь, отделяющая тебя " + RoomType + ", вся в царапинах. В нижней левой части виднеется вмятина, диаметр которой, как ты примерно представил, около 20 сантиметров\nИз электронных петель двери сверкали искры и издавалось характерное потрескивание. На мониторе, находящимся\nна стене чуть левее двери, серыми, еле заметными буквами требовало: \"Введите код\"\n");
+					T.PRC(1, "Г‘ГІГ Г«ГјГ­Г Гї Г¤ГўГҐГ°Гј, Г®ГІГ¤ГҐГ«ГїГѕГ№Г Гї ГІГҐГЎГї " + RoomType + ", ГўГ±Гї Гў Г¶Г Г°Г ГЇГЁГ­Г Гµ. Г‚ Г­ГЁГ¦Г­ГҐГ© Г«ГҐГўГ®Г© Г·Г Г±ГІГЁ ГўГЁГ¤Г­ГҐГҐГІГ±Гї ГўГ¬ГїГІГЁГ­Г , Г¤ГЁГ Г¬ГҐГІГ° ГЄГ®ГІГ®Г°Г®Г©, ГЄГ ГЄ ГІГ» ГЇГ°ГЁГ¬ГҐГ°Г­Г® ГЇГ°ГҐГ¤Г±ГІГ ГўГЁГ«, Г®ГЄГ®Г«Г® 20 Г±Г Г­ГІГЁГ¬ГҐГІГ°Г®Гў\nГ€Г§ ГЅГ«ГҐГЄГІГ°Г®Г­Г­Г»Гµ ГЇГҐГІГҐГ«Гј Г¤ГўГҐГ°ГЁ Г±ГўГҐГ°ГЄГ Г«ГЁ ГЁГ±ГЄГ°Г» ГЁ ГЁГ§Г¤Г ГўГ Г«Г®Г±Гј ГµГ Г°Г ГЄГІГҐГ°Г­Г®ГҐ ГЇГ®ГІГ°ГҐГ±ГЄГЁГўГ Г­ГЁГҐ. ГЌГ  Г¬Г®Г­ГЁГІГ®Г°ГҐ, Г­Г ГµГ®Г¤ГїГ№ГЁГ¬Г±Гї\nГ­Г  Г±ГІГҐГ­ГҐ Г·ГіГІГј Г«ГҐГўГҐГҐ Г¤ГўГҐГ°ГЁ, Г±ГҐГ°Г»Г¬ГЁ, ГҐГ«ГҐ Г§Г Г¬ГҐГІГ­Г»Г¬ГЁ ГЎГіГЄГўГ Г¬ГЁ ГІГ°ГҐГЎГ®ГўГ Г«Г®: \"Г‚ГўГҐГ¤ГЁГІГҐ ГЄГ®Г¤\"\n");
 					break;
 				}
 			}
-			else T.PRC(1, "Ты оказался перед дверью. Она была заперта, однако, экран, издававший звуки белого шума, просил ввести код\n");
-			cout << "Чтобы войти внутрь, нужно ввести пин-код - четырёхзначное число" << endl;
+			else T.PRC(1, "Г’Г» Г®ГЄГ Г§Г Г«Г±Гї ГЇГҐГ°ГҐГ¤ Г¤ГўГҐГ°ГјГѕ. ГЋГ­Г  ГЎГ»Г«Г  Г§Г ГЇГҐГ°ГІГ , Г®Г¤Г­Г ГЄГ®, ГЅГЄГ°Г Г­, ГЁГ§Г¤Г ГўГ ГўГёГЁГ© Г§ГўГіГЄГЁ ГЎГҐГ«Г®ГЈГ® ГёГіГ¬Г , ГЇГ°Г®Г±ГЁГ« ГўГўГҐГ±ГІГЁ ГЄГ®Г¤\n");
+			cout << "Г—ГІГ®ГЎГ» ГўГ®Г©ГІГЁ ГўГ­ГіГІГ°Гј, Г­ГіГ¦Г­Г® ГўГўГҐГ±ГІГЁ ГЇГЁГ­-ГЄГ®Г¤ - Г·ГҐГІГ»Г°ВёГµГ§Г­Г Г·Г­Г®ГҐ Г·ГЁГ±Г«Г®" << endl;
 			T.V(4, 50);
 			SetConsoleTextAttribute(h, 13);
-			cout << "Осталось попыток: ";
+			cout << "ГЋГ±ГІГ Г«Г®Г±Гј ГЇГ®ГЇГ»ГІГ®ГЄ: ";
 			SetConsoleTextAttribute(h, 15);
 			cout << CountOfTry << endl;
 			T.V(4, 25);
 			if (CountOfTry != 10) {
-				cout << "В доступе отказано!" << endl;
+				cout << "Г‚ Г¤Г®Г±ГІГіГЇГҐ Г®ГІГЄГ Г§Г Г­Г®!" << endl;
 				SetConsoleTextAttribute(h, 13);
-				cout << "Пин-код: ";
+				cout << "ГЏГЁГ­-ГЄГ®Г¤: ";
 				if (Code / 1000 % 10 == Thousands) SetConsoleTextAttribute(h, 10);
 				else SetConsoleTextAttribute(h, 4);
 				cout << "*";
@@ -371,7 +412,7 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 				T.V(4, 40);
 			}
 			SetConsoleTextAttribute(h, 13);
-			cout << "Введите код: ";
+			cout << "Г‚ГўГҐГ¤ГЁГІГҐ ГЄГ®Г¤: ";
 			SetConsoleTextAttribute(h, 15);
 			cin >> Code;
 			if (Code < 1000 || Code > 9999) Code = 0;
@@ -381,24 +422,24 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 				if (!Chance) {
 					switch (Type) {
 					case 1:
-						T.PRC(1, "Похоже, дверь была механическая: были слышны характерные постукивания шестерней. Кровавое пятно на двери медленно поднималось вверх...\n");
+						T.PRC(1, "ГЏГ®ГµГ®Г¦ГҐ, Г¤ГўГҐГ°Гј ГЎГ»Г«Г  Г¬ГҐГµГ Г­ГЁГ·ГҐГ±ГЄГ Гї: ГЎГ»Г«ГЁ Г±Г«Г»ГёГ­Г» ГµГ Г°Г ГЄГІГҐГ°Г­Г»ГҐ ГЇГ®Г±ГІГіГЄГЁГўГ Г­ГЁГї ГёГҐГ±ГІГҐГ°Г­ГҐГ©. ГЉГ°Г®ГўГ ГўГ®ГҐ ГЇГїГІГ­Г® Г­Г  Г¤ГўГҐГ°ГЁ Г¬ГҐГ¤Г«ГҐГ­Г­Г® ГЇГ®Г¤Г­ГЁГ¬Г Г«Г®Г±Гј ГўГўГҐГ°Гµ...\n");
 						break;
 					case 2:
-						T.PRC(1, "Издался звенящий звук. Из ближайших двух труб вырвался клубень пара. Шлюз начал открываться\n");
+						T.PRC(1, "Г€Г§Г¤Г Г«Г±Гї Г§ГўГҐГ­ГїГ№ГЁГ© Г§ГўГіГЄ. Г€Г§ ГЎГ«ГЁГ¦Г Г©ГёГЁГµ Г¤ГўГіГµ ГІГ°ГіГЎ ГўГ»Г°ГўГ Г«Г±Гї ГЄГ«ГіГЎГҐГ­Гј ГЇГ Г°Г . ГГ«ГѕГ§ Г­Г Г·Г Г« Г®ГІГЄГ°Г»ГўГ ГІГјГ±Гї\n");
 						break;
 					case 3:
-						T.PRC(1, "Нажатия на противные липкие кнопки оказались не напрасны: издав режущий слух звук, дверь резко упала вниз, открыв проход\n");
+						T.PRC(1, "ГЌГ Г¦Г ГІГЁГї Г­Г  ГЇГ°Г®ГІГЁГўГ­Г»ГҐ Г«ГЁГЇГЄГЁГҐ ГЄГ­Г®ГЇГЄГЁ Г®ГЄГ Г§Г Г«ГЁГ±Гј Г­ГҐ Г­Г ГЇГ°Г Г±Г­Г»: ГЁГ§Г¤Г Гў Г°ГҐГ¦ГіГ№ГЁГ© Г±Г«ГіГµ Г§ГўГіГЄ, Г¤ГўГҐГ°Гј Г°ГҐГ§ГЄГ® ГіГЇГ Г«Г  ГўГ­ГЁГ§, Г®ГІГЄГ°Г»Гў ГЇГ°Г®ГµГ®Г¤\n");
 						break;
 					case 4:
-						if (rand() % 4 != 0) T.PRC(1, "Раздался ужасающий скрежет, и мятая дверь начала открываться... Ты думал, что она вот-вот развалиться, но всё обошлось\n");
+						if (rand() % 4 != 0) T.PRC(1, "ГђГ Г§Г¤Г Г«Г±Гї ГіГ¦Г Г±Г ГѕГ№ГЁГ© Г±ГЄГ°ГҐГ¦ГҐГІ, ГЁ Г¬ГїГІГ Гї Г¤ГўГҐГ°Гј Г­Г Г·Г Г«Г  Г®ГІГЄГ°Г»ГўГ ГІГјГ±Гї... Г’Г» Г¤ГіГ¬Г Г«, Г·ГІГ® Г®Г­Г  ГўГ®ГІ-ГўГ®ГІ Г°Г Г§ГўГ Г«ГЁГІГјГ±Гї, Г­Г® ГўГ±Вё Г®ГЎГ®ГёГ«Г®Г±Гј\n");
 						else {
-							T.PRC(1, "Дверь издала ужасный скрежет, похожий на чьи-то вопли... Тут же послышался треск тока порвавшихся проводов, и массивная стальная дверь грохнулась на пол, чуть не убив тебя\n");
+							T.PRC(1, "Г„ГўГҐГ°Гј ГЁГ§Г¤Г Г«Г  ГіГ¦Г Г±Г­Г»Г© Г±ГЄГ°ГҐГ¦ГҐГІ, ГЇГ®ГµГ®Г¦ГЁГ© Г­Г  Г·ГјГЁ-ГІГ® ГўГ®ГЇГ«ГЁ... Г’ГіГІ Г¦ГҐ ГЇГ®Г±Г«Г»ГёГ Г«Г±Гї ГІГ°ГҐГ±ГЄ ГІГ®ГЄГ  ГЇГ®Г°ГўГ ГўГёГЁГµГ±Гї ГЇГ°Г®ГўГ®Г¤Г®Гў, ГЁ Г¬Г Г±Г±ГЁГўГ­Г Гї Г±ГІГ Г«ГјГ­Г Гї Г¤ГўГҐГ°Гј ГЈГ°Г®ГµГ­ГіГ«Г Г±Гј Г­Г  ГЇГ®Г«, Г·ГіГІГј Г­ГҐ ГіГЎГЁГў ГІГҐГЎГї\n");
 							H.Set(hi_PHP, '-', 10);
 						}
 						break;
 					}
 				}
-				else T.PRC(13, "Раздался грохот, и дверь медленно поднялась вверх. Путь был открыт\n");
+				else T.PRC(13, "ГђГ Г§Г¤Г Г«Г±Гї ГЈГ°Г®ГµГ®ГІ, ГЁ Г¤ГўГҐГ°Гј Г¬ГҐГ¤Г«ГҐГ­Г­Г® ГЇГ®Г¤Г­ГїГ«Г Г±Гј ГўГўГҐГ°Гµ. ГЏГіГІГј ГЎГ»Г« Г®ГІГЄГ°Г»ГІ\n");
 				break;
 				continue;
 			}
@@ -433,49 +474,34 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 
 
 void Game::Buildings::LocationGeneration() {
-	// "Генерирует" помещения
-	int CountOfRooms = 2 + rand() % 4;
-
-
+	// "ГѓГҐГ­ГҐГ°ГЁГ°ГіГҐГІ" ГЇГ®Г¬ГҐГ№ГҐГ­ГЁГї
 	system("cls");
-
-
-	SetConsoleTextAttribute(h, 3);
-	cout << "Ты зашёл в здание" << endl;
-	SetConsoleTextAttribute(h, 4);
-	cout << "________________________________________" << endl;
-	SetConsoleTextAttribute(h, 15);
-
-
+	T.PRC(3, "Г’Г» Г§Г ГёВёГ« Гў Г§Г¤Г Г­ГЁГҐ\n");
+	T.V(4, 40);
+	T.PRC(15, "");
 	system("pause");
-
-
+	int CountOfRooms = 2 + rand() % 4;
 	while (CountOfRooms != 0) {
-		SetConsoleTextAttribute(h, 3);
 		system("cls");
-		cout << "Ты находишься в помещении" << endl;
-		cout << "Осталось неосмотренных отделов: ";
-		SetConsoleTextAttribute(h, 15);
+		T.PRC(3, "Г’Г» Г­Г ГµГ®Г¤ГЁГёГјГ±Гї Гў ГЇГ®Г¬ГҐГ№ГҐГ­ГЁГЁ\n");
+		T.PRC(3, "ГЋГ±ГІГ Г«Г®Г±Гј Г­ГҐГ®Г±Г¬Г®ГІГ°ГҐГ­Г­Г»Гµ Г®ГІГ¤ГҐГ«Г®Гў: ");
+		T.PRC(15, "");
 		cout << CountOfRooms << endl;
-		SetConsoleTextAttribute(h, 4);
-		cout << "________________________________________" << endl;
-		SetConsoleTextAttribute(h, 13);
-		cout << "(1) ";
-		SetConsoleTextAttribute(h, 15);
+		T.V(4, 40);
 		int RoomType = 1;
-		if (rand() % 2 == 0) RoomType++;
-		if (rand() % 3 == 0) RoomType++;
-		if (rand() % 4 == 0) RoomType++;
-		if (rand() % 5 == 0) RoomType++;
+		string Variety;
+		if (rand() % 20 == 0) RoomType = 5;
+		else if (rand() % 15 == 0) RoomType = 4;
+		else if (rand() % 10 == 0) RoomType = 3;
+		else if (rand() % 6 == 0) RoomType = 2;
 		switch (RoomType) {
-		case 1: cout << "Пойти в казармы" << endl; break;
-		case 2: cout << "Пойти в столовую" << endl; break;
-		case 3: cout << "Пойти на склад" << endl; break;
-		case 4: cout << "Пойти в медпункт" << endl; break;
-		case 5: cout << "Пойти в лабораторию" << endl; break;
+		case 1: Variety = "ГЏГ®Г©ГІГЁ Гў ГЄГ Г§Г Г°Г¬Г»"; break;
+		case 2: Variety = "ГЏГ®Г©ГІГЁ Гў Г±ГІГ®Г«Г®ГўГіГѕ"; break;
+		case 3: Variety = "ГЏГ®Г©ГІГЁ Г­Г  Г±ГЄГ«Г Г¤"; break;
+		case 4: Variety = "ГЏГ®Г©ГІГЁ Гў Г¬ГҐГ¤ГЇГіГ­ГЄГІ"; break;
+		case 5: Variety = "ГЏГ®Г©ГІГЁ Гў Г«Г ГЎГ®Г°Г ГІГ®Г°ГЁГѕ"; break;
 		}
-
-
+		T.HV(13, 1, 15, Variety);
 		while (true) {
 			int Click = _getch();
 			if (Click == 49) {
