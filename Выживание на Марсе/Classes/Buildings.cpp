@@ -2,65 +2,31 @@
 #include <conio.h>
 void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string> &RoomVarietyVector, string Info, bool IsFirst) {
 	system("cls");
-	T.PRC(1, "Ïëàí ïîìåùåíèÿ:\n");
-	// Îòðèñîâêà ïëàíà ïîìåùåíèÿ
-	switch (RoomType) { // Ïðîâåðêà íà òèï êîìíàòû
+	T.PRC(1, "План помещения:\n");
+	// Отрисовка плана помещения
+	switch (RoomType) { // Проверка на тип комнаты
 
-		// Êàçàðìû
+		// Казармы
 	case 1: {
 		
 		switch (Variety) {
-		case 1: { // Ïåðâàÿ ðàçíîâèäíîñòü êàçàðì
+		case 1: { // Первая разновидность казарм
 			T.PRC(15, "");
 			Room room = rooms[0];
-			room.Print();
-			/*
-			cout << " ___________________________________ " << endl;
-			cout << "|          |    |  |                |" << endl;
-			cout << "|          |    |  |        2       |" << endl;
-			cout << "|          |_  _|  |_______  _______|" << endl;
-			cout << "|     1    |_  _    _______  _______|" << endl;
-			cout << "|          |    |  |                |" << endl;
-			cout << "|          |    |  |        3       |" << endl;
-			cout << "|____  ____|____|  |________________|" << endl;
-			cout << "|                               4   |" << endl;
-			cout << "|________________   ________|_______|\n" << endl;
-			*/
 			if (IsFirst)
 				room.AddRoomsTo(RoomVarietyVector);
-			/*
-			if (IsFirst) {
-				RoomVarietyVector.push_back("Ïåðâûé áëîê");
-				RoomVarietyVector.push_back("Âòîðîé áëîê");
-				RoomVarietyVector.push_back("Òðåòèé áëîê");
-				RoomVarietyVector.push_back("Îôèñ îõðàíû");
-			}
-			*/
+			room.Print();
 			break;
 		}
 		case 2: { // Âòîðàÿ ðàçíîâèäíîñòü êàçàðì
 			T.PRC(15, "");
-			Room room = rooms[0];
-			room.Print();
+			Room room = rooms[1];
 			if (IsFirst)
 				room.AddRoomsTo(RoomVarietyVector);
-			//cout << " ___________________________________ " << endl;
-			//cout << "|         |                         |" << endl;
-			//cout << "|    1    |____  ____    _____  ____|" << endl;
-			//cout << "|___   ___|          |  |           |" << endl;
-			//cout << "|         |     2    |  |     3     |" << endl;
-			//cout << "|         |          |  |           |" << endl;
-			//cout << "|         |__________|  |___________|" << endl;
-			//cout << "|                                   |" << endl;
-			//cout << "|_________|__________________   ____|\n" << endl;
-			//if (IsFirst) {
-			//	RoomVarietyVector.push_back("Òåõíè÷åñêîå ïîìåùåíèå");
-			//	RoomVarietyVector.push_back("Ïåðâûé áëîê");
-			//	RoomVarietyVector.push_back("Âòîðîé áëîê");
-			//}
+			room.Print();
 			break;
 		}
-		default: T.PRC(4, "Îòñóòñòâóåò ðàçíîâèäíîñòü äàííîé êîìíàòû ñ òàêèì íîìåðîì\n"); break; // Ïðè óêàçàíèè âàðèàíòà êîìíàòû, êîòîðîãî íåò, íàì âûâåäåò ýòî ñîîáùåíèå
+		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break; // При указании варианта комнаты, которого нет, нам выведет это сообщение
 		}
 		break;
 	}
@@ -70,53 +36,21 @@ void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string> &RoomVar
 		switch (Variety) {
 		case 1: {
 			T.PRC(15, "");
-			Room room = rooms[0];
-			room.Print();
+			Room room = rooms[2];
 			if (IsFirst)
 				room.AddRoomsTo(RoomVarietyVector);
-			//cout << " _______________________________ \n";
-			//cout << "|      |                        |\n";
-			//cout << "|      |                        |\n";
-			//cout << "|   3  |                        |\n";
-			//cout << "|      |                        |\n";
-			//cout << "|__  __|           1             \n";
-			//cout << "|      |                        |\n";
-			//cout << "|   2  |                        |\n";
-			//cout << "|                               |\n";
-			//cout << "|______|________________________|\n\n";
-			//if (IsFirst) {
-			//	RoomVarietyVector.push_back("Îñíîâíîé çàë");
-			//	RoomVarietyVector.push_back("Ïîäñîáíîå ïîìåùåíèå");
-			//	RoomVarietyVector.push_back("Êóõíÿ");
-			//}
+			room.Print();
 			break;
 		}
 		case 2: {
 			T.PRC(15, "");
-			Room room = rooms[0];
-			room.Print();
+			Room room = rooms[3];
 			if (IsFirst)
 				room.AddRoomsTo(RoomVarietyVector);
-			//cout << " ______________________________ " << endl;
-			//cout << "|          |                   |" << endl;
-			//cout << "|     1    |         2         |" << endl;
-			//cout << "|          |                   |" << endl;
-			//cout << "|_  _______|________  _________|" << endl;
-			//cout << "|          |                   |" << endl;
-			//cout << "|                               " << endl;
-			//cout << "|____  ____|________  _________|" << endl;
-			//cout << "|   |  |   |                   |" << endl;
-			//cout << "|   |  |   |         3         |" << endl;
-			//cout << "|          |                   |" << endl;
-			//cout << "|___|__|___|___________________|\n" << endl;
-			//if (IsFirst) {
-			//	RoomVarietyVector.push_back("Êóõíÿ");
-			//	RoomVarietyVector.push_back("Ïåðâûé çàë");
-			//	RoomVarietyVector.push_back("Âòîðîé çàë");
-			//}
+			room.Print();
 			break;
 		}
-		default: T.PRC(4, "Îòñóòñòâóåò ðàçíîâèäíîñòü äàííîé êîìíàòû ñ òàêèì íîìåðîì\n"); break;
+		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break;
 		}
 		break;
 	}
@@ -126,63 +60,25 @@ void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string> &RoomVar
 		switch (Variety) {
 		case 1: {
 			T.PRC(15, "");
-			Room room = rooms[0];
-			room.Print();
+			Room room = rooms[4];
 			if (IsFirst)
 				room.AddRoomsTo(RoomVarietyVector);
-			/*
-			T.PRC(15, "");
-			cout << " ____________________________________ " << endl;
-			cout << "|                     |              |" << endl;
-			cout << "|          1                         |" << endl;
-			cout << "|                     |       3      |" << endl;
-			cout << "|_________  __________|              |" << endl;
-			cout << "|                   |  |_  __________|" << endl;
-			cout << "|                   |   _  __________ " << endl;
-			cout << "|_________  ________|__|             |" << endl;
-			cout << "|                     |              |" << endl;
-			cout << "|          2          |       4      |" << endl;
-			cout << "|                                    |" << endl;
-			cout << "|_____________________|______________|\n" << endl;
-			if (IsFirst) {
-				RoomVarietyVector.push_back("Ïåðâûé ñåêòîð");
-				RoomVarietyVector.push_back("Âòîðîé ñåêòîð");
-				RoomVarietyVector.push_back("Òðåòèé ñåêòîð");
-				RoomVarietyVector.push_back("×åòâ¸ðòûé ñåêòîð");
-			}
-			*/
+			room.Print();
 			break;
 		}
 		case 2: {
 			T.PRC(15, "");
-			Room room = rooms[0];
-			room.Print();
-			if(IsFirst)
+			Room room = rooms[5];
+			if (IsFirst)
 				room.AddRoomsTo(RoomVarietyVector);
-			/*
-			cout << " _____________________ " << endl;
-			cout << "|     |         |     |" << endl;
-			cout << "|           1   |  2  |" << endl;
-			cout << "|     |               |" << endl;
-			cout << "|     |_________|_____|" << endl;
-			cout << "|      _______________ " << endl;
-			cout << "|     |               |" << endl;
-			cout << "|     |       3       |" << endl;
-			cout << "|                     |" << endl;
-			cout << "|_____|_______________|\n" << endl;
-			if (IsFirst) {
-				RoomVarietyVector.push_back("Ïåðâûé ñåêòîð");
-				RoomVarietyVector.push_back("Âòîðîé ñåêòîð");
-				RoomVarietyVector.push_back("Òðåòèé ñåêòîð");
-			}
-			*/
+			room.Print();
 			break;
 		}
-		default: T.PRC(4, "Îòñóòñòâóåò ðàçíîâèäíîñòü äàííîé êîìíàòû ñ òàêèì íîìåðîì\n"); break;
+		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break;
 		}
 		break;
 	}
-		  // Ìåäïóíêò
+		  // Медпункт
 	case 4: {
 		
 		switch (Variety) {
@@ -227,7 +123,7 @@ void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string> &RoomVar
 			}
 			break;
 		}
-		default: T.PRC(4, "Îòñóòñòâóåò ðàçíîâèäíîñòü äàííîé êîìíàòû ñ òàêèì íîìåðîì\n"); break;
+		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break;
 		}
 		break;
 	}
@@ -241,15 +137,15 @@ void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string> &RoomVar
 		case 2: {
 			break;
 		}
-		default: T.PRC(4, "Îòñóòñòâóåò ðàçíîâèäíîñòü äàííîé êîìíàòû ñ òàêèì íîìåðîì\n"); break;
+		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break;
 		}
 		break;
 	}
-	default: T.PRC(4, "Îòñóòñòâóåò êîìíàòà ñ òàêèì íîìåðîì\n"); break; // Ïðè îòñóòñòâèè óêàçàííîãî òèïà êîìíàòû âûâîäèò ñëåäóþùåå
+	default: T.PRC(4, "Отсутствует комната с таким номером\n"); break; // При отсутствии указанного типа комнаты выводит следующее
 	}
 }
 void Game::Buildings::RoomVarietyPrint(vector<string> RoomVarietyVector) {
-	T.PRC(1, "Âûáåðèòå îòäåë ïîìåùåíèÿ:\n");
+	T.PRC(1, "Выберите отдел помещения:\n");
 	T.V(4, 45);
 	int Size = RoomVarietyVector.size();
 	for (int i = 0; i < Size; i++) {
@@ -521,4 +417,8 @@ Game::Buildings::Buildings() {
 	rooms.emplace_back(Room("Data\\Canteen\\Second.txt"));
 	rooms.emplace_back(Room("Data\\Warehouse\\First.txt"));
 	rooms.emplace_back(Room("Data\\Warehouse\\Second.txt"));
+	rooms.emplace_back(Room("Data\\Medical Centre\\First.txt"));
+	rooms.emplace_back(Room("Data\\Medical Centre\\Second.txt"));
+	rooms.emplace_back(Room("Data\\Laboratory\\First.txt"));
+	rooms.emplace_back(Room("Data\\Laboratory\\Second.txt"));
 }

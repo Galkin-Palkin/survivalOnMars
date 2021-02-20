@@ -4,7 +4,6 @@
 
 Game::Room::Room(string filename) {
 	ifstream fin(filename);
-	//fin.exceptions(ios::failbit);
 	int size;
 	fin >> size;
 	floorPlan.resize(size);
@@ -18,7 +17,6 @@ Game::Room::Room(string filename) {
 		fin >> roomToName[i];
 		int countOfActions;
 		fin >> countOfActions;
-		cout << countOfActions << "\n";
 		for (int j = 0; j < countOfActions; ++j) {
 			roomToActions[j].emplace_back(Action(fin));
 		}
@@ -27,7 +25,7 @@ Game::Room::Room(string filename) {
 void Game::Room::Print() {
 	for (auto i : floorPlan)
 		cout << i << "\n";
-	PrintActions();
+	//PrintActions();
 }
 
 void Game::Room::PrintActions() {
