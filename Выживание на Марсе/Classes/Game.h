@@ -155,14 +155,37 @@ class Game {
 		Consumable FishSoup;
 		Inventory();
 	};
+	class Action {
+	private:
+		vector<string> textToPrint;
+	public:
+		Action(ifstream &);
+		void Print();
+	};
+    class Room {
+    private:
+        vector<vector<Action>> roomToActions;
+		vector<string> roomToName;
+		vector<string> floorPlan;
+		int selectedRoom = 0;
+    public:
+		Room(string);
+        void Print();
+        void SelectRoom(int);
+        void PrintActions();
+		void PrintRooms();
+		void AddRoomsTo(vector<string>& arr);
+
+    };
 	static map<string, Consumable> ConsumableMap;
-	class Buildings {
+	class Buildings {	
+	private:
 		// Здания
 		Inventory I;
 		HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 		Human H;
 		Text T;
-
+		vector<Room> rooms;
 		/// <summary>
 		/// Функция, которая выводит план комнаты.
 		/// </summary>
@@ -176,6 +199,7 @@ class Game {
 		void DenyToGoIn(int Type, string RoomType, bool& Entering);
 	public:
 		void LocationGeneration();
+		Buildings();
 	};
 	Buildings B;
 	Human H;
