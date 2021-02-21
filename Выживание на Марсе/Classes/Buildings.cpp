@@ -1,255 +1,98 @@
 #include "Game.h"
 #include <conio.h>
-void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string> &RoomVarietyVector, string Info, bool IsFirst) {
+void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string>& RoomVarietyVector, bool IsFirst) {
 	system("cls");
-	T.PRC(1, "Ïëàí ïîìåùåíèÿ:\n");
-	// Îòðèñîâêà ïëàíà ïîìåùåíèÿ
-	switch (RoomType) { // Ïðîâåðêà íà òèï êîìíàòû
-
-		// Êàçàðìû
+	T.PRC(1, "План помещения:\n");
+	Room room = rooms[0];
+	// Отрисовка плана помещения
+	switch (RoomType) { // Проверка на тип комнаты
+	// Казармы
 	case 1: {
-		
 		switch (Variety) {
-		case 1: { // Ïåðâàÿ ðàçíîâèäíîñòü êàçàðì
-			T.PRC(15, "");
-			Room room = rooms[0];
-			room.Print();
-			/*
-			cout << " ___________________________________ " << endl;
-			cout << "|          |    |  |                |" << endl;
-			cout << "|          |    |  |        2       |" << endl;
-			cout << "|          |_  _|  |_______  _______|" << endl;
-			cout << "|     1    |_  _    _______  _______|" << endl;
-			cout << "|          |    |  |                |" << endl;
-			cout << "|          |    |  |        3       |" << endl;
-			cout << "|____  ____|____|  |________________|" << endl;
-			cout << "|                               4   |" << endl;
-			cout << "|________________   ________|_______|\n" << endl;
-			*/
-			if (IsFirst)
-				room.AddRoomsTo(RoomVarietyVector);
-			/*
-			if (IsFirst) {
-				RoomVarietyVector.push_back("Ïåðâûé áëîê");
-				RoomVarietyVector.push_back("Âòîðîé áëîê");
-				RoomVarietyVector.push_back("Òðåòèé áëîê");
-				RoomVarietyVector.push_back("Îôèñ îõðàíû");
-			}
-			*/
+		case 1: { // Первая разновидность казарм
+			room = rooms[0];
 			break;
 		}
-		case 2: { // Âòîðàÿ ðàçíîâèäíîñòü êàçàðì
-			T.PRC(15, "");
-			Room room = rooms[0];
-			room.Print();
-			if (IsFirst)
-				room.AddRoomsTo(RoomVarietyVector);
-			//cout << " ___________________________________ " << endl;
-			//cout << "|         |                         |" << endl;
-			//cout << "|    1    |____  ____    _____  ____|" << endl;
-			//cout << "|___   ___|          |  |           |" << endl;
-			//cout << "|         |     2    |  |     3     |" << endl;
-			//cout << "|         |          |  |           |" << endl;
-			//cout << "|         |__________|  |___________|" << endl;
-			//cout << "|                                   |" << endl;
-			//cout << "|_________|__________________   ____|\n" << endl;
-			//if (IsFirst) {
-			//	RoomVarietyVector.push_back("Òåõíè÷åñêîå ïîìåùåíèå");
-			//	RoomVarietyVector.push_back("Ïåðâûé áëîê");
-			//	RoomVarietyVector.push_back("Âòîðîé áëîê");
-			//}
+		case 2: { // Вторая разновидность казарм
+			room = rooms[1];
 			break;
 		}
-		default: T.PRC(4, "Îòñóòñòâóåò ðàçíîâèäíîñòü äàííîé êîìíàòû ñ òàêèì íîìåðîì\n"); break; // Ïðè óêàçàíèè âàðèàíòà êîìíàòû, êîòîðîãî íåò, íàì âûâåäåò ýòî ñîîáùåíèå
+		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break; // При указании варианта комнаты, которого нет, нам выведет это сообщение
 		}
 		break;
 	}
-		  // Ñòîëîâàÿ
+		  // Столовая
 	case 2: {
-		
+
 		switch (Variety) {
 		case 1: {
-			T.PRC(15, "");
-			Room room = rooms[0];
-			room.Print();
-			if (IsFirst)
-				room.AddRoomsTo(RoomVarietyVector);
-			//cout << " _______________________________ \n";
-			//cout << "|      |                        |\n";
-			//cout << "|      |                        |\n";
-			//cout << "|   3  |                        |\n";
-			//cout << "|      |                        |\n";
-			//cout << "|__  __|           1             \n";
-			//cout << "|      |                        |\n";
-			//cout << "|   2  |                        |\n";
-			//cout << "|                               |\n";
-			//cout << "|______|________________________|\n\n";
-			//if (IsFirst) {
-			//	RoomVarietyVector.push_back("Îñíîâíîé çàë");
-			//	RoomVarietyVector.push_back("Ïîäñîáíîå ïîìåùåíèå");
-			//	RoomVarietyVector.push_back("Êóõíÿ");
-			//}
+			room = rooms[2];
 			break;
 		}
 		case 2: {
-			T.PRC(15, "");
-			Room room = rooms[0];
-			room.Print();
-			if (IsFirst)
-				room.AddRoomsTo(RoomVarietyVector);
-			//cout << " ______________________________ " << endl;
-			//cout << "|          |                   |" << endl;
-			//cout << "|     1    |         2         |" << endl;
-			//cout << "|          |                   |" << endl;
-			//cout << "|_  _______|________  _________|" << endl;
-			//cout << "|          |                   |" << endl;
-			//cout << "|                               " << endl;
-			//cout << "|____  ____|________  _________|" << endl;
-			//cout << "|   |  |   |                   |" << endl;
-			//cout << "|   |  |   |         3         |" << endl;
-			//cout << "|          |                   |" << endl;
-			//cout << "|___|__|___|___________________|\n" << endl;
-			//if (IsFirst) {
-			//	RoomVarietyVector.push_back("Êóõíÿ");
-			//	RoomVarietyVector.push_back("Ïåðâûé çàë");
-			//	RoomVarietyVector.push_back("Âòîðîé çàë");
-			//}
+			room = rooms[3];
 			break;
 		}
-		default: T.PRC(4, "Îòñóòñòâóåò ðàçíîâèäíîñòü äàííîé êîìíàòû ñ òàêèì íîìåðîì\n"); break;
+		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break;
 		}
 		break;
 	}
-		  // Ñêëàä
+		  // Склад
 	case 3: {
-		
+
 		switch (Variety) {
 		case 1: {
-			T.PRC(15, "");
-			Room room = rooms[0];
-			room.Print();
-			if (IsFirst)
-				room.AddRoomsTo(RoomVarietyVector);
-			/*
-			T.PRC(15, "");
-			cout << " ____________________________________ " << endl;
-			cout << "|                     |              |" << endl;
-			cout << "|          1                         |" << endl;
-			cout << "|                     |       3      |" << endl;
-			cout << "|_________  __________|              |" << endl;
-			cout << "|                   |  |_  __________|" << endl;
-			cout << "|                   |   _  __________ " << endl;
-			cout << "|_________  ________|__|             |" << endl;
-			cout << "|                     |              |" << endl;
-			cout << "|          2          |       4      |" << endl;
-			cout << "|                                    |" << endl;
-			cout << "|_____________________|______________|\n" << endl;
-			if (IsFirst) {
-				RoomVarietyVector.push_back("Ïåðâûé ñåêòîð");
-				RoomVarietyVector.push_back("Âòîðîé ñåêòîð");
-				RoomVarietyVector.push_back("Òðåòèé ñåêòîð");
-				RoomVarietyVector.push_back("×åòâ¸ðòûé ñåêòîð");
-			}
-			*/
+			room = rooms[4];
 			break;
 		}
 		case 2: {
-			T.PRC(15, "");
-			Room room = rooms[0];
-			room.Print();
-			if(IsFirst)
-				room.AddRoomsTo(RoomVarietyVector);
-			/*
-			cout << " _____________________ " << endl;
-			cout << "|     |         |     |" << endl;
-			cout << "|           1   |  2  |" << endl;
-			cout << "|     |               |" << endl;
-			cout << "|     |_________|_____|" << endl;
-			cout << "|      _______________ " << endl;
-			cout << "|     |               |" << endl;
-			cout << "|     |       3       |" << endl;
-			cout << "|                     |" << endl;
-			cout << "|_____|_______________|\n" << endl;
-			if (IsFirst) {
-				RoomVarietyVector.push_back("Ïåðâûé ñåêòîð");
-				RoomVarietyVector.push_back("Âòîðîé ñåêòîð");
-				RoomVarietyVector.push_back("Òðåòèé ñåêòîð");
-			}
-			*/
+			room = rooms[5];
 			break;
 		}
-		default: T.PRC(4, "Îòñóòñòâóåò ðàçíîâèäíîñòü äàííîé êîìíàòû ñ òàêèì íîìåðîì\n"); break;
+		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break;
 		}
 		break;
 	}
-		  // Ìåäïóíêò
+		  // Медпункт
 	case 4: {
-		
+
 		switch (Variety) {
 		case 1: {
-			T.PRC(15, "");
-			cout << " _________________________________ " << endl;
-			cout << "|                |    |       |   |" << endl;
-			cout << "|______   _______|    |           |" << endl;
-			cout << "|______ 1 _______      _______|   |" << endl;
-			cout << "|                |    |     2     |" << endl;
-			cout << "|________________|_  _|___________|" << endl;
-			cout << "                 |    |________  _|" << endl;
-			cout << "                 |          3     |" << endl;
-			cout << "                 |    |___________|" << endl;
-			cout << "                 \\_______  _______/\n" << endl;
-			if (IsFirst) {
-				RoomVarietyVector.push_back("Áëîê ñ ïàëàòàìè");
-				RoomVarietyVector.push_back("Ñêëàä è òåõíè÷åñêîå ïîìåùåíèå");
-				RoomVarietyVector.push_back("Ðåãèñòðàòóðà");
-			}
+			room = rooms[6];
 			break;
 		}
 		case 2: {
-			T.PRC(15, "");
-			cout << " __________________________________ " << endl;
-			cout << "|      |      |      |      |      |" << endl;
-			cout << "|      |      |   1  |      |      |" << endl;
-			cout << "|__  __|__  __|__  __|__  __|__  __|" << endl;
-			cout << "|_______________    _______________|" << endl;
-			cout << "       |    2   |  |                " << endl;
-			cout << "   ____|_____  _|  |_____________   " << endl;
-			cout << "  |             |  |_  __    __  |  " << endl;
-			cout << "  |______  _____|  |_____|  |____|  " << endl;
-			cout << "  |                              |  " << endl;
-			cout << "  |      3      |  |       4     |  " << endl;
-			cout << "  |_____________|  |_____________|  \n" << endl;
-			if (IsFirst) {
-				RoomVarietyVector.push_back("Ñåêòîð ñ ïàëàòàìè");
-				RoomVarietyVector.push_back("Ñêëàä ìåäèêàìåíòîâ");
-				RoomVarietyVector.push_back("Ëåâûé áëîê");
-				RoomVarietyVector.push_back("Ñòîëîâàÿ");
-			}
+			room = rooms[7];
 			break;
 		}
-		default: T.PRC(4, "Îòñóòñòâóåò ðàçíîâèäíîñòü äàííîé êîìíàòû ñ òàêèì íîìåðîì\n"); break;
+		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break;
 		}
 		break;
 	}
-		  // Ëàáîðàòîðèÿ
+		  // Лаборатория
 	case 5: {
-		
+
 		switch (Variety) {
 		case 1: {
+			room = rooms[8];
 			break;
 		}
 		case 2: {
+			room = rooms[9];
 			break;
 		}
-		default: T.PRC(4, "Îòñóòñòâóåò ðàçíîâèäíîñòü äàííîé êîìíàòû ñ òàêèì íîìåðîì\n"); break;
+		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break;
 		}
 		break;
 	}
-	default: T.PRC(4, "Îòñóòñòâóåò êîìíàòà ñ òàêèì íîìåðîì\n"); break; // Ïðè îòñóòñòâèè óêàçàííîãî òèïà êîìíàòû âûâîäèò ñëåäóþùåå
+	default: T.PRC(4, "Отсутствует комната с таким номером\n"); break; // При отсутствии указанного типа комнаты выводит следующее
 	}
+	T.PRC(15, "");
+	room.Print();
+	if (IsFirst) room.AddRoomsTo(RoomVarietyVector);
 }
 void Game::Buildings::RoomVarietyPrint(vector<string> RoomVarietyVector) {
-	T.PRC(1, "Âûáåðèòå îòäåë ïîìåùåíèÿ:\n");
+	T.PRC(1, "Выберите отдел помещения:\n");
 	T.V(4, 45);
 	int Size = RoomVarietyVector.size();
 	for (int i = 0; i < Size; i++) {
@@ -262,9 +105,9 @@ void Game::Buildings::RoomVarietyPrint(vector<string> RoomVarietyVector) {
 	T.V(4, 45);
 	T.PRC(15, "");
 }
-int Game::Buildings::RoomChoose(vector<string> &RoomVarietyVector) {
+int Game::Buildings::RoomChoose(vector<string>& RoomVarietyVector) {
 	while (true) {
-		int Click = _getch(); // Ñ÷èòûâàåì àñêèè-êîä ñèìâîëà. Ó åäèíèöû îí 49, ó äâîéêè - 50 è òàê äàëåå
+		int Click = _getch(); // Считываем аскии-код символа. У единицы он 49, у двойки - 50 и так далее
 		switch (Click) {
 		case 49:
 			if (RoomVarietyVector.size() < 1) break;
@@ -275,7 +118,7 @@ int Game::Buildings::RoomChoose(vector<string> &RoomVarietyVector) {
 			RoomVarietyVector.erase(RoomVarietyVector.begin() + 1);
 			return 2;
 		case 51:
-			if (RoomVarietyVector.size() < 3) break; // Ïðîâåðêà íà òî, åñòü ëè äîñòàòî÷íîå êîëè÷åñòâî ìåñò äëÿ ïîèñêà â êîìíàòå
+			if (RoomVarietyVector.size() < 3) break; // Проверка на то, есть ли достаточное количество мест для поиска в комнате
 			RoomVarietyVector.erase(RoomVarietyVector.begin() + 2);
 			return 3;
 		case 52:
@@ -285,32 +128,29 @@ int Game::Buildings::RoomChoose(vector<string> &RoomVarietyVector) {
 		}
 	}
 }
-void Game::Buildings::RoomSearching(vector<string> &RoomPlacesVector, string Info) {
+void Game::Buildings::RoomSearching() {
 	system("cls");
-	T.PRC(3, Info);
 	T.V(4, 50);
-	int Choose = RoomChoose(RoomPlacesVector);
+	//int Choose = RoomChoose(RoomPlacesVector);
 	T.V(4, 50);
+	system("pause");
 }
 #pragma region Enters
 void Game::Buildings::EnterRoom(int RoomType)
 {
-	string RoomDenyType; // Ãîâîðèò, äîñòóï â êàêîå ïîìåùåíèå íåâîçìîæåí
-	string Info; // Èíôîðìàöèÿ î êîìíàòå ïîìåùåíèÿ
-	vector<string> RoomVarietyVector; // Âåêòîð íàçâàíèé êîìíàò ïîìåùåíèÿ
-	vector<string> RoomPlacesVector; // Âåêòîð ñ íàçâàíèÿìè ìåñò äëÿ ïîèñêà â êîìíàòå
-	map<string, vector<Game::Consumable>> Map; // Ñëîâàðü, õðàíÿùèé ïî íàçâàíèþ ìåñòà âåêòîð Consumable`îâ, êîòîðûå ìîæíî íàéòè â ýòîì ìåñòå
+	string RoomDenyType; // Говорит, доступ в какое помещение невозможен
+	vector<string> RoomVarietyVector; // Вектор названий комнат помещения
 	switch (RoomType) {
 		//Bedrooms
-	case 1: RoomDenyType = "îò êàçàðì"; break;
+	case 1: RoomDenyType = "от казарм"; break;
 		//Cantin
-	case 2: RoomDenyType = "îò ñòîëîâîé"; break;
+	case 2: RoomDenyType = "от столовой"; break;
 		//Storage
-	case 3: RoomDenyType = "îò ñêëàäà"; break;
+	case 3: RoomDenyType = "от склада"; break;
 		//Hospital
-	case 4: RoomDenyType = "îò ìåäïóíêòà"; break;
+	case 4: RoomDenyType = "от медпункта"; break;
 		//Laboratory
-	case 5: RoomDenyType = "îò ëàáîðàòîðèè"; break;
+	case 5: RoomDenyType = "от лаборатории"; break;
 	}
 	bool Entering = true;
 	if (rand() % 8 == 0) {
@@ -319,43 +159,43 @@ void Game::Buildings::EnterRoom(int RoomType)
 	}
 	if (Entering) {
 		int RoomVariety = 1 + rand() % 2;
-		RoomMap(RoomType, RoomVariety, RoomVarietyVector, Info, true); // Äåëàåò âñþ ãðÿçíóþ ðàáîòó)
+		RoomMap(RoomType, RoomVariety, RoomVarietyVector, true); 
 		RoomVarietyPrint(RoomVarietyVector);
 		int Choose = RoomChoose(RoomVarietyVector);
-		RoomSearching(RoomPlacesVector, Info);
+		RoomSearching();
 		while (RoomVarietyVector.size() > 0) {
-			RoomMap(RoomType, RoomVariety, RoomVarietyVector, Info, false);
+			RoomMap(RoomType, RoomVariety, RoomVarietyVector, false);
 			RoomVarietyPrint(RoomVarietyVector);
 			int Choose = RoomChoose(RoomVarietyVector);
-			RoomSearching(RoomPlacesVector, Info);
+			RoomSearching();
 		}
 	}
 }
 #pragma endregion
 
 void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
-	// Çàïðåò íà âõîä âíóòðü ïîìåùåíèÿ
+	// Запрет на вход внутрь помещения
 	system("cls");
 	SetConsoleTextAttribute(h, 13);
 	switch (Type) {
-		//äâåðü çàáëîêèðîâàíà
+		//дверь заблокирована
 	case 1: {
-		cout << "Äâåðü " << RoomType << " çàáëîêèðîâàíà. Â ýòîò îòäåë ÷åðåç ýòó äâåðü âîéòè áîëüøå íåëüçÿ" << endl;
+		cout << "Дверь " << RoomType << " заблокирована. В этот отдел через эту дверь войти больше нельзя" << endl;
 		Entering = false;
 		break;
 	}
-		  //âñå ðàçðóøåíî, íî â îäíîì èç ñëó÷àåâ íàõîäèòñÿ ÷üÿòà êèñòü
+		  //все разрушено, но в одном из случаев находится чья-то кисть
 	case 2: {
-		cout << "Îòêðûâ äâåðü " << RoomType << ", òû óâèäåë ëèøü ðóèíû: âñ¸ áûëî çàâàëåíî ãðóäàìè ïîðèñòîãî áåòîíà" << endl;
+		cout << "Открыв дверь " << RoomType << ", ты увидел лишь руины: всё было завалено грудами пористого бетона" << endl;
 		if (rand() % 5 == 0) {
-			cout << "Ïîä îäíèì èç îáëîìêîâ òû óâèäåë ÷üþ-òî ðàñïëþùåííóþ êèñòü... Òåáå ñòàëî äóðíî îò ýòîãî è òû ïîñïåøèë çàêðûòü äâåðü" << endl;
+			cout << "Под одним из обломков ты увидел чью-то расплющенную кисть... Тебе стало дурно от этого и ты поспешил закрыть дверь" << endl;
 			H.Set(hi_PHP, '-', 40);
 		}
-		else cout << "Èñêàòü òåáå çäåñü ÿâíî íå÷åãî, è òû çàêðûë äâåðü" << endl;
+		else cout << "Искать тебе здесь явно нечего, и ты закрыл дверь" << endl;
 		Entering = false;
 		break;
 	}
-		  //èíîé ñëó÷àé
+		  //иной случай
 	case 3: {
 		int CountOfTry = 3 + rand() % 8;
 		bool UsedDoor = CountOfTry < 10;
@@ -372,31 +212,31 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 			if (UsedDoor && Chance == 0) {
 				switch (Type) {
 				case 1:
-					T.PRC(1, "Òû ïîäîø¸ë ê äâåðè " + RoomType + ". Íà íåé âèäíåþòñÿ ñëåäû âûñîõøåé êðîâè êàêîãî-òî áåäîëàãè... Ïîõîæå, êàêîìó-òî ñîòðóäèíêó íåñëàäêî äîñòàëîñü...\n");
+					T.PRC(1, "Ты подошёл к двери " + RoomType + ". На ней виднеются следы высохшей крови какого-то бедолаги... Похоже, какому-то сотрудинку несладко досталось...\n");
 					break;
 				case 2:
-					T.PRC(1, "Ó øëþçà èç ñïëàâà òèòàíà åñòü ñåíñîðíûé ìîíèòîð. Òàì íåîáõîäèìî ââåñòè êëþ÷, ëèáî æå ïðîâåñòè êàðòîé â òåðìèíàëå íèæå. Ñóäÿ ïî êîëè÷åñòâó ïîïûòîê è ñëåãêà òðåñíóòîìó ýêðàíó ìîæíî ïîëàãàòü, ÷òî êòî-òî áåçóñïåøíî ïûòàëñÿ ðàçáëîêèðîâàòü ýòó äâåðü.\n");
+					T.PRC(1, "У шлюза из сплава титана есть сенсорный монитор. Там необходимо ввести ключ, либо же провести картой в терминале ниже. Судя по количеству попыток и слегка треснутому экрану можно полагать, что кто-то безуспешно пытался разблокировать эту дверь.\n");
 					break;
 				case 3:
-					T.PRC(1, "Ó øèðîêîãî âõîäà åñòü êîìïüþòåðíûé ìåõàíèçì. Îí èçäà¸ò ïîòðåñêèâàíèÿ. Íà ïûëüíîì, ñ ïàóòèíîé ìîíèòîðå òðåáóþò ââåñòè êîä. Îäíàêî, òâî¸ âíèìàíèå ïðèâëåêëî äðóãîå: êëàâèàòóðà áûëà çàëÿïàíà êàêîé-òî æ¸ëòîé âÿçêîé\næèäêîñòüþ, èç-çà ÷åãî íåêîòîðûå êíîïêè íå ðàáîòàëè. À åù¸, ïîõîæå, êòî-òî ïûòàëñÿ ââåñòè êîä äî òåáÿ\n");
+					T.PRC(1, "У широкого входа есть компьютерный механизм. Он издаёт потрескивания. На пыльном, с паутиной мониторе требуют ввести код. Однако, твоё внимание привлекло другое: клавиатура была заляпана какой-то жёлтой вязкой\nжидкостью, из-за чего некоторые кнопки не работали. А ещё, похоже, кто-то пытался ввести код до тебя\n");
 					break;
 				case 4:
-					T.PRC(1, "Ñòàëüíàÿ äâåðü, îòäåëÿþùàÿ òåáÿ " + RoomType + ", âñÿ â öàðàïèíàõ. Â íèæíåé ëåâîé ÷àñòè âèäíååòñÿ âìÿòèíà, äèàìåòð êîòîðîé, êàê òû ïðèìåðíî ïðåäñòàâèë, îêîëî 20 ñàíòèìåòðîâ\nÈç ýëåêòðîííûõ ïåòåëü äâåðè ñâåðêàëè èñêðû è èçäàâàëîñü õàðàêòåðíîå ïîòðåñêèâàíèå. Íà ìîíèòîðå, íàõîäÿùèìñÿ\níà ñòåíå ÷óòü ëåâåå äâåðè, ñåðûìè, åëå çàìåòíûìè áóêâàìè òðåáîâàëî: \"Ââåäèòå êîä\"\n");
+					T.PRC(1, "Стальная дверь, отделяющая тебя " + RoomType + ", вся в царапинах. В нижней левой части виднеется вмятина, диаметр которой, как ты примерно представил, около 20 сантиметров\nИз электронных петель двери сверкали искры и издавалось характерное потрескивание. На мониторе, находящимся\nна стене чуть левее двери, серыми, еле заметными буквами требовало: \"Введите код\"\n");
 					break;
 				}
 			}
-			else T.PRC(1, "Òû îêàçàëñÿ ïåðåä äâåðüþ. Îíà áûëà çàïåðòà, îäíàêî, ýêðàí, èçäàâàâøèé çâóêè áåëîãî øóìà, ïðîñèë ââåñòè êîä\n");
-			cout << "×òîáû âîéòè âíóòðü, íóæíî ââåñòè ïèí-êîä - ÷åòûð¸õçíà÷íîå ÷èñëî" << endl;
+			else T.PRC(1, "Ты оказался перед дверью. Она была заперта, однако, экран, издававший звуки белого шума, просил ввести код\n");
+			cout << "Чтобы войти внутрь, нужно ввести пин-код - четырёхзначное число" << endl;
 			T.V(4, 50);
 			SetConsoleTextAttribute(h, 13);
-			cout << "Îñòàëîñü ïîïûòîê: ";
+			cout << "Осталось попыток: ";
 			SetConsoleTextAttribute(h, 15);
 			cout << CountOfTry << endl;
 			T.V(4, 25);
 			if (CountOfTry != 10) {
-				cout << "Â äîñòóïå îòêàçàíî!" << endl;
+				cout << "В доступе отказано!" << endl;
 				SetConsoleTextAttribute(h, 13);
-				cout << "Ïèí-êîä: ";
+				cout << "Пин-код: ";
 				if (Code / 1000 % 10 == Thousands) SetConsoleTextAttribute(h, 10);
 				else SetConsoleTextAttribute(h, 4);
 				cout << "*";
@@ -412,7 +252,7 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 				T.V(4, 40);
 			}
 			SetConsoleTextAttribute(h, 13);
-			cout << "Ââåäèòå êîä: ";
+			cout << "Введите код: ";
 			SetConsoleTextAttribute(h, 15);
 			cin >> Code;
 			if (Code < 1000 || Code > 9999) Code = 0;
@@ -422,24 +262,24 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 				if (!Chance) {
 					switch (Type) {
 					case 1:
-						T.PRC(1, "Ïîõîæå, äâåðü áûëà ìåõàíè÷åñêàÿ: áûëè ñëûøíû õàðàêòåðíûå ïîñòóêèâàíèÿ øåñòåðíåé. Êðîâàâîå ïÿòíî íà äâåðè ìåäëåííî ïîäíèìàëîñü ââåðõ...\n");
+						T.PRC(1, "Похоже, дверь была механическая: были слышны характерные постукивания шестерней. Кровавое пятно на двери медленно поднималось вверх...\n");
 						break;
 					case 2:
-						T.PRC(1, "Èçäàëñÿ çâåíÿùèé çâóê. Èç áëèæàéøèõ äâóõ òðóá âûðâàëñÿ êëóáåíü ïàðà. Øëþç íà÷àë îòêðûâàòüñÿ\n");
+						T.PRC(1, "Издался звенящий звук. Из ближайших двух труб вырвался клубень пара. Шлюз начал открываться\n");
 						break;
 					case 3:
-						T.PRC(1, "Íàæàòèÿ íà ïðîòèâíûå ëèïêèå êíîïêè îêàçàëèñü íå íàïðàñíû: èçäàâ ðåæóùèé ñëóõ çâóê, äâåðü ðåçêî óïàëà âíèç, îòêðûâ ïðîõîä\n");
+						T.PRC(1, "Нажатия на противные липкие кнопки оказались не напрасны: издав режущий слух звук, дверь резко упала вниз, открыв проход\n");
 						break;
 					case 4:
-						if (rand() % 4 != 0) T.PRC(1, "Ðàçäàëñÿ óæàñàþùèé ñêðåæåò, è ìÿòàÿ äâåðü íà÷àëà îòêðûâàòüñÿ... Òû äóìàë, ÷òî îíà âîò-âîò ðàçâàëèòüñÿ, íî âñ¸ îáîøëîñü\n");
+						if (rand() % 4 != 0) T.PRC(1, "Раздался ужасающий скрежет, и мятая дверь начала открываться... Ты думал, что она вот-вот развалиться, но всё обошлось\n");
 						else {
-							T.PRC(1, "Äâåðü èçäàëà óæàñíûé ñêðåæåò, ïîõîæèé íà ÷üè-òî âîïëè... Òóò æå ïîñëûøàëñÿ òðåñê òîêà ïîðâàâøèõñÿ ïðîâîäîâ, è ìàññèâíàÿ ñòàëüíàÿ äâåðü ãðîõíóëàñü íà ïîë, ÷óòü íå óáèâ òåáÿ\n");
+							T.PRC(1, "Дверь издала ужасный скрежет, похожий на чьи-то вопли... Тут же послышался треск тока порвавшихся проводов, и массивная стальная дверь грохнулась на пол, чуть не убив тебя\n");
 							H.Set(hi_PHP, '-', 10);
 						}
 						break;
 					}
 				}
-				else T.PRC(13, "Ðàçäàëñÿ ãðîõîò, è äâåðü ìåäëåííî ïîäíÿëàñü ââåðõ. Ïóòü áûë îòêðûò\n");
+				else T.PRC(13, "Раздался грохот, и дверь медленно поднялась вверх. Путь был открыт\n");
 				break;
 				continue;
 			}
@@ -474,17 +314,17 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 
 
 void Game::Buildings::LocationGeneration() {
-	// "Ãåíåðèðóåò" ïîìåùåíèÿ
+	// "Генерирует" помещения
 	system("cls");
-	T.PRC(3, "Òû çàø¸ë â çäàíèå\n");
+	T.PRC(3, "Ты зашёл в здание\n");
 	T.V(4, 40);
 	T.PRC(15, "");
 	system("pause");
 	int CountOfRooms = 2 + rand() % 4;
 	while (CountOfRooms != 0) {
 		system("cls");
-		T.PRC(3, "Òû íàõîäèøüñÿ â ïîìåùåíèè\n");
-		T.PRC(3, "Îñòàëîñü íåîñìîòðåííûõ îòäåëîâ: ");
+		T.PRC(3, "Ты находишься в помещении\n");
+		T.PRC(3, "Осталось неосмотренных отделов: ");
 		T.PRC(15, "");
 		cout << CountOfRooms << endl;
 		T.V(4, 40);
@@ -495,11 +335,11 @@ void Game::Buildings::LocationGeneration() {
 		else if (rand() % 10 == 0) RoomType = 3;
 		else if (rand() % 6 == 0) RoomType = 2;
 		switch (RoomType) {
-		case 1: Variety = "Ïîéòè â êàçàðìû"; break;
-		case 2: Variety = "Ïîéòè â ñòîëîâóþ"; break;
-		case 3: Variety = "Ïîéòè íà ñêëàä"; break;
-		case 4: Variety = "Ïîéòè â ìåäïóíêò"; break;
-		case 5: Variety = "Ïîéòè â ëàáîðàòîðèþ"; break;
+		case 1: Variety = "Пойти в казармы"; break;
+		case 2: Variety = "Пойти в столовую"; break;
+		case 3: Variety = "Пойти на склад"; break;
+		case 4: Variety = "Пойти в медпункт"; break;
+		case 5: Variety = "Пойти в лабораторию"; break;
 		}
 		T.HV(13, 1, 15, Variety);
 		while (true) {
@@ -521,4 +361,8 @@ Game::Buildings::Buildings() {
 	rooms.emplace_back(Room("Data\\Canteen\\Second.txt"));
 	rooms.emplace_back(Room("Data\\Warehouse\\First.txt"));
 	rooms.emplace_back(Room("Data\\Warehouse\\Second.txt"));
+	rooms.emplace_back(Room("Data\\Medical Centre\\First.txt"));
+	rooms.emplace_back(Room("Data\\Medical Centre\\Second.txt"));
+	rooms.emplace_back(Room("Data\\Laboratory\\First.txt"));
+	rooms.emplace_back(Room("Data\\Laboratory\\Second.txt"));
 }
