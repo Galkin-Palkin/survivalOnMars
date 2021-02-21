@@ -6,17 +6,12 @@
 #include <fstream>
 #include <string>
 
-Game::Action::Action(ifstream & fin) {
-	int size;
-	fin >> size;
+Game::Action::Action(ifstream & fin, int size) {
 	textToPrint.resize(size);
 	for (int i = 0; i < size; ++i) {
 		getline(fin, textToPrint[i]);
 	}
 }
-
-void Game::Action::Print() {
-	for (auto text : textToPrint) {
-		cout << text << "\n";
-	}
+void Game::Action::GetRoomNames(vector<string> &RoomNames) {
+	RoomNames = this->textToPrint;
 }

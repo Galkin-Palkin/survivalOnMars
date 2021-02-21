@@ -1,9 +1,8 @@
 #include "Game.h"
 #include <conio.h>
-void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string>& RoomVarietyVector, bool IsFirst) {
+void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string>& RoomVarietyVector, Room &room, bool IsFirst) {
 	system("cls");
 	T.PRC(1, "План помещения:\n");
-	Room room = rooms[0];
 	// Отрисовка плана помещения
 	switch (RoomType) { // Проверка на тип комнаты
 	// Казармы
@@ -128,7 +127,7 @@ int Game::Buildings::RoomChoose(vector<string>& RoomVarietyVector) {
 		}
 	}
 }
-void Game::Buildings::RoomSearching() {
+void Game::Buildings::RoomSearching(Room &Room) {
 	system("cls");
 	T.V(4, 50);
 	//int Choose = RoomChoose(RoomPlacesVector);
@@ -140,6 +139,7 @@ void Game::Buildings::EnterRoom(int RoomType)
 {
 	string RoomDenyType; // Говорит, доступ в какое помещение невозможен
 	vector<string> RoomVarietyVector; // Вектор названий комнат помещения
+	Room Room = rooms[0];
 	switch (RoomType) {
 		//Bedrooms
 	case 1: RoomDenyType = "от казарм"; break;
@@ -159,15 +159,15 @@ void Game::Buildings::EnterRoom(int RoomType)
 	}
 	if (Entering) {
 		int RoomVariety = 1 + rand() % 2;
-		RoomMap(RoomType, RoomVariety, RoomVarietyVector, true); 
+		RoomMap(RoomType, RoomVariety, RoomVarietyVector, Room, true);
 		RoomVarietyPrint(RoomVarietyVector);
 		int Choose = RoomChoose(RoomVarietyVector);
-		RoomSearching();
+		RoomSearching(Room);
 		while (RoomVarietyVector.size() > 0) {
-			RoomMap(RoomType, RoomVariety, RoomVarietyVector, false);
+			RoomMap(RoomType, RoomVariety, RoomVarietyVector, Room, false);
 			RoomVarietyPrint(RoomVarietyVector);
 			int Choose = RoomChoose(RoomVarietyVector);
-			RoomSearching();
+			RoomSearching(Room);
 		}
 	}
 }

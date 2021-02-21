@@ -159,22 +159,20 @@ class Game {
 	private:
 		vector<string> textToPrint;
 	public:
-		Action(ifstream &);
-		void Print();
+		Action(ifstream &, int);
+		void GetRoomNames(vector<string>&);
 	};
     class Room {
     private:
-        vector<vector<Action>> roomToActions;
-		vector<string> roomToName;
-		vector<string> floorPlan;
-		int selectedRoom = 0;
+        vector<vector<Action>> roomToActions; // Хранит места для поиска
+		vector<string> roomToName; // Названия комнат
+		vector<string> floorPlan; // Карта помещения
+		string Info;
     public:
 		Room(string);
         void Print();
-        void SelectRoom(int);
-        void PrintActions();
-		void PrintRooms();
 		void AddRoomsTo(vector<string>& arr);
+		void GetInfo(string &);
 
     };
 	static map<string, Consumable> ConsumableMap;
@@ -191,10 +189,10 @@ class Game {
 		/// </summary>
 		/// <param name="RoomType">Тип комнаты: Казарма, Больница, Столовая и так далее.</param>
 		/// <param name="Variety">Разновидность плана комнаты.</param>
-		void RoomMap(int, int, vector<string>&, bool);
+		void RoomMap(int, int, vector<string>&, Room&, bool);
 		void RoomVarietyPrint(vector<string>);
 		int RoomChoose(vector<string>&);
-		void RoomSearching();
+		void RoomSearching(Room &Room);
 		void EnterRoom(int RoomType);
 		void DenyToGoIn(int Type, string RoomType, bool& Entering);
 	public:
