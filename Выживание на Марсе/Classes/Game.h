@@ -41,6 +41,7 @@ class Game {
 		/// <param name="Colour">Цвет.</param>
 		/// <param name="String">Текст.</param>
 		void PRC(int Colour, string String);
+		Text();
 	};
 	class Human {
 		int HP = 70 + (rand() % 5) * 5; // Очки здоровья
@@ -111,6 +112,7 @@ class Game {
 		HumanInfo SecondType;
 		HumanInfo ThirdType;
 		string Type;
+		int Chance = 1;
 		int FirstNumber = 0; // Здесь и далее - значение, на которое изменяет первый и так далее тип объект класса
 		double DFirstNumber = 0.0;
 		int SecondNumber = 0;
@@ -125,8 +127,12 @@ class Game {
 		string GetType();
 		int GetCount();
 		void SetCount(int Value);
-		void Constructor(string Type, string Name, double Weight, HumanInfo FirstType, double FirstNumber, HumanInfo SecondType = hi_NULL, int SecondNumber = -10000, HumanInfo ThirdType = hi_NULL, int ThirdNumber = -10000);
-		void Constructor(string Type, string Name, double Weight, HumanInfo FirstType, int FirstNumber, HumanInfo SecondType = hi_NULL, int SecondNumber = -10000, HumanInfo ThirdType = hi_NULL, int ThirdNumber = -10000);
+		void Constructor(string Type, string Name, double Weight, int Chance, HumanInfo FirstType, double FirstNumber, HumanInfo SecondType = hi_NULL, int SecondNumber = -10000, HumanInfo ThirdType = hi_NULL, int ThirdNumber = -10000);
+		void Constructor(string Type, string Name, double Weight, int Chance, HumanInfo FirstType, int FirstNumber, HumanInfo SecondType = hi_NULL, int SecondNumber = -10000, HumanInfo ThirdType = hi_NULL, int ThirdNumber = -10000);
+		int GetChance();
+		void SetChance(int);
+		string GetName();
+		void SetName(string);
 	};
 	class Inventory {
 	public:
@@ -157,13 +163,19 @@ class Game {
 	};
 	class Action {
 	private:
-		vector<string> textToPrint;
+		Text T;
+		string Name;
+		vector<Consumable> SearchingResult;
 	public:
-		Action(ifstream &, int);
-		void GetRoomNames(vector<string>&);
+		Action(ifstream &);
+		Action() = default;
+		string GetName();
+		void GenerateItems();
+		void FoundedItems();
 	};
     class Room {
     private:
+		Text T;
         vector<vector<Action>> roomToActions; // Хранит места для поиска
 		vector<string> roomToName; // Названия комнат
 		vector<string> floorPlan; // Карта помещения
@@ -171,9 +183,18 @@ class Game {
     public:
 		Room(string);
         void Print();
+		void PrintRooms();
+		void PlacePrint(vector<Action>, string);
 		void AddRoomsTo(vector<string>& arr);
-		void GetInfo(string &);
-
+		string GetInfo();
+		vector<Action> GetRoomPlaces(int);
+		string GetName(int);
+		void ActionChoose(vector<Action>&);
+		void SetActionVector(vector<Action>, int);
+		void PlaceClear(int);
+		void operator= (Room);
+		vector<vector<Action>> GetVectorAction();
+		void SetVectorAction(vector<vector<Action>>);
     };
 	static map<string, Consumable> ConsumableMap;
 	class Buildings {	
@@ -191,11 +212,12 @@ class Game {
 		/// <param name="Variety">Разновидность плана комнаты.</param>
 		void RoomMap(int, int, vector<string>&, Room&, bool);
 		void RoomVarietyPrint(vector<string>);
-		int RoomChoose(vector<string>&);
-		void RoomSearching(Room &Room);
+		int RoomChoose(vector<string>&, string &);
+		void RoomSearching(Room &, string, int);
 		void EnterRoom(int RoomType);
 		void DenyToGoIn(int Type, string RoomType, bool& Entering);
 	public:
+		void GetPath();
 		void LocationGeneration();
 		Buildings();
 	};

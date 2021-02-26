@@ -1,19 +1,19 @@
 #include "Game.h"
 #include <conio.h>
-void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string>& RoomVarietyVector, Room &room, bool IsFirst) {
-	system("cls");
-	T.PRC(1, "План помещения:\n");
-	// Отрисовка плана помещения
+void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string>& RoomVarietyVector, Room& room, bool IsFirst) {
+	int RoomNumber = 0;
 	switch (RoomType) { // Проверка на тип комнаты
 	// Казармы
 	case 1: {
 		switch (Variety) {
 		case 1: { // Первая разновидность казарм
 			room = rooms[0];
+			RoomNumber = 0;
 			break;
 		}
 		case 2: { // Вторая разновидность казарм
 			room = rooms[1];
+			RoomNumber = 1;
 			break;
 		}
 		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break; // При указании варианта комнаты, которого нет, нам выведет это сообщение
@@ -26,10 +26,12 @@ void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string>& RoomVar
 		switch (Variety) {
 		case 1: {
 			room = rooms[2];
+			RoomNumber = 2;
 			break;
 		}
 		case 2: {
 			room = rooms[3];
+			RoomNumber = 3;
 			break;
 		}
 		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break;
@@ -42,10 +44,12 @@ void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string>& RoomVar
 		switch (Variety) {
 		case 1: {
 			room = rooms[4];
+			RoomNumber = 4;
 			break;
 		}
 		case 2: {
 			room = rooms[5];
+			RoomNumber = 5;
 			break;
 		}
 		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break;
@@ -58,10 +62,12 @@ void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string>& RoomVar
 		switch (Variety) {
 		case 1: {
 			room = rooms[6];
+			RoomNumber = 6;
 			break;
 		}
 		case 2: {
 			room = rooms[7];
+			RoomNumber = 7;
 			break;
 		}
 		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break;
@@ -74,10 +80,12 @@ void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string>& RoomVar
 		switch (Variety) {
 		case 1: {
 			room = rooms[8];
+			RoomNumber = 8;
 			break;
 		}
 		case 2: {
 			room = rooms[9];
+			RoomNumber = 9;
 			break;
 		}
 		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break;
@@ -86,9 +94,17 @@ void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string>& RoomVar
 	}
 	default: T.PRC(4, "Отсутствует комната с таким номером\n"); break; // При отсутствии указанного типа комнаты выводит следующее
 	}
+	system("cls");
+	T.PRC(1, "План помещения:\n");
+	// Отрисовка плана помещения
 	T.PRC(15, "");
 	room.Print();
-	if (IsFirst) room.AddRoomsTo(RoomVarietyVector);
+	T.PRC(3, room.GetInfo() + '\n');
+	T.V(4, 90);
+	if (IsFirst) {
+		room.AddRoomsTo(RoomVarietyVector);
+		room.SetVectorAction(rooms[RoomNumber].GetVectorAction());
+	}
 }
 void Game::Buildings::RoomVarietyPrint(vector<string> RoomVarietyVector) {
 	T.PRC(1, "Выберите отдел помещения:\n");
@@ -104,46 +120,53 @@ void Game::Buildings::RoomVarietyPrint(vector<string> RoomVarietyVector) {
 	T.V(4, 45);
 	T.PRC(15, "");
 }
-int Game::Buildings::RoomChoose(vector<string>& RoomVarietyVector) {
+int Game::Buildings::RoomChoose(vector<string>& RoomVarietyVector, string& Temp) {
 	while (true) {
 		int Click = _getch(); // Считываем аскии-код символа. У единицы он 49, у двойки - 50 и так далее
 		switch (Click) {
 		case 49:
 			if (RoomVarietyVector.size() < 1) break;
+			Temp = RoomVarietyVector[0];
 			RoomVarietyVector.erase(RoomVarietyVector.begin());
 			return 1;
 		case 50:
 			if (RoomVarietyVector.size() < 2) break;
+			Temp = RoomVarietyVector[1];
 			RoomVarietyVector.erase(RoomVarietyVector.begin() + 1);
 			return 2;
 		case 51:
 			if (RoomVarietyVector.size() < 3) break; // Проверка на то, есть ли достаточное количество мест для поиска в комнате
+			Temp = RoomVarietyVector[2];
 			RoomVarietyVector.erase(RoomVarietyVector.begin() + 2);
 			return 3;
 		case 52:
 			if (RoomVarietyVector.size() < 4) break;
+			Temp = RoomVarietyVector[3];
 			RoomVarietyVector.erase(RoomVarietyVector.begin() + 3);
 			return 4;
 		}
 	}
 }
-void Game::Buildings::RoomSearching(Room &Room) {
+void Game::Buildings::RoomSearching(Room& Room, string RoomName, int RoomVarType) {
 	system("cls");
-	T.V(4, 50);
-	//int Choose = RoomChoose(RoomPlacesVector);
-	T.V(4, 50);
-	system("pause");
+	vector<Action> RoomPlacesVector = Room.GetRoomPlaces(RoomVarType - 1);
+	while (RoomPlacesVector.size() > 0) {
+		Room.PlacePrint(RoomPlacesVector, RoomName);
+		Room.ActionChoose(RoomPlacesVector);
+	}
+	Room.PlaceClear(RoomVarType - 1);
 }
 #pragma region Enters
 void Game::Buildings::EnterRoom(int RoomType)
 {
 	string RoomDenyType; // Говорит, доступ в какое помещение невозможен
 	vector<string> RoomVarietyVector; // Вектор названий комнат помещения
+	string Temp;
 	Room Room = rooms[0];
 	switch (RoomType) {
 		//Bedrooms
 	case 1: RoomDenyType = "от казарм"; break;
-		//Cantin
+		//Canteen
 	case 2: RoomDenyType = "от столовой"; break;
 		//Storage
 	case 3: RoomDenyType = "от склада"; break;
@@ -161,13 +184,13 @@ void Game::Buildings::EnterRoom(int RoomType)
 		int RoomVariety = 1 + rand() % 2;
 		RoomMap(RoomType, RoomVariety, RoomVarietyVector, Room, true);
 		RoomVarietyPrint(RoomVarietyVector);
-		int Choose = RoomChoose(RoomVarietyVector);
-		RoomSearching(Room);
+		int Choose = RoomChoose(RoomVarietyVector, Temp);
+		RoomSearching(Room, Temp, Choose);
 		while (RoomVarietyVector.size() > 0) {
 			RoomMap(RoomType, RoomVariety, RoomVarietyVector, Room, false);
 			RoomVarietyPrint(RoomVarietyVector);
-			int Choose = RoomChoose(RoomVarietyVector);
-			RoomSearching(Room);
+			Choose = RoomChoose(RoomVarietyVector, Temp);
+			RoomSearching(Room, Temp, Choose);
 		}
 	}
 }
@@ -257,7 +280,6 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 			cin >> Code;
 			if (Code < 1000 || Code > 9999) Code = 0;
 			if (Code == Thousands * 1000 + Hundreds * 100 + Decs * 10 + Ones) {
-				Entering = true;
 				system("cls");
 				if (!Chance) {
 					switch (Type) {
@@ -313,8 +335,22 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 }
 
 
+void Game::Buildings::GetPath() {
+	rooms.emplace_back(Room("Data\\Barracks\\First.txt"));
+	rooms.emplace_back(Room("Data\\Barracks\\Second.txt"));
+	rooms.emplace_back(Room("Data\\Canteen\\First.txt"));
+	rooms.emplace_back(Room("Data\\Canteen\\Second.txt"));
+	rooms.emplace_back(Room("Data\\Warehouse\\First.txt"));
+	rooms.emplace_back(Room("Data\\Warehouse\\Second.txt"));
+	rooms.emplace_back(Room("Data\\Medical Centre\\First.txt"));
+	rooms.emplace_back(Room("Data\\Medical Centre\\Second.txt"));
+	rooms.emplace_back(Room("Data\\Laboratory\\First.txt"));
+	rooms.emplace_back(Room("Data\\Laboratory\\Second.txt"));
+}
+
 void Game::Buildings::LocationGeneration() {
 	// "Генерирует" помещения
+	GetPath();
 	system("cls");
 	T.PRC(3, "Ты зашёл в здание\n");
 	T.V(4, 40);
@@ -355,14 +391,5 @@ void Game::Buildings::LocationGeneration() {
 }
 
 Game::Buildings::Buildings() {
-	rooms.emplace_back(Room("Data\\Barracks\\First.txt"));
-	rooms.emplace_back(Room("Data\\Barracks\\Second.txt"));
-	rooms.emplace_back(Room("Data\\Canteen\\First.txt"));
-	rooms.emplace_back(Room("Data\\Canteen\\Second.txt"));
-	rooms.emplace_back(Room("Data\\Warehouse\\First.txt"));
-	rooms.emplace_back(Room("Data\\Warehouse\\Second.txt"));
-	rooms.emplace_back(Room("Data\\Medical Centre\\First.txt"));
-	rooms.emplace_back(Room("Data\\Medical Centre\\Second.txt"));
-	rooms.emplace_back(Room("Data\\Laboratory\\First.txt"));
-	rooms.emplace_back(Room("Data\\Laboratory\\Second.txt"));
+
 }

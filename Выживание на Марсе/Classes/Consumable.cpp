@@ -66,7 +66,7 @@ int Game::Consumable::GetCount() {
 void Game::Consumable::SetCount(int Value) {
 	this->Count = Value;
 }
-void Game::Consumable::Constructor(string Type, string Name, double Weight, HumanInfo FirstType, double FirstNumber, HumanInfo SecondType, int SecondNumber, HumanInfo ThirdType, int ThirdNumber) {
+void Game::Consumable::Constructor(string Type, string Name, double Weight, int Chance, HumanInfo FirstType, double FirstNumber, HumanInfo SecondType, int SecondNumber, HumanInfo ThirdType, int ThirdNumber) {
 	// Обычный конструктор нельзя вызвать в классе вне функции, поэтому, такой аналог
 	ConsumableCount = 0;
 	this->Type = Type;
@@ -74,6 +74,7 @@ void Game::Consumable::Constructor(string Type, string Name, double Weight, Huma
 	this->DFirstNumber = FirstNumber;
 	this->Name = Name;
 	this->Weight = Weight;
+	this->Chance = Chance;
 	if (SecondType != hi_NULL && SecondNumber != -10000) {
 		this->SecondType = SecondType;
 		this->SecondNumber = SecondNumber;
@@ -83,13 +84,14 @@ void Game::Consumable::Constructor(string Type, string Name, double Weight, Huma
 		this->ThirdNumber = ThirdNumber;
 	}
 }
-void Game::Consumable::Constructor(string Type, string Name, double Weight, HumanInfo FirstType, int FirstNumber, HumanInfo SecondType, int SecondNumber, HumanInfo ThirdType, int ThirdNumber) {
+void Game::Consumable::Constructor(string Type, string Name, double Weight, int Chance, HumanInfo FirstType, int FirstNumber, HumanInfo SecondType, int SecondNumber, HumanInfo ThirdType, int ThirdNumber) {
 	ConsumableCount = 0;
 	this->Type = Type;
 	this->FirstType = FirstType;
 	this->FirstNumber = FirstNumber;
 	this->Name = Name;
 	this->Weight = Weight;
+	this->Chance = Chance;
 	if (SecondType != hi_NULL && SecondNumber != -10000) {
 		this->SecondType = SecondType;
 		this->SecondNumber = SecondNumber;
@@ -98,4 +100,16 @@ void Game::Consumable::Constructor(string Type, string Name, double Weight, Huma
 		this->ThirdType = ThirdType;
 		this->ThirdNumber = ThirdNumber;
 	}
+}
+void Game::Consumable::SetChance(int Value) {
+	Chance = Value;
+}
+int Game::Consumable::GetChance() {
+	return Chance;
+}
+string Game::Consumable::GetName() {
+	return Name;
+}
+void Game::Consumable::SetName(string Name) {
+	this->Name = Name;
 }

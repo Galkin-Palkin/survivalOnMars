@@ -444,7 +444,7 @@ void Game::RoomLooking(Inventory& I) {
 	T.V(4, 45);
 	SetConsoleTextAttribute(h, 15);
 	system("pause");
-	I.Palont.SetNew(rand() % 2 + 1);
+	I.Phenothan.SetNew(rand() % 2 + 1);
 	I.Aspirin.SetNew(2 + rand() % 2);
 	I.CannedBeef.SetNew(rand() % 3 + 1);
 	I.EnergyBar.SetNew(1 + rand() % 2);
@@ -498,21 +498,37 @@ void Game::ChangesDay(bool IsExit) {
 }
 Game::Game() {
 	ConsumableMap["Aspirin"] = I.Aspirin;
+	ConsumableMap["Aspirin"].SetName("Гранула аспирина");
 	ConsumableMap["BartonsDrug"] = I.BartonsDrug;
+	ConsumableMap["BartonsDrug"].SetName("Сыворотка профессора Бартона");
 	ConsumableMap["CannedApple"] = I.CannedApple;
+	ConsumableMap["CannedApple"].SetName("Законсервированное яблоко");
 	ConsumableMap["CannedBeef"] = I.CannedBeef;
+	ConsumableMap["CannedBeef"].SetName("Консервированная говядина");
 	ConsumableMap["DarkChocolateBar"] = I.DarkChocolateBar;
+	ConsumableMap["DarkChocolateBar"].SetName("Плитка горького шоколада");
 	ConsumableMap["EnergyBar"] = I.EnergyBar;
+	ConsumableMap["EnergyBar"].SetName("Энергетический батончик");
 	ConsumableMap["FishSoup"] = I.FishSoup;
+	ConsumableMap["FishSoup"].SetName("Похлёбка из трески");
 	ConsumableMap["Gericline"] = I.Gericline;
+	ConsumableMap["Gericline"].SetName("Укол гериклина");
 	ConsumableMap["Hardtack"] = I.Hardtack;
+	ConsumableMap["Hardtack"].SetName("Пачка галет");
 	ConsumableMap["MeatBriquette"] = I.MeatBriquette;
+	ConsumableMap["MeatBriquette"].SetName("Мясной брикет");
 	ConsumableMap["MeltedCheese"] = I.MeltedCheese;
+	ConsumableMap["MeltedCheese"].SetName("Упаковка плавленного сыра");
 	ConsumableMap["MushroomSoup"] = I.MushroomSoup;
+	ConsumableMap["MushroomSoup"].SetName("Грибной суп в тюбиках");
 	ConsumableMap["Palont"] = I.Palont;
-	ConsumableMap["Phenotan"] = I.Phenothan;
+	ConsumableMap["Palont"].SetName("Мазь \"Палонт\"");
+	ConsumableMap["Phenothan"] = I.Phenothan;
+	ConsumableMap["Phenothan"].SetName("Таблетки фенотана");
 	ConsumableMap["RicePurge"] = I.RicePurge;
+	ConsumableMap["RicePurge"].SetName("Консервы с рисом");
 	ConsumableMap["Trivoclisine"] = I.Trivoclisine;
+	ConsumableMap["Trivoclisine"].SetName("Ампула с тривоклизином");
 }
 int Game::Menu() {
 	system("cls");

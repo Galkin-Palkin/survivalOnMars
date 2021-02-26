@@ -12,10 +12,54 @@
 Специально оборудованное для жилья помещение. Длинный коридор ведёт к трём блокам и офису охраны
 4
 Первый блок
-0
+3
+Тумбочка
+2
+Hardtack
+Aspirin
+Армейский рюкзак
+3
+RicePurge
+CannedBeef
+DarkChocolateBar
+Аптечка
+2
+Aspirin
+Phenothan
 Второй блок
-0
+3
+Тумбочка
+2
+Aspirin
+EnergyBar
+Шкаф
+2
+CannedBeef
+Hardtack
+Стальной ящик
+2
+RicePurge
+CannedApple
 Третий блок
-0
+3
+Шкаф
+2
+CannedBeef
+Hardtack
+Тумбочка
+2
+Aspirin
+EnergyBar
+Стальной ящик
+2
+RicePurge
+CannedApple
 Офис охраны
-0
+2
+Столешница
+2
+EnergyBar
+Aspirin
+Стойка для книг
+1
+DarkChocolateBar
