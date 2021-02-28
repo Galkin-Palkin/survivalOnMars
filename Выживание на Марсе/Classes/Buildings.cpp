@@ -305,9 +305,9 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 				break;
 				continue;
 			}
-			CountOfTry--;
-			if (CountOfTry == 0 && !Entering) {
+			else if (CountOfTry == 0) {
 				system("cls");
+				Entering = false;
 				int DenyingType = 1 + rand() % 4;
 				switch (DenyingType) {
 				case 1:
@@ -325,6 +325,7 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 				}
 				break;
 			}
+			CountOfTry--;
 		}
 		break;
 	}

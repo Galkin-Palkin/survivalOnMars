@@ -23,7 +23,7 @@ string Game::Action::GetName() {
 }
 void Game::Action::GenerateItems() {
 	for (int i = 0; i < SearchingResult.size(); i++) {
-		if (SearchingResult[i].GetChance() - rand() % 101 >= 0) SearchingResult[i].SetCount(1 + rand() % 2);
+		if (SearchingResult[i].GetChance() - rand() % 101 >= 0) SearchingResult[i].SetCount(1/* + (rand() % 10 == 0)*/);
 	}
 }
 void Game::Action::FoundedItems() {

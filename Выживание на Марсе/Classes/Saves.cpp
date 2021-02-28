@@ -3,7 +3,7 @@
 #include <fstream>
 void Game::Saves::Load(Human& H, bool& IsExit) {
 	// Загрузка в файл
-	ifstream fin("Data\\Do not open this file.txt");
+	ifstream fin("Data\\Parameters.txt");
 	string String;
 	int Number;
 	double NumberDouble;

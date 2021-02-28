@@ -21,6 +21,29 @@ RicePurge
 Palont
 Aspirin
 Первый блок
-0
+3
+Железные шкафчики
+2
+EnergyBar
+Hardtack
+Стеллаж
+1
+Aspirin
+Чемодан
+2
+Palont
+DarkChocolateBar
 Второй блок
-0
+3
+Деревянный ящик
+2
+CannedBeef
+RicePurge
+Стол
+2
+MeltedCheese
+Hardtack
+Тумбы
+2
+Hardtack
+Sedatives

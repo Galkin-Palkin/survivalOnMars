@@ -28,7 +28,7 @@ class Game {
 		/// <param name="count">Количество нижних подчеркиваний.</param>
 		void V(int Number, int count = 20);
 		/// <summary>
-		/// Функция вывода сообщения с цыфрой.
+		/// Функция вывода сообщения с цифрой.
 		/// </summary>
 		/// <param name="Color1">Цвет номера.</param>
 		/// <param name="Number">Номер.</param>
@@ -146,6 +146,8 @@ class Game {
 		Consumable Trivoclisine;
 		Consumable Gericline;
 		Consumable Phenothan;
+		Consumable Sedatives;
+		Consumable Syrup;
 		// Пища
 		Consumable CannedBeef;
 		Consumable Hardtack;
@@ -155,6 +157,10 @@ class Game {
 		Consumable MeatBriquette;
 		Consumable MeltedCheese;
 		Consumable MushroomSoup;
+		Consumable CannedFish;
+		Consumable Noodle;
+		Consumable VegetableStew;
+		Consumable DriedFruits;
 		// Редкие
 		Consumable DarkChocolateBar;
 		Consumable BartonsDrug;

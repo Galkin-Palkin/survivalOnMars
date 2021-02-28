@@ -14,8 +14,36 @@
 Сооружение, оборудованное под столовую. Присутствуют два зала, кухня и туалеты
 3
 Кухня
-0
+3
+Холодильник
+2
+VegetableStew
+MeltedCheese
+Духовка
+1
+FishSoup
+Коробки из-под консерв
+3
+CannedBeef
+CannedFish
+RicePurge
 Первый зал
-0
+2
+Буфет
+3
+EnergyBar
+DarkChocolateBar
+Hardtack
+Столы
+2
+MeltedCheese
+Hardtack
 Второй зал
-0
+2
+Стеллаж с посудой
+1
+MeltedCheese
+Столы
+2
+Hardtack
+MushroomSoup

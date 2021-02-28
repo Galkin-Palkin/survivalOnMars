@@ -12,8 +12,40 @@
 Крупное помещение столовой, которое представляет из себя огромный зал и кухню
 3
 Главный зал
-0
+3
+Столы
+2
+CannedBeef
+Hardtack
+Брошенная сумка
+2
+Phenothan
+MeltedCheese
+Мусорное ведро
+1
+Aspirin
 Подсобное помещение
-0
+2
+Холодильник
+3
+MushroomSoup
+VegetableStew
+CannedBeef
+Ящики
+2
+CannedBeef
+CannedFish
 Кухня
-0
+3
+Полки
+2
+MeatBriquette
+Hardtack
+Шкаф
+2
+MeltedCheese
+RicePurge
+Плита
+2
+MeatBriquette
+FishSoup

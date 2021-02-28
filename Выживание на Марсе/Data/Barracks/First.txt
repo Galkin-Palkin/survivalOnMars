@@ -35,7 +35,7 @@ EnergyBar
 Шкаф
 2
 CannedBeef
-Hardtack
+DriedFruits
 Стальной ящик
 2
 RicePurge

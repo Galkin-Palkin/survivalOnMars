@@ -529,6 +529,19 @@ Game::Game() {
 	ConsumableMap["RicePurge"].SetName("Консервы с рисом");
 	ConsumableMap["Trivoclisine"] = I.Trivoclisine;
 	ConsumableMap["Trivoclisine"].SetName("Ампула с тривоклизином");
+
+	ConsumableMap["CannedFish"] = I.CannedFish;
+	ConsumableMap["CannedFish"].SetName("Консервированная горбуша");
+	ConsumableMap["DriedFruits"] = I.DriedFruits;
+	ConsumableMap["DriedFruits"].SetName("Сухофрукты");
+	ConsumableMap["Noodle"] = I.Noodle;
+	ConsumableMap["Noodle"].SetName("Макароны");
+	ConsumableMap["Sedatives"] = I.Sedatives;
+	ConsumableMap["Sedatives"].SetName("Таблетки успокоительного");
+	ConsumableMap["Syrup"] = I.Syrup;
+	ConsumableMap["Syrup"].SetName("Сироп");
+	ConsumableMap["VegetableStew"] = I.VegetableStew;
+	ConsumableMap["VegetableStew"].SetName("Овощное рагу");
 }
 int Game::Menu() {
 	system("cls");
