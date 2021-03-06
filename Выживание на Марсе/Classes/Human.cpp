@@ -113,5 +113,7 @@ void Game::Human::Null() {
 	Sol = 0;
 	Hour = 7;
 	ConsumableVector.clear();
+	for (auto it : ConsumableMap)
+		it.second->SetCount(0);
 	ConsumableCount = 0;
 }

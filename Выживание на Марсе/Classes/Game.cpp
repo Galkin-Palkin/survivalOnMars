@@ -265,7 +265,7 @@ int Game::ActionsChoose(int Sol, int Hour) {
 	}
 	FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 }
-void Game::Eating(Inventory& I, bool& IsBack, int &Hour) {
+void Game::Eating(Inventory& I, bool& IsBack, int& Hour) {
 	int CurrentPage = 0;
 	int TotalPage = (ConsumableCount % 9 == 0) ? ConsumableCount / 9 : ConsumableCount / 9 + 1;
 	while (true) {
@@ -421,11 +421,18 @@ void Game::Escape(bool& Life, int& Hour) {
 	}
 	FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 }
-void Game::Back(int &Hour, bool& IsBack) {
+void Game::Back(int& Hour, bool& IsBack) {
 	Hour--;
 	IsBack = true;
 }
-void Game::Actions(int Choose, bool& Life, int& Hour, bool &IsBack) {
+void Game::RefreshingInventory() {
+	ConsumableVector.clear();
+	for (auto i : ConsumableMap) {
+		if (i.second->GetCount()) ConsumableVector.push_back(i.second);
+	}
+	ConsumableCount = ConsumableVector.size();
+}
+void Game::Actions(int Choose, bool& Life, int& Hour, bool& IsBack) {
 	switch (Choose) {
 	case 0: RoomLooking(I); break;
 	case 1: Outing(); break;
@@ -444,11 +451,8 @@ void Game::RoomLooking(Inventory& I) {
 	T.V(4, 45);
 	SetConsoleTextAttribute(h, 15);
 	system("pause");
-	I.Phenothan.SetNew(rand() % 2 + 1);
-	I.Aspirin.SetNew(2 + rand() % 2);
-	I.CannedBeef.SetNew(rand() % 3 + 1);
-	I.EnergyBar.SetNew(1 + rand() % 2);
-	I.Hardtack.SetNew(rand() % 3 + 2);
+	I.Aspirin.SetNew(2 + rand() % 1);
+	I.Hardtack.SetNew(rand() % 2 + 1);
 	FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 }
 void Game::MenuReturning(bool& Working) {
@@ -496,52 +500,53 @@ void Game::ChangesDay(bool IsExit) {
 	if (H.GetD(hi_DP) > 100) H.Set(hi_DP, 'N', 0, 100.0);
 	else if (H.GetD(hi_DP) < 0) H.Set(hi_DP, '0', 0, 0.0);
 }
-Game::Game() {
-	ConsumableMap["Aspirin"] = I.Aspirin;
-	ConsumableMap["Aspirin"].SetName("Гранула аспирина");
-	ConsumableMap["BartonsDrug"] = I.BartonsDrug;
-	ConsumableMap["BartonsDrug"].SetName("Сыворотка профессора Бартона");
-	ConsumableMap["CannedApple"] = I.CannedApple;
-	ConsumableMap["CannedApple"].SetName("Законсервированное яблоко");
-	ConsumableMap["CannedBeef"] = I.CannedBeef;
-	ConsumableMap["CannedBeef"].SetName("Консервированная говядина");
-	ConsumableMap["DarkChocolateBar"] = I.DarkChocolateBar;
-	ConsumableMap["DarkChocolateBar"].SetName("Плитка горького шоколада");
-	ConsumableMap["EnergyBar"] = I.EnergyBar;
-	ConsumableMap["EnergyBar"].SetName("Энергетический батончик");
-	ConsumableMap["FishSoup"] = I.FishSoup;
-	ConsumableMap["FishSoup"].SetName("Похлёбка из трески");
-	ConsumableMap["Gericline"] = I.Gericline;
-	ConsumableMap["Gericline"].SetName("Укол гериклина");
-	ConsumableMap["Hardtack"] = I.Hardtack;
-	ConsumableMap["Hardtack"].SetName("Пачка галет");
-	ConsumableMap["MeatBriquette"] = I.MeatBriquette;
-	ConsumableMap["MeatBriquette"].SetName("Мясной брикет");
-	ConsumableMap["MeltedCheese"] = I.MeltedCheese;
-	ConsumableMap["MeltedCheese"].SetName("Упаковка плавленного сыра");
-	ConsumableMap["MushroomSoup"] = I.MushroomSoup;
-	ConsumableMap["MushroomSoup"].SetName("Грибной суп в тюбиках");
-	ConsumableMap["Palont"] = I.Palont;
-	ConsumableMap["Palont"].SetName("Мазь \"Палонт\"");
-	ConsumableMap["Phenothan"] = I.Phenothan;
-	ConsumableMap["Phenothan"].SetName("Таблетки фенотана");
-	ConsumableMap["RicePurge"] = I.RicePurge;
-	ConsumableMap["RicePurge"].SetName("Консервы с рисом");
-	ConsumableMap["Trivoclisine"] = I.Trivoclisine;
-	ConsumableMap["Trivoclisine"].SetName("Ампула с тривоклизином");
 
-	ConsumableMap["CannedFish"] = I.CannedFish;
-	ConsumableMap["CannedFish"].SetName("Консервированная горбуша");
-	ConsumableMap["DriedFruits"] = I.DriedFruits;
-	ConsumableMap["DriedFruits"].SetName("Сухофрукты");
-	ConsumableMap["Noodle"] = I.Noodle;
-	ConsumableMap["Noodle"].SetName("Макароны");
-	ConsumableMap["Sedatives"] = I.Sedatives;
-	ConsumableMap["Sedatives"].SetName("Таблетки успокоительного");
-	ConsumableMap["Syrup"] = I.Syrup;
-	ConsumableMap["Syrup"].SetName("Сироп");
-	ConsumableMap["VegetableStew"] = I.VegetableStew;
-	ConsumableMap["VegetableStew"].SetName("Овощное рагу");
+Game::Game() {
+	ConsumableMap["Aspirin"] = &I.Aspirin;
+	//ConsumableMap["Aspirin"].SetName("Гранула аспирина");
+	ConsumableMap["BartonsDrug"] = &I.BartonsDrug;
+	//ConsumableMap["BartonsDrug"].SetName("Сыворотка профессора Бартона");
+	ConsumableMap["CannedApple"] = &I.CannedApple;
+	//ConsumableMap["CannedApple"].SetName("Законсервированное яблоко");
+	ConsumableMap["CannedBeef"] = &I.CannedBeef;
+	//ConsumableMap["CannedBeef"].SetName("Консервированная говядина");
+	ConsumableMap["DarkChocolateBar"] = &I.DarkChocolateBar;
+	//ConsumableMap["DarkChocolateBar"].SetName("Плитка горького шоколада");
+	ConsumableMap["EnergyBar"] = &I.EnergyBar;
+	//ConsumableMap["EnergyBar"].SetName("Энергетический батончик");
+	ConsumableMap["FishSoup"] = &I.FishSoup;
+	//ConsumableMap["FishSoup"].SetName("Похлёбка из трески");
+	ConsumableMap["Gericline"] = &I.Gericline;
+	//ConsumableMap["Gericline"].SetName("Укол гериклина");
+	ConsumableMap["Hardtack"] = &I.Hardtack;
+	//ConsumableMap["Hardtack"].SetName("Пачка галет");
+	ConsumableMap["MeatBriquette"] = &I.MeatBriquette;
+	//ConsumableMap["MeatBriquette"].SetName("Мясной брикет");
+	ConsumableMap["MeltedCheese"] = &I.MeltedCheese;
+	//ConsumableMap["MeltedCheese"].SetName("Упаковка плавленного сыра");
+	ConsumableMap["MushroomSoup"] = &I.MushroomSoup;
+	//ConsumableMap["MushroomSoup"].SetName("Грибной суп в тюбиках");
+	ConsumableMap["Palont"] = &I.Palont;
+	//ConsumableMap["Palont"].SetName("Мазь \"Палонт\"");
+	ConsumableMap["Phenothan"] = &I.Phenothan;
+	//ConsumableMap["Phenothan"].SetName("Таблетки фенотана");
+	ConsumableMap["RicePurge"] = &I.RicePurge;
+	//ConsumableMap["RicePurge"].SetName("Консервы с рисом");
+	ConsumableMap["Trivoclisine"] = &I.Trivoclisine;
+	//ConsumableMap["Trivoclisine"].SetName("Ампула с тривоклизином");
+
+	ConsumableMap["CannedFish"] = &I.CannedFish;
+	//ConsumableMap["CannedFish"].SetName("Консервированная горбуша");
+	ConsumableMap["DriedFruits"] = &I.DriedFruits;
+	//ConsumableMap["DriedFruits"].SetName("Сухофрукты");
+	ConsumableMap["Noodle"] = &I.Noodle;
+	//ConsumableMap["Noodle"].SetName("Макароны");
+	ConsumableMap["Sedatives"] = &I.Sedatives;
+	//ConsumableMap["Sedatives"].SetName("Таблетки успокоительного");
+	ConsumableMap["Syrup"] = &I.Syrup;
+	//ConsumableMap["Syrup"].SetName("Сироп");
+	ConsumableMap["VegetableStew"] = &I.VegetableStew;
+	//ConsumableMap["VegetableStew"].SetName("Овощное рагу");
 }
 int Game::Menu() {
 	system("cls");
@@ -602,7 +607,6 @@ void Game::GamingProcess(bool& Working) {
 			if (!Life) {
 				H.Set(hi_Hour, '-', 1);
 				break;
-				continue;
 			}
 			system("cls");
 			InfoShowing(H.GetI(hi_HP), H.GetI(hi_FP), H.GetI(hi_EP), H.GetI(hi_PHP), H.GetD(hi_DP), H.GetI(hi_Sol), H.GetI(hi_Hour));
@@ -642,13 +646,13 @@ void Game::Menu_3(bool& Working) {
 	system("cls");
 	T.PRC(13, "Разработчики\n");
 	T.V(4, 45);
-	T.PRC(13, "Ответственные за разработку: ");
-	T.PRC(15, "\n- Programming Harius\n");
+	T.PRC(13, "Ответственные за разработку:\n");
+	T.PRC(15, "- Programming Harius\n");
 	T.PRC(15, "- DobbikoV\n");
 	T.PRC(15, "- GoogeTan\n");
 	T.V(4, 25);
-	T.PRC(13, "Тестировка: ");
-	T.PRC(15, "\n- Programming Harius\n");
+	T.PRC(13, "Тестировка:\n");
+	T.PRC(15, "- Programming Harius\n");
 	T.V(4, 45);
 	T.PRC(15, "");
 	T.V(3);

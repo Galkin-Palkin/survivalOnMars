@@ -191,6 +191,7 @@ void Game::Buildings::EnterRoom(int RoomType)
 			RoomVarietyPrint(RoomVarietyVector);
 			Choose = RoomChoose(RoomVarietyVector, Temp);
 			RoomSearching(Room, Temp, Choose);
+			Game::RefreshingInventory();
 		}
 	}
 }

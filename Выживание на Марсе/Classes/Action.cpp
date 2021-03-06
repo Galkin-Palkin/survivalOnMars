@@ -15,7 +15,7 @@ Game::Action::Action(ifstream &fin) {
 	SearchingResult.resize(size);
 	for (int i = 0; i < size; i++) {
 		fin >> Temp;
-		SearchingResult[i] = ConsumableMap[Temp];
+		SearchingResult[i] = (*ConsumableMap[Temp]).Null();
 	}
 }
 string Game::Action::GetName() {
@@ -23,7 +23,7 @@ string Game::Action::GetName() {
 }
 void Game::Action::GenerateItems() {
 	for (int i = 0; i < SearchingResult.size(); i++) {
-		if (SearchingResult[i].GetChance() - rand() % 101 >= 0) SearchingResult[i].SetCount(1/* + (rand() % 10 == 0)*/);
+		if (SearchingResult[i].GetChance() - rand() % 101 >= 0) SearchingResult[i].SetCount(1 + (rand() % 10 == 0));
 	}
 }
 void Game::Action::FoundedItems() {
@@ -36,6 +36,7 @@ void Game::Action::FoundedItems() {
 			IsEmpty = false;
 			T.PRC(3, " - ");
 			T.PRC(15, SearchingResult[i].GetName() + " (" + char(48 + SearchingResult[i].GetCount()) + ")\n");
+			(*ConsumableMap[SearchingResult[i].GetType()]).SetNew(SearchingResult[i].GetCount());
 		}
 	}
 	if (IsEmpty) T.PRC(3, "Вы ничего не нашли\n");

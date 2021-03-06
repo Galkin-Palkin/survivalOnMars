@@ -133,6 +133,7 @@ class Game {
 		void SetChance(int);
 		string GetName();
 		void SetName(string);
+		Consumable Null();
 	};
 	class Inventory {
 	public:
@@ -202,7 +203,7 @@ class Game {
 		vector<vector<Action>> GetVectorAction();
 		void SetVectorAction(vector<vector<Action>>);
     };
-	static map<string, Consumable> ConsumableMap;
+	static map<string, Consumable*> ConsumableMap;
 	class Buildings {	
 	private:
 		// Здания
@@ -257,6 +258,7 @@ class Game {
 	void MenuReturning(bool& Working);
 	void ChangesDay(bool IsExit);
 	void Back(int& Hour, bool& IsBack);
+	static void RefreshingInventory();
 public:
 	Game();
 	int Menu();

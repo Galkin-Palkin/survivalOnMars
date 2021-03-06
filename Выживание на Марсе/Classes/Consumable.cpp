@@ -66,7 +66,7 @@ int Game::Consumable::GetCount() {
 void Game::Consumable::SetCount(int Value) {
 	this->Count = Value;
 }
-void Game::Consumable::Constructor(string Type, string Name, double Weight, int Chance, HumanInfo FirstType, double FirstNumber, HumanInfo SecondType, int SecondNumber, HumanInfo ThirdType, int ThirdNumber) {
+void Game::Consumable::Constructor(string Type, string Name, double Weight, int Chance, Game::HumanInfo FirstType, double FirstNumber, HumanInfo SecondType, int SecondNumber, HumanInfo ThirdType, int ThirdNumber) {
 	// Обычный конструктор нельзя вызвать в классе вне функции, поэтому, такой аналог
 	ConsumableCount = 0;
 	this->Type = Type;
@@ -112,4 +112,10 @@ string Game::Consumable::GetName() {
 }
 void Game::Consumable::SetName(string Name) {
 	this->Name = Name;
+}
+
+Game::Consumable Game::Consumable::Null() {
+	Consumable Temp = *this;
+	Temp.Count = 0;
+	return Temp;
 }

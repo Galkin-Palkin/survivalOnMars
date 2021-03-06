@@ -26,7 +26,7 @@ void Game::Saves::Load(Human& H, bool& IsExit) {
 	ConsumableCount = Number;
 	for (int i = 0; i < ConsumableCount; i++) {
 		fin >> String >> Number;
-		ConsumableVector.push_back(&Game::ConsumableMap[String]);
+		ConsumableVector.push_back(Game::ConsumableMap[String]);
 		ConsumableVector[i]->SetCount(Number);
 	}
 	fin >> IsExit;
