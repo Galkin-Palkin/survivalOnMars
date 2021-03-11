@@ -5,19 +5,24 @@ int Game::Human::GetI(HumanInfo Type) {
 	case hi_HP: {
 		return HP;
 		break;
-	}case hi_FP: {
+	}
+	case hi_FP: {
 		return FP;
 		break;
-	}case hi_EP: {
+	}
+	case hi_EP: {
 		return EP;
 		break;
-	}case hi_PHP: {
+	}
+	case hi_PHP: {
 		return PHP;
 		break;
-	}case hi_Sol: {
+	}
+	case hi_Sol: {
 		return Sol;
 		break;
-	}case hi_Hour: {
+	}
+	case hi_Hour: {
 		return Hour;
 		break;
 	}
@@ -35,7 +40,7 @@ double Game::Human::GetD(HumanInfo Type) {
 		return -100000;
 	}
 }
-void Game::Human::Set(HumanInfo Type, char Sign, int NumberI, double NumberD) {
+void Game::Human::Set(HumanInfo Type, char Sign, int NumberI) {
 	// Реализовано криво, потом переделаю. Нужно заменить 'N' на '=', убрать '0'. Перегрузить функцию для вещественных чисел
 	switch (Type) {
 	case hi_HP: {
@@ -75,15 +80,6 @@ void Game::Human::Set(HumanInfo Type, char Sign, int NumberI, double NumberD) {
 		}
 		break;
 	}
-	case hi_DP: {
-		switch (Sign) {
-		case '+': DP += NumberD; break;
-		case '0': DP = 0.0; break;
-		case '-': DP -= NumberD; break;
-		case 'N': DP = NumberD; break;
-		}
-		break;
-	}
 	case hi_Sol: {
 		switch (Sign) {
 		case '+': Sol += NumberI; break;
@@ -104,6 +100,17 @@ void Game::Human::Set(HumanInfo Type, char Sign, int NumberI, double NumberD) {
 	}
 	}
 }
+void Game::Human::Set(HumanInfo Type, char Sign, double Number) {
+	switch (Type) {
+	case hi_DP:
+		switch (Sign) {
+		case '+': DP += Number; break;
+		case '-': DP -= Number; break;
+		case 'N': DP = Number; break;
+		case '0': DP = 0; break;
+		}
+	}
+}
 void Game::Human::Null() {
 	HP = 70 + (rand() % 5) * 5;
 	FP = 30 + (rand() % 7) * 5;
@@ -116,4 +123,19 @@ void Game::Human::Null() {
 	for (auto it : ConsumableMap)
 		it.second->SetCount(0);
 	ConsumableCount = 0;
+}
+void Game::Human::AddEffect(Effect Ef) {
+	EffectsVector.push_back(Ef);
+}
+void Game::Human::EffectsTick() {
+	for (size_t i = 0; i < EffectsVector.size(); i++) {
+		EffectsVector[i].Tick();
+		EffectsAction();
+		if (!EffectsVector[i].GetDuration())
+			EffectsVector.erase(EffectsVector.begin() + i);
+	}
+}
+void Game::Human::EffectsAction() {
+	for (size_t i = 0; i < EffectsVector.size(); i++)
+		EffectsVector[i].EffectAction(this);
 }

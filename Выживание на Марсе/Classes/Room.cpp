@@ -43,7 +43,7 @@ string Game::Room::GetName(int Index) {
 	return roomToName[Index];
 }
 void Game::Room::PrintRooms() {
-	for (int i = 0; i < roomToName.size(); i++) {
+	for (size_t i = 0; i < roomToName.size(); i++) {
 		T.HV(1, i + 1, 15, roomToName[i]);
 		if (roomToName.size() != i + 1) T.V(4, 40);
 	}
@@ -105,9 +105,9 @@ void Game::Room::PlacePrint(vector<Action> PlacesVector, string RoomName) {
 	T.V(4, 60);
 	T.PRC(1, "Места для поиска:\n");
 	T.V(4, 45);
-	for (int i = 0; i < PlacesVector.size(); i++) {
+	for (size_t i = 0; i < PlacesVector.size(); i++) {
 		T.HV(3, i + 1, 15, PlacesVector[i].GetName());
-		if (i + 1 < PlacesVector.size()) T.V(4, 30);
+		if (i + (size_t)1 < PlacesVector.size()) T.V(4, 30);
 	}
 	T.V(4, 60);
 }

@@ -187,47 +187,37 @@ int Game::NewGame() {
 void Game::Changes(bool& Life, int& Hour, bool& Working) {
 	// Система организма персонажа, функция вызывается каждый игровой час
 	H.Set(hi_FP, '-', 5);
-	if (H.GetI(hi_HP) > 100) H.Set(hi_HP, 'N', 100);
+	Validate();
 	if (H.GetI(hi_FP) >= 75) H.Set(hi_EP, '+', 10);
-	if (H.GetI(hi_EP) > 100) H.Set(hi_EP, 'N', 100);
 	else if (H.GetI(hi_FP) >= 50) H.Set(hi_EP, '+', 8);
 	else if (H.GetI(hi_FP) >= 25) H.Set(hi_EP, '+', 5);
-	if (H.GetI(hi_FP) < 0) H.Set(hi_FP, '0', 1);
 	if (H.GetI(hi_FP) == 0) {
 		H.Set(hi_HP, '-', 1);
 		H.Set(hi_EP, '-', 5);
 		H.Set(hi_PHP, '-', 2);
-		H.Set(hi_DP, '+', 0, 0.25);
+		H.Set(hi_DP, '+', 0.25);
 	}
-	if (H.GetI(hi_PHP) < 0) H.Set(hi_PHP, '0', 0);
-	if (H.GetI(hi_PHP) > 100) H.Set(hi_PHP, 'N', 100);
-	if (H.GetD(hi_DP) < 0.0) H.Set(hi_DP, '0', 0);
 	if (H.GetI(hi_HP) > 75 && H.GetI(hi_FP) >= 30) {
-		H.Set(hi_DP, '-', 0, 1.0);
+		H.Set(hi_DP, '-', 1.0);
 		H.Set(hi_PHP, '+', 2);
 	}
 	else if (H.GetI(hi_HP) > 50 && H.GetI(hi_FP) >= 30) {
-		H.Set(hi_DP, '-', 0, 0.5);
+		H.Set(hi_DP, '-', 0.5);
 		H.Set(hi_PHP, '+', 1);
 	}
-	if (H.GetI(hi_EP) > 100) H.Set(hi_EP, 'N', 100);
-	if (H.GetI(hi_EP) < 0) H.Set(hi_EP, '0', 0);
-	if (H.GetI(hi_EP) > 100) H.Set(hi_EP, 'N', 100);
-	if (H.GetI(hi_EP) < 0) H.Set(hi_EP, '0', 0);
-	if (H.GetI(hi_HP) < 0) H.Set(hi_HP, '0', 0);
 	if (H.GetI(hi_HP) >= 25 && H.GetI(hi_HP) < 50) {
-		H.Set(hi_DP, '+', 0, 0.1);
+		H.Set(hi_DP, '+', 0.25);
 		H.Set(hi_PHP, '-', 2);
 	}
 	else if (H.GetI(hi_HP) < 25 && H.GetI(hi_HP) > 0) {
-		H.Set(hi_DP, '+', 0, 0.5);
+		H.Set(hi_DP, '+', 1.0);
 		H.Set(hi_PHP, '-', 3);
 	}
 	else if (H.GetI(hi_HP) == 0) {
-		H.Set(hi_DP, '+', 0, 1.0);
+		H.Set(hi_DP, '+', 2.0);
 		H.Set(hi_PHP, '-', 5);
 	}
-	if (H.GetD(hi_DP) > 100.0) H.Set(hi_DP, 'N', 0, 100.0);
+	Validate();
 	if (H.GetD(hi_DP) >= 100.0) {
 		Life = false;
 		Hour = 23;
@@ -266,8 +256,8 @@ int Game::ActionsChoose(int Sol, int Hour) {
 	FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 }
 void Game::Eating(Inventory& I, bool& IsBack, int& Hour) {
-	int CurrentPage = 0;
-	int TotalPage = (ConsumableCount % 9 == 0) ? ConsumableCount / 9 : ConsumableCount / 9 + 1;
+	size_t CurrentPage = 0;
+	size_t TotalPage = (ConsumableCount % 9 == 0) ? ConsumableCount / 9 : ConsumableCount / 9 + 1;
 	while (true) {
 		int Size = (ConsumableCount - CurrentPage * 9 > 8) ? 9 : ConsumableCount - CurrentPage * 9;
 		if (ConsumableCount < 9) Size = ConsumableCount;
@@ -284,63 +274,63 @@ void Game::Eating(Inventory& I, bool& IsBack, int& Hour) {
 		}
 		case 49: {
 			if (Size >= 1) {
-				(*ConsumableVector[0 + int(CurrentPage * 9)]).Taking(H);
+				(*ConsumableVector[(size_t)0 + CurrentPage * (size_t)9]).Taking();
 				return;
 			}
 			break;
 		}
 		case 50: {
 			if (Size >= 2) {
-				(*ConsumableVector[1 + CurrentPage * 9]).Taking(H);
+				(*ConsumableVector[(size_t)1 + CurrentPage * (size_t)9]).Taking();
 				return;
 			}
 			break;
 		}
 		case 51: {
 			if (Size >= 3) {
-				(*ConsumableVector[2 + int(CurrentPage * 9)]).Taking(H);
+				(*ConsumableVector[(size_t)2 + (size_t)CurrentPage * 9]).Taking();
 				return;
 			}
 			break;
 		}
 		case 52: {
 			if (Size >= 4) {
-				(*ConsumableVector[3 + int(CurrentPage * 9)]).Taking(H);
+				(*ConsumableVector[(size_t)3 + (size_t)CurrentPage * 9]).Taking();
 				return;
 			}
 			break;
 		}
 		case 53: {
 			if (Size >= 5) {
-				(*ConsumableVector[4 + int(CurrentPage * 9)]).Taking(H);
+				(*ConsumableVector[4 + (size_t)CurrentPage * 9]).Taking();
 				return;
 			}
 			break;
 		}
 		case 54: {
 			if (Size >= 6) {
-				(*ConsumableVector[5 + int(CurrentPage * 9)]).Taking(H);
+				(*ConsumableVector[5 + (size_t)CurrentPage * 9]).Taking();
 				return;
 			}
 			break;
 		}
 		case 55: {
 			if (Size >= 7) {
-				(*ConsumableVector[6 + int(CurrentPage * 9)]).Taking(H);
+				(*ConsumableVector[6 + (size_t)CurrentPage * 9]).Taking();
 				return;
 			}
 			break;
 		}
 		case 56: {
 			if (Size >= 8) {
-				(*ConsumableVector[7 + int(CurrentPage * 9)]).Taking(H);
+				(*ConsumableVector[7 + (size_t)CurrentPage * 9]).Taking();
 				return;
 			}
 			break;
 		}
 		case 57: {
 			if (Size >= 9) {
-				(*ConsumableVector[8 + int(CurrentPage * 9)]).Taking(H);
+				(*ConsumableVector[8 + (size_t)CurrentPage * 9]).Taking();
 				return;
 			}
 			break;
@@ -487,21 +477,16 @@ void Game::ChangesDay(bool IsExit) {
 	if (H.GetI(hi_Sol) != 1 && !IsExit) {
 		Sleeping();
 		H.Set(hi_HP, '+', 5);
-		H.Set(hi_DP, '-', 0, 1.0);
+		H.Set(hi_DP, '-', 1.0);
 		H.Set(hi_EP, '+', 50);
 		H.Set(hi_FP, '-', 15);
+		Validate();
 	}
-	if (H.GetI(hi_HP) > 100) H.Set(hi_HP, 'N', 100);
-	else if (H.GetI(hi_HP) < 0) H.Set(hi_HP, '0', 0);
-	if (H.GetI(hi_FP) > 100) H.Set(hi_FP, 'N', 100);
-	else if (H.GetI(hi_FP) < 0) H.Set(hi_FP, '0', 0);
-	if (H.GetI(hi_EP) > 100) H.Set(hi_EP, 'N', 100);
-	else if (H.GetI(hi_EP) < 0) H.Set(hi_EP, '0', 0);
-	if (H.GetD(hi_DP) > 100) H.Set(hi_DP, 'N', 0, 100.0);
-	else if (H.GetD(hi_DP) < 0) H.Set(hi_DP, '0', 0, 0.0);
 }
 
 Game::Game() {
+	B.SetPointer(&H);
+	Consumable::SetPointer(&H);
 	ConsumableMap["Aspirin"] = &I.Aspirin;
 	//ConsumableMap["Aspirin"].SetName("Гранула аспирина");
 	ConsumableMap["BartonsDrug"] = &I.BartonsDrug;
@@ -679,4 +664,16 @@ void Game::Menu_4(bool& Working) {
 	case 50: Variety = 2; break;
 	}
 	if (Variety == 1) Working = false;
+}
+void Game::Validate() {
+	if (H.GetI(hi_HP) > 100) H.Set(hi_HP, 'N', 100);
+	else if (H.GetI(hi_HP) < 0) H.Set(hi_HP, '0', 0);
+	if (H.GetI(hi_FP) > 100) H.Set(hi_FP, 'N', 100);
+	else if (H.GetI(hi_FP) < 0) H.Set(hi_FP, '0', 0);
+	if (H.GetI(hi_EP) > 100) H.Set(hi_EP, 'N', 100);
+	else if (H.GetI(hi_EP) < 0) H.Set(hi_EP, '0', 0);
+	if (H.GetD(hi_DP) > 100) H.Set(hi_DP, 'N', 100.0);
+	else if (H.GetD(hi_DP) < 0) H.Set(hi_DP, '0', 0.0);
+	if (H.GetI(hi_PHP) < 0) H.Set(hi_PHP, '0', 0);
+	else if (H.GetI(hi_PHP) > 100) H.Set(hi_PHP, 'N', 100);
 }

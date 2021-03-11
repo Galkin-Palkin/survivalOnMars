@@ -43,6 +43,17 @@ class Game {
 		void PRC(int Colour, string String);
 		Text();
 	};
+	class Human;
+	class Effect {
+		int Duration = 0;
+		vector<HumanInfo> ParametrsNames;
+		vector<double> ParametrsValues;
+	public:
+		void EffectAction(Human*);
+		int GetDuration();
+		void Tick();
+		Effect();
+	};
 	class Human {
 		int HP = 70 + (rand() % 5) * 5; // Очки здоровья
 		int FP = 30 + (rand() % 7) * 5; // Очки сытости
@@ -51,10 +62,15 @@ class Game {
 		double DP = (rand() % 21) / 1.0; // Очки истощения
 		int Sol = 0; // Сол - сутки на Марсе
 		int Hour = 7;
+		vector<Effect> EffectsVector;
+		void EffectsAction();
 	public:
-		int GetI(HumanInfo Type);
-		double GetD(HumanInfo Type);
-		void Set(HumanInfo Type, char Sign, int NumberI, double NumberD = 0.0);
+		int GetI(HumanInfo);
+		double GetD(HumanInfo);
+		void Set(HumanInfo, char, int);
+		void Set(HumanInfo, char, double);
+		void AddEffect(Effect);
+		void EffectsTick();
 		void Null(); // Обнуление данных
 	};
 	class Item {
@@ -108,10 +124,12 @@ class Game {
 	static vector<Consumable*> ConsumableVector;
 	static int ConsumableCount;
 	class Consumable : public Item {
+		vector<Effect> GiveEffect;
 		HumanInfo FirstType; // Здесь и далее - типы, которые меняет объект класса
 		HumanInfo SecondType;
 		HumanInfo ThirdType;
 		string Type;
+		static Human* H;
 		int Chance = 1;
 		int FirstNumber = 0; // Здесь и далее - значение, на которое изменяет первый и так далее тип объект класса
 		double DFirstNumber = 0.0;
@@ -119,11 +137,12 @@ class Game {
 		int ThirdNumber = 0;
 		int ID = 0;
 		bool IsBeing = false;
+		void EffectsToHuman();
 	public:
-		bool Taking(Human& H);
+		bool Taking();
 		void SetNew(int Count = 1) override;
 		void Clear();
-		static void Show(Text& T, int Page);
+		static void Show(Text& T, size_t Page);
 		string GetType();
 		int GetCount();
 		void SetCount(int Value);
@@ -133,7 +152,12 @@ class Game {
 		void SetChance(int);
 		string GetName();
 		void SetName(string);
+		int GetID();
+		int& GetIDP();
+		double GetWeight();
+		static void SetPointer(Human*);
 		Consumable Null();
+		void AddEffect(Effect);
 	};
 	class Inventory {
 	public:
@@ -174,22 +198,22 @@ class Game {
 		string Name;
 		vector<Consumable> SearchingResult;
 	public:
-		Action(ifstream &);
+		Action(ifstream&);
 		Action() = default;
 		string GetName();
 		void GenerateItems();
 		void FoundedItems();
 	};
-    class Room {
-    private:
+	class Room {
+	private:
 		Text T;
-        vector<vector<Action>> roomToActions; // Хранит места для поиска
+		vector<vector<Action>> roomToActions; // Хранит места для поиска
 		vector<string> roomToName; // Названия комнат
 		vector<string> floorPlan; // Карта помещения
 		string Info;
-    public:
+	public:
 		Room(string);
-        void Print();
+		void Print();
 		void PrintRooms();
 		void PlacePrint(vector<Action>, string);
 		void AddRoomsTo(vector<string>& arr);
@@ -202,14 +226,14 @@ class Game {
 		void operator= (Room);
 		vector<vector<Action>> GetVectorAction();
 		void SetVectorAction(vector<vector<Action>>);
-    };
+	};
 	static map<string, Consumable*> ConsumableMap;
-	class Buildings {	
+	class Buildings {
 	private:
 		// Здания
 		Inventory I;
 		HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
-		Human H;
+		Human* H = nullptr;
 		Text T;
 		vector<Room> rooms;
 		/// <summary>
@@ -219,20 +243,20 @@ class Game {
 		/// <param name="Variety">Разновидность плана комнаты.</param>
 		void RoomMap(int, int, vector<string>&, Room&, bool);
 		void RoomVarietyPrint(vector<string>);
-		int RoomChoose(vector<string>&, string &);
-		void RoomSearching(Room &, string, int);
+		int RoomChoose(vector<string>&, string&);
+		void RoomSearching(Room&, string, int);
 		void EnterRoom(int RoomType);
 		void DenyToGoIn(int Type, string RoomType, bool& Entering);
 	public:
 		void GetPath();
 		void LocationGeneration();
 		Buildings();
+		void SetPointer(Human*);
 	};
-	Buildings B;
 	Human H;
+	Buildings B;
 	Text T;
 	Inventory I;
-	vector<vector<Item>> InventoryVector;
 	class Saves {
 	public:
 		void Load(Human& H, bool& IsExit);
@@ -258,6 +282,7 @@ class Game {
 	void MenuReturning(bool& Working);
 	void ChangesDay(bool IsExit);
 	void Back(int& Hour, bool& IsBack);
+	void Validate();
 	static void RefreshingInventory();
 public:
 	Game();

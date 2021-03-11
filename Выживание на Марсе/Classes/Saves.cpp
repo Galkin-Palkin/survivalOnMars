@@ -17,7 +17,7 @@ void Game::Saves::Load(Human& H, bool& IsExit) {
 	fin >> Number;
 	H.Set(hi_PHP, 'N', Number); 
 	fin >> NumberDouble;
-	H.Set(hi_DP, 'N', 0, NumberDouble);
+	H.Set(hi_DP, 'N', NumberDouble);
 	fin >> Number;
 	H.Set(hi_Sol, 'N', Number);
 	fin >> Number;

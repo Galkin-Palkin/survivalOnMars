@@ -3,6 +3,7 @@ using namespace std;
 int Game::ConsumableCount = 0;
 vector<Game::Consumable*> Game::ConsumableVector;
 map<string, Game::Consumable*> Game::ConsumableMap;
+Game::Human* Game::Consumable::H = nullptr;
 int main() {
 	srand(time(NULL));
 	setlocale(LC_ALL, "Rus");
