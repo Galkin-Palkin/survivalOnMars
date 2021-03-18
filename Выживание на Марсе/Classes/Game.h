@@ -17,6 +17,7 @@ class Game {
 		hi_Hour,
 		hi_DP
 	};
+	static map<string, HumanInfo> HIMap;
 	class Text {
 		HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 		// Служебный класс для более удобного оформления в консоли
@@ -46,13 +47,16 @@ class Game {
 	class Human;
 	class Effect {
 		int Duration = 0;
+		static Human* H;
 		vector<HumanInfo> ParametrsNames;
 		vector<double> ParametrsValues;
 	public:
-		void EffectAction(Human*);
+		void EffectAction();
 		int GetDuration();
 		void Tick();
+		static void SetPointer(Human*);
 		Effect();
+		Effect(string);
 	};
 	class Human {
 		int HP = 70 + (rand() % 5) * 5; // Очки здоровья

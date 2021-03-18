@@ -338,16 +338,16 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 
 
 void Game::Buildings::GetPath() {
-	rooms.emplace_back(Room("Data\\Barracks\\First.txt"));
-	rooms.emplace_back(Room("Data\\Barracks\\Second.txt"));
-	rooms.emplace_back(Room("Data\\Canteen\\First.txt"));
-	rooms.emplace_back(Room("Data\\Canteen\\Second.txt"));
-	rooms.emplace_back(Room("Data\\Warehouse\\First.txt"));
-	rooms.emplace_back(Room("Data\\Warehouse\\Second.txt"));
-	rooms.emplace_back(Room("Data\\Medical Centre\\First.txt"));
-	rooms.emplace_back(Room("Data\\Medical Centre\\Second.txt"));
-	rooms.emplace_back(Room("Data\\Laboratory\\First.txt"));
-	rooms.emplace_back(Room("Data\\Laboratory\\Second.txt"));
+	rooms.emplace_back(Room("Data\\Buildings\\Barracks\\First.txt"));
+	rooms.emplace_back(Room("Data\\Buildings\\Barracks\\Second.txt"));
+	rooms.emplace_back(Room("Data\\Buildings\\Canteen\\First.txt"));
+	rooms.emplace_back(Room("Data\\Buildings\\Canteen\\Second.txt"));
+	rooms.emplace_back(Room("Data\\Buildings\\Warehouse\\First.txt"));
+	rooms.emplace_back(Room("Data\\Buildings\\Warehouse\\Second.txt"));
+	rooms.emplace_back(Room("Data\\Buildings\\Medical Centre\\First.txt"));
+	rooms.emplace_back(Room("Data\\Buildings\\Medical Centre\\Second.txt"));
+	rooms.emplace_back(Room("Data\\Buildings\\Laboratory\\First.txt"));
+	rooms.emplace_back(Room("Data\\Buildings\\Laboratory\\Second.txt"));
 }
 
 void Game::Buildings::LocationGeneration() {

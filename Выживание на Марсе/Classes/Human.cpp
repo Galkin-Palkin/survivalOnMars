@@ -137,5 +137,5 @@ void Game::Human::EffectsTick() {
 }
 void Game::Human::EffectsAction() {
 	for (size_t i = 0; i < EffectsVector.size(); i++)
-		EffectsVector[i].EffectAction(this);
+		EffectsVector[i].EffectAction();
 }

@@ -33,7 +33,7 @@ void Game::Saves::Load(Human& H, bool& IsExit) {
 }
 void Game::Saves::Download(Human& H, bool IsExit) {
 	// Загрузка из файла
-	ofstream fout("Data\\Do not open this file.txt");
+	ofstream fout("Data\\Parameters.txt");
 	fout << NewGame << endl;
 	fout << H.GetI(hi_HP) << endl;
 	fout << H.GetI(hi_FP) << endl;
