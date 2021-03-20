@@ -287,7 +287,6 @@ class Game {
 	void ChangesDay(bool IsExit);
 	void Back(int& Hour, bool& IsBack);
 	void Validate();
-	static void RefreshingInventory();
 public:
 	Game();
 	int Menu();

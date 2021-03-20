@@ -416,13 +416,6 @@ void Game::Back(int& Hour, bool& IsBack) {
 	Hour--;
 	IsBack = true;
 }
-void Game::RefreshingInventory() {
-	ConsumableVector.clear();
-	for (auto i : ConsumableMap) {
-		if (i.second->GetCount()) ConsumableVector.push_back(i.second);
-	}
-	ConsumableCount = ConsumableVector.size();
-}
 void Game::Actions(int Choose, bool& Life, int& Hour, bool& IsBack) {
 	switch (Choose) {
 	case 0: RoomLooking(I); break;

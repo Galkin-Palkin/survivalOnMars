@@ -191,7 +191,6 @@ void Game::Buildings::EnterRoom(int RoomType)
 			RoomVarietyPrint(RoomVarietyVector);
 			Choose = RoomChoose(RoomVarietyVector, Temp);
 			RoomSearching(Room, Temp, Choose);
-			Game::RefreshingInventory();
 		}
 	}
 }
@@ -353,6 +352,8 @@ void Game::Buildings::GetPath() {
 void Game::Buildings::LocationGeneration() {
 	// "Генерирует" помещения
 	GetPath();
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
 	system("cls");
 	T.PRC(3, "Ты зашёл в здание\n");
 	T.V(4, 40);
