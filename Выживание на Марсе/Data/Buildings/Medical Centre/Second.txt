@@ -14,10 +14,50 @@
 Огромный комплекс для содержания больных. Имеется отдел с палатами, а также своя столовая. В левом крыле находится служебный отдел
 4
 Палаты
-0
+2
+Тумбочки пациентов
+2
+Phenothan
+Sedatives
+Порванная косметичка
+2
+DriedFruits
+Aspirin
 Картотека
-0
+2
+Шкаф с медкнигами
+1
+Aspirin
+Письменный стол
+2
+Syrup
+Sedatives
 Служебный отдел
-0
+3
+Хранилище медикаментов
+3
+Palont
+Phenothan
+Trivoclisine
+Комнаты медперсонала
+2
+EnergyBar
+Aspirin
+Стеллаж
+1
+DarkChocolateBar
 Столовая
-0
+3
+Кухня
+3
+Noodle
+FishSoup
+MeatBriquette
+Столы
+2
+MeltedCheese
+Hardtack
+Буфет
+2
+EnergyBar
+DriedFruits
