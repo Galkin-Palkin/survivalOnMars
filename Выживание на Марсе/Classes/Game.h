@@ -249,11 +249,11 @@ class Game {
 		void RoomVarietyPrint(vector<string>);
 		int RoomChoose(vector<string>&, string&);
 		void RoomSearching(Room&, string, int);
-		void EnterRoom(int RoomType);
+		void EnterRoom(int RoomType, int&);
 		void DenyToGoIn(int Type, string RoomType, bool& Entering);
 	public:
 		void GetPath();
-		void LocationGeneration();
+		void LocationGeneration(int &Hour);
 		Buildings();
 		void SetPointer(Human*);
 	};
@@ -278,7 +278,7 @@ class Game {
 	int ActionsChoose(int Sol, int Hour);
 	/*void Eating(Inventory& I, bool& IsBack, int& Hour);*/
 	void Eating(Inventory& I, bool& IsBack, int& Hour);
-	void Outing();
+	void Outing(int&);
 	void Sleeping();
 	void Escape(bool& Life, int& Hour);
 	void Actions(int Choose, bool& Life, int& Hour, bool& IsBack);

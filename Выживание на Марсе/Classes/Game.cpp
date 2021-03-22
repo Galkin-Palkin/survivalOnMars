@@ -372,8 +372,8 @@ void Game::Eating(Inventory& I, bool& IsBack, int& Hour) {
 	}
 	FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 }
-void Game::Outing() {
-	B.LocationGeneration();
+void Game::Outing(int &Hour) {
+	if (Hour < 18 && H.GetI(hi_EP) > 60 && H.GetI(hi_PHP) >= 50) B.LocationGeneration(Hour);
 }
 void Game::Sleeping() {
 	int Counter = 0;
@@ -419,7 +419,7 @@ void Game::Back(int& Hour, bool& IsBack) {
 void Game::Actions(int Choose, bool& Life, int& Hour, bool& IsBack) {
 	switch (Choose) {
 	case 0: RoomLooking(I); break;
-	case 1: Outing(); break;
+	case 1: Outing(Hour); break;
 	case 2: Eating(I, IsBack, Hour); break;
 	case 3: break;
 	case 4: {

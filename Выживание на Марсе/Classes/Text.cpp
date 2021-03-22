@@ -34,7 +34,5 @@ void Game::Text::PRC(int Colour, string String) {
 	cout << String;
 }
 Game::Text::Text() {
-	setlocale(LC_ALL, "rus");
-	SetConsoleCP(1251);
-	SetConsoleOutputCP(1251);
+	
 }

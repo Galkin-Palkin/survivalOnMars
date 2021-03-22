@@ -157,7 +157,7 @@ void Game::Buildings::RoomSearching(Room& Room, string RoomName, int RoomVarType
 	Room.PlaceClear(RoomVarType - 1);
 }
 #pragma region Enters
-void Game::Buildings::EnterRoom(int RoomType)
+void Game::Buildings::EnterRoom(int RoomType, int &Hour)
 {
 	string RoomDenyType; // Говорит, доступ в какое помещение невозможен
 	vector<string> RoomVarietyVector; // Вектор названий комнат помещения
@@ -191,6 +191,8 @@ void Game::Buildings::EnterRoom(int RoomType)
 			RoomVarietyPrint(RoomVarietyVector);
 			Choose = RoomChoose(RoomVarietyVector, Temp);
 			RoomSearching(Room, Temp, Choose);
+			Hour++;
+			H->Set(hi_EP, '-', 10);
 		}
 	}
 }
@@ -349,7 +351,7 @@ void Game::Buildings::GetPath() {
 	rooms.emplace_back(Room("Data\\Buildings\\Laboratory\\Second.txt"));
 }
 
-void Game::Buildings::LocationGeneration() {
+void Game::Buildings::LocationGeneration(int& Hour) {
 	// "Генерирует" помещения
 	GetPath();
 	SetConsoleCP(1251);
@@ -359,7 +361,7 @@ void Game::Buildings::LocationGeneration() {
 	T.V(4, 40);
 	T.PRC(15, "");
 	system("pause");
-	int CountOfRooms = 2 + rand() % 4;
+	int CountOfRooms = 1 + rand() % 3;
 	while (CountOfRooms != 0) {
 		system("cls");
 		T.PRC(3, "Ты находишься в помещении\n");
@@ -384,7 +386,7 @@ void Game::Buildings::LocationGeneration() {
 		while (true) {
 			int Click = _getch();
 			if (Click == 49) {
-				EnterRoom(RoomType);
+				EnterRoom(RoomType, Hour);
 				break;
 			}
 		}

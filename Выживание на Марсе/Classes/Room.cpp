@@ -28,7 +28,7 @@ Game::Room::Room(string filename) {
 }
 void Game::Room::Print() {
 	for (auto i : floorPlan)
-		cout << i << "\n";
+		cout << i << '\n';
 	cout << '\n';
 }
 void Game::Room::AddRoomsTo(vector<string>& arr) {
