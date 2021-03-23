@@ -280,6 +280,7 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 			cout << "Введите код: ";
 			SetConsoleTextAttribute(h, 15);
 			cin >> Code;
+			CountOfTry--;
 			if (Code < 1000 || Code > 9999) Code = 0;
 			if (Code == Thousands * 1000 + Hundreds * 100 + Decs * 10 + Ones) {
 				system("cls");
@@ -295,7 +296,7 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 						T.PRC(1, "Нажатия на противные липкие кнопки оказались не напрасны: издав режущий слух звук, дверь резко упала вниз, открыв проход\n");
 						break;
 					case 4:
-						if (rand() % 4 != 0) T.PRC(1, "Раздался ужасающий скрежет, и мятая дверь начала открываться... Ты думал, что она вот-вот развалиться, но всё обошлось\n");
+						if (rand() % 4 != 0) T.PRC(1, "Раздался ужасающий скрежет, и мятая дверь начала открываться... Ты думал, что она вот-вот развалится, но всё обошлось\n");
 						else {
 							T.PRC(1, "Дверь издала ужасный скрежет, похожий на чьи-то вопли... Тут же послышался треск тока порвавшихся проводов, и массивная стальная дверь грохнулась на пол, чуть не убив тебя\n");
 							(*H).Set(hi_PHP, '-', 10);
@@ -327,7 +328,6 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 				}
 				break;
 			}
-			CountOfTry--;
 		}
 		break;
 	}

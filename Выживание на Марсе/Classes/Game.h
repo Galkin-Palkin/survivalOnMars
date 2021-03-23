@@ -41,7 +41,7 @@ class Game {
 		/// </summary>
 		/// <param name="Colour">Цвет.</param>
 		/// <param name="String">Текст.</param>
-		void PRC(int Colour, string String);
+		void PRC(int Colour, string String = "");
 		Text();
 	};
 	class Human;
@@ -278,9 +278,9 @@ class Game {
 	int ActionsChoose(int Sol, int Hour);
 	/*void Eating(Inventory& I, bool& IsBack, int& Hour);*/
 	void Eating(Inventory& I, bool& IsBack, int& Hour);
-	void Outing(int&);
+	void Outing(int&, bool&);
 	void Sleeping();
-	void Escape(bool& Life, int& Hour);
+	void Escape(bool& Life, int& Hour, bool&);
 	void Actions(int Choose, bool& Life, int& Hour, bool& IsBack);
 	void RoomLooking(Inventory& I);
 	void MenuReturning(bool& Working);

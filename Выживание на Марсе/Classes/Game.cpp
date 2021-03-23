@@ -372,8 +372,30 @@ void Game::Eating(Inventory& I, bool& IsBack, int& Hour) {
 	}
 	FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 }
-void Game::Outing(int &Hour) {
-	if (Hour < 18 && H.GetI(hi_EP) > 60 && H.GetI(hi_PHP) >= 50) B.LocationGeneration(Hour);
+void Game::Outing(int &Hour, bool &IsBack) {
+	system("cls");
+	bool Condition = Hour <= 18 && H.GetI(hi_EP) >= 60 && H.GetI(hi_PHP) >= 50;
+	if (Condition) B.LocationGeneration(++Hour);
+	else if (Hour > 18 && H.GetI(hi_EP) >= 60 && H.GetI(hi_PHP) >= 50)
+		T.PRC(3, "\"я готов пойти на поиски, но уже поздно\", - промелькнула мысль в твоей голове, и ты отошЄл от двери\n");
+	else if (Hour <= 18 && H.GetI(hi_EP) < 60 && H.GetI(hi_PHP) >= 50)
+		T.PRC(3, "\"’оть ещЄ есть врем€, да и настрой нужный - сил нет... Ќе могу... \", - сказал ты себе и с сожалением отошЄл\n");
+	else if (Hour > 18 && H.GetI(hi_EP) < 60 && H.GetI(hi_PHP) >= 50)
+		T.PRC(3, "\"я хотел бы сходить, но мои ноги думают иначе. ƒа и ночь уже недалеко\", - произнЄс ты, плюхнувс€ на кресло\n");
+	else if (Hour > 18 && H.GetI(hi_EP) < 60 && H.GetI(hi_PHP) < 50)
+		T.PRC(3, "\"я никуда не пойду! ” мен€ ломит ноги, никакого желани€ нет, так ещЄ и вечер наступил!\", - злобно произнЄс ты, стукнув по стальной двери\n");
+	else if (Hour > 18 && H.GetI(hi_EP) >= 60 && H.GetI(hi_PHP) < 50)
+		T.PRC(3, "\"” мен€ есть силы, но нет желани€ и времени\", - со вздохом заметил ты\n");
+	else if (Hour <= 18 && H.GetI(hi_EP) < 60 && H.GetI(hi_PHP) < 50)
+		T.PRC(3, "\"¬рем€ ещЄ есть, но усталость и нехотение сделали выбор за мен€ - € никуда не пойду\", - со вздохом сказал ты\n");
+	else if (Hour <= 18 && H.GetI(hi_EP) >= 60 && H.GetI(hi_PHP) < 50)
+		T.PRC(3, "\"Ќет желани€ куда-либо идти\", - пробормотал ты\n");
+	if (!Condition) {
+		T.V(4, 40);
+		Back(Hour, IsBack);
+		T.PRC(15);
+		system("pause");
+	}
 }
 void Game::Sleeping() {
 	int Counter = 0;
@@ -393,7 +415,7 @@ void Game::Sleeping() {
 	}
 
 }
-void Game::Escape(bool& Life, int& Hour) {
+void Game::Escape(bool& Life, int& Hour, bool &IsBack) {
 	system("cls");
 	T.PRC(1, "¬ернутьс€ в главное меню?\n");
 	T.V(2);
@@ -406,7 +428,7 @@ void Game::Escape(bool& Life, int& Hour) {
 			break;
 		}
 		else if (Click == 50) {
-			Hour--;
+			Back(Hour, IsBack);
 			break;
 		}
 	}
@@ -419,13 +441,13 @@ void Game::Back(int& Hour, bool& IsBack) {
 void Game::Actions(int Choose, bool& Life, int& Hour, bool& IsBack) {
 	switch (Choose) {
 	case 0: RoomLooking(I); break;
-	case 1: Outing(Hour); break;
+	case 1: Outing(Hour, IsBack); break;
 	case 2: Eating(I, IsBack, Hour); break;
 	case 3: break;
 	case 4: {
 		break;
 	}
-	case 5: Escape(Life, Hour); break;
+	case 5: Escape(Life, Hour, IsBack); break;
 	}
 }
 void Game::RoomLooking(Inventory& I) {
@@ -437,6 +459,7 @@ void Game::RoomLooking(Inventory& I) {
 	system("pause");
 	I.Aspirin.SetNew(2 + rand() % 1);
 	I.Hardtack.SetNew(rand() % 2 + 1);
+	I.DriedFruits.SetNew(rand() % 2 + 1);
 	FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 }
 void Game::MenuReturning(bool& Working) {
@@ -572,7 +595,7 @@ void Game::GamingProcess(bool& Working) {
 			bool IsBack = false;
 			Actions(Choose, Life, Hour, IsBack);
 			H.Set(hi_Hour, 'N', Hour);
-			if (!(H.GetI(hi_Sol) == 1 && Hour == 7) && Choose != 5) Changes(Life, Hour, Working);
+			if (!(H.GetI(hi_Sol) == 1 && Hour == 7) && !IsBack) Changes(Life, Hour, Working);
 		}
 	}
 }
