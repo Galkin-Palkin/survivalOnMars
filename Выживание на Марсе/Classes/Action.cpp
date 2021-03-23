@@ -37,10 +37,17 @@ void Game::Action::FoundedItems() {
 			T.PRC(3, " - ");
 			T.PRC(15, SearchingResult[i].GetName() + " (" + char(48 + SearchingResult[i].GetCount()) + ")\n");
 			(*ConsumableMap[SearchingResult[i].GetType()]).SetNew(SearchingResult[i].GetCount());
+			H->Set(HumanInfo::PHP, '+', 2);
 		}
 	}
-	if (IsEmpty) T.PRC(3, "Вы ничего не нашли\n");
+	if (IsEmpty) {
+		T.PRC(3, "Вы ничего не нашли\n");
+		H->Set(HumanInfo::PHP, '-', 3);
+	}
 	T.V(4, 60);
 	T.PRC(15, "");
 	system("pause");
+}
+void Game::Action::SetPointer(Human* Temp) {
+	H = Temp;
 }

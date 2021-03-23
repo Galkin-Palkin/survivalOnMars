@@ -7,15 +7,15 @@
 using namespace std;
 class Game {
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
-	enum HumanInfo {
-		hi_NULL,
-		hi_HP,
-		hi_FP,
-		hi_EP,
-		hi_PHP,
-		hi_Sol,
-		hi_Hour,
-		hi_DP
+	enum class HumanInfo {
+		Null,
+		HP,
+		FP,
+		EP,
+		PHP,
+		Sol,
+		Hour,
+		DP,
 	};
 	static map<string, HumanInfo> HIMap;
 	class Text {
@@ -57,6 +57,7 @@ class Game {
 		static void SetPointer(Human*);
 		Effect();
 		Effect(string);
+		bool operator==(Effect);
 	};
 	class Human {
 		int HP = 70 + (rand() % 5) * 5; // Очки здоровья
@@ -129,9 +130,9 @@ class Game {
 	static int ConsumableCount;
 	class Consumable : public Item {
 		vector<Effect> GiveEffect;
-		HumanInfo FirstType; // Здесь и далее - типы, которые меняет объект класса
-		HumanInfo SecondType;
-		HumanInfo ThirdType;
+		HumanInfo FirstType = HumanInfo::Null; // Здесь и далее - типы, которые меняет объект класса
+		HumanInfo SecondType = HumanInfo::Null;
+		HumanInfo ThirdType = HumanInfo::Null;
 		string Type;
 		static Human* H;
 		int Chance = 1;
@@ -150,8 +151,8 @@ class Game {
 		string GetType();
 		int GetCount();
 		void SetCount(int Value);
-		void Constructor(string Type, string Name, double Weight, int Chance, HumanInfo FirstType, double FirstNumber, HumanInfo SecondType = hi_NULL, int SecondNumber = -10000, HumanInfo ThirdType = hi_NULL, int ThirdNumber = -10000);
-		void Constructor(string Type, string Name, double Weight, int Chance, HumanInfo FirstType, int FirstNumber, HumanInfo SecondType = hi_NULL, int SecondNumber = -10000, HumanInfo ThirdType = hi_NULL, int ThirdNumber = -10000);
+		void Constructor(string Type, string Name, double Weight, int Chance, HumanInfo FirstType, double FirstNumber, HumanInfo SecondType = HumanInfo::Null, int SecondNumber = -10000, HumanInfo ThirdType = HumanInfo::Null, int ThirdNumber = -10000);
+		void Constructor(string Type, string Name, double Weight, int Chance, HumanInfo FirstType, int FirstNumber, HumanInfo SecondType = HumanInfo::Null, int SecondNumber = -10000, HumanInfo ThirdType = HumanInfo::Null, int ThirdNumber = -10000);
 		int GetChance();
 		void SetChance(int);
 		string GetName();
@@ -199,6 +200,7 @@ class Game {
 	class Action {
 	private:
 		Text T;
+		static Human* H;
 		string Name;
 		vector<Consumable> SearchingResult;
 	public:
@@ -207,6 +209,7 @@ class Game {
 		string GetName();
 		void GenerateItems();
 		void FoundedItems();
+		static void SetPointer(Human*);
 	};
 	class Room {
 	private:
@@ -253,7 +256,7 @@ class Game {
 		void DenyToGoIn(int Type, string RoomType, bool& Entering);
 	public:
 		void GetPath();
-		void LocationGeneration(int &Hour);
+		void LocationGeneration(int& Hour);
 		Buildings();
 		void SetPointer(Human*);
 	};
@@ -276,14 +279,13 @@ class Game {
 	int NewGame();
 	void Changes(bool& Life, int& Hour, bool& Working);
 	int ActionsChoose(int Sol, int Hour);
-	/*void Eating(Inventory& I, bool& IsBack, int& Hour);*/
 	void Eating(Inventory& I, bool& IsBack, int& Hour);
 	void Outing(int&, bool&);
 	void Sleeping();
 	void Escape(bool& Life, int& Hour, bool&);
 	void Actions(int Choose, bool& Life, int& Hour, bool& IsBack);
 	void RoomLooking(Inventory& I);
-	void MenuReturning(bool& Working);
+	void Death(bool& Working);
 	void ChangesDay(bool IsExit);
 	void Back(int& Hour, bool& IsBack);
 	void Validate();

@@ -2,27 +2,27 @@
 int Game::Human::GetI(HumanInfo Type) {
 	switch (Type)
 	{
-	case hi_HP: {
+	case HumanInfo::HP: {
 		return HP;
 		break;
 	}
-	case hi_FP: {
+	case HumanInfo::FP: {
 		return FP;
 		break;
 	}
-	case hi_EP: {
+	case HumanInfo::EP: {
 		return EP;
 		break;
 	}
-	case hi_PHP: {
+	case HumanInfo::PHP: {
 		return PHP;
 		break;
 	}
-	case hi_Sol: {
+	case HumanInfo::Sol: {
 		return Sol;
 		break;
 	}
-	case hi_Hour: {
+	case HumanInfo::Hour: {
 		return Hour;
 		break;
 	}
@@ -34,7 +34,7 @@ int Game::Human::GetI(HumanInfo Type) {
 }
 double Game::Human::GetD(HumanInfo Type) {
 	switch (Type) {
-	case hi_DP:
+	case HumanInfo::DP:
 		return DP; break;
 	default:
 		return -100000;
@@ -43,7 +43,7 @@ double Game::Human::GetD(HumanInfo Type) {
 void Game::Human::Set(HumanInfo Type, char Sign, int NumberI) {
 	// Реализовано криво, потом переделаю. Нужно заменить 'N' на '=', убрать '0'. Перегрузить функцию для вещественных чисел
 	switch (Type) {
-	case hi_HP: {
+	case HumanInfo::HP: {
 		switch (Sign) {
 		case '+': HP += NumberI; break;
 		case '0': HP = 0; break;
@@ -52,7 +52,7 @@ void Game::Human::Set(HumanInfo Type, char Sign, int NumberI) {
 		}
 		break;
 	}
-	case hi_FP:
+	case HumanInfo::FP:
 	{
 		switch (Sign) {
 		case '+': FP += NumberI; break;
@@ -62,7 +62,7 @@ void Game::Human::Set(HumanInfo Type, char Sign, int NumberI) {
 		}
 		break;
 	}
-	case hi_EP: {
+	case HumanInfo::EP: {
 		switch (Sign) {
 		case '+': EP += NumberI; break;
 		case '0': EP = 0; break;
@@ -71,7 +71,7 @@ void Game::Human::Set(HumanInfo Type, char Sign, int NumberI) {
 		}
 		break;
 	}
-	case hi_PHP: {
+	case HumanInfo::PHP: {
 		switch (Sign) {
 		case '+': PHP += NumberI; break;
 		case '0': PHP = 0; break;
@@ -80,7 +80,7 @@ void Game::Human::Set(HumanInfo Type, char Sign, int NumberI) {
 		}
 		break;
 	}
-	case hi_Sol: {
+	case HumanInfo::Sol: {
 		switch (Sign) {
 		case '+': Sol += NumberI; break;
 		case '0': Sol = 0; break;
@@ -89,7 +89,7 @@ void Game::Human::Set(HumanInfo Type, char Sign, int NumberI) {
 		}
 		break;
 	}
-	case hi_Hour: {
+	case HumanInfo::Hour: {
 		switch (Sign) {
 		case '+': Hour += NumberI; break;
 		case '0': Hour = 0; break;
@@ -102,7 +102,7 @@ void Game::Human::Set(HumanInfo Type, char Sign, int NumberI) {
 }
 void Game::Human::Set(HumanInfo Type, char Sign, double Number) {
 	switch (Type) {
-	case hi_DP:
+	case HumanInfo::DP:
 		switch (Sign) {
 		case '+': DP += Number; break;
 		case '-': DP -= Number; break;
@@ -126,6 +126,19 @@ void Game::Human::Null() {
 }
 void Game::Human::AddEffect(Effect Ef) {
 	EffectsVector.push_back(Ef);
+	for (size_t i = 0; i < EffectsVector.size(); i++) {
+		for (size_t j = 0; j < EffectsVector.size(); j++) {
+			if (i == j) break;
+			if (i != j && EffectsVector[i] == EffectsVector[j] && EffectsVector[i].GetDuration() > EffectsVector[j].GetDuration()) {
+				EffectsVector.erase(EffectsVector.begin() + j--);
+				break;
+			}	
+			else if (i != j && EffectsVector[i] == EffectsVector[j] && EffectsVector[i].GetDuration() < EffectsVector[j].GetDuration()) {
+				EffectsVector.erase(EffectsVector.begin() + i--);
+				break;
+			}
+		}
+	}
 }
 void Game::Human::EffectsTick() {
 	for (size_t i = 0; i < EffectsVector.size(); i++) {

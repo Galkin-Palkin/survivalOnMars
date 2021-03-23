@@ -3,7 +3,7 @@
 void Game::Effect::EffectAction() {
 	for (size_t i = 0; i < ParametrsNames.size(); i++) {
 		if (Duration) {
-			if (ParametrsNames[i] == hi_DP) (*H).Set(ParametrsNames[i], '+', ParametrsValues[i]);
+			if (ParametrsNames[i] == HumanInfo::DP) (*H).Set(ParametrsNames[i], '+', ParametrsValues[i]);
 			else {
 				int Value = ParametrsValues[i];
 				(*H).Set(ParametrsNames[i], '+', Value);
@@ -24,11 +24,11 @@ Game::Effect::Effect() {
 
 }
 Game::Effect::Effect(string Path) {
-	HIMap["HP"] = hi_HP;
-	HIMap["FP"] = hi_FP;
-	HIMap["EP"] = hi_EP;
-	HIMap["PHP"] = hi_PHP;
-	HIMap["DP"] = hi_DP;
+	HIMap["HP"] = HumanInfo::HP;
+	HIMap["FP"] = HumanInfo::FP;
+	HIMap["EP"] = HumanInfo::EP;
+	HIMap["PHP"] = HumanInfo::PHP;
+	HIMap["DP"] = HumanInfo::DP;
 	ifstream fin(Path);
 	string Type;
 	double Value;
@@ -40,4 +40,9 @@ Game::Effect::Effect(string Path) {
 		ParametrsNames.push_back(HIMap[Type]);
 		ParametrsValues.push_back(Value);
 	}
+}
+bool Game::Effect::operator==(Effect Temp) {
+	for (size_t i = 0; i < ParametrsNames.size(); i++)
+		if (ParametrsNames[i] != Temp.ParametrsNames[i] || ParametrsValues[i] != Temp.ParametrsValues[i]) return false;
+	return true;
 }

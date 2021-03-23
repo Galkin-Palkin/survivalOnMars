@@ -192,7 +192,7 @@ void Game::Buildings::EnterRoom(int RoomType, int &Hour)
 			Choose = RoomChoose(RoomVarietyVector, Temp);
 			RoomSearching(Room, Temp, Choose);
 			Hour++;
-			H->Set(hi_EP, '-', 10);
+			H->Set(HumanInfo::EP, '-', 10);
 		}
 	}
 }
@@ -214,7 +214,7 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 		cout << "Открыв дверь " << RoomType << ", ты увидел лишь руины: всё было завалено грудами пористого бетона" << endl;
 		if (rand() % 5 == 0) {
 			cout << "Под одним из обломков ты увидел чью-то расплющенную кисть... Тебе стало дурно от этого и ты поспешил закрыть дверь" << endl;
-			(*H).Set(hi_PHP, '-', 40);
+			(*H).Set(HumanInfo::PHP, '-', 40);
 		}
 		else cout << "Искать тебе здесь явно нечего, и ты закрыл дверь" << endl;
 		Entering = false;
@@ -299,7 +299,7 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 						if (rand() % 4 != 0) T.PRC(1, "Раздался ужасающий скрежет, и мятая дверь начала открываться... Ты думал, что она вот-вот развалится, но всё обошлось\n");
 						else {
 							T.PRC(1, "Дверь издала ужасный скрежет, похожий на чьи-то вопли... Тут же послышался треск тока порвавшихся проводов, и массивная стальная дверь грохнулась на пол, чуть не убив тебя\n");
-							(*H).Set(hi_PHP, '-', 10);
+							(*H).Set(HumanInfo::PHP, '-', 10);
 						}
 						break;
 					}

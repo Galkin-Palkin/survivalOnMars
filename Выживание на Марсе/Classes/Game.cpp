@@ -19,7 +19,7 @@ void Game::InfoShowing(int HP, int FP, int EP, int PHP, double DP, int Sol, int 
 	SetConsoleTextAttribute(h, 3);
 	cout << "Сол ";
 	SetConsoleTextAttribute(h, 15);
-	cout << H.GetI(hi_Sol) << endl;
+	cout << H.GetI(HumanInfo::Sol) << endl;
 	T.V(4, 15);
 	SetConsoleTextAttribute(h, 15);
 	cout << Hour << ":00" << endl;
@@ -186,45 +186,47 @@ int Game::NewGame() {
 }
 void Game::Changes(bool& Life, int& Hour, bool& Working) {
 	// Система организма персонажа, функция вызывается каждый игровой час
-	H.Set(hi_FP, '-', 5);
+	H.Set(HumanInfo::FP, '-', 5);
 	Validate();
 	H.EffectsTick();
-	if (H.GetI(hi_FP) >= 75) H.Set(hi_EP, '+', 10);
-	else if (H.GetI(hi_FP) >= 50) H.Set(hi_EP, '+', 8);
-	else if (H.GetI(hi_FP) >= 25) H.Set(hi_EP, '+', 5);
-	if (H.GetI(hi_FP) == 0) {
-		H.Set(hi_HP, '-', 1);
-		H.Set(hi_EP, '-', 5);
-		H.Set(hi_PHP, '-', 2);
-		H.Set(hi_DP, '+', 0.25);
+	if (H.GetI(HumanInfo::FP) >= 75) H.Set(HumanInfo::EP, '+', 10);
+	else if (H.GetI(HumanInfo::FP) >= 50) H.Set(HumanInfo::EP, '+', 8);
+	else if (H.GetI(HumanInfo::FP) >= 25) H.Set(HumanInfo::EP, '+', 5);
+	if (H.GetI(HumanInfo::FP) == 0) {
+		H.Set(HumanInfo::HP, '-', 1);
+		H.Set(HumanInfo::EP, '-', 5);
+		H.Set(HumanInfo::PHP, '-', 2);
+		H.Set(HumanInfo::DP, '+', 0.25);
+		H.AddEffect(Effect("Data\\Effects\\Starvation.txt"));
 	}
-	if (H.GetI(hi_HP) > 75 && H.GetI(hi_FP) >= 30) {
-		H.Set(hi_DP, '-', 1.0);
-		H.Set(hi_PHP, '+', 2);
+	if (H.GetI(HumanInfo::HP) > 75 && H.GetI(HumanInfo::FP) >= 30) {
+		H.Set(HumanInfo::DP, '-', 1.0);
+		H.Set(HumanInfo::PHP, '+', 2);
 	}
-	else if (H.GetI(hi_HP) > 50 && H.GetI(hi_FP) >= 30) {
-		H.Set(hi_DP, '-', 0.5);
-		H.Set(hi_PHP, '+', 1);
+	else if (H.GetI(HumanInfo::HP) > 50 && H.GetI(HumanInfo::FP) >= 30) {
+		H.Set(HumanInfo::DP, '-', 0.5);
+		H.Set(HumanInfo::PHP, '+', 1);
 	}
-	if (H.GetI(hi_HP) >= 25 && H.GetI(hi_HP) < 50) {
-		H.Set(hi_DP, '+', 0.25);
-		H.Set(hi_PHP, '-', 2);
+	if (H.GetI(HumanInfo::HP) >= 25 && H.GetI(HumanInfo::HP) < 50) {
+		H.Set(HumanInfo::DP, '+', 0.25);
+		H.Set(HumanInfo::PHP, '-', 2);
 	}
-	else if (H.GetI(hi_HP) < 25 && H.GetI(hi_HP) > 0) {
-		H.Set(hi_DP, '+', 1.0);
-		H.Set(hi_PHP, '-', 3);
+	else if (H.GetI(HumanInfo::HP) < 25 && H.GetI(HumanInfo::HP) > 0) {
+		H.Set(HumanInfo::DP, '+', 1.0);
+		H.Set(HumanInfo::PHP, '-', 3);
 	}
-	else if (H.GetI(hi_HP) == 0) {
-		H.Set(hi_DP, '+', 2.0);
-		H.Set(hi_PHP, '-', 5);
+	else if (H.GetI(HumanInfo::HP) == 0) {
+		H.Set(HumanInfo::DP, '+', 2.0);
+		H.Set(HumanInfo::PHP, '-', 5);
+		H.AddEffect(Effect("Data\\Effects\\Agony.txt"));
 	}
 	Validate();
-	if (H.GetD(hi_DP) >= 100.0) {
+	if (H.GetD(HumanInfo::DP) >= 100.0) {
 		Life = false;
 		Hour = 23;
 		S.SetNew(true);
 		S.Download(H);
-		MenuReturning(Working);
+		Death(Working);
 	}
 }
 int Game::ActionsChoose(int Sol, int Hour) {
@@ -374,21 +376,21 @@ void Game::Eating(Inventory& I, bool& IsBack, int& Hour) {
 }
 void Game::Outing(int &Hour, bool &IsBack) {
 	system("cls");
-	bool Condition = Hour <= 18 && H.GetI(hi_EP) >= 60 && H.GetI(hi_PHP) >= 50;
+	bool Condition = Hour <= 18 && H.GetI(HumanInfo::EP) >= 60 && H.GetI(HumanInfo::PHP) >= 50;
 	if (Condition) B.LocationGeneration(++Hour);
-	else if (Hour > 18 && H.GetI(hi_EP) >= 60 && H.GetI(hi_PHP) >= 50)
+	else if (Hour > 18 && H.GetI(HumanInfo::EP) >= 60 && H.GetI(HumanInfo::PHP) >= 50)
 		T.PRC(3, "\"Я готов пойти на поиски, но уже поздно\", - промелькнула мысль в твоей голове, и ты отошёл от двери\n");
-	else if (Hour <= 18 && H.GetI(hi_EP) < 60 && H.GetI(hi_PHP) >= 50)
+	else if (Hour <= 18 && H.GetI(HumanInfo::EP) < 60 && H.GetI(HumanInfo::PHP) >= 50)
 		T.PRC(3, "\"Хоть ещё есть время, да и настрой нужный - сил нет... Не могу... \", - сказал ты себе и с сожалением отошёл\n");
-	else if (Hour > 18 && H.GetI(hi_EP) < 60 && H.GetI(hi_PHP) >= 50)
-		T.PRC(3, "\"Я хотел бы сходить, но мои ноги думают иначе. Да и ночь уже недалеко\", - произнёс ты, плюхнувся на кресло\n");
-	else if (Hour > 18 && H.GetI(hi_EP) < 60 && H.GetI(hi_PHP) < 50)
+	else if (Hour > 18 && H.GetI(HumanInfo::EP) < 60 && H.GetI(HumanInfo::PHP) >= 50)
+		T.PRC(3, "\"Я хотел бы сходить, но мои ноги думают иначе. Да и ночь уже недалёко\", - произнёс ты, плюхнувся на кресло\n");
+	else if (Hour > 18 && H.GetI(HumanInfo::EP) < 60 && H.GetI(HumanInfo::PHP) < 50)
 		T.PRC(3, "\"Я никуда не пойду! У меня ломит ноги, никакого желания нет, так ещё и вечер наступил!\", - злобно произнёс ты, стукнув по стальной двери\n");
-	else if (Hour > 18 && H.GetI(hi_EP) >= 60 && H.GetI(hi_PHP) < 50)
+	else if (Hour > 18 && H.GetI(HumanInfo::EP) >= 60 && H.GetI(HumanInfo::PHP) < 50)
 		T.PRC(3, "\"У меня есть силы, но нет желания и времени\", - со вздохом заметил ты\n");
-	else if (Hour <= 18 && H.GetI(hi_EP) < 60 && H.GetI(hi_PHP) < 50)
+	else if (Hour <= 18 && H.GetI(HumanInfo::EP) < 60 && H.GetI(HumanInfo::PHP) < 50)
 		T.PRC(3, "\"Время ещё есть, но усталость и нехотение сделали выбор за меня - я никуда не пойду\", - со вздохом сказал ты\n");
-	else if (Hour <= 18 && H.GetI(hi_EP) >= 60 && H.GetI(hi_PHP) < 50)
+	else if (Hour <= 18 && H.GetI(HumanInfo::EP) >= 60 && H.GetI(HumanInfo::PHP) < 50)
 		T.PRC(3, "\"Нет желания куда-либо идти\", - пробормотал ты\n");
 	if (!Condition) {
 		T.V(4, 40);
@@ -402,14 +404,14 @@ void Game::Sleeping() {
 	int HoursN = 23;
 	while (Counter != 8) {
 		system("cls");
-		SetConsoleTextAttribute(h, 13);
-		cout << "Ты спишь..." << endl;
+		T.PRC(13, "Ты спишь...\n");
 		T.V(4, 30);
 		SetConsoleTextAttribute(h, 3);
 		cout << HoursN << ":00" << endl;
 		HoursN++;
 		if (HoursN == 24) HoursN = 0;
 		Counter++;
+		H.EffectsTick();
 		Sleep(970);
 		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 	}
@@ -423,7 +425,7 @@ void Game::Escape(bool& Life, int& Hour, bool &IsBack) {
 		int Click = _getch();
 		if (Click == 49) {
 			Life = false;
-			H.Set(hi_Sol, '-', 1);
+			H.Set(HumanInfo::Sol, '-', 1);
 			S.Download(H, true);
 			break;
 		}
@@ -462,7 +464,7 @@ void Game::RoomLooking(Inventory& I) {
 	I.DriedFruits.SetNew(rand() % 2 + 1);
 	FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 }
-void Game::MenuReturning(bool& Working) {
+void Game::Death(bool& Working) {
 	system("cls");
 	SetConsoleTextAttribute(h, 4);
 	cout << "Вы умерли" << endl;
@@ -490,13 +492,13 @@ void Game::MenuReturning(bool& Working) {
 }
 void Game::ChangesDay(bool IsExit) {
 	// Изменения, проходящие после каждой ночи
-	H.Set(hi_Sol, '+', 1);
-	if (H.GetI(hi_Sol) != 1 && !IsExit) {
+	H.Set(HumanInfo::Sol, '+', 1);
+	if (H.GetI(HumanInfo::Sol) != 1 && !IsExit) {
 		Sleeping();
-		H.Set(hi_HP, '+', 5);
-		H.Set(hi_DP, '-', 1.0);
-		H.Set(hi_EP, '+', 50);
-		H.Set(hi_FP, '-', 15);
+		H.Set(HumanInfo::HP, '+', 5);
+		H.Set(HumanInfo::DP, '-', 1.0);
+		H.Set(HumanInfo::EP, '+', 50);
+		H.Set(HumanInfo::FP, '-', 15);
 		Validate();
 	}
 }
@@ -505,6 +507,7 @@ Game::Game() {
 	B.SetPointer(&H);
 	Consumable::SetPointer(&H);
 	Effect::SetPointer(&H);
+	Action::SetPointer(&H);
 	ConsumableMap["Aspirin"] = &I.Aspirin;
 	ConsumableMap["BartonsDrug"] = &I.BartonsDrug;
 	ConsumableMap["CannedApple"] = &I.CannedApple;
@@ -582,20 +585,20 @@ void Game::GamingProcess(bool& Working) {
 		S.Download(H, isExit);
 		ChangesDay(isExit);
 		isExit = false;
-		if (H.GetI(hi_Hour) >= 23) H.Set(hi_Hour, 'N', 7);
-		for (; H.GetI(hi_Hour) <= 22; H.Set(hi_Hour, '+', 1)) {
+		if (H.GetI(HumanInfo::Hour) >= 23) H.Set(HumanInfo::Hour, 'N', 7);
+		for (; H.GetI(HumanInfo::Hour) <= 22; H.Set(HumanInfo::Hour, '+', 1)) {
 			if (!Life) {
-				H.Set(hi_Hour, '-', 1);
+				H.Set(HumanInfo::Hour, '-', 1);
 				break;
 			}
 			system("cls");
-			InfoShowing(H.GetI(hi_HP), H.GetI(hi_FP), H.GetI(hi_EP), H.GetI(hi_PHP), H.GetD(hi_DP), H.GetI(hi_Sol), H.GetI(hi_Hour));
-			int Choose = ActionsChoose(H.GetI(hi_Sol), H.GetI(hi_Hour));
-			int Hour = H.GetI(hi_Hour);
+			InfoShowing(H.GetI(HumanInfo::HP), H.GetI(HumanInfo::FP), H.GetI(HumanInfo::EP), H.GetI(HumanInfo::PHP), H.GetD(HumanInfo::DP), H.GetI(HumanInfo::Sol), H.GetI(HumanInfo::Hour));
+			int Choose = ActionsChoose(H.GetI(HumanInfo::Sol), H.GetI(HumanInfo::Hour));
+			int Hour = H.GetI(HumanInfo::Hour);
 			bool IsBack = false;
 			Actions(Choose, Life, Hour, IsBack);
-			H.Set(hi_Hour, 'N', Hour);
-			if (!(H.GetI(hi_Sol) == 1 && Hour == 7) && !IsBack) Changes(Life, Hour, Working);
+			H.Set(HumanInfo::Hour, 'N', Hour);
+			if (!(H.GetI(HumanInfo::Sol) == 1 && Hour == 7) && !IsBack) Changes(Life, Hour, Working);
 		}
 	}
 }
@@ -661,14 +664,14 @@ void Game::Menu_4(bool& Working) {
 	if (Variety == 1) Working = false;
 }
 void Game::Validate() {
-	if (H.GetI(hi_HP) > 100) H.Set(hi_HP, 'N', 100);
-	else if (H.GetI(hi_HP) < 0) H.Set(hi_HP, '0', 0);
-	if (H.GetI(hi_FP) > 100) H.Set(hi_FP, 'N', 100);
-	else if (H.GetI(hi_FP) < 0) H.Set(hi_FP, '0', 0);
-	if (H.GetI(hi_EP) > 100) H.Set(hi_EP, 'N', 100);
-	else if (H.GetI(hi_EP) < 0) H.Set(hi_EP, '0', 0);
-	if (H.GetD(hi_DP) > 100) H.Set(hi_DP, 'N', 100.0);
-	else if (H.GetD(hi_DP) < 0) H.Set(hi_DP, '0', 0.0);
-	if (H.GetI(hi_PHP) < 0) H.Set(hi_PHP, '0', 0);
-	else if (H.GetI(hi_PHP) > 100) H.Set(hi_PHP, 'N', 100);
+	if (H.GetI(HumanInfo::HP) > 100) H.Set(HumanInfo::HP, 'N', 100);
+	else if (H.GetI(HumanInfo::HP) < 0) H.Set(HumanInfo::HP, '0', 0);
+	if (H.GetI(HumanInfo::FP) > 100) H.Set(HumanInfo::FP, 'N', 100);
+	else if (H.GetI(HumanInfo::FP) < 0) H.Set(HumanInfo::FP, '0', 0);
+	if (H.GetI(HumanInfo::EP) > 100) H.Set(HumanInfo::EP, 'N', 100);
+	else if (H.GetI(HumanInfo::EP) < 0) H.Set(HumanInfo::EP, '0', 0);
+	if (H.GetD(HumanInfo::DP) > 100) H.Set(HumanInfo::DP, 'N', 100.0);
+	else if (H.GetD(HumanInfo::DP) < 0) H.Set(HumanInfo::DP, '0', 0.0);
+	if (H.GetI(HumanInfo::PHP) < 0) H.Set(HumanInfo::PHP, '0', 0);
+	else if (H.GetI(HumanInfo::PHP) > 100) H.Set(HumanInfo::PHP, 'N', 100);
 }

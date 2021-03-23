@@ -6,6 +6,7 @@ map<string, Game::Consumable*> Game::ConsumableMap;
 map<string, Game::HumanInfo> Game::HIMap;
 Game::Human* Game::Consumable::H = nullptr;
 Game::Human* Game::Effect::H = nullptr;
+Game::Human* Game::Action::H = nullptr;
 int main() {
 	srand(time(NULL));
 	setlocale(LC_ALL, "Rus");

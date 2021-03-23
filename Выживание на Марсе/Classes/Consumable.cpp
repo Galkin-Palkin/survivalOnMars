@@ -2,10 +2,10 @@
 bool Game::Consumable::Taking() {
 	// ”потребление
 	if (this->Count > 0) {
-		if (this->FirstType != hi_DP) (*H).Set(this->FirstType, '+', this->FirstNumber);
-		else (*H).Set(hi_DP, '+', this->DFirstNumber);
-		if (this->SecondType != hi_NULL) (*H).Set(this->SecondType, '+', this->SecondNumber);
-		if (this->ThirdType != hi_NULL) (*H).Set(this->ThirdType, '+', this->ThirdNumber);
+		if (this->FirstType != HumanInfo::DP) (*H).Set(this->FirstType, '+', this->FirstNumber);
+		else (*H).Set(HumanInfo::DP, '+', this->DFirstNumber);
+		if (this->SecondType != HumanInfo::Null) (*H).Set(this->SecondType, '+', this->SecondNumber);
+		if (this->ThirdType != HumanInfo::Null) (*H).Set(this->ThirdType, '+', this->ThirdNumber);
 		this->Count--;
 		EffectsToHuman();
 	}
@@ -76,11 +76,11 @@ void Game::Consumable::Constructor(string Type, string Name, double Weight, int 
 	this->Name = Name;
 	this->Weight = Weight;
 	this->Chance = Chance;
-	if (SecondType != hi_NULL && SecondNumber != -10000) {
+	if (SecondType != HumanInfo::Null && SecondNumber != -10000) {
 		this->SecondType = SecondType;
 		this->SecondNumber = SecondNumber;
 	}
-	if (ThirdType != hi_NULL && ThirdNumber != -10000) {
+	if (ThirdType != HumanInfo::Null && ThirdNumber != -10000) {
 		this->ThirdType = ThirdType;
 		this->ThirdNumber = ThirdNumber;
 	}
@@ -93,11 +93,11 @@ void Game::Consumable::Constructor(string Type, string Name, double Weight, int 
 	this->Name = Name;
 	this->Weight = Weight;
 	this->Chance = Chance;
-	if (SecondType != hi_NULL && SecondNumber != -10000) {
+	if (SecondType != HumanInfo::Null && SecondNumber != -10000) {
 		this->SecondType = SecondType;
 		this->SecondNumber = SecondNumber;
 	}
-	if (ThirdType != hi_NULL && ThirdNumber != -10000) {
+	if (ThirdType != HumanInfo::Null && ThirdNumber != -10000) {
 		this->ThirdType = ThirdType;
 		this->ThirdNumber = ThirdNumber;
 	}

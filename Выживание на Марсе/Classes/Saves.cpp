@@ -9,19 +9,19 @@ void Game::Saves::Load(Human& H, bool& IsExit) {
 	double NumberDouble;
 	fin >> NewGame;
 	fin >> Number;
-	H.Set(hi_HP, 'N', Number);
+	H.Set(HumanInfo::HP, 'N', Number);
 	fin >> Number;
-	H.Set(hi_FP, 'N', Number);
+	H.Set(HumanInfo::FP, 'N', Number);
 	fin >> Number;
-	H.Set(hi_EP, 'N', Number);
+	H.Set(HumanInfo::EP, 'N', Number);
 	fin >> Number;
-	H.Set(hi_PHP, 'N', Number); 
+	H.Set(HumanInfo::PHP, 'N', Number);
 	fin >> NumberDouble;
-	H.Set(hi_DP, 'N', NumberDouble);
+	H.Set(HumanInfo::DP, 'N', NumberDouble);
 	fin >> Number;
-	H.Set(hi_Sol, 'N', Number);
+	H.Set(HumanInfo::Sol, 'N', Number);
 	fin >> Number;
-	H.Set(hi_Hour, 'N', Number);
+	H.Set(HumanInfo::Hour, 'N', Number);
 	fin >> Number;
 	ConsumableCount = Number;
 	for (int i = 0; i < ConsumableCount; i++) {
@@ -35,13 +35,13 @@ void Game::Saves::Download(Human& H, bool IsExit) {
 	// Загрузка из файла
 	ofstream fout("Data\\Parameters.txt");
 	fout << NewGame << endl;
-	fout << H.GetI(hi_HP) << endl;
-	fout << H.GetI(hi_FP) << endl;
-	fout << H.GetI(hi_EP) << endl;
-	fout << H.GetI(hi_PHP) << endl;
-	fout << H.GetD(hi_DP) << endl;
-	fout << H.GetI(hi_Sol) << endl;
-	fout << H.GetI(hi_Hour) << endl;
+	fout << H.GetI(HumanInfo::HP) << endl;
+	fout << H.GetI(HumanInfo::FP) << endl;
+	fout << H.GetI(HumanInfo::EP) << endl;
+	fout << H.GetI(HumanInfo::PHP) << endl;
+	fout << H.GetD(HumanInfo::DP) << endl;
+	fout << H.GetI(HumanInfo::Sol) << endl;
+	fout << H.GetI(HumanInfo::Hour) << endl;
 	fout << ConsumableCount << endl;
 	for (int i = 0; i < ConsumableCount; i++) {
 		fout << ConsumableVector[i]->GetType() << endl;
