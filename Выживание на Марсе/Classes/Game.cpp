@@ -1,5 +1,6 @@
 #include "Game.h"
 #include <conio.h>
+#include <fstream>
 #include <string>
 void Game::Introduction() {
 	SetConsoleTextAttribute(h, 15);
@@ -22,7 +23,7 @@ void Game::InfoShowing(int HP, int FP, int EP, int PHP, double DP, int Sol, int 
 	T.V(4, 15);
 	T.PRC(15, to_string(Hour) + ":00\n");
 	T.V(4, 50);
-    
+
 	T.PRC(13, "Состояние здоровья: ");
 	if (HP >= 90)
 		T.PRC(1, "Идеальное\n");
@@ -303,7 +304,7 @@ void Game::Eating(Inventory& I, bool& IsBack, int& Hour) {
 	}
 	FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 }
-void Game::Outing(int &Hour, bool &IsBack) {
+void Game::Outing(int& Hour, bool& IsBack) {
 	system("cls");
 	bool Condition = Hour <= 18 && H.GetI(HumanInfo::EP) >= 60 && H.GetI(HumanInfo::PHP) >= 50;
 	if (Condition) B.LocationGeneration(++Hour);
@@ -328,6 +329,95 @@ void Game::Outing(int &Hour, bool &IsBack) {
 		system("pause");
 	}
 }
+void Game::Workplace(int &Hour, bool &IsBack) {
+	system("cls");
+	T.PRC(1, "Выберите действие:\n");
+	T.V(4, 40);
+	T.HV(13, 1, 15, "Почитать книги");
+	T.V(4, 10);
+	T.HV(13, 2, 15, "Просмотреть дневник");
+	T.V(4, 10);
+	T.HV(13, 3, 15, "Просмотреть заметки");
+	T.V(4, 10);
+	T.HV(13, 4, 15, "Написать заметку");
+	T.V(4, 40);
+	int Click;
+	while (true) {
+		Click = _getch();
+		switch (Click) {
+		case 49:
+			Click = 1;
+			goto End;
+		case 50:
+			Click = 2;
+			goto End;
+		case 51:
+			Click = 3;
+			goto End;
+		case 52:
+			Click = 4;
+			goto End;
+		case 27:
+			Back(Hour, IsBack);
+			goto End;
+		}
+	}
+End:
+	switch (Click) {
+	case 1: break;
+	case 2: DiaryReading(); break;
+	case 3: ReadNotes(); break;
+	case 4: NotesWriting(); break;
+	}
+}
+void Game::DiaryReading() {
+	system("cls");
+	T.PRC(13, "Сол ");
+	T.PRC(15, to_string(H.GetI(HumanInfo::Sol)) + '\n');
+	T.V(4, 60);
+	for (size_t i = 0; i < DiaryVector.size(); i++) {
+		T.PRC(1, " - ");
+		T.PRC(15, DiaryVector[i] + "\n\n");
+		if (i + 1 == DiaryVector.size()) T.V(4, 60);
+	}
+	if (!DiaryVector.size()) {
+		T.PRC(15, "Отсутствуют записи за сегодняшний день\n");
+		T.V(4, 60);
+	}
+	T.PRC(15);
+	system("pause");
+}
+void Game::ReadNotes() {
+	ifstream fin("Data\\Notes.txt");
+	string Temp;
+	NotesVector.clear();
+	while (!fin.eof()) {
+		getline(fin, Temp);
+		if (Temp.size() > 1) 
+			NotesVector.push_back(Temp);
+	}
+	system("cls");
+	T.PRC(1, "Заметки\n");
+	T.V(4, 60);
+	if (!NotesVector.size())
+		T.PRC(3, "Заметки отстутствуют\n");
+	for (size_t i = 0; i < NotesVector.size(); i++) {
+		T.PRC(15, NotesVector[i] + '\n');
+	}
+	T.V(4, 60);
+	T.PRC(15);
+	system("pause");
+}
+void Game::NotesWriting() {
+	ofstream fout("Data\\Notes.txt", ofstream::app);
+	system("cls");
+	T.PRC(3, "Напишите заметку: ");
+	string Temp;
+	T.PRC(15);
+	cin >> ws;
+	getline(cin, Temp);
+	fout << "Сол " + to_string(H.GetI(HumanInfo::Sol)) + ", " + to_string(H.GetI(HumanInfo::Hour)) + ":00  " + Temp << endl;
+}
 void Game::Sleeping() {
 	int Counter = 0;
 	int HoursN = 23;
@@ -344,7 +434,7 @@ void Game::Sleeping() {
 	}
 
 }
-void Game::Escape(bool& Life, int& Hour, bool &IsBack) {
+void Game::Escape(bool& Life, int& Hour, bool& IsBack) {
 	system("cls");
 	T.PRC(1, "Вернуться в главное меню?\n");
 	T.V(2);
@@ -372,7 +462,7 @@ void Game::Actions(int Choose, bool& Life, int& Hour, bool& IsBack) {
 	case 0: RoomLooking(I); break;
 	case 1: Outing(Hour, IsBack); break;
 	case 2: Eating(I, IsBack, Hour); break;
-	case 3: break;
+	case 3: Workplace(Hour, IsBack); break;
 	case 4: {
 		break;
 	}
@@ -388,6 +478,8 @@ void Game::RoomLooking(Inventory& I) {
 	I.Aspirin.SetNew(2 + rand() % 1);
 	I.Hardtack.SetNew(rand() % 2 + 1);
 	I.DriedFruits.SetNew(rand() % 2 + 1);
+	DiaryVector.push_back("Куда все подевались!? Ни души не видно... Так одиноко... Пожалуй, буду писать сюда свои мысли");
+	DiaryVector.push_back("Моя Софи... Я так по ней скучаю... Интересно, как она? Мы не виделись с апреля прошлого года... Надеюсь, с ней всё хорошо");
 	FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 }
 void Game::Death(bool& Working) {
@@ -418,6 +510,7 @@ void Game::Death(bool& Working) {
 void Game::ChangesDay(bool IsExit) {
 	// Изменения, проходящие после каждой ночи
 	H.Set(HumanInfo::Sol, '+', 1);
+	DiaryVector.clear();
 	if (H.GetI(HumanInfo::Sol) != 1 && !IsExit) {
 		Sleeping();
 		H.Set(HumanInfo::HP, '+', 5);
@@ -427,8 +520,8 @@ void Game::ChangesDay(bool IsExit) {
 		H.Set(HumanInfo::FP, '+', 20);
 		Validate();
 	}
+	if (H.GetI(HumanInfo::PHP) <= 30) DiaryVector.push_back("Сегодня у меня отвратное настроение! Апатия и бессилие...");
 }
-
 Game::Game() {
 	B.SetPointer(&H);
 	Consumable::SetPointer(&H);

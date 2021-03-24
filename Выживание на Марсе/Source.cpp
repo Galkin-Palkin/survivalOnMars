@@ -7,9 +7,11 @@ map<string, Game::HumanInfo> Game::HIMap;
 Game::Human* Game::Consumable::H = nullptr;
 Game::Human* Game::Effect::H = nullptr;
 Game::Human* Game::Action::H = nullptr;
+vector<string> Game::NotesVector;
+vector<string> Game::DiaryVector;
 int main() {
 	srand(time(NULL));
-	setlocale(LC_ALL, "Rus");
+	setlocale(LC_ALL, "Russian");
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	Game G;

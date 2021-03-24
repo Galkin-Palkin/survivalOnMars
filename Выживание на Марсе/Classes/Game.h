@@ -15,7 +15,7 @@ class Game {
 		PHP,
 		Sol,
 		Hour,
-		DP,
+		DP
 	};
 	static map<string, HumanInfo> HIMap;
 	class Text {
@@ -57,7 +57,7 @@ class Game {
 		static void SetPointer(Human*);
 		Effect();
 		Effect(string);
-		bool operator==(Effect);
+		bool operator==(Effect&);
 	};
 	class Human {
 		int HP = 70 + (rand() % 5) * 5; // Очки здоровья
@@ -235,6 +235,8 @@ class Game {
 		bool NewGame = true;
 	};
 	Saves S;
+	static vector<string> DiaryVector;
+	static vector<string> NotesVector;
 	void Introduction();
 	void InfoShowing(int HP, int FP, int EP, int PHP, double DP, int Sol, int Hour);
 	int NewGame();
@@ -242,6 +244,10 @@ class Game {
 	int ActionsChoose(int Sol, int Hour);
 	void Eating(Inventory& I, bool& IsBack, int& Hour);
 	void Outing(int&, bool&);
+	void Workplace(int&, bool&);
+	void DiaryReading();
+	void ReadNotes();
+	void NotesWriting();
 	void Sleeping();
 	void Escape(bool& Life, int& Hour, bool&);
 	void Actions(int Choose, bool& Life, int& Hour, bool& IsBack);

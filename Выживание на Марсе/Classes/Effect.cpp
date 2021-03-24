@@ -41,7 +41,7 @@ Game::Effect::Effect(string Path) {
 		ParametrsValues.push_back(Value);
 	}
 }
-bool Game::Effect::operator==(Effect Temp) {
+bool Game::Effect::operator==(Effect &Temp) {
 	for (size_t i = 0; i < ParametrsNames.size(); i++)
 		if (ParametrsNames[i] != Temp.ParametrsNames[i] || ParametrsValues[i] != Temp.ParametrsValues[i]) return false;
 	return true;

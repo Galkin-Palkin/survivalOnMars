@@ -385,7 +385,7 @@ void Game::Buildings::LocationGeneration(int& Hour) {
 	}
 }
 Game::Buildings::Buildings() {
-
+	
 }
 void Game::Buildings::SetPointer(Human* Temp) {
 	H = Temp;
