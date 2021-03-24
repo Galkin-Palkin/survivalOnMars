@@ -24,12 +24,6 @@
     <ClCompile Include="Classes\Human.cpp">
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Instrument.cpp">
-      <Filter>Файлы ресурсов</Filter>
-    </ClCompile>
-    <ClCompile Include="Classes\Weapon.cpp">
-      <Filter>Файлы ресурсов</Filter>
-    </ClCompile>
     <ClCompile Include="Classes\Consumable.cpp">
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>

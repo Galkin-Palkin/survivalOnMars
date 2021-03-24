@@ -1,5 +1,6 @@
 #include "Game.h"
 #include <conio.h>
+#include <string>
 void Game::Introduction() {
 	SetConsoleTextAttribute(h, 15);
 	system("cls");
@@ -16,166 +17,94 @@ void Game::Introduction() {
 }
 void Game::InfoShowing(int HP, int FP, int EP, int PHP, double DP, int Sol, int Hour) {
 	// Показывает состояние
-	SetConsoleTextAttribute(h, 3);
-	cout << "Сол ";
-	SetConsoleTextAttribute(h, 15);
-	cout << H.GetI(HumanInfo::Sol) << endl;
+	T.PRC(3, "Сол ");
+	T.PRC(15, to_string(H.GetI(HumanInfo::Sol)) + '\n');
 	T.V(4, 15);
-	SetConsoleTextAttribute(h, 15);
-	cout << Hour << ":00" << endl;
+	T.PRC(15, to_string(Hour) + ":00\n");
 	T.V(4, 50);
-	SetConsoleTextAttribute(h, 13);
-	cout << "Состояние здоровья: ";
-	SetConsoleTextAttribute(h, 15);
-	if (HP >= 90) {
-		SetConsoleTextAttribute(h, 1);
-		cout << "Идеальное\n";
-	}
-	else if (HP >= 70) {
-		SetConsoleTextAttribute(h, 3);
-		cout << "Отличное\n";
-	}
-	else if (HP >= 50) {
-		SetConsoleTextAttribute(h, 10);
-		cout << "Хорошее\n";
-	}
-	else if (HP >= 30) {
-		SetConsoleTextAttribute(h, 6);
-		cout << "Плохое\n";
-	}
-	else if (HP >= 20) {
-		SetConsoleTextAttribute(h, 4);
-		cout << "Ужасное\n";
-	}
-	else {
-		SetConsoleTextAttribute(h, 4);
-		cout << "Критическое\n";
-	}
+    
+	T.PRC(13, "Состояние здоровья: ");
+	if (HP >= 90)
+		T.PRC(1, "Идеальное\n");
+	else if (HP >= 70)
+		T.PRC(3, "Отличное\n");
+	else if (HP >= 50)
+		T.PRC(10, "Хорошее\n");
+	else if (HP >= 30)
+		T.PRC(6, "Плохое\n");
+	else if (HP >= 20)
+		T.PRC(4, "Ужасное\n");
+	else
+		T.PRC(4, "Критическое\n");
 	T.V(4, 45);
-	SetConsoleTextAttribute(h, 13);
-	cout << "Истощение организма: ";
-	SetConsoleTextAttribute(h, 15);
-	if (DP < 100.0 && DP >= 90.0) {
-		SetConsoleTextAttribute(h, 4);
-		cout << "Предсмертное" << endl;
-	}
-	else if (DP >= 75.0 && DP < 90) {
-		SetConsoleTextAttribute(h, 4);
-		cout << "Очень серьёзное" << endl;
-	}
-	else if (DP >= 50.0 && DP < 75.0) {
-		SetConsoleTextAttribute(h, 4);
-		cout << "Серьёзное" << endl;
-	}
-	else if (DP >= 25.0 && DP < 50.0) {
-		SetConsoleTextAttribute(h, 6);
-		cout << "Среднее" << endl;
-	}
-	else if (DP > 0.0 && DP < 25.0) {
-		SetConsoleTextAttribute(h, 10);
-		cout << "Слабое" << endl;
-	}
-	else {
-		SetConsoleTextAttribute(h, 1);
-		cout << "Отсутствует" << endl;
-	}
+
+	T.PRC(13, "Истощение организма: ");
+	if (DP >= 90.0)
+		T.PRC(4, "Предсмертное\n");
+	else if (DP >= 75.0 && DP < 90)
+		T.PRC(4, "Очень серьёзное\n");
+	else if (DP >= 50.0 && DP < 75.0)
+		T.PRC(4, "Серьёзное\n");
+	else if (DP >= 25.0 && DP < 50.0)
+		T.PRC(6, "Среднее\n");
+	else if (DP > 0.0 && DP < 25.0)
+		T.PRC(10, "Слабое\n");
+	else
+		T.PRC(1, "Отсутствует\n");
 	T.V(4, 45);
-	SetConsoleTextAttribute(h, 13);
-	cout << "Состояние психического здоровья: ";
-	if (PHP >= 90) {
-		SetConsoleTextAttribute(h, 1);
-		cout << "Идеальное\n";
-	}
-	else if (PHP >= 70) {
-		SetConsoleTextAttribute(h, 3);
-		cout << "Отличное\n";
-	}
-	else if (PHP >= 50) {
-		SetConsoleTextAttribute(h, 10);
-		cout << "Хорошее\n";
-	}
-	else if (PHP >= 30) {
-		SetConsoleTextAttribute(h, 6);
-		cout << "Плохое\n";
-	}
-	else if (PHP >= 20) {
-		SetConsoleTextAttribute(h, 4);
-		cout << "Ужасное\n";
-	}
-	else {
-		SetConsoleTextAttribute(h, 4);
-		cout << "Критическое\n";
-	}
+
+	T.PRC(13, "Состояние психического здоровья: ");
+	if (PHP >= 90)
+		T.PRC(1, "Идеальное\n");
+	else if (PHP >= 70)
+		T.PRC(3, "Отличное\n");
+	else if (PHP >= 50)
+		T.PRC(10, "Хорошее\n");
+	else if (PHP >= 30)
+		T.PRC(6, "Плохое\n");
+	else if (PHP >= 20)
+		T.PRC(4, "Ужасное\n");
+	else
+		T.PRC(4, "Критическое\n");
 	T.V(4, 45);
-	SetConsoleTextAttribute(h, 13);
-	cout << "Степень сытости: ";
-	if (FP >= 90) {
-		SetConsoleTextAttribute(h, 1);
-		cout << "Полная" << endl;
-	}
-	else if (FP >= 75) {
-		SetConsoleTextAttribute(h, 3);
-		cout << "Хорошая" << endl;
-	}
-	else if (FP >= 50) {
-		SetConsoleTextAttribute(h, 10);
-		cout << "Средняя" << endl;
-	}
-	else if (FP >= 25) {
-		SetConsoleTextAttribute(h, 6);
-		cout << "Удовлетворительная" << endl;
-	}
-	else if (FP < 25) {
-		SetConsoleTextAttribute(h, 4);
-		cout << "Голод" << endl;
-	}
+
+	T.PRC(13, "Степень сытости: ");
+	if (FP >= 90)
+		T.PRC(1, "Полная\n");
+	else if (FP >= 75)
+		T.PRC(3, "Хорошая\n");
+	else if (FP >= 50)
+		T.PRC(10, "Средняя\n");
+	else if (FP >= 25)
+		T.PRC(6, "Удовлетворительная\n");
+	else if (FP < 25)
+		T.PRC(4, "Голод\n");
 	T.V(4, 45);
-	SetConsoleTextAttribute(h, 13);
-	cout << "Степень усталости: ";
-	if (EP == 100) {
-		SetConsoleTextAttribute(h, 1);
-		cout << "Нулевая" << endl;
-	}
-	else if (EP >= 80) {
-		SetConsoleTextAttribute(h, 3);
-		cout << "Крайне малая" << endl;
-	}
-	else if (EP >= 60) {
-		SetConsoleTextAttribute(h, 10);
-		cout << "Малая" << endl;
-	}
-	else if (EP >= 40) {
-		SetConsoleTextAttribute(h, 6);
-		cout << "Средняя" << endl;
-	}
-	else if (EP >= 20) {
-		SetConsoleTextAttribute(h, 4);
-		cout << "Большая" << endl;
-	}
-	else {
-		SetConsoleTextAttribute(h, 4);
-		cout << "Полная" << endl;
-	}
+
+	T.PRC(13, "Степень усталости: ");
+	if (EP >= 100)
+		T.PRC(1, "Нулевая\n");
+	else if (EP >= 80)
+		T.PRC(3, "Крайне малая\n");
+	else if (EP >= 60)
+		T.PRC(10, "Малая\n");
+	else if (EP >= 40)
+		T.PRC(6, "Средняя\n");
+	else if (EP >= 20)
+		T.PRC(4, "Большая\n");
+	else
+		T.PRC(4, "Полная\n");
 	T.V(4, 50);
-	SetConsoleTextAttribute(h, 15);
 }
 int Game::NewGame() {
 	system("cls");
-	SetConsoleTextAttribute(h, 13);
+	T.PRC(13);
 	T.V(1);
-	SetConsoleTextAttribute(h, 4);
 	T.V(4, 30);
-	SetConsoleTextAttribute(h, 13);
-	cout << "(1) ";
-	SetConsoleTextAttribute(h, 15);
-	cout << "Начать новую игру" << endl;
+	T.HV(13, 1, 15, "Начать новую игру");
 	if (S.GetNew() != true) {
-		SetConsoleTextAttribute(h, 4);
 		T.V(4, 20);
-		SetConsoleTextAttribute(h, 13);
-		cout << "(2) ";
-		SetConsoleTextAttribute(h, 15);
-		cout << "Продолжить игру" << endl;
+		T.HV(13, 1, 15, "Продолжить игру");
 	}
 	S.SetNew(false);
 	while (true) {
@@ -218,7 +147,7 @@ void Game::Changes(bool& Life, int& Hour, bool& Working) {
 	else if (H.GetI(HumanInfo::HP) == 0) {
 		H.Set(HumanInfo::DP, '+', 2.0);
 		H.Set(HumanInfo::PHP, '-', 5);
-		H.AddEffect(Effect("Data\\Effects\\Agony.txt"));
+		if (H.GetD(HumanInfo::DP) >= 90.0) H.AddEffect(Effect("Data\\Effects\\Agony.txt"));
 	}
 	Validate();
 	if (H.GetD(HumanInfo::DP) >= 100.0) {
@@ -406,9 +335,7 @@ void Game::Sleeping() {
 		system("cls");
 		T.PRC(13, "Ты спишь...\n");
 		T.V(4, 30);
-		SetConsoleTextAttribute(h, 3);
-		cout << HoursN << ":00" << endl;
-		HoursN++;
+		T.PRC(3, to_string(HoursN++) + ":00\n");
 		if (HoursN == 24) HoursN = 0;
 		Counter++;
 		H.EffectsTick();
@@ -454,10 +381,9 @@ void Game::Actions(int Choose, bool& Life, int& Hour, bool& IsBack) {
 }
 void Game::RoomLooking(Inventory& I) {
 	system("cls");
-	SetConsoleTextAttribute(h, 15);
-	cout << "Ты решил осмотреть помещение. Приоткрыв цинковый шкаф, обработанный специальным раствором нитрата серебра, ты увидел костюм для выхода на поверхность Марса.\nВ углу стоял ящик с гуманитарной помощью. Там находились консервы и галеты, а также некоторые медицинские препараты" << endl;
+	T.PRC(15, "Необходимо обновить данный текст\n");
 	T.V(4, 45);
-	SetConsoleTextAttribute(h, 15);
+	T.PRC(15);
 	system("pause");
 	I.Aspirin.SetNew(2 + rand() % 1);
 	I.Hardtack.SetNew(rand() % 2 + 1);
@@ -466,10 +392,9 @@ void Game::RoomLooking(Inventory& I) {
 }
 void Game::Death(bool& Working) {
 	system("cls");
-	SetConsoleTextAttribute(h, 4);
-	cout << "Вы умерли" << endl;
+	T.PRC(4, "Вы умерли\n");
 	T.V(4, 35);
-	SetConsoleTextAttribute(h, 13);
+	T.PRC(13);
 	T.V(1);
 	T.PRC(10, "(1) ");
 	T.PRC(15, "Вернуться в главное меню");
@@ -499,6 +424,7 @@ void Game::ChangesDay(bool IsExit) {
 		H.Set(HumanInfo::DP, '-', 1.0);
 		H.Set(HumanInfo::EP, '+', 50);
 		H.Set(HumanInfo::FP, '-', 15);
+		H.Set(HumanInfo::FP, '+', 20);
 		Validate();
 	}
 }
@@ -533,35 +459,17 @@ Game::Game() {
 }
 int Game::Menu() {
 	system("cls");
-	SetConsoleTextAttribute(h, 13);
-	cout << "Выживание на Марсе 0.1" << endl;
-	SetConsoleTextAttribute(h, 4);
+	T.PRC(13, "Выживание на Марсе v 0.1\n");
 	T.V(4, 25);
-	SetConsoleTextAttribute(h, 13);
-	cout << "(1) ";
-	SetConsoleTextAttribute(h, 15);
-	cout << "Начать игру" << endl;
-	SetConsoleTextAttribute(h, 4);
+	T.HV(13, 1, 15, "Начать игру");
 	T.V(4, 5);
-	SetConsoleTextAttribute(h, 13);
-	cout << "(2) ";
-	SetConsoleTextAttribute(h, 15);
-	cout << "Помощь к игре" << endl;
-	SetConsoleTextAttribute(h, 4);
+	T.HV(13, 2, 15, "Помощь к игре");
 	T.V(4, 5);
-	SetConsoleTextAttribute(h, 13);
-	cout << "(3) ";
-	SetConsoleTextAttribute(h, 15);
-	cout << "Разработчики" << endl;
-	SetConsoleTextAttribute(h, 4);
+	T.HV(13, 3, 15, "Разработчики");
 	T.V(4, 5);
-	SetConsoleTextAttribute(h, 13);
-	cout << "(4) ";
-	SetConsoleTextAttribute(h, 15);
-	cout << "Выход из игры" << endl;
-	SetConsoleTextAttribute(h, 4);
+	T.HV(13, 4, 15, "Выход из игры");
 	T.V(4, 25);
-	SetConsoleTextAttribute(h, 15);
+	T.PRC(15);
 	int Variety = _getch();
 	switch (Variety) {
 	case 49: Variety = 1; break;
@@ -604,20 +512,15 @@ void Game::GamingProcess(bool& Working) {
 }
 void Game::Menu_2(bool& Working) {
 	system("cls");
-	SetConsoleTextAttribute(h, 13);
-	cout << "Помощь к игре" << endl;
-	SetConsoleTextAttribute(h, 4);
+	T.PRC(13, "Помощь к игре\n");
 	T.V(4, 35);
-	SetConsoleTextAttribute(h, 15);
-	cout << "Бла бла" << endl;
-	SetConsoleTextAttribute(h, 4);
+	T.PRC(15, "Сделать выбор пунктов в данном разделе\n");
 	T.V(4, 35);
-	SetConsoleTextAttribute(h, 15);
+	T.PRC(15);
 	T.V(3);
 	T.V(2);
-	SetConsoleTextAttribute(h, 4);
 	T.V(4, 25);
-	SetConsoleTextAttribute(h, 15);
+	T.PRC(15);
 	int Variety = _getch();
 	switch (Variety) {
 	case 49: Variety = 1; break;
@@ -651,11 +554,10 @@ void Game::Menu_3(bool& Working) {
 }
 void Game::Menu_4(bool& Working) {
 	system("cls");
-	SetConsoleTextAttribute(h, 13);
-	cout << "Вы точно хотите выйти?" << endl;
+	T.PRC(13, "Вы точно хотите выйти?\n");
 	T.V(2);
 	T.V(4, 25);
-	SetConsoleTextAttribute(h, 15);
+	T.PRC(15);
 	int Variety = _getch();
 	switch (Variety) {
 	case 49: Variety = 1; break;

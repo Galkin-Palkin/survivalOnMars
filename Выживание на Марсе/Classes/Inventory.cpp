@@ -1,9 +1,6 @@
 #include "Game.h"
 Game::Inventory::Inventory() {
 	// Обычные (рядовые) расходники имеют 1-2 типа. Редкие имеют 3 типа
-	Hammer.Constructor("Молоток", 1.5);
-	Jigsaw.Constructor("Пила", 2.0);
-	Axe.Constructor("Топор", 4.5);
 
 	Palont.Constructor("Palont", "Мазь \"Палонт\"", 0.1, 25, HumanInfo::DP, -2.0, HumanInfo::HP, 20);
 	Aspirin.Constructor("Aspirin", "Гранула аспирина", 0.025, 20, HumanInfo::DP, -0.5, HumanInfo::HP, 10);

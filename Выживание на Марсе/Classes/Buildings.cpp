@@ -1,5 +1,6 @@
 #include "Game.h"
 #include <conio.h>
+#include <string>
 void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string>& RoomVarietyVector, Room& room, bool IsFirst) {
 	int RoomNumber = 0;
 	switch (RoomType) { // Проверка на тип комнаты
@@ -201,11 +202,11 @@ void Game::Buildings::EnterRoom(int RoomType, int &Hour)
 void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 	// Запрет на вход внутрь помещения
 	system("cls");
-	SetConsoleTextAttribute(h, 13);
+	T.PRC(13);
 	switch (Type) {
 		//дверь заблокирована
 	case 1: {
-		cout << "Дверь " << RoomType << " заблокирована. В этот отдел через эту дверь войти больше нельзя" << endl;
+		cout << "Дверь " + RoomType + " заблокирована. В этот отдел через эту дверь войти больше нельзя" << endl;
 		Entering = false;
 		break;
 	}
@@ -232,7 +233,6 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 		int Ones = rand() % 10;
 		int Code = (1 + rand() % 9) * 1000 + rand() % 10 * 100 + rand() % 10 * 10 + rand() % 10;
 		while (CountOfTry != 0) {
-			SetConsoleTextAttribute(h, 13);
 			system("cls");
 			if (UsedDoor && Chance == 0) {
 				switch (Type) {
@@ -251,34 +251,26 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 				}
 			}
 			else T.PRC(1, "Ты оказался перед дверью. Она была заперта, однако, экран, издававший звуки белого шума, просил ввести код\n");
-			cout << "Чтобы войти внутрь, нужно ввести пин-код - четырёхзначное число" << endl;
+			T.PRC(13, "Чтобы войти внутрь, нужно ввести пин-код - четырёхзначное число\n");
 			T.V(4, 50);
-			SetConsoleTextAttribute(h, 13);
-			cout << "Осталось попыток: ";
-			SetConsoleTextAttribute(h, 15);
-			cout << CountOfTry << endl;
+			T.PRC(13, "Осталось попыток: ");
+			T.PRC(15, to_string(CountOfTry) + '\n');
 			T.V(4, 25);
 			if (CountOfTry != 10) {
-				cout << "В доступе отказано!" << endl;
-				SetConsoleTextAttribute(h, 13);
-				cout << "Пин-код: ";
-				if (Code / 1000 % 10 == Thousands) SetConsoleTextAttribute(h, 10);
-				else SetConsoleTextAttribute(h, 4);
-				cout << "*";
-				if (Code / 100 % 10 == Hundreds) SetConsoleTextAttribute(h, 10);
-				else SetConsoleTextAttribute(h, 4);
-				cout << "*";
-				if (Code / 10 % 10 == Decs) SetConsoleTextAttribute(h, 10);
-				else SetConsoleTextAttribute(h, 4);
-				cout << "*";
-				if (Code % 10 == Ones) SetConsoleTextAttribute(h, 10);
-				else SetConsoleTextAttribute(h, 4);
-				cout << "*" << endl;
+				T.PRC(4, "В доступе отказано!\n");
+				T.PRC(13, "Пин-код: ");
+				if (Code / 1000 % 10 == Thousands) T.PRC(10, "*");
+				else T.PRC(4, "*");
+				if (Code / 100 % 10 == Hundreds) T.PRC(10, "*");
+				else T.PRC(4, "*");
+				if (Code / 10 % 10 == Decs) T.PRC(10, "*");
+				else T.PRC(4, "*");
+				if (Code % 10 == Ones) T.PRC(10, "*");
+				else T.PRC(4, "*");
 				T.V(4, 40);
 			}
-			SetConsoleTextAttribute(h, 13);
-			cout << "Введите код: ";
-			SetConsoleTextAttribute(h, 15);
+			T.PRC(13, "Введите код: ");
+			T.PRC(13);
 			cin >> Code;
 			CountOfTry--;
 			if (Code < 1000 || Code > 9999) Code = 0;
@@ -306,7 +298,6 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 				}
 				else T.PRC(13, "Раздался грохот, и дверь медленно поднялась вверх. Путь был открыт\n");
 				break;
-				continue;
 			}
 			else if (CountOfTry == 0) {
 				system("cls");
@@ -333,7 +324,7 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 	}
 	}
 	T.V(4, 40);
-	SetConsoleTextAttribute(h, 15);
+	T.PRC(15);
 	system("pause");
 }
 
@@ -359,15 +350,14 @@ void Game::Buildings::LocationGeneration(int& Hour) {
 	system("cls");
 	T.PRC(3, "Ты зашёл в здание\n");
 	T.V(4, 40);
-	T.PRC(15, "");
+	T.PRC(15);
 	system("pause");
 	int CountOfRooms = 1 + rand() % 3;
 	while (CountOfRooms != 0) {
 		system("cls");
 		T.PRC(3, "Ты находишься в помещении\n");
 		T.PRC(3, "Осталось неосмотренных отделов: ");
-		T.PRC(15, "");
-		cout << CountOfRooms << endl;
+		T.PRC(15, to_string(CountOfRooms) + '\n');
 		T.V(4, 40);
 		int RoomType = 1;
 		string Variety;

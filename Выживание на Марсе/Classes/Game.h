@@ -88,43 +88,6 @@ class Game {
 
 		}
 	};
-	class Instrument : public Item {
-	protected:
-		double Durability = 100.0; // Прочность
-		double BreakQualityPerUse = 0.1; // Трата прочности за 1 использование
-		double Damage = 0.0; // Урон
-	public:
-		vector<Instrument> InstrumentsVector;
-		void Correcting();
-		void Breaking();
-		void PartBreaking(double Damage);
-		void Repairing(double Heal);
-		void OnceUsing();
-		void SetNewInstrument(double Durability, double BreakQualityPerUse, double Damage);
-		virtual void Attack();
-		virtual void Clear();
-		void Constructor(string Name, double Weight);
-		Instrument();
-	};
-	class Weapon : public Instrument {
-		unsigned int Ammo = 0;
-		vector<Weapon> WeaponVector;
-	public:
-		Weapon();
-		void Attack() override;
-		void SetNew(int count = 1) override;
-		void Clear() override;
-		Weapon(string Name, double Weight);
-	};
-	class Gun : public Weapon {
-
-	};
-	class ColdWeapon : public Weapon {
-
-	};
-	class Explodives : public Weapon {
-
-	};
 	class Consumable;
 	static vector<Consumable*> ConsumableVector;
 	static int ConsumableCount;
@@ -167,9 +130,7 @@ class Game {
 	class Inventory {
 	public:
 		// Собственно, инвентарь
-		Instrument Hammer;
-		Instrument Jigsaw;
-		Instrument Axe;
+
 		// Медикаменты
 		Consumable Palont;
 		Consumable Aspirin;

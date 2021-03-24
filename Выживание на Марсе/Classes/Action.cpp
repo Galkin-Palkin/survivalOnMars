@@ -37,7 +37,7 @@ void Game::Action::FoundedItems() {
 			T.PRC(3, " - ");
 			T.PRC(15, SearchingResult[i].GetName() + " (" + char(48 + SearchingResult[i].GetCount()) + ")\n");
 			(*ConsumableMap[SearchingResult[i].GetType()]).SetNew(SearchingResult[i].GetCount());
-			H->Set(HumanInfo::PHP, '+', 2);
+			H->Set(HumanInfo::PHP, '+', 3 * SearchingResult[i].GetCount());
 		}
 	}
 	if (IsEmpty) {
