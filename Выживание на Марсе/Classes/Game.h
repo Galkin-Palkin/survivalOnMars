@@ -216,8 +216,7 @@ class Game {
 		void DenyToGoIn(int Type, string RoomType, bool& Entering);
 	public:
 		void GetPath();
-		void LocationGeneration(int& Hour);
-		Buildings();
+		void LocationGeneration(int&);
 		void SetPointer(Human*);
 	};
 	Human H;

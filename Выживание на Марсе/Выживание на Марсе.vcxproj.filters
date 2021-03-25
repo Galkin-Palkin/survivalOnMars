@@ -30,9 +30,6 @@
     <ClCompile Include="Classes\Inventory.cpp">
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Buildings.cpp">
-      <Filter>Файлы ресурсов</Filter>
-    </ClCompile>
     <ClCompile Include="Classes\Saves.cpp">
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
@@ -46,6 +43,9 @@
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
     <ClCompile Include="Classes\Effect.cpp">
+      <Filter>Файлы ресурсов</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Building.cpp">
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
   </ItemGroup>

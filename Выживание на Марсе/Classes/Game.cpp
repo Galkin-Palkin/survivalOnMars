@@ -105,7 +105,7 @@ int Game::NewGame() {
 	T.HV(13, 1, 15, "Начать новую игру");
 	if (S.GetNew() != true) {
 		T.V(4, 20);
-		T.HV(13, 1, 15, "Продолжить игру");
+		T.HV(13, 2, 15, "Продолжить игру");
 	}
 	S.SetNew(false);
 	while (true) {

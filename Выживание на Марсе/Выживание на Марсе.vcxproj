@@ -140,7 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Classes\Action.cpp" />
-    <ClCompile Include="Classes\Buildings.cpp" />
+    <ClCompile Include="Classes\Building.cpp" />
     <ClCompile Include="Classes\Consumable.cpp" />
     <ClCompile Include="Classes\Effect.cpp" />
     <ClCompile Include="Classes\Game.cpp" />
