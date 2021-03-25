@@ -1,4 +1,5 @@
 #include "Game.h"
+#include <fstream>
 int Game::Human::GetI(HumanInfo Type) {
 	switch (Type)
 	{
@@ -122,6 +123,8 @@ void Game::Human::Null() {
 	ConsumableVector.clear();
 	for (auto it : ConsumableMap)
 		it.second->SetCount(0);
+	ofstream fout("Data\\Notes.txt");
+	fout << "";
 	ConsumableCount = 0;
 }
 void Game::Human::AddEffect(Effect Ef) {

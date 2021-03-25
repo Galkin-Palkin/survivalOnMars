@@ -266,11 +266,11 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 				if (Code / 10 % 10 == Decs) T.PRC(10, "*");
 				else T.PRC(4, "*");
 				if (Code % 10 == Ones) T.PRC(10, "*");
-				else T.PRC(4, "*");
+				else T.PRC(4, "*\n");
 				T.V(4, 40);
 			}
 			T.PRC(13, "Введите код: ");
-			T.PRC(13);
+			T.PRC(15);
 			cin >> Code;
 			CountOfTry--;
 			if (Code < 1000 || Code > 9999) Code = 0;
@@ -385,7 +385,7 @@ void Game::Buildings::LocationGeneration(int& Hour) {
 	}
 }
 Game::Buildings::Buildings() {
-	
+	setlocale(LC_ALL, "");
 }
 void Game::Buildings::SetPointer(Human* Temp) {
 	H = Temp;

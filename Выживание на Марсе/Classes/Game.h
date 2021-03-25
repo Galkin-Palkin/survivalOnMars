@@ -200,7 +200,6 @@ class Game {
 	private:
 		// Здания
 		Inventory I;
-		HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 		Human* H = nullptr;
 		Text T;
 		vector<Room> rooms;
