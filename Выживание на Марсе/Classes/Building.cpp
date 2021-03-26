@@ -265,7 +265,7 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 				else T.PRC(4, "*");
 				if (Code / 10 % 10 == Decs) T.PRC(10, "*");
 				else T.PRC(4, "*");
-				if (Code % 10 == Ones) T.PRC(10, "*");
+				if (Code % 10 == Ones) T.PRC(10, "*\n");
 				else T.PRC(4, "*\n");
 				T.V(4, 40);
 			}

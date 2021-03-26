@@ -15,7 +15,8 @@ class Game {
 		PHP,
 		Sol,
 		Hour,
-		DP
+		DP,
+		HalChance
 	};
 	static map<string, HumanInfo> HIMap;
 	class Text {
@@ -67,6 +68,7 @@ class Game {
 		double DP = (rand() % 21) / 1.0; // Очки истощения
 		int Sol = 0; // Сол - сутки на Марсе
 		int Hour = 7;
+		int HalChance = rand() % 11; // Шанс словить галлюцинацию в %
 		vector<Effect> EffectsVector;
 		void EffectsAction();
 	public:

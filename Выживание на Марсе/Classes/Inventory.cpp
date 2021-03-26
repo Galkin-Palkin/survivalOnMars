@@ -7,7 +7,7 @@ Game::Inventory::Inventory() {
 	Trivoclisine.Constructor("Trivoclisine", "Ампула с тривоклизином", 0.01, 10, HumanInfo::DP, -15.0, HumanInfo::EP, -70);
 	Gericline.Constructor("Gericline", "Укол гериклина", 0.1, 10, HumanInfo::DP, 2.0, HumanInfo::EP, 75);
 	Phenothan.Constructor("Phenothan", "Таблетки фенотана", 0.05, 15, HumanInfo::DP, -1.0, HumanInfo::HP, 20);
-	Sedatives.Constructor("Sedatives", "Таблетки успокоительного", 0.05, 15, HumanInfo::HP, -2, HumanInfo::PHP, 50);
+	Sedatives.Constructor("Sedatives", "Таблетки успокоительного", 0.05, 15, HumanInfo::HP, -2, HumanInfo::PHP, 50, HumanInfo::HalChance, -10);
 	Syrup.Constructor("Syrup", "Сироп", 0.175, 15, HumanInfo::HP, 5, HumanInfo::EP, 10);
 
 	CannedBeef.Constructor("CannedBeef", "Консервированная говядина", 0.25, 15, HumanInfo::FP, 30, HumanInfo::EP, 20);

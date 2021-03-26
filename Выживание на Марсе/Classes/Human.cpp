@@ -27,6 +27,10 @@ int Game::Human::GetI(HumanInfo Type) {
 		return Hour;
 		break;
 	}
+	case HumanInfo::HalChance: {
+		return HalChance;
+		break;
+	}
 	default: {
 		return -100000;
 		break;
@@ -96,6 +100,15 @@ void Game::Human::Set(HumanInfo Type, char Sign, int NumberI) {
 		case '0': Hour = 0; break;
 		case '-': Hour -= NumberI; break;
 		case 'N': Hour = NumberI; break;
+		}
+		break;
+	}
+	case HumanInfo::HalChance: {
+		switch (Sign) {
+		case '+': HalChance += NumberI; break;
+		case '0': HalChance = 0; break;
+		case '-': HalChance -= NumberI; break;
+		case 'N': HalChance = NumberI; break;
 		}
 		break;
 	}

@@ -18,55 +18,75 @@ void Game::Introduction() {
 }
 void Game::InfoShowing(int HP, int FP, int EP, int PHP, double DP, int Sol, int Hour) {
 	// Показывает состояние
-	T.PRC(3, "Сол ");
-	T.PRC(15, to_string(H.GetI(HumanInfo::Sol)) + '\n');
-	T.V(4, 15);
-	T.PRC(15, to_string(Hour) + ":00\n");
+	bool Hallucination = H.GetI(HumanInfo::HalChance) - rand() % 101 >= 0 && H.GetI(HumanInfo::PHP) <= 20;
+	if (Hallucination) {
+		T.PRC(3, "29.11.1979\n");
+		T.V(4, 15);
+		T.PRC(15, to_string(rand() % 24) + ':' + to_string(10 + rand() % 50) + '\n');
+	}
+	else {
+		T.PRC(3, "Сол ");
+		T.PRC(15, to_string(H.GetI(HumanInfo::Sol)) + '\n');
+		T.V(4, 15);
+		T.PRC(15, to_string(Hour) + ":00\n");
+	}
 	T.V(4, 50);
 
 	T.PRC(13, "Состояние здоровья: ");
-	if (HP >= 90)
-		T.PRC(1, "Идеальное\n");
-	else if (HP >= 70)
-		T.PRC(3, "Отличное\n");
-	else if (HP >= 50)
-		T.PRC(10, "Хорошее\n");
-	else if (HP >= 30)
-		T.PRC(6, "Плохое\n");
-	else if (HP >= 20)
-		T.PRC(4, "Ужасное\n");
+	if (!Hallucination) {
+		if (HP >= 90)
+			T.PRC(1, "Идеальное\n");
+		else if (HP >= 70)
+			T.PRC(3, "Отличное\n");
+		else if (HP >= 50)
+			T.PRC(10, "Хорошее\n");
+		else if (HP >= 30)
+			T.PRC(6, "Плохое\n");
+		else if (HP >= 20)
+			T.PRC(4, "Ужасное\n");
+		else
+			T.PRC(4, "Критическое\n");
+	}
 	else
-		T.PRC(4, "Критическое\n");
+		T.PRC(4, "Кома\n");
 	T.V(4, 45);
 
 	T.PRC(13, "Истощение организма: ");
-	if (DP >= 90.0)
-		T.PRC(4, "Предсмертное\n");
-	else if (DP >= 75.0 && DP < 90)
-		T.PRC(4, "Очень серьёзное\n");
-	else if (DP >= 50.0 && DP < 75.0)
-		T.PRC(4, "Серьёзное\n");
-	else if (DP >= 25.0 && DP < 50.0)
-		T.PRC(6, "Среднее\n");
-	else if (DP > 0.0 && DP < 25.0)
-		T.PRC(10, "Слабое\n");
+	if (!Hallucination) {
+		if (DP >= 90.0)
+			T.PRC(4, "Предсмертное\n");
+		else if (DP >= 75.0 && DP < 90)
+			T.PRC(4, "Очень серьёзное\n");
+		else if (DP >= 50.0 && DP < 75.0)
+			T.PRC(4, "Серьёзное\n");
+		else if (DP >= 25.0 && DP < 50.0)
+			T.PRC(6, "Среднее\n");
+		else if (DP > 0.0 && DP < 25.0)
+			T.PRC(10, "Слабое\n");
+		else
+			T.PRC(1, "Отсутствует\n");
+	}
 	else
-		T.PRC(1, "Отсутствует\n");
+		T.PRC(4, "Кома\n");
 	T.V(4, 45);
 
 	T.PRC(13, "Состояние психического здоровья: ");
-	if (PHP >= 90)
-		T.PRC(1, "Идеальное\n");
-	else if (PHP >= 70)
-		T.PRC(3, "Отличное\n");
-	else if (PHP >= 50)
-		T.PRC(10, "Хорошее\n");
-	else if (PHP >= 30)
-		T.PRC(6, "Плохое\n");
-	else if (PHP >= 20)
-		T.PRC(4, "Ужасное\n");
+	if (!Hallucination) {
+		if (PHP >= 90)
+			T.PRC(1, "Идеальное\n");
+		else if (PHP >= 70)
+			T.PRC(3, "Отличное\n");
+		else if (PHP >= 50)
+			T.PRC(10, "Хорошее\n");
+		else if (PHP >= 30)
+			T.PRC(6, "Плохое\n");
+		else if (PHP >= 20)
+			T.PRC(4, "Ужасное\n");
+		else
+			T.PRC(4, "Критическое\n");
+	}
 	else
-		T.PRC(4, "Критическое\n");
+		T.PRC(4, "Шизофрения\n");
 	T.V(4, 45);
 
 	T.PRC(13, "Степень сытости: ");
@@ -150,6 +170,14 @@ void Game::Changes(bool& Life, int& Hour, bool& Working) {
 		H.Set(HumanInfo::PHP, '-', 5);
 		if (H.GetD(HumanInfo::DP) >= 90.0) H.AddEffect(Effect("Data\\Effects\\Agony.txt"));
 	}
+	if (H.GetI(HumanInfo::PHP) >= 80)
+		H.Set(HumanInfo::HalChance, '-', 3);
+	else if (H.GetI(HumanInfo::PHP) >= 50)
+		H.Set(HumanInfo::HalChance, '-', 2);
+	else if (H.GetI(HumanInfo::PHP) <= 0)
+		H.Set(HumanInfo::HalChance, '+', 5);
+	else if (H.GetI(HumanInfo::PHP) <= 30)
+		H.Set(HumanInfo::HalChance, '+', 1);
 	Validate();
 	if (H.GetD(HumanInfo::DP) >= 100.0) {
 		Life = false;
@@ -169,7 +197,7 @@ int Game::ActionsChoose(int Sol, int Hour) {
 		T.HV(13, 1, 15, "Осмотреть помещение");
 	}
 	else {
-		T.HV(13, 1, 15, "Надеть костюм и выйти");
+		T.HV(13, 1, 15, "Выйти наружу");
 		T.V(4, 15);
 		T.HV(13, 2, 15, "Принять пищу");
 		T.V(4, 15);
@@ -471,14 +499,13 @@ void Game::Actions(int Choose, bool& Life, int& Hour, bool& IsBack) {
 }
 void Game::RoomLooking(Inventory& I) {
 	system("cls");
-	T.PRC(15, "Необходимо обновить данный текст\n");
+	T.PRC(15, "Ты осмотрел комнату. Это - как ты понял - больничная палата. В тумбе лежали галеты и сухофрукты. Две гранулы аспирина небрежно валялись на кровати.\nПользуясь своим статусом, ты получил элитную палату, отличавшейся от обычной, однако, только наличием стола со светильником\nОт коридора тебя отделяла массивная металлическая дверь. \"Думаю, стоит выглянуть наружу\", - сказал ты\n");
 	T.V(4, 45);
 	T.PRC(15);
 	system("pause");
-	I.Aspirin.SetNew(2 + rand() % 1);
+	I.Aspirin.SetNew(2);
 	I.Hardtack.SetNew(rand() % 2 + 1);
 	I.DriedFruits.SetNew(rand() % 2 + 1);
-	DiaryVector.push_back("Куда все подевались!? Ни души не видно... Так одиноко... Пожалуй, буду писать сюда свои мысли");
 	DiaryVector.push_back("Моя Софи... Я так по ней скучаю... Интересно, как она? Мы не виделись с апреля прошлого года... Надеюсь, с ней всё хорошо");
 	FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 }
@@ -520,7 +547,6 @@ void Game::ChangesDay(bool IsExit) {
 		H.Set(HumanInfo::FP, '+', 20);
 		Validate();
 	}
-	if (H.GetI(HumanInfo::PHP) <= 30) DiaryVector.push_back("Сегодня у меня отвратное настроение! Апатия и бессилие...");
 }
 Game::Game() {
 	B.SetPointer(&H);
@@ -669,4 +695,6 @@ void Game::Validate() {
 	else if (H.GetD(HumanInfo::DP) < 0) H.Set(HumanInfo::DP, '0', 0.0);
 	if (H.GetI(HumanInfo::PHP) < 0) H.Set(HumanInfo::PHP, '0', 0);
 	else if (H.GetI(HumanInfo::PHP) > 100) H.Set(HumanInfo::PHP, 'N', 100);
+	if (H.GetI(HumanInfo::HalChance) > 100) H.Set(HumanInfo::HalChance, 'N', 100);
+	else if (H.GetI(HumanInfo::HalChance) < 0) H.Set(HumanInfo::HalChance, 'N', 0);
 }
