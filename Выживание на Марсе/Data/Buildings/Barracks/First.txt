@@ -17,49 +17,63 @@
 2
 Hardtack
 Aspirin
+1
+Comics
 Армейский рюкзак
 3
 RicePurge
 CannedBeef
 DarkChocolateBar
+0
 Аптечка
 2
 Aspirin
 Phenothan
+0
 Второй блок
 3
 Тумбочка
 2
 Aspirin
 EnergyBar
+0
 Шкаф
 2
 CannedBeef
 DriedFruits
+0
 Стальной ящик
 2
 RicePurge
 CannedApple
+0
 Третий блок
 3
 Шкаф
 2
 CannedBeef
 Hardtack
+0
 Тумбочка
 2
 Aspirin
 EnergyBar
+0
 Стальной ящик
 2
 RicePurge
 CannedApple
+0
 Офис охраны
 2
 Столешница
 2
 EnergyBar
 Aspirin
+0
 Стойка для книг
 1
 DarkChocolateBar
+2
+Thriller
+CriminalDrama

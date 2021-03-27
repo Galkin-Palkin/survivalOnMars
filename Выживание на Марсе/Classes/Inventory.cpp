@@ -23,6 +23,12 @@ Game::Inventory::Inventory() {
 	VegetableStew.Constructor("VegetableStew", "Овощное рагу в консервах", 0.2, 15, HumanInfo::FP, 15, HumanInfo::EP, 25);
 	DriedFruits.Constructor("DriedFruits", "Сухофрукты", 0.1, 15, HumanInfo::FP, 10, HumanInfo::EP, 10);
 
+	ScienceFiction.SetParametrs("ScienceFiction", "Научная фантастика", 0.4, 8, 125, HumanInfo::PHP, 6);
+	CriminalDrama.SetParametrs("CriminalDrama", "Криминальная драма", 0.5, 5, 150, HumanInfo::PHP, 8, HumanInfo::HalChance, 1);
+	Comics.SetParametrs("Comics", "Комиксы", 0.3, 7, 50, HumanInfo::PHP, 15);
+	Adventures.SetParametrs("Adventures", "Приключенческий роман", 0.7, 4, 250, HumanInfo::PHP, 6);
+	Thriller.SetParametrs("Thriller", "Триллер", 0.6, 6, 175, HumanInfo::PHP, 5, HumanInfo::HalChance, 1);
+
 	FishSoup.Constructor("FishSoup", "Похлёбка из трески", 0.4, 1, HumanInfo::DP, -5.0, HumanInfo::FP, 40, HumanInfo::EP, 55);
 	DarkChocolateBar.Constructor("DarkChocolateBar", "Плитка горького шоколада", 0.1, 1, HumanInfo::FP, 25, HumanInfo::EP, 40, HumanInfo::PHP, 30);
 	BartonsDrug.Constructor("BartonsDrug", "Сыворотка профессора Бартона", 0.4, 1, HumanInfo::DP, -10.0, HumanInfo::HP, 40, HumanInfo::EP, 20);

@@ -19,35 +19,42 @@
 2
 RicePurge
 CannedFish
+0
 Ящики с продовольствием
 2
 MeatBriquette
 CannedBeef
+0
 Второе отделение
 2
 Спортивная сумка
 2
 Aspirin
 DriedFruits
+0
 Цинковые контейнеры
 3
 Palont
 Noodle
 CannedApple
+0
 Верхний сортировочный цех
 2
 Аптечка
 2
 Syrup
 Phenothan
+0
 Опрокинутый ящик
 3
 CannedFish
 VegetableStew
 MeltedCheese
+0
 Нижний сортировочный цех
 1
 Письменный стол
 2
 Sedatives
 EnergyBar
+0

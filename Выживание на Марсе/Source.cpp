@@ -9,6 +9,8 @@ Game::Human* Game::Effect::H = nullptr;
 Game::Human* Game::Action::H = nullptr;
 vector<string> Game::NotesVector;
 vector<string> Game::DiaryVector;
+vector<Game::Book*> Game::BookVector;
+map<string, Game::Book*> Game::BookMap;
 int main() {
 	srand(time(NULL));
 	setlocale(LC_ALL, "Russian");

@@ -29,6 +29,7 @@ Game::Effect::Effect(string Path) {
 	HIMap["EP"] = HumanInfo::EP;
 	HIMap["PHP"] = HumanInfo::PHP;
 	HIMap["DP"] = HumanInfo::DP;
+	HIMap["HC"] = HumanInfo::HalChance;
 	ifstream fin(Path);
 	string Type;
 	double Value;

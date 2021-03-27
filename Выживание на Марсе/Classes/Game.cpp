@@ -392,10 +392,70 @@ void Game::Workplace(int &Hour, bool &IsBack) {
 	}
 End:
 	switch (Click) {
-	case 1: break;
+	case 1: BookReading(); break;
 	case 2: DiaryReading(); break;
 	case 3: ReadNotes(); break;
 	case 4: NotesWriting(); break;
+	}
+}
+void Game::BookReading() {
+	system("cls");
+	T.PRC(1, "Литература\n");
+	T.V(4, 70);
+	for (size_t i = 0; i < BookVector.size(); i++)
+		T.HV(13, i + 1, 15, BookVector[i]->GetName());
+	if (!BookVector.size()) {
+		T.PRC(3, "Литература отсутствует\n");
+		T.V(4, 70);
+		T.PRC(15);
+		system("pause");
+	}
+	else {
+		int Click;
+		T.V(4, 70);
+		while (true) {
+			Click = _getch();
+			switch (Click) {
+			case 49: {
+				Click = 0;
+				goto Br;
+			}
+			case 50: {
+				if (BookVector.size() >= 2) Click = 1;
+				goto Br;
+			}
+			case 51: {
+				if (BookVector.size() >= 3) Click = 2;
+				goto Br;
+			}
+			case 52: {
+				if (BookVector.size() >= 4) Click = 3;
+				goto Br;
+			}
+			case 53: {
+				if (BookVector.size() >= 5) Click = 4;
+				goto Br;
+			}
+			case 54: {
+				if (BookVector.size() >= 6) Click = 5;
+				goto Br;
+			}
+			case 55: {
+				if (BookVector.size() >= 7) Click = 6;
+				goto Br;
+			}
+			case 56: {
+				if (BookVector.size() >= 8) Click = 7;
+				goto Br;
+			}
+			case 57: {
+				if (BookVector.size() >= 9) Click = 8;
+				goto Br;
+			}
+			}
+		}
+	Br:
+		BookVector[Click]->Taking();
 	}
 }
 void Game::DiaryReading() {
@@ -499,13 +559,14 @@ void Game::Actions(int Choose, bool& Life, int& Hour, bool& IsBack) {
 }
 void Game::RoomLooking(Inventory& I) {
 	system("cls");
-	T.PRC(15, "Ты осмотрел комнату. Это - как ты понял - больничная палата. В тумбе лежали галеты и сухофрукты. Две гранулы аспирина небрежно валялись на кровати.\nПользуясь своим статусом, ты получил элитную палату, отличавшейся от обычной, однако, только наличием стола со светильником\nОт коридора тебя отделяла массивная металлическая дверь. \"Думаю, стоит выглянуть наружу\", - сказал ты\n");
+	T.PRC(15, "Ты осмотрел комнату. Это - как ты понял - больничная палата. В тумбе лежали галеты и сухофрукты. Две гранулы аспирина небрежно валялись на кровати.\nПользуясь своим статусом, ты получил элитную палату, отличавшейся от обычной, однако, только наличием стола со светильником. На нём пылилась какая-то книга\nОт коридора тебя отделяла массивная металлическая дверь. \"Думаю, стоит выглянуть наружу\", - сказал ты\n");
 	T.V(4, 45);
 	T.PRC(15);
 	system("pause");
 	I.Aspirin.SetNew(2);
 	I.Hardtack.SetNew(rand() % 2 + 1);
 	I.DriedFruits.SetNew(rand() % 2 + 1);
+	I.ScienceFiction.SetNew();
 	DiaryVector.push_back("Моя Софи... Я так по ней скучаю... Интересно, как она? Мы не виделись с апреля прошлого года... Надеюсь, с ней всё хорошо");
 	FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 }
@@ -575,6 +636,11 @@ Game::Game() {
 	ConsumableMap["Sedatives"] = &I.Sedatives;
 	ConsumableMap["Syrup"] = &I.Syrup;
 	ConsumableMap["VegetableStew"] = &I.VegetableStew;
+	BookMap["Comics"] = &I.Comics;
+	BookMap["Adventures"] = &I.Adventures;
+	BookMap["CriminalDrama"] = &I.CriminalDrama;
+	BookMap["ScienceFiction"] = &I.ScienceFiction;
+	BookMap["Thriller"] = &I.Thriller;
 }
 int Game::Menu() {
 	system("cls");

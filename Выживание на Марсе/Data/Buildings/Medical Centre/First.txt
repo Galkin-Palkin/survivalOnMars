@@ -17,29 +17,39 @@
 2
 Aspirin
 Sedatives
+2
+Adventures
+Thriller
 Шкаф
 2
 DriedFruits
 CannedApple
+0
 Склад медикаментов
 3
 Ящик с сиропом
 1
 Syrup
+0
 Тумба с таблетками
 3
 Aspirin
 Phenothan
 Sedatives
+0
 Полка для мазей
 1
 Palont
+0
 Регистратура
 2
 Выдвижной шкаф
 2
 Syrup
 Phenothan
+0
 Рабочий стол
 1
 Sedatives
+1
+ScienceFiction

@@ -54,7 +54,7 @@ void Game::Room::ActionChoose(vector<Action>& RoomPlacesVector) {
 		switch (Click) {
 		case 49:
 			if (RoomPlacesVector.size() < 1) break;
-			RoomPlacesVector[0].GenerateItems();
+  			RoomPlacesVector[0].GenerateItems();
 			RoomPlacesVector[0].FoundedItems();
 			RoomPlacesVector.erase(RoomPlacesVector.begin());
 			return;

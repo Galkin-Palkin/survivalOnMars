@@ -17,13 +17,16 @@
 2
 CannedBeef
 Hardtack
+0
 Брошенная сумка
 2
 Phenothan
 MeltedCheese
+0
 Мусорное ведро
 1
 Aspirin
+0
 Подсобное помещение
 2
 Холодильник
@@ -31,21 +34,26 @@ Aspirin
 MushroomSoup
 VegetableStew
 CannedBeef
+0
 Ящики
 2
 CannedBeef
 CannedFish
+0
 Кухня
 3
 Полки
 2
 MeatBriquette
 Hardtack
+0
 Шкаф
 2
 MeltedCheese
 RicePurge
+0
 Плита
 2
 MeatBriquette
 FishSoup
+0

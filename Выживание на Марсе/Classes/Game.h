@@ -94,6 +94,7 @@ class Game {
 	static vector<Consumable*> ConsumableVector;
 	static int ConsumableCount;
 	class Consumable : public Item {
+	protected:
 		vector<Effect> GiveEffect;
 		HumanInfo FirstType = HumanInfo::Null; // Здесь и далее - типы, которые меняет объект класса
 		HumanInfo SecondType = HumanInfo::Null;
@@ -109,9 +110,9 @@ class Game {
 		bool IsBeing = false;
 		void EffectsToHuman();
 	public:
-		bool Taking();
-		void SetNew(int Count = 1) override;
-		void Clear();
+		virtual bool Taking();
+		virtual void SetNew(int Count = 1) override;
+		virtual void Clear();
 		static void Show(Text& T, size_t Page);
 		string GetType();
 		int GetCount();
@@ -129,6 +130,17 @@ class Game {
 		Consumable Null();
 		void AddEffect(Effect);
 	};
+	class Book : public Consumable {
+		int PagesCount = 0;
+	public:
+		void SetParametrs(string Type, string Name, double Weight, int Chance, int PagesCount, HumanInfo FirstType, int FirstNumber, HumanInfo SecondType = HumanInfo::Null, int SecondNumber = -10000, HumanInfo ThirdType = HumanInfo::Null, int ThirdNumber = -10000);
+		bool Taking() override;
+		void SetNew(int Count = 1) override;
+		void Clear() override;
+		Book Common();
+	};
+	static vector<Book*> BookVector;
+	static map<string, Book*> BookMap;
 	class Inventory {
 	public:
 		// Собственно, инвентарь
@@ -154,6 +166,12 @@ class Game {
 		Consumable Noodle;
 		Consumable VegetableStew;
 		Consumable DriedFruits;
+		// Литература
+		Book ScienceFiction;
+		Book CriminalDrama;
+		Book Comics;
+		Book Adventures;
+		Book Thriller;
 		// Редкие
 		Consumable DarkChocolateBar;
 		Consumable BartonsDrug;
@@ -166,6 +184,7 @@ class Game {
 		static Human* H;
 		string Name;
 		vector<Consumable> SearchingResult;
+		vector<Book> FoundedBooks;
 	public:
 		Action(ifstream&);
 		Action() = default;
@@ -245,6 +264,7 @@ class Game {
 	void Eating(Inventory& I, bool& IsBack, int& Hour);
 	void Outing(int&, bool&);
 	void Workplace(int&, bool&);
+	void BookReading();
 	void DiaryReading();
 	void ReadNotes();
 	void NotesWriting();

@@ -17,29 +17,40 @@
 2
 MushroomSoup
 Hardtack
+0
 Коробки
 2
 VegetableStew
 CannedApple
+0
 Техническое помещение
 2
 Выдвижной ящик
 2
 Aspirin
 Sedatives
+1
+Comics
 Рюкзак
 2
 EnergyBar
 DriedFruits
+0
 Основной зал
 3
 Стойка с инструментами
 1
 Palont
+0
 Коробки из-под макарон
 2
 Noodle
 MeltedCheese
+0
 Стелла с книгами
 1
 Aspirin
+3
+CriminalDrama
+Thriller
+Adventures

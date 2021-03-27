@@ -17,6 +17,12 @@ Game::Action::Action(ifstream &fin) {
 		fin >> Temp;
 		SearchingResult[i] = (*ConsumableMap[Temp]).Null();
 	}
+	fin >> size;
+	FoundedBooks.resize(size);
+	for (int i = 0; i < size; i++) {
+		fin >> Temp;
+		FoundedBooks[i] = BookMap[Temp]->Common();
+	}
 }
 string Game::Action::GetName() {
 	return Name;
@@ -24,6 +30,9 @@ string Game::Action::GetName() {
 void Game::Action::GenerateItems() {
 	for (int i = 0; i < SearchingResult.size(); i++) {
 		if (SearchingResult[i].GetChance() - rand() % 101 >= 0) SearchingResult[i].SetCount(1 + (rand() % 10 == 0));
+	}
+	for (size_t i = 0; i < FoundedBooks.size(); i++) {
+		if (FoundedBooks[i].GetChance() - rand() % 101 >= 0) FoundedBooks[i].SetCount(1);
 	}
 }
 void Game::Action::FoundedItems() {
@@ -38,6 +47,15 @@ void Game::Action::FoundedItems() {
 			T.PRC(15, SearchingResult[i].GetName() + " (" + char(48 + SearchingResult[i].GetCount()) + ")\n");
 			(*ConsumableMap[SearchingResult[i].GetType()]).SetNew(SearchingResult[i].GetCount());
 			H->Set(HumanInfo::PHP, '+', 3 * SearchingResult[i].GetCount());
+		}
+	}
+	for (size_t i = 0; i < FoundedBooks.size(); i++) {
+		if (FoundedBooks[i].GetCount() > 0) {
+			IsEmpty = false;
+			T.PRC(3, " - ");
+			T.PRC(15, FoundedBooks[i].GetName() + " (" + char(48 + FoundedBooks[i].GetCount()) + ")\n");
+			(*BookMap[FoundedBooks[i].GetType()]).SetNew(FoundedBooks[i].GetCount());
+			H->Set(HumanInfo::PHP, '+', 5);
 		}
 	}
 	if (IsEmpty) {

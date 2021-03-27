@@ -16,37 +16,48 @@
 2
 Aspirin
 EnergyBar
+0
 Выдвижной ящик стола
 2
 Sedatives
 DriedFruits
+1
+CriminalDrama
 Блок для синтезирования
 2
 Стенд с колбами
 2
 Gericline
 Trivoclisine
+0
 Стальной ящик
 3
 Phenothan
 BartonsDrug
 Trivoclisine
+0
 Испытательный сектор
 2
 Шкаф с реактивами
 2
 Trivoclisine
 Syrup
+0
 Полка
 1
 Gericline
+1
+ScienceFiction
 Хранилище
 2
 Коробка с препаратами
 2
 Sedatives
 Palont
+0
 Стеллаж
 2
 Gericline
 Phenothan
+1
+ScienceFiction

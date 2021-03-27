@@ -16,34 +16,44 @@
 2
 CannedBeef
 RicePurge
+0
 Сумка
 2
 Palont
 Aspirin
+0
 Первый блок
 3
 Железные шкафчики
 2
 EnergyBar
 Hardtack
+0
 Стеллаж
 1
 Aspirin
+2
+Adventures
+ScienceFiction
 Чемодан
 2
 Palont
 DarkChocolateBar
+0
 Второй блок
 3
 Деревянный ящик
 2
 CannedBeef
 RicePurge
+0
 Стол
 2
 MeltedCheese
 Hardtack
+0
 Тумбы
 2
 Hardtack
 Sedatives
+0

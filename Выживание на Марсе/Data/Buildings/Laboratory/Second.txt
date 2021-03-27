@@ -17,34 +17,44 @@
 2
 Trivoclisine
 Phenothan
+0
 Полка
 1
 Aspirin
+1
+ScienceFiction
 Коробки для инъекций
 1
 Gericline
+0
 Лаборатория
 2
 Рабочий стол
 2
 Sedatives
 EnergyBar
+0
 Стенд с реактивами
 2
 Trivoclisine
 Syrup
+0
 Хранилище реактивов
 2
 Никелевые ящики
 2
 Palont
 Phenothan
+0
 Полка с образцами
 2
 Gericline
 Aspirin
+0
 Проверочный центр
 1
 Письменный стол
 1
 Sedatives
+1
+Adventures
