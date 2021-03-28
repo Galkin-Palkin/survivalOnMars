@@ -392,13 +392,13 @@ void Game::Workplace(int &Hour, bool &IsBack) {
 	}
 End:
 	switch (Click) {
-	case 1: BookReading(); break;
-	case 2: DiaryReading(); break;
-	case 3: ReadNotes(); break;
+	case 1: BookReading(Hour, IsBack); break;
+	case 2: DiaryReading(Hour, IsBack); break;
+	case 3: ReadNotes(Hour, IsBack); break;
 	case 4: NotesWriting(); break;
 	}
 }
-void Game::BookReading() {
+void Game::BookReading(int &Hour, bool &IsBack) {
 	system("cls");
 	T.PRC(1, "Литература\n");
 	T.V(4, 70);
@@ -408,6 +408,7 @@ void Game::BookReading() {
 		T.PRC(3, "Литература отсутствует\n");
 		T.V(4, 70);
 		T.PRC(15);
+		Back(Hour, IsBack);
 		system("pause");
 	}
 	else {
@@ -421,36 +422,56 @@ void Game::BookReading() {
 				goto Br;
 			}
 			case 50: {
-				if (BookVector.size() >= 2) Click = 1;
-				goto Br;
+				if (BookVector.size() >= 2) {
+					Click = 1;
+					goto Br;
+				}
 			}
 			case 51: {
-				if (BookVector.size() >= 3) Click = 2;
-				goto Br;
+				if (BookVector.size() >= 3) {
+					Click = 2;
+					goto Br;
+				}
 			}
 			case 52: {
-				if (BookVector.size() >= 4) Click = 3;
-				goto Br;
+				if (BookVector.size() >= 4) {
+					Click = 3;
+					goto Br;
+				}
 			}
 			case 53: {
-				if (BookVector.size() >= 5) Click = 4;
-				goto Br;
+				if (BookVector.size() >= 5) {
+					Click = 4;
+					goto Br;
+				}
 			}
 			case 54: {
-				if (BookVector.size() >= 6) Click = 5;
-				goto Br;
+				if (BookVector.size() >= 6) {
+					Click = 5;
+					goto Br;
+				}
 			}
 			case 55: {
-				if (BookVector.size() >= 7) Click = 6;
-				goto Br;
+				if (BookVector.size() >= 7) {
+					Click = 6;
+					goto Br;
+				}
 			}
 			case 56: {
-				if (BookVector.size() >= 8) Click = 7;
-				goto Br;
+				if (BookVector.size() >= 8) {
+					Click = 7;
+					goto Br;
+				}
 			}
 			case 57: {
-				if (BookVector.size() >= 9) Click = 8;
-				goto Br;
+				if (BookVector.size() >= 9) {
+					Click = 8;
+					goto Br;
+				}
+			}
+			case 27: {
+				Back(Hour, IsBack);
+				return;
 			}
 			}
 		}
@@ -458,7 +479,7 @@ void Game::BookReading() {
 		BookVector[Click]->Taking();
 	}
 }
-void Game::DiaryReading() {
+void Game::DiaryReading(int& Hour, bool& IsBack) {
 	system("cls");
 	T.PRC(13, "Сол ");
 	T.PRC(15, to_string(H.GetI(HumanInfo::Sol)) + '\n');
@@ -471,11 +492,12 @@ void Game::DiaryReading() {
 	if (!DiaryVector.size()) {
 		T.PRC(15, "Отсутствуют записи за сегодняшний день\n");
 		T.V(4, 60);
+		Back(Hour, IsBack);
 	}
 	T.PRC(15);
 	system("pause");
 }
-void Game::ReadNotes() {
+void Game::ReadNotes(int& Hour, bool& IsBack) {
 	ifstream fin("Data\\Notes.txt");
 	string Temp;
 	NotesVector.clear();
@@ -487,8 +509,10 @@ void Game::ReadNotes() {
 	system("cls");
 	T.PRC(1, "Заметки\n");
 	T.V(4, 60);
-	if (!NotesVector.size())
+	if (!NotesVector.size()) {
 		T.PRC(3, "Заметки отстутствуют\n");
+		Back(Hour, IsBack);
+	}
 	for (size_t i = 0; i < NotesVector.size(); i++) {
 		T.PRC(15, NotesVector[i] + '\n');
 	}

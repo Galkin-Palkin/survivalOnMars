@@ -25,7 +25,7 @@ Game::Inventory::Inventory() {
 
 	ScienceFiction.SetParametrs("ScienceFiction", "Научная фантастика", 0.4, 8, 125, HumanInfo::PHP, 6);
 	CriminalDrama.SetParametrs("CriminalDrama", "Криминальная драма", 0.5, 5, 150, HumanInfo::PHP, 8, HumanInfo::HalChance, 1);
-	Comics.SetParametrs("Comics", "Комиксы", 0.3, 7, 50, HumanInfo::PHP, 15);
+	Comics.SetParametrs("Comics", "Комиксы", 0.3, 700, 50, HumanInfo::PHP, 15);
 	Adventures.SetParametrs("Adventures", "Приключенческий роман", 0.7, 4, 250, HumanInfo::PHP, 6);
 	Thriller.SetParametrs("Thriller", "Триллер", 0.6, 6, 175, HumanInfo::PHP, 5, HumanInfo::HalChance, 1);
 

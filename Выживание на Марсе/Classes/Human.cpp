@@ -134,8 +134,13 @@ void Game::Human::Null() {
 	Sol = 0;
 	Hour = 7;
 	ConsumableVector.clear();
+	BookVector.clear();
 	for (auto it : ConsumableMap)
 		it.second->SetCount(0);
+	for (auto it : BookMap) {
+		it.second->SetCount(0);
+		it.second->SetPagesCount(it.second->GetTotalPagesCount());
+	}
 	ofstream fout("Data\\Notes.txt");
 	fout << "";
 	ConsumableCount = 0;

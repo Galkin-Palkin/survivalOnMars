@@ -5,7 +5,7 @@ void Game::Saves::Load(Human& H, bool& IsExit) {
 	// Загрузка в файл
 	ifstream fin("Data\\Parameters.txt");
 	string String;
-	int Number;
+	int Number, Temp;
 	double NumberDouble;
 	fin >> NewGame;
 	fin >> Number;
@@ -29,6 +29,15 @@ void Game::Saves::Load(Human& H, bool& IsExit) {
 		ConsumableVector.push_back(Game::ConsumableMap[String]);
 		ConsumableVector[i]->SetCount(Number);
 	}
+	fin >> Number;
+	BookVector.resize(Number);
+	for (size_t i = 0; i < BookVector.size(); i++) {
+		fin >> String >> Number >> Temp;
+		BookVector[i] = BookMap[String];
+		BookVector[i]->SetCount(Number);
+		BookVector[i]->SetPagesCount(Temp);
+		BookVector[i]->SetIsBeing(true);
+	}
 	fin >> IsExit;
 }
 void Game::Saves::Download(Human& H, bool IsExit) {
@@ -46,6 +55,12 @@ void Game::Saves::Download(Human& H, bool IsExit) {
 	for (int i = 0; i < ConsumableCount; i++) {
 		fout << ConsumableVector[i]->GetType() << endl;
 		fout << ConsumableVector[i]->GetCount() << endl;
+	}
+	fout << BookVector.size() << endl;
+	for (size_t i = 0; i < BookVector.size(); i++) {
+		fout << BookVector[i]->GetType() << endl;
+		fout << BookVector[i]->GetCount() << endl;
+		fout << BookVector[i]->GetPagesCount() << endl;
 	}
 	fout << IsExit << endl;
 }

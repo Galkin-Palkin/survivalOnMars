@@ -132,12 +132,17 @@ class Game {
 	};
 	class Book : public Consumable {
 		int PagesCount = 0;
+		int TotalPagesCount = 0;
 	public:
 		void SetParametrs(string Type, string Name, double Weight, int Chance, int PagesCount, HumanInfo FirstType, int FirstNumber, HumanInfo SecondType = HumanInfo::Null, int SecondNumber = -10000, HumanInfo ThirdType = HumanInfo::Null, int ThirdNumber = -10000);
 		bool Taking() override;
 		void SetNew(int Count = 1) override;
 		void Clear() override;
 		Book Common();
+		int GetPagesCount();
+		Book& SetPagesCount(int);
+		int GetTotalPagesCount();
+		void SetIsBeing(bool);
 	};
 	static vector<Book*> BookVector;
 	static map<string, Book*> BookMap;
@@ -264,9 +269,9 @@ class Game {
 	void Eating(Inventory& I, bool& IsBack, int& Hour);
 	void Outing(int&, bool&);
 	void Workplace(int&, bool&);
-	void BookReading();
-	void DiaryReading();
-	void ReadNotes();
+	void BookReading(int&, bool&);
+	void DiaryReading(int&, bool&);
+	void ReadNotes(int&, bool&);
 	void NotesWriting();
 	void Sleeping();
 	void Escape(bool& Life, int& Hour, bool&);
