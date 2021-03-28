@@ -530,6 +530,22 @@ void Game::NotesWriting() {
 	getline(cin, Temp);
 	fout << "Сол " + to_string(H.GetI(HumanInfo::Sol)) + ", " + to_string(H.GetI(HumanInfo::Hour)) + ":00  " + Temp << endl;
 }
+bool Game::Statement(string Header, string Text) {
+	system("cls");
+	T.PRC(1, Header + '\n');
+	T.V(4, 60);
+	T.PRC(15, Text);
+	T.V(4, 60);
+	T.HV(13, 1, 15, "Вернуться назад");
+	T.HV(13, 2, 15, "Вернуться в главное меню");
+	while (true) {
+		int Click = _getch();
+		switch (Click) {
+		case 49: return false; break;
+		case 50: return true; break;
+		}
+	}
+}
 void Game::Sleeping() {
 	int Counter = 0;
 	int HoursN = 23;
@@ -720,22 +736,42 @@ void Game::GamingProcess(bool& Working) {
 	}
 }
 void Game::Menu_2(bool& Working) {
-	system("cls");
-	T.PRC(13, "Помощь к игре\n");
-	T.V(4, 35);
-	T.PRC(15, "Сделать выбор пунктов в данном разделе\n");
-	T.V(4, 35);
-	T.PRC(15);
-	T.V(3);
-	T.V(2);
-	T.V(4, 25);
-	T.PRC(15);
-	int Variety = _getch();
-	switch (Variety) {
-	case 49: Variety = 1; break;
-	case 50: Variety = 2; break;
+	bool Menu = true;
+	while (Menu) {
+		Start:
+		system("cls");
+		T.PRC(13, "Помощь к игре\n");
+		T.V(4, 35);
+		T.HV(13, 1, 15, "Здоровье и другие характеристики персонажа");
+		T.V(4, 15);
+		T.HV(13, 2, 15, "Поиск и употребление");
+		T.V(4, 15);
+		T.HV(13, 3, 15, "Чтение, дневник и заметки");
+		T.V(4, 15);
+		T.HV(13, 4, 15, "Вернуться в главное меню");
+		T.V(4, 35);
+		while (true) {
+			int Variety = _getch();
+			switch (Variety) {
+			case 49: {
+				if (Statement("Здоровье и другие характеристики персонажа", "")) return;
+				goto Start;
+			}
+			case 50: {
+				if (Statement("Поиск и употребление", "")) return;
+				goto Start;
+			}
+			case 51: {
+				if (Statement("Чтение, дневник и заметки", "")) return;
+				goto Start;
+			}
+			case 52: {
+				Menu = false;
+				return;
+			}
+			}
+		}
 	}
-	if (Variety != 1) Working = false;
 }
 void Game::Menu_3(bool& Working) {
 	system("cls");

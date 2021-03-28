@@ -281,6 +281,7 @@ class Game {
 	void ChangesDay(bool IsExit);
 	void Back(int& Hour, bool& IsBack);
 	void Validate();
+	bool Statement(string, string);
 public:
 	Game();
 	int Menu();
