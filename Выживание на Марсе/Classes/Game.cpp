@@ -653,6 +653,7 @@ int Game::Menu() {
 	case 52: return 4;
 	case 53: return 5;
 	}
+	return -1;
 }
 void Game::GamingProcess(bool& Working) {
 	// Основная функция, именно в ней всё и происходит
@@ -725,18 +726,16 @@ void Game::Menu_2(bool& Working) {
 }
 void Game::Menu_3(bool& Working) {
 	ifstream fin("Data\\Achievements.txt");
-	ofstream fout("Data\\Achievements.txt");
-	fout << 1 << endl;
-	fout << "Профессор Бартон знает своё дело" << endl;
-	fout << "Собрать 3 сыворотки" << endl;
-	int Size;
-	fin >> Size;
-	AchievementVector.resize(Size);
-	for (int i = 0; i < Size; i++) {
+	string Temp1, Temp2;
+	AchievementVector.clear();
+	while (!fin.eof()) {
+		Temp1 = "";
+		Temp2 = "";
 		fin >> ws;
-		getline(fin, AchievementVector[i].first);
+		getline(fin, Temp1);
 		fin >> ws;
-		getline(fin, AchievementVector[i].second);
+		getline(fin, Temp2);
+		if (Temp1.size() > 1 && Temp2.size() > 1) AchievementVector.push_back(make_pair(Temp1, Temp2));
 	}
 Menu:
 	system("cls");
@@ -764,7 +763,6 @@ Menu:
 				switch (Click) {
 				case 49: {
 					ofstream fout("Data\\Achievements.txt");
-					fout << 0;
 					return;
 				}
 				case 50: goto Menu;

@@ -50,7 +50,7 @@ void Game::Consumable::Show(Text& T, size_t Page) {
 		cout << (*ConsumableVector[i + Page * (size_t)9]).GetCount() << "    ";
 		cout << (*ConsumableVector[i + Page * (size_t)9]).GetWeight() * (*ConsumableVector[i + Page * (size_t)9]).GetCount();
 		T.PRC(8, " кг\n");
-		if (i != Size - 1) T.V(4, 50);
+		if (i != (size_t)Size - 1) T.V(4, 50);
 	}
 	if (!Size) T.PRC(3, "Пища и медикаменты отсутствуют\n");
 	T.V(4, 60);
@@ -68,7 +68,7 @@ void Game::Consumable::SetCount(int Value) {
 	this->Count = Value;
 }
 void Game::Consumable::Constructor(string Type, string Name, double Weight, int Chance, Game::HumanInfo FirstType, double FirstNumber, HumanInfo SecondType, int SecondNumber, HumanInfo ThirdType, int ThirdNumber) {
-	// Обычный конструктор нельзя вызвать в классе вне функции, поэтому, такой аналог
+	// Обычный конструктор нельзя вызвать в классе вне функции, поэтому есть такой аналог
 	ConsumableCount = 0;
 	this->Type = Type;
 	this->FirstType = FirstType;

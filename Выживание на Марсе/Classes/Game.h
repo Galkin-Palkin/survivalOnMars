@@ -262,10 +262,19 @@ class Game {
 	protected:
 		bool NewGame = true;
 	};
+	enum Achivement {
+		Ach_Aspirin,
+		Ach_Barton,
+		Ach_Plushkin,
+		Ach_Hacker,
+		Ach_Chocolate,
+		Ach_BookWorm
+	};
 	Saves S;
 	static vector<string> DiaryVector;
 	static vector<string> NotesVector;
 	static vector<pair<string, string>> AchievementVector;
+	static map<int, bool> IsAchMap;
 	void Introduction();
 	void InfoShowing(int HP, int FP, int EP, int PHP, double DP, int Sol, int Hour);
 	int NewGame();

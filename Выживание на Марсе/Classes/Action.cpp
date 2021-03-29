@@ -58,6 +58,21 @@ void Game::Action::FoundedItems() {
 			H->Set(HumanInfo::PHP, '+', 5);
 		}
 	}
+	if (ConsumableMap["Aspirin"]->GetCount() >= 100 && !IsAchMap[Ach_Aspirin]) {
+		ofstream fout("Data\\Achievements.txt", ofstream::app);
+		fout << "Аспирин - панацея от всех болезней!\nСобрать 100 гранул аспирина\n";
+		IsAchMap[Ach_Aspirin] = true;
+	}
+	if (ConsumableMap["DarkChocolateBar"]->GetCount() >= 4 && !IsAchMap[Ach_Chocolate]) {
+		ofstream fout("Data\\Achievements.txt", ofstream::app);
+		fout << "Шоколадная фабрика Вилли Вонки\nСобрать 4 плитки шоколада\n";
+		IsAchMap[Ach_Chocolate] = true;
+	}
+	if (ConsumableMap["BartonsDrug"]->GetCount() >= 3 && !IsAchMap[Ach_Barton]) {
+		ofstream fout("Data\\Achievements.txt", ofstream::app);
+		fout << "Профессор Бартон знает своё дело\nСобрать 3 сыворотки\n";
+		IsAchMap[Ach_Barton] = true;
+	}
 	if (IsEmpty) {
 		T.PRC(3, "Вы ничего не нашли\n");
 		H->Set(HumanInfo::PHP, '-', 3);

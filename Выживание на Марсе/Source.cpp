@@ -12,6 +12,7 @@ vector<string> Game::DiaryVector;
 vector<Game::Book*> Game::BookVector;
 map<string, Game::Book*> Game::BookMap;
 vector<pair<string, string>> Game::AchievementVector;
+map<int, bool> Game::IsAchMap;
 int main() {
 	srand(time(NULL));
 	setlocale(LC_ALL, "Russian");
