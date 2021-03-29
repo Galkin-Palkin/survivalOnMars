@@ -69,7 +69,7 @@ class Game {
 		int Sol = 0; // Сол - сутки на Марсе
 		int Hour = 7;
 		int HalChance = rand() % 11; // Шанс словить галлюцинацию в %
-		Saves *S;
+		Saves* S = nullptr;
 		vector<Effect> EffectsVector;
 		void EffectsAction();
 	public:
@@ -265,6 +265,7 @@ class Game {
 	Saves S;
 	static vector<string> DiaryVector;
 	static vector<string> NotesVector;
+	static vector<pair<string, string>> AchievementVector;
 	void Introduction();
 	void InfoShowing(int HP, int FP, int EP, int PHP, double DP, int Sol, int Hour);
 	int NewGame();
@@ -290,6 +291,7 @@ public:
 	int Menu();
 	void GamingProcess(bool& Working);
 	void Menu_2(bool& Working);
-	void Menu_3(bool& Working);
+	void Menu_3(bool &Working);
 	void Menu_4(bool& Working);
+	void Menu_5(bool& Working);
 };

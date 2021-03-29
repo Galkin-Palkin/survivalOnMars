@@ -304,7 +304,7 @@ void Game::Outing(bool& Life, bool& Working, int& Hour, bool& IsBack) {
 		system("pause");
 	}
 }
-void Game::Workplace(int &Hour, bool &IsBack) {
+void Game::Workplace(int& Hour, bool& IsBack) {
 	system("cls");
 	T.PRC(1, "Выберите действие:\n");
 	T.V(4, 40);
@@ -345,7 +345,7 @@ End:
 	case 4: NotesWriting(); break;
 	}
 }
-void Game::BookReading(int &Hour, bool &IsBack) {
+void Game::BookReading(int& Hour, bool& IsBack) {
 	system("cls");
 	T.PRC(1, "Литература\n");
 	T.V(4, 70);
@@ -450,7 +450,7 @@ void Game::ReadNotes(int& Hour, bool& IsBack) {
 	NotesVector.clear();
 	while (!fin.eof()) {
 		getline(fin, Temp);
-		if (Temp.size() > 1) 
+		if (Temp.size() > 1)
 			NotesVector.push_back(Temp);
 	}
 	system("cls");
@@ -532,7 +532,7 @@ void Game::Back(int& Hour, bool& IsBack) {
 	Hour--;
 	IsBack = true;
 }
-void Game::Actions(int Choose, bool& Life, int& Hour, bool& IsBack, bool &Working) {
+void Game::Actions(int Choose, bool& Life, int& Hour, bool& IsBack, bool& Working) {
 	switch (Choose) {
 	case 0: RoomLooking(I); break;
 	case 1: Outing(Life, Working, Hour, IsBack); break;
@@ -638,19 +638,21 @@ int Game::Menu() {
 	T.V(4, 5);
 	T.HV(13, 2, 15, "Помощь к игре");
 	T.V(4, 5);
-	T.HV(13, 3, 15, "Разработчики");
+	T.HV(13, 3, 15, "Достижения");
 	T.V(4, 5);
-	T.HV(13, 4, 15, "Выход из игры");
+	T.HV(13, 4, 15, "Разработчики");
+	T.V(4, 5);
+	T.HV(13, 5, 15, "Выход из игры");
 	T.V(4, 25);
 	T.PRC(15);
 	int Variety = _getch();
 	switch (Variety) {
-	case 49: Variety = 1; break;
-	case 50: Variety = 2; break;
-	case 51: Variety = 3; break;
-	case 52: Variety = 4; break;
+	case 49: return 1;
+	case 50: return 2;
+	case 51: return 3;
+	case 52: return 4;
+	case 53: return 5;
 	}
-	return Variety;
 }
 void Game::GamingProcess(bool& Working) {
 	// Основная функция, именно в ней всё и происходит
@@ -686,7 +688,7 @@ void Game::GamingProcess(bool& Working) {
 void Game::Menu_2(bool& Working) {
 	bool Menu = true;
 	while (Menu) {
-		Start:
+	Start:
 		system("cls");
 		T.PRC(13, "Помощь к игре\n");
 		T.V(4, 35);
@@ -722,6 +724,58 @@ void Game::Menu_2(bool& Working) {
 	}
 }
 void Game::Menu_3(bool& Working) {
+	ifstream fin("Data\\Achievements.txt");
+	ofstream fout("Data\\Achievements.txt");
+	fout << 1 << endl;
+	fout << "Профессор Бартон знает своё дело" << endl;
+	fout << "Собрать 3 сыворотки" << endl;
+	int Size;
+	fin >> Size;
+	AchievementVector.resize(Size);
+	for (int i = 0; i < Size; i++) {
+		fin >> ws;
+		getline(fin, AchievementVector[i].first);
+		fin >> ws;
+		getline(fin, AchievementVector[i].second);
+	}
+Menu:
+	system("cls");
+	T.PRC(13, "Достижения\n");
+	T.V(4, 60);
+	for (size_t i = 0; i < AchievementVector.size(); i++) {
+		T.HV(1, i + 1, 15, AchievementVector[i].first);
+		T.PRC(3, '[' + AchievementVector[i].second + "]\n");
+		if (AchievementVector.size() - i - 1) T.V(4, 35);
+	}
+	if (!AchievementVector.size())
+		T.PRC(3, "Достижения отсутствуют\n");
+	T.V(4, 60);
+	T.HV(13, 1, 15, "Сбросить достижения");
+	T.HV(13, 2, 15, "Вернуться в главное меню");
+	while (true) {
+		int Variety = _getch();
+		switch (Variety) {
+		case 49: {
+			system("cls");
+			T.PRC(13, "Вы точно хотите сбросить достижения?\n");
+			T.V(2);
+			while (true) {
+				int Click = _getch();
+				switch (Click) {
+				case 49: {
+					ofstream fout("Data\\Achievements.txt");
+					fout << 0;
+					return;
+				}
+				case 50: goto Menu;
+				}
+			}
+		}
+		case 50: return;
+		}
+	}
+}
+void Game::Menu_4(bool& Working) {
 	system("cls");
 	T.PRC(13, "Разработчики\n");
 	T.V(4, 45);
@@ -738,14 +792,15 @@ void Game::Menu_3(bool& Working) {
 	T.V(2);
 	T.V(4, 25);
 	T.PRC(15, "");
-	int Variety = _getch();
-	switch (Variety) {
-	case 49: Variety = 1; break;
-	case 50: Variety = 2; break;
+	while (true) {
+		int Variety = _getch();
+		switch (Variety) {
+		case 49: return;
+		case 50: Working = false; return;
+		}
 	}
-	if (Variety != 1) Working = false;
 }
-void Game::Menu_4(bool& Working) {
+void Game::Menu_5(bool& Working) {
 	system("cls");
 	T.PRC(13, "Вы точно хотите выйти?\n");
 	T.V(2);

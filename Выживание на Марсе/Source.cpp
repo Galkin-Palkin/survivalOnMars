@@ -11,6 +11,7 @@ vector<string> Game::NotesVector;
 vector<string> Game::DiaryVector;
 vector<Game::Book*> Game::BookVector;
 map<string, Game::Book*> Game::BookMap;
+vector<pair<string, string>> Game::AchievementVector;
 int main() {
 	srand(time(NULL));
 	setlocale(LC_ALL, "Russian");
@@ -24,7 +25,8 @@ int main() {
 		case 1: G.GamingProcess(Working); break;
 		case 2: G.Menu_2(Working); break;
 		case 3: G.Menu_3(Working); break;
-		case 4: G.Menu_4(Working);  break;
+		case 4: G.Menu_4(Working); break;
+		case 5: G.Menu_5(Working); break;
 		}
 	}
 }
