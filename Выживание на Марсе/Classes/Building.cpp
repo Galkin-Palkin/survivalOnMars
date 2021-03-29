@@ -354,31 +354,62 @@ void Game::Buildings::LocationGeneration(bool& Life, bool& Working, int& Hour) {
 	T.PRC(15);
 	system("pause");
 	int CountOfRooms = 1 + rand() % 3;
+	vector<pair<int, string>> RoomVector(CountOfRooms);
+	for (size_t i = 0; i < RoomVector.size(); i++) {
+		if (rand() % 20 == 0)
+			RoomVector[i].first = 5;
+		else if (rand() % 15 == 0)
+			RoomVector[i].first = 4;
+		else if (rand() % 10 == 0)
+			RoomVector[i].first = 3;
+		else if (rand() % 6 == 0)
+			RoomVector[i].first = 2;
+		else
+			RoomVector[i].first = 1;
+		switch (RoomVector[i].first) {
+		case 1: RoomVector[i].second = "Пойти в казармы"; break;
+		case 2: RoomVector[i].second = "Пойти в столовую"; break;
+		case 3: RoomVector[i].second = "Пойти на склад"; break;
+		case 4: RoomVector[i].second = "Пойти в медпункт"; break;
+		case 5: RoomVector[i].second = "Пойти в лабораторию"; break;
+		}
+	}
 	while (CountOfRooms != 0) {
 		system("cls");
 		T.PRC(3, "Ты находишься в помещении\n");
 		T.PRC(3, "Осталось неосмотренных отделов: ");
 		T.PRC(15, to_string(CountOfRooms) + '\n');
 		T.V(4, 40);
-		int RoomType = 1;
-		string Variety;
-		if (rand() % 20 == 0) RoomType = 5;
-		else if (rand() % 15 == 0) RoomType = 4;
-		else if (rand() % 10 == 0) RoomType = 3;
-		else if (rand() % 6 == 0) RoomType = 2;
-		switch (RoomType) {
-		case 1: Variety = "Пойти в казармы"; break;
-		case 2: Variety = "Пойти в столовую"; break;
-		case 3: Variety = "Пойти на склад"; break;
-		case 4: Variety = "Пойти в медпункт"; break;
-		case 5: Variety = "Пойти в лабораторию"; break;
+		for (size_t i = 0; i < RoomVector.size(); i++) {
+			T.HV(13, i + 1, 15, RoomVector[i].second);
+			T.V(4, 15);
 		}
-		T.HV(13, 1, 15, Variety);
-		while (true) {
+		bool Clicking = true;
+		while (Clicking) {
 			int Click = _getch();
-			if (Click == 49) {
-				EnterRoom(Life, Working, RoomType, Hour);
+			switch (Click) {
+			case 49: {
+				EnterRoom(Life, Working, RoomVector[(size_t)Click - 49].first, Hour);
+				Clicking = false;
+				RoomVector.erase(RoomVector.begin() + (Click - 49));
 				break;
+			}
+			case 50: {
+				if (RoomVector.size() > 1) {
+					EnterRoom(Life, Working, RoomVector[(size_t)Click - 49].first, Hour);
+					Clicking = false;
+					RoomVector.erase(RoomVector.begin() + (Click - 49));
+				}
+				break;
+			}
+			case 51: {
+				if (RoomVector.size() > 2) {
+					EnterRoom(Life, Working, RoomVector[(size_t)Click - 49].first, Hour);
+					Clicking = false;
+					RoomVector.erase(RoomVector.begin() + (Click - 49));
+				}
+				break;
+			}
 			}
 		}
 		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
