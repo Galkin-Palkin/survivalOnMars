@@ -11,6 +11,7 @@ void Game::Text::V(int Number, int count) {
 	}
 	case 3: cout << "Вернуться в главное меню?" << endl; break;
 	case 4: {
+		HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 		// Выводит красную линию
 		SetConsoleTextAttribute(h, 4);
 		for (int i = 0; i < count; i++) {
@@ -22,6 +23,7 @@ void Game::Text::V(int Number, int count) {
 	}
 }
 void Game::Text::HV(int Color1, int Number, int Color2, string String) {
+	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 	// Для оформления одного пункта меню. Нужно указать сначала цвет цифры, затем цифру, а потом цвет текста и сам текст
 	SetConsoleTextAttribute(h, Color1);
 	cout << "(" << Number << ") ";
@@ -29,6 +31,7 @@ void Game::Text::HV(int Color1, int Number, int Color2, string String) {
 	cout << String << endl;
 }
 void Game::Text::PRC(int Colour, string String) {
+	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 	// Для вывода цветного текста
 	SetConsoleTextAttribute(h, Colour);
 	cout << String;

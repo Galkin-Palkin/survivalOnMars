@@ -134,59 +134,6 @@ int Game::NewGame() {
 		else if (S.GetNew() != true && Click == 50) return 2;
 	}
 }
-void Game::Changes(bool& Life, int& Hour, bool& Working) {
-	// Система организма персонажа, функция вызывается каждый игровой час
-	H.Set(HumanInfo::FP, '-', 5);
-	Validate();
-	H.EffectsTick();
-	if (H.GetI(HumanInfo::FP) >= 75) H.Set(HumanInfo::EP, '+', 10);
-	else if (H.GetI(HumanInfo::FP) >= 50) H.Set(HumanInfo::EP, '+', 8);
-	else if (H.GetI(HumanInfo::FP) >= 25) H.Set(HumanInfo::EP, '+', 5);
-	if (H.GetI(HumanInfo::FP) == 0) {
-		H.Set(HumanInfo::HP, '-', 1);
-		H.Set(HumanInfo::EP, '-', 5);
-		H.Set(HumanInfo::PHP, '-', 2);
-		H.Set(HumanInfo::DP, '+', 0.25);
-		H.AddEffect(Effect("Data\\Effects\\Starvation.txt"));
-	}
-	if (H.GetI(HumanInfo::HP) > 75 && H.GetI(HumanInfo::FP) >= 30) {
-		H.Set(HumanInfo::DP, '-', 1.0);
-		H.Set(HumanInfo::PHP, '+', 2);
-	}
-	else if (H.GetI(HumanInfo::HP) > 50 && H.GetI(HumanInfo::FP) >= 30) {
-		H.Set(HumanInfo::DP, '-', 0.5);
-		H.Set(HumanInfo::PHP, '+', 1);
-	}
-	if (H.GetI(HumanInfo::HP) >= 25 && H.GetI(HumanInfo::HP) < 50) {
-		H.Set(HumanInfo::DP, '+', 0.25);
-		H.Set(HumanInfo::PHP, '-', 2);
-	}
-	else if (H.GetI(HumanInfo::HP) < 25 && H.GetI(HumanInfo::HP) > 0) {
-		H.Set(HumanInfo::DP, '+', 1.0);
-		H.Set(HumanInfo::PHP, '-', 3);
-	}
-	else if (H.GetI(HumanInfo::HP) == 0) {
-		H.Set(HumanInfo::DP, '+', 2.0);
-		H.Set(HumanInfo::PHP, '-', 5);
-		if (H.GetD(HumanInfo::DP) >= 90.0) H.AddEffect(Effect("Data\\Effects\\Agony.txt"));
-	}
-	if (H.GetI(HumanInfo::PHP) >= 80)
-		H.Set(HumanInfo::HalChance, '-', 3);
-	else if (H.GetI(HumanInfo::PHP) >= 50)
-		H.Set(HumanInfo::HalChance, '-', 2);
-	else if (H.GetI(HumanInfo::PHP) <= 0)
-		H.Set(HumanInfo::HalChance, '+', 5);
-	else if (H.GetI(HumanInfo::PHP) <= 30)
-		H.Set(HumanInfo::HalChance, '+', 1);
-	Validate();
-	if (H.GetD(HumanInfo::DP) >= 100.0) {
-		Life = false;
-		Hour = 23;
-		S.SetNew(true);
-		S.Download(H);
-		Death(Working);
-	}
-}
 int Game::ActionsChoose(int Sol, int Hour) {
 	SetConsoleTextAttribute(h, 10);
 	T.V(1);
@@ -332,10 +279,10 @@ void Game::Eating(Inventory& I, bool& IsBack, int& Hour) {
 	}
 	FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 }
-void Game::Outing(int& Hour, bool& IsBack) {
+void Game::Outing(bool& Life, bool& Working, int& Hour, bool& IsBack) {
 	system("cls");
 	bool Condition = Hour <= 18 && H.GetI(HumanInfo::EP) >= 60 && H.GetI(HumanInfo::PHP) >= 50;
-	if (Condition) B.LocationGeneration(++Hour);
+	if (Condition) B.LocationGeneration(Life, Working, ++Hour);
 	else if (Hour > 18 && H.GetI(HumanInfo::EP) >= 60 && H.GetI(HumanInfo::PHP) >= 50)
 		T.PRC(3, "\"Я готов пойти на поиски, но уже поздно\", - промелькнула мысль в твоей голове, и ты отошёл от двери\n");
 	else if (Hour <= 18 && H.GetI(HumanInfo::EP) < 60 && H.GetI(HumanInfo::PHP) >= 50)
@@ -585,10 +532,10 @@ void Game::Back(int& Hour, bool& IsBack) {
 	Hour--;
 	IsBack = true;
 }
-void Game::Actions(int Choose, bool& Life, int& Hour, bool& IsBack) {
+void Game::Actions(int Choose, bool& Life, int& Hour, bool& IsBack, bool &Working) {
 	switch (Choose) {
 	case 0: RoomLooking(I); break;
-	case 1: Outing(Hour, IsBack); break;
+	case 1: Outing(Life, Working, Hour, IsBack); break;
 	case 2: Eating(I, IsBack, Hour); break;
 	case 3: Workplace(Hour, IsBack); break;
 	case 4: {
@@ -612,14 +559,14 @@ void Game::RoomLooking(Inventory& I) {
 }
 void Game::Death(bool& Working) {
 	system("cls");
-	T.PRC(4, "Вы умерли\n");
-	T.V(4, 35);
-	T.PRC(13);
-	T.V(1);
-	T.PRC(10, "(1) ");
-	T.PRC(15, "Вернуться в главное меню");
-	T.PRC(4, " (2) ");
-	T.PRC(15, "Выйти из игры\n");
+	Text::PRC(4, "Вы умерли\n");
+	Text::V(4, 35);
+	Text::PRC(13);
+	Text::V(1);
+	Text::PRC(10, "(1) ");
+	Text::PRC(15, "Вернуться в главное меню");
+	Text::PRC(4, " (2) ");
+	Text::PRC(15, "Выйти из игры\n");
 	int Click;
 	while (true) {
 		Click = _getch();
@@ -654,6 +601,7 @@ Game::Game() {
 	Consumable::SetPointer(&H);
 	Effect::SetPointer(&H);
 	Action::SetPointer(&H);
+	H.SetPointer(&S);
 	ConsumableMap["Aspirin"] = &I.Aspirin;
 	ConsumableMap["BartonsDrug"] = &I.BartonsDrug;
 	ConsumableMap["CannedApple"] = &I.CannedApple;
@@ -729,9 +677,9 @@ void Game::GamingProcess(bool& Working) {
 			int Choose = ActionsChoose(H.GetI(HumanInfo::Sol), H.GetI(HumanInfo::Hour));
 			int Hour = H.GetI(HumanInfo::Hour);
 			bool IsBack = false;
-			Actions(Choose, Life, Hour, IsBack);
+			Actions(Choose, Life, Hour, IsBack, Working);
 			H.Set(HumanInfo::Hour, 'N', Hour);
-			if (!(H.GetI(HumanInfo::Sol) == 1 && Hour == 7) && !IsBack) Changes(Life, Hour, Working);
+			if (!(H.GetI(HumanInfo::Sol) == 1 && Hour == 7) && !IsBack) H.Changes(Life, Working);
 		}
 	}
 }

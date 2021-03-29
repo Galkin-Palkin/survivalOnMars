@@ -145,6 +145,75 @@ void Game::Human::Null() {
 	fout << "";
 	ConsumableCount = 0;
 }
+void Game::Human::Changes(bool& Life, bool& Working) {
+	FP -= 5;
+	Validate();
+	EffectsTick();
+	if (FP >= 75) EP += 10;
+	else if (FP >= 50) EP += 8;
+	else if (FP >= 25) EP += 5;
+	if (FP == 0) {
+		HP--;
+		EP -= 5;
+		PHP -= 2;
+		DP += 0.2;
+		AddEffect(Effect("Data\\Effects\\Starvation.txt"));
+	}
+	if (HP > 75 && FP >= 30) {
+		DP--;
+		PHP += 2;
+	}
+	else if (HP > 50 && FP >= 30) {
+		DP -= 0.5;
+		PHP++;
+	}
+	if (HP >= 25 && HP < 50) {
+		DP += 0.5;
+		PHP -= 2;
+	}
+	else if (HP < 25 && HP > 0) {
+		DP++;
+		PHP -= 3;
+	}
+	else if (HP == 0) {
+		DP += 2.0;
+		PHP -= 5;
+		if (DP >= 90.0) AddEffect(Effect("Data\\Effects\\Agony.txt"));
+	}
+	if (PHP >= 80)
+		HalChance -= 3;
+	else if (PHP >= 50)
+		HalChance -= 2;
+	else if (PHP <= 0)
+		HalChance += 5;
+	else if (PHP <= 30)
+		HalChance++;
+	Validate();
+	if (DP >= 100.0) {
+		Life = false;
+		Hour = 23;
+		S->SetNew(true);
+		S->Download(*this);
+		Game::Death(Working);
+	}
+}
+void Game::Human::Validate() {
+	if (HP > 100) HP = 100;
+	else if (HP < 0) HP = 0;
+	if (FP > 100) FP = 100;
+	else if (FP < 0) FP = 0;
+	if (EP > 100) EP = 100;
+	else if (EP < 0) EP = 0;
+	if (DP > 100) DP = 100.0;
+	else if (DP < 0) DP = 0.0;
+	if (PHP < 0) PHP = 0;
+	else if (PHP > 100) PHP = 100;
+	if (HalChance > 100) HalChance = 100;
+	else if (HalChance < 0) HalChance = 0;
+}
+void Game::Human::SetPointer(Saves* P) {
+	S = P;
+}
 void Game::Human::AddEffect(Effect Ef) {
 	EffectsVector.push_back(Ef);
 	for (size_t i = 0; i < EffectsVector.size(); i++) {

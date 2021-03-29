@@ -20,7 +20,6 @@ class Game {
 	};
 	static map<string, HumanInfo> HIMap;
 	class Text {
-		HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 		// Служебный класс для более удобного оформления в консоли
 	public:
 		/// <summary>
@@ -28,7 +27,7 @@ class Game {
 		/// </summary>
 		/// <param name="Number">Что нужно вывести.</param>
 		/// <param name="count">Количество нижних подчеркиваний.</param>
-		void V(int Number, int count = 20);
+		static void V(int Number, int count = 20);
 		/// <summary>
 		/// Функция вывода сообщения с цифрой.
 		/// </summary>
@@ -36,13 +35,13 @@ class Game {
 		/// <param name="Number">Номер.</param>
 		/// <param name="Color2">Цвет текста.</param>
 		/// <param name="String">Текст сообщения.</param>
-		void HV(int Color1, int Number, int Color2, string String);
+		static void HV(int Color1, int Number, int Color2, string String);
 		/// <summary>
 		/// Функция вывода цветного текста без номеров.
 		/// </summary>
 		/// <param name="Colour">Цвет.</param>
 		/// <param name="String">Текст.</param>
-		void PRC(int Colour, string String = "");
+		static void PRC(int Colour, string String = "");
 		Text();
 	};
 	class Human;
@@ -60,6 +59,7 @@ class Game {
 		Effect(string);
 		bool operator==(Effect&);
 	};
+	class Saves;
 	class Human {
 		int HP = 70 + (rand() % 5) * 5; // Очки здоровья
 		int FP = 30 + (rand() % 7) * 5; // Очки сытости
@@ -69,6 +69,7 @@ class Game {
 		int Sol = 0; // Сол - сутки на Марсе
 		int Hour = 7;
 		int HalChance = rand() % 11; // Шанс словить галлюцинацию в %
+		Saves *S;
 		vector<Effect> EffectsVector;
 		void EffectsAction();
 	public:
@@ -79,6 +80,9 @@ class Game {
 		void AddEffect(Effect);
 		void EffectsTick();
 		void Null(); // Обнуление данных
+		void Changes(bool&, bool&);
+		void Validate();
+		void SetPointer(Saves*);
 	};
 	class Item {
 	protected:
@@ -238,11 +242,11 @@ class Game {
 		void RoomVarietyPrint(vector<string>);
 		int RoomChoose(vector<string>&, string&);
 		void RoomSearching(Room&, string, int);
-		void EnterRoom(int RoomType, int&);
+		void EnterRoom(bool&, bool&, int RoomType, int&);
 		void DenyToGoIn(int Type, string RoomType, bool& Entering);
 	public:
 		void GetPath();
-		void LocationGeneration(int&);
+		void LocationGeneration(bool&, bool&, int&);
 		void SetPointer(Human*);
 	};
 	Human H;
@@ -264,10 +268,9 @@ class Game {
 	void Introduction();
 	void InfoShowing(int HP, int FP, int EP, int PHP, double DP, int Sol, int Hour);
 	int NewGame();
-	void Changes(bool& Life, int& Hour, bool& Working);
 	int ActionsChoose(int Sol, int Hour);
 	void Eating(Inventory& I, bool& IsBack, int& Hour);
-	void Outing(int&, bool&);
+	void Outing(bool&, bool&, int&, bool&);
 	void Workplace(int&, bool&);
 	void BookReading(int&, bool&);
 	void DiaryReading(int&, bool&);
@@ -275,13 +278,13 @@ class Game {
 	void NotesWriting();
 	void Sleeping();
 	void Escape(bool& Life, int& Hour, bool&);
-	void Actions(int Choose, bool& Life, int& Hour, bool& IsBack);
+	void Actions(int Choose, bool& Life, int& Hour, bool& IsBack, bool&);
 	void RoomLooking(Inventory& I);
-	void Death(bool& Working);
+	static void Death(bool& Working);
 	void ChangesDay(bool IsExit);
 	void Back(int& Hour, bool& IsBack);
-	void Validate();
 	bool Statement(string, string);
+	void Validate();
 public:
 	Game();
 	int Menu();
