@@ -19,6 +19,8 @@ void Game::Saves::Load(Human& H, bool& IsExit) {
 	fin >> NumberDouble;
 	H.Set(HumanInfo::DP, 'N', NumberDouble);
 	fin >> Number;
+	H.Set(HumanInfo::HalChance, 'N', Number);
+	fin >> Number;
 	H.Set(HumanInfo::Sol, 'N', Number);
 	fin >> Number;
 	H.Set(HumanInfo::Hour, 'N', Number);
@@ -28,6 +30,8 @@ void Game::Saves::Load(Human& H, bool& IsExit) {
 		fin >> String >> Number;
 		ConsumableVector.push_back(Game::ConsumableMap[String]);
 		ConsumableVector[i]->SetCount(Number);
+		ConsumableVector[i]->SetBeing();
+		ConsumableVector[i]->SetID(i);
 	}
 	fin >> Number;
 	BookVector.resize(Number);
@@ -37,6 +41,11 @@ void Game::Saves::Load(Human& H, bool& IsExit) {
 		BookVector[i]->SetCount(Number);
 		BookVector[i]->SetPagesCount(Temp);
 		BookVector[i]->SetIsBeing(true);
+	}
+	fin >> Number;
+	for (int i = 0; i < Number; i++) {
+		fin >> Temp;
+		IsAchMap[Temp] = true;
 	}
 	fin >> IsExit;
 }
@@ -49,6 +58,7 @@ void Game::Saves::Download(Human& H, bool IsExit) {
 	fout << H.GetI(HumanInfo::EP) << endl;
 	fout << H.GetI(HumanInfo::PHP) << endl;
 	fout << H.GetD(HumanInfo::DP) << endl;
+	fout << H.GetI(HumanInfo::HalChance) << endl;
 	fout << H.GetI(HumanInfo::Sol) << endl;
 	fout << H.GetI(HumanInfo::Hour) << endl;
 	fout << ConsumableCount << endl;
@@ -62,6 +72,9 @@ void Game::Saves::Download(Human& H, bool IsExit) {
 		fout << BookVector[i]->GetCount() << endl;
 		fout << BookVector[i]->GetPagesCount() << endl;
 	}
+	fout << IsAchMap.size() << endl;
+	for (auto i : IsAchMap)
+		fout << i.first << endl;
 	fout << IsExit << endl;
 }
 bool Game::Saves::GetNew() {

@@ -133,6 +133,8 @@ class Game {
 		static void SetPointer(Human*);
 		Consumable Null();
 		void AddEffect(Effect);
+		void SetBeing(bool Value = true);
+		void SetID(int);
 	};
 	class Book : public Consumable {
 		int PagesCount = 0;
@@ -262,7 +264,7 @@ class Game {
 	protected:
 		bool NewGame = true;
 	};
-	enum Achivement {
+	enum Achievement {
 		Ach_Aspirin,
 		Ach_Barton,
 		Ach_Plushkin,

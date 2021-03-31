@@ -140,3 +140,9 @@ void Game::Consumable::EffectsToHuman() {
 		(*H).AddEffect(GiveEffect[i]);
 	}
 }
+void Game::Consumable::SetBeing(bool Value) {
+	IsBeing = Value;
+}
+void Game::Consumable::SetID(int Value) {
+	ID = Value;
+}

@@ -763,6 +763,7 @@ Menu:
 				switch (Click) {
 				case 49: {
 					ofstream fout("Data\\Achievements.txt");
+					IsAchMap.clear();
 					return;
 				}
 				case 50: goto Menu;
@@ -804,12 +805,13 @@ void Game::Menu_5(bool& Working) {
 	T.V(2);
 	T.V(4, 25);
 	T.PRC(15);
-	int Variety = _getch();
-	switch (Variety) {
-	case 49: Variety = 1; break;
-	case 50: Variety = 2; break;
+	while (true) {
+		int Variety = _getch();
+		switch (Variety) {
+		case 49: Working = false; return;
+		case 50: return;
+		}
 	}
-	if (Variety == 1) Working = false;
 }
 void Game::Validate() {
 	if (H.GetI(HumanInfo::HP) > 100) H.Set(HumanInfo::HP, 'N', 100);
