@@ -73,6 +73,16 @@ void Game::Action::FoundedItems() {
 		fout << "Профессор Бартон знает своё дело\nСобрать 3 сыворотки\n";
 		IsAchMap[Ach_Barton] = true;
 	}
+	if (ConsumableVector.size() >= 20 && !IsAchMap[Ach_Plushkin]) {
+		ofstream fout("Data\\Achievements.txt", ofstream::app);
+		fout << "Плюшкин\nСобрать 20 различных видов пищи и медикаментов\n";
+		IsAchMap[Ach_Plushkin] = true;
+	}
+	if (BookVector.size() >= 4 && !IsAchMap[Ach_BookWorm]) {
+		ofstream fout("Data\\Achievements.txt", ofstream::app);
+		fout << "Книжный червь\nСобрать не менее 4 видов литературы\n";
+		IsAchMap[Ach_BookWorm] = true;
+	}
 	if (IsEmpty) {
 		T.PRC(3, "Вы ничего не нашли\n");
 		H->Set(HumanInfo::PHP, '-', 3);

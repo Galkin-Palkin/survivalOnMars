@@ -1,6 +1,7 @@
 #include "Game.h"
 #include <conio.h>
 #include <string>
+#include <fstream>
 void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string>& RoomVarietyVector, Room& room, bool IsFirst) {
 	int RoomNumber = 0;
 	switch (RoomType) { // Проверка на тип комнаты
@@ -217,6 +218,7 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 		if (rand() % 5 == 0) {
 			cout << "Под одним из обломков ты увидел чью-то расплющенную кисть... Тебе стало дурно от этого и ты поспешил закрыть дверь" << endl;
 			(*H).Set(HumanInfo::PHP, '-', 40);
+			H->Set(HumanInfo::HalChance, '+', 5);
 		}
 		else cout << "Искать тебе здесь явно нечего, и ты закрыл дверь" << endl;
 		Entering = false;
@@ -277,6 +279,11 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 			if (Code < 1000 || Code > 9999) Code = 0;
 			if (Code == Thousands * 1000 + Hundreds * 100 + Decs * 10 + Ones) {
 				system("cls");
+				if (!IsAchMap[Ach_Hacker]) {
+					ofstream fout("Data\\Achievements.txt", ofstream::app);
+					fout << "Видел, как в кино это делается\nПодобрать код к замку и открыть дверь\n";
+					IsAchMap[Ach_Hacker] = true;
+				}
 				if (!Chance) {
 					switch (Type) {
 					case 1:
