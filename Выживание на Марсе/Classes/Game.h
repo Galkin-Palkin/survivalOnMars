@@ -277,6 +277,7 @@ class Game {
 	static vector<string> NotesVector;
 	static vector<pair<string, string>> AchievementVector;
 	static map<int, bool> IsAchMap;
+	static int NightmareNumber;
 	void Introduction();
 	void InfoShowing(int HP, int FP, int EP, int PHP, double DP, int Sol, int Hour);
 	int NewGame();
@@ -296,6 +297,7 @@ class Game {
 	void ChangesDay(bool IsExit);
 	void Back(int& Hour, bool& IsBack);
 	bool Statement(string, string);
+	void Nightmare(string);
 	void Validate();
 public:
 	Game();

@@ -144,6 +144,7 @@ void Game::Human::Null() {
 	ofstream fout("Data\\Notes.txt");
 	fout << "";
 	ConsumableCount = 0;
+	NightmareNumber = 1;
 }
 void Game::Human::Changes(bool& Life, bool& Working) {
 	FP -= 5;
