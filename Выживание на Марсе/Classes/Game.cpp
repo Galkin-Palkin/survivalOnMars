@@ -537,12 +537,11 @@ void Game::Sleeping() {
 		H.EffectsTick();
 		Sleep(970);
 		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
-		if (rand() % 1 == 0 && NightmareNumber <= 1) {
+		if (rand() % 1 == 0 && NightmareNumber <= 3) {
 			Nightmare("Data\\Nightmares\\" + to_string(NightmareNumber++) + ".txt");
 			break;
 		}
 	}
-
 }
 void Game::Escape(bool& Life, int& Hour, bool& IsBack) {
 	system("cls");
