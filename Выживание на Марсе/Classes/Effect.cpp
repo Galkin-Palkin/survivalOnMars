@@ -32,6 +32,7 @@ Game::Effect::Effect(string Path) {
 	HIMap["HC"] = HumanInfo::HalChance;
 	ifstream fin(Path);
 	string Type;
+	fin >> this->Type;
 	double Value;
 	int Size;
 	fin >> Duration;
@@ -47,4 +48,11 @@ bool Game::Effect::operator==(Effect &Temp) {
 		if (ParametrsNames[i] != Temp.ParametrsNames[i] || ParametrsValues[i] != Temp.ParametrsValues[i])
 			return false;
 	return true;
+}
+Game::Effect& Game::Effect::SetDuration(int Value) {
+	Duration = Value;
+	return *this;
+}
+string Game::Effect::GetType() {
+	return Type;
 }

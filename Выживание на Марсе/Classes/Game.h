@@ -47,17 +47,20 @@ class Game {
 	class Human;
 	class Effect {
 		int Duration = 0;
+		string Type;
 		static Human* H;
 		vector<HumanInfo> ParametrsNames;
 		vector<double> ParametrsValues;
 	public:
 		void EffectAction();
 		int GetDuration();
+		Effect& SetDuration(int);
 		void Tick();
 		static void SetPointer(Human*);
 		Effect();
 		Effect(string);
 		bool operator==(Effect&);
+		string GetType();
 	};
 	class Saves;
 	class Human {
@@ -75,6 +78,7 @@ class Game {
 	public:
 		int GetI(HumanInfo);
 		double GetD(HumanInfo);
+		int GetEffectsCount();
 		void Set(HumanInfo, char, int);
 		void Set(HumanInfo, char, double);
 		void AddEffect(Effect);
@@ -83,6 +87,8 @@ class Game {
 		void Changes(bool&, bool&);
 		void Validate();
 		void SetPointer(Saves*);
+		void ClearEffects();
+		void SaveEffects(ofstream&);
 	};
 	class Item {
 	protected:
@@ -278,6 +284,7 @@ class Game {
 	static vector<pair<string, string>> AchievementVector;
 	static map<int, bool> IsAchMap;
 	static int NightmareNumber;
+	static map<string, Effect> EffectMap;
 	void Introduction();
 	void InfoShowing(int HP, int FP, int EP, int PHP, double DP, int Sol, int Hour);
 	int NewGame();

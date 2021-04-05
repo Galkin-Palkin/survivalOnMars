@@ -663,6 +663,13 @@ Game::Game() {
 	BookMap["CriminalDrama"] = &I.CriminalDrama;
 	BookMap["ScienceFiction"] = &I.ScienceFiction;
 	BookMap["Thriller"] = &I.Thriller;
+	EffectMap["Adrenaline"] = Effect("Data\\Effects\\Adrenaline.txt");
+	EffectMap["Agony"] = Effect("Data\\Effects\\Agony.txt");
+	EffectMap["Calming"] = Effect("Data\\Effects\\Calming.txt");
+	EffectMap["Fatigue"] = Effect("Data\\Effects\\Fatigue.txt");
+	EffectMap["Recovery"] = Effect("Data\\Effects\\Recovery.txt");
+	EffectMap["Satiety"] = Effect("Data\\Effects\\Satiety.txt");
+	EffectMap["Starvation"] = Effect("Data\\Effects\\Starvation.txt");
 }
 int Game::Menu() {
 	system("cls");

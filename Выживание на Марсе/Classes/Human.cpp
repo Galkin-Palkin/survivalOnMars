@@ -45,6 +45,9 @@ double Game::Human::GetD(HumanInfo Type) {
 		return -100000;
 	}
 }
+int Game::Human::GetEffectsCount() {
+	return EffectsVector.size();
+}
 void Game::Human::Set(HumanInfo Type, char Sign, int NumberI) {
 	// Реализовано криво, потом переделаю. Нужно заменить 'N' на '=', убрать '0'. Перегрузить функцию для вещественных чисел
 	switch (Type) {
@@ -214,6 +217,16 @@ void Game::Human::Validate() {
 }
 void Game::Human::SetPointer(Saves* P) {
 	S = P;
+}
+void Game::Human::ClearEffects() {
+	EffectsVector.clear();
+}
+void Game::Human::SaveEffects(ofstream& fout) {
+	fout << EffectsVector.size() << endl;
+	for (auto i : EffectsVector) {
+		fout << i.GetType() << endl
+		<< i.GetDuration() << endl;
+	}
 }
 void Game::Human::AddEffect(Effect Ef) {
 	EffectsVector.push_back(Ef);

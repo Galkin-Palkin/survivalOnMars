@@ -47,6 +47,12 @@ void Game::Saves::Load(Human& H, bool& IsExit) {
 		fin >> Temp;
 		IsAchMap[Temp] = true;
 	}
+	H.ClearEffects();
+	fin >> Number;
+	for (int i = 0; i < Number; i++) {
+		fin >> String >> Temp;
+		H.AddEffect(EffectMap[String].SetDuration(Temp));
+	}
 	fin >> NightmareNumber;
 	fin >> IsExit;
 }
@@ -76,6 +82,7 @@ void Game::Saves::Download(Human& H, bool IsExit) {
 	fout << IsAchMap.size() << endl;
 	for (auto i : IsAchMap)
 		fout << i.first << endl;
+	H.SaveEffects(fout);
 	fout << NightmareNumber << endl;
 	fout << IsExit << endl;
 }
