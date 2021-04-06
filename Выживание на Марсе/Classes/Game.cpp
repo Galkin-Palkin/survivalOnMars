@@ -511,10 +511,13 @@ void Game::Nightmare(string Path) {
 		}
 	}
 	fin >> Size;
-	fin >> ws;
-	getline(fin, Temp);
-	DiaryVector.push_back(Temp);
 	H.Set(HumanInfo::PHP, '+', Size);
+	fin >> Size;
+	for (int i = 0; i < Size; i++) {
+		fin >> ws;
+		getline(fin, Temp);
+		DiaryVector.push_back(Temp);
+	}
 	for (size_t i = 0; i < Text.size(); i++) {
 		system("cls");
 		for (size_t j = 0; j < Text[i].size(); j++)
@@ -537,7 +540,7 @@ void Game::Sleeping() {
 		H.EffectsTick();
 		Sleep(970);
 		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
-		if (rand() % 1 == 0 && NightmareNumber <= 3) {
+		if (rand() % 1 == 0 && NightmareNumber <= 4) {
 			Nightmare("Data\\Nightmares\\" + to_string(NightmareNumber++) + ".txt");
 			break;
 		}
