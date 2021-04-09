@@ -398,14 +398,14 @@ void Game::Buildings::LocationGeneration(bool& Life, bool& Working, int& Hour) {
 			case 49: {
 				EnterRoom(Life, Working, RoomVector[(size_t)Click - 49].first, Hour);
 				Clicking = false;
-				RoomVector.erase(RoomVector.begin() + (size_t)Click - 49);
+				RoomVector.erase(RoomVector.begin() + size_t(Click - 49));
 				break;
 			}
 			case 50: {
 				if (RoomVector.size() > 1) {
 					EnterRoom(Life, Working, RoomVector[(size_t)Click - 49].first, Hour);
 					Clicking = false;
-					RoomVector.erase(RoomVector.begin() + (size_t)Click - 49);
+					RoomVector.erase(RoomVector.begin() + size_t(Click - 49));
 				}
 				break;
 			}
@@ -413,7 +413,7 @@ void Game::Buildings::LocationGeneration(bool& Life, bool& Working, int& Hour) {
 				if (RoomVector.size() > 2) {
 					EnterRoom(Life, Working, RoomVector[(size_t)Click - 49].first, Hour);
 					Clicking = false;
-					RoomVector.erase(RoomVector.begin() + (size_t)Click - 49);
+					RoomVector.erase(RoomVector.begin() + size_t(Click - 49));
 				}
 				break;
 			}
