@@ -313,16 +313,27 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 				int DenyingType = 1 + rand() % 4;
 				switch (DenyingType) {
 				case 1:
-					T.PRC(1, "\n");
+					T.PRC(1, "После последней попытки терминал выключился, и твой путь в комнату стал заказан\n");
 					break;
 				case 2:
-					T.PRC(1, "\n");
+					T.PRC(1, "Раздался оглушающий писк, и на терминале высветилось:\n\n");
+					T.PRC(10, "\"ТЕРМИНАЛ ЗАБЛОКИРОВАН. ОБРАТИТЕСЬ К УПРАВЛЯЮЩЕМУ СЕКТОРA\"\n");
 					break;
 				case 3:
-					T.PRC(1, "\n");
+					T.PRC(1, "После последнего нажатия кнопки прозвучала кратковременная сирена, и терминал был закрыт\n");
 					break;
 				case 4:
-					T.PRC(1, "\n");
+					T.PRC(1, "Экран терминала стал красным, и на нём белыми буквами высветилось:\n\n");
+					T.PRC(15, "SERVER CONNECTING ERROR\n");
+					T.PRC(15, "SYSTEM ERROR: 0xF10A819C34\n");
+					T.PRC(15, "SYSTEM ERROR: 0x92D703\n");
+					T.PRC(15, "STREAM 0x14D15 WAS ABORTED\n");
+					T.PRC(15, "STREAM 0x913F WAS ABORTED\n");
+					T.PRC(15, "REBOOTING ERROR: 0xD13280FC\n");
+					T.PRC(15, "STREAM 0x13F WAS ABORTED\n");
+					T.PRC(15, "TRANSPLANTATION ERROR: 0x91DF\n");
+					T.PRC(15, "STREAM 0x3CA97 WAS ABORTED\n");
+					T.PRC(15, "SYSTEM TERMINATED\n");
 					break;
 				}
 				break;
@@ -387,36 +398,56 @@ void Game::Buildings::LocationGeneration(bool& Life, bool& Working, int& Hour) {
 		T.PRC(3, "Осталось неосмотренных отделов: ");
 		T.PRC(15, to_string(CountOfRooms) + '\n');
 		T.V(4, 40);
+		if (Hour >= 21 || H->GetI(HumanInfo::EP) < 10 || H->GetI(HumanInfo::PHP) <= 30)
+			RoomVector.clear();
 		for (size_t i = 0; i < RoomVector.size(); i++) {
 			T.HV(13, i + 1, 15, RoomVector[i].second);
 			T.V(4, 15);
 		}
-		bool Clicking = true;
-		while (Clicking) {
-			int Click = _getch();
-			switch (Click) {
-			case 49: {
-				EnterRoom(Life, Working, RoomVector[(size_t)Click - 49].first, Hour);
-				Clicking = false;
-				RoomVector.erase(RoomVector.begin() + size_t(Click - 49));
-				break;
+		T.HV(13, RoomVector.size() + 1, 15, "Вернуться домой");
+		if (!RoomVector.size()) {
+			while (true) {
+				int Click = _getch();
+				if (Click == 49) return;
 			}
-			case 50: {
-				if (RoomVector.size() > 1) {
+		}
+		else {
+			bool Clicking = true;
+			while (Clicking) {
+				int Click = _getch();
+				switch (Click) {
+				case 49: {
 					EnterRoom(Life, Working, RoomVector[(size_t)Click - 49].first, Hour);
 					Clicking = false;
-					RoomVector.erase(RoomVector.begin() + size_t(Click - 49));
+					RoomVector.erase(RoomVector.begin() + ((size_t)Click - 49));
+					break;
 				}
-				break;
-			}
-			case 51: {
-				if (RoomVector.size() > 2) {
-					EnterRoom(Life, Working, RoomVector[(size_t)Click - 49].first, Hour);
-					Clicking = false;
-					RoomVector.erase(RoomVector.begin() + size_t(Click - 49));
+				case 50: {
+					if (RoomVector.size() > 1) {
+						EnterRoom(Life, Working, RoomVector[(size_t)Click - 49].first, Hour);
+						Clicking = false;
+						RoomVector.erase(RoomVector.begin() + ((size_t)Click - 49));
+					}
+					else if (RoomVector.size() == 1)
+						return;
+					break;
 				}
-				break;
-			}
+				case 51: {
+					if (RoomVector.size() > 2) {
+						EnterRoom(Life, Working, RoomVector[(size_t)Click - 49].first, Hour);
+						Clicking = false;
+						RoomVector.erase(RoomVector.begin() + ((size_t)Click - 49));
+					}
+					else if (RoomVector.size() == 2)
+						return;
+					break;
+				}
+				case 52: {
+					if (RoomVector.size() >= 3)
+						return;
+					break;
+				}
+				}
 			}
 		}
 		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));

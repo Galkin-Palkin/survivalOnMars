@@ -103,6 +103,30 @@ void Game::Room::PlacePrint(vector<Action> PlacesVector, string RoomName) {
 	system("cls");
 	T.PRC(1, "Ты находишься в локации \"" + RoomName + "\"\n");
 	T.V(4, 60);
+	if (rand() % 100 == 0 && !IsScare) {
+		int Variety = 1 + rand() % 3;
+		switch (Variety) {
+		case 1:
+			T.PRC(4, "В коридоре лежит труп со вспоротой грудной клеткой\n");
+			T.V(4, 40);
+			H->Set(HumanInfo::PHP, '-', 70);
+			H->Set(HumanInfo::HalChance, '+', 10);
+			break;
+		case 2:
+			T.PRC(4, "У двери небольшое пятно крови, а рядом лежит обглоданная кисть без безымянного и большого пальцев\n");
+			T.V(4, 40);
+			H->Set(HumanInfo::PHP, '-', 40);
+			H->Set(HumanInfo::HalChance, '+', 4);
+			break;
+		case 3:
+			T.PRC(4, "На бетонном полу валяется глаз и его нервное окончание\n");
+			T.V(4, 40);
+			H->Set(HumanInfo::PHP, '-', 20);
+			H->Set(HumanInfo::HalChance, '+', 3);
+			break;
+		}
+		IsScare = true;
+	}
 	T.PRC(1, "Места для поиска:\n");
 	T.V(4, 45);
 	for (size_t i = 0; i < PlacesVector.size(); i++) {
@@ -110,4 +134,7 @@ void Game::Room::PlacePrint(vector<Action> PlacesVector, string RoomName) {
 		if (i + (size_t)1 < PlacesVector.size()) T.V(4, 30);
 	}
 	T.V(4, 60);
+}
+void Game::Room::SetPointer(Human *HPointer) {
+	H = HPointer;
 }

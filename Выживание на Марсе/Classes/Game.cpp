@@ -527,7 +527,7 @@ void Game::Nightmare(string Path) {
 		system("pause");
 	}
 }
-void Game::Sleeping() {
+bool Game::Sleeping() {
 	int Counter = 0;
 	int HoursN = 23;
 	while (Counter != 8) {
@@ -540,11 +540,12 @@ void Game::Sleeping() {
 		H.EffectsTick();
 		Sleep(970);
 		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
-		if (rand() % 1 == 0 && NightmareNumber <= 4) {
+		if (rand() % 20 == 0 && NightmareNumber <= 4) {
 			Nightmare("Data\\Nightmares\\" + to_string(NightmareNumber++) + ".txt");
-			break;
+			return true;
 		}
 	}
+	return false;
 }
 void Game::Escape(bool& Life, int& Hour, bool& IsBack) {
 	system("cls");
@@ -591,7 +592,7 @@ void Game::RoomLooking(Inventory& I) {
 	I.Hardtack.SetNew(rand() % 2 + 1);
 	I.DriedFruits.SetNew(rand() % 2 + 1);
 	I.ScienceFiction.SetNew();
-	DiaryVector.push_back("Моя Софи... Я так по ней скучаю... Интересно, как она? Мы не виделись с апреля прошлого года... Или мая... Не помню. Но надеюсь, что с ней всё хорошо");
+	DiaryVector.push_back("Автором книги, которая лежит на столе, является Пол Рергард. Год издательства - 2061. Интересно, какой сейчас год?");
 	FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 }
 void Game::Death(bool& Working) {
@@ -624,21 +625,22 @@ void Game::ChangesDay(bool IsExit) {
 	H.Set(HumanInfo::Sol, '+', 1);
 	DiaryVector.clear();
 	if (H.GetI(HumanInfo::Sol) != 1 && !IsExit) {
-		Sleeping();
+		if (!Sleeping())
+			H.Set(HumanInfo::PHP, '+', 20);
 		H.Set(HumanInfo::HP, '+', 5);
 		H.Set(HumanInfo::DP, '-', 1.0);
 		H.Set(HumanInfo::EP, '+', 50);
 		H.Set(HumanInfo::FP, '-', 15);
-		H.Set(HumanInfo::PHP, '+', 20);
 		Validate();
 	}
 }
 Game::Game() {
-	B.SetPointer(&H);
+	Room::SetPointer(&H);
 	Consumable::SetPointer(&H);
 	Effect::SetPointer(&H);
 	Action::SetPointer(&H);
 	H.SetPointer(&S);
+	B.SetPointer(&H);
 	ConsumableMap["Aspirin"] = &I.Aspirin;
 	ConsumableMap["BartonsDrug"] = &I.BartonsDrug;
 	ConsumableMap["CannedApple"] = &I.CannedApple;

@@ -213,10 +213,12 @@ class Game {
 	class Room {
 	private:
 		Text T;
+		static Human* H;
 		vector<vector<Action>> roomToActions; // Хранит места для поиска
 		vector<string> roomToName; // Названия комнат
 		vector<string> floorPlan; // Карта помещения
 		string Info;
+		bool IsScare = false;
 	public:
 		Room(string);
 		void Print();
@@ -232,6 +234,7 @@ class Game {
 		void operator= (Room);
 		vector<vector<Action>> GetVectorAction();
 		void SetVectorAction(vector<vector<Action>>);
+		static void SetPointer(Human*);
 	};
 	static map<string, Consumable*> ConsumableMap;
 	class Buildings {
@@ -296,7 +299,7 @@ class Game {
 	void DiaryReading(int&, bool&);
 	void ReadNotes(int&, bool&);
 	void NotesWriting();
-	void Sleeping();
+	bool Sleeping();
 	void Escape(bool& Life, int& Hour, bool&);
 	void Actions(int Choose, bool& Life, int& Hour, bool& IsBack, bool&);
 	void RoomLooking(Inventory& I);
