@@ -28,12 +28,12 @@ string Game::Action::GetName() {
 	return Name;
 }
 void Game::Action::GenerateItems() {
-	for (int i = 0; i < SearchingResult.size(); i++) {
-		if (SearchingResult[i].GetChance() - rand() % 101 >= 0) SearchingResult[i].SetCount(1 + (rand() % 10 == 0));
-	}
-	for (size_t i = 0; i < FoundedBooks.size(); i++) {
-		if (FoundedBooks[i].GetChance() - rand() % 101 >= 0) FoundedBooks[i].SetCount(1);
-	}
+	for (int i = 0; i < SearchingResult.size(); i++)
+		if (SearchingResult[i].GetChance() - rand() % 101 >= 0)
+			SearchingResult[i].SetCount(1 + (rand() % 10 == 0));
+	for (size_t i = 0; i < FoundedBooks.size(); i++)
+		if (FoundedBooks[i].GetChance() - rand() % 101 >= 0)
+			FoundedBooks[i].SetCount(1);
 }
 void Game::Action::FoundedItems() {
 	system("cls");

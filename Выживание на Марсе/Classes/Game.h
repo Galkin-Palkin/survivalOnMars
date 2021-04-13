@@ -288,6 +288,7 @@ class Game {
 	static map<int, bool> IsAchMap;
 	static int NightmareNumber;
 	static map<string, Effect> EffectMap;
+	static int NightmareChance;
 	void Introduction();
 	void InfoShowing(int HP, int FP, int EP, int PHP, double DP, int Sol, int Hour);
 	int NewGame();

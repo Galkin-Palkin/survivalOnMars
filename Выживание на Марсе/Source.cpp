@@ -2,6 +2,7 @@
 using namespace std;
 int Game::ConsumableCount = 0;
 int Game::NightmareNumber = 1;
+int Game::NightmareChance = 0;
 vector<Game::Consumable*> Game::ConsumableVector;
 map<string, Game::Consumable*> Game::ConsumableMap;
 map<string, Game::HumanInfo> Game::HIMap;

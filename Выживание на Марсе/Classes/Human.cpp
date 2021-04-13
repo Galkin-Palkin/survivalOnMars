@@ -148,6 +148,7 @@ void Game::Human::Null() {
 	fout << "";
 	ConsumableCount = 0;
 	NightmareNumber = 1;
+	NightmareChance = 0;
 }
 void Game::Human::Changes(bool& Life, bool& Working) {
 	FP -= 5;

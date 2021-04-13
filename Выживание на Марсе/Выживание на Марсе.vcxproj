@@ -156,13 +156,6 @@
     <ClInclude Include="Classes\Game.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\..\..\..\Desktop\1.ico" />
-    <Image Include="icon1.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Выживание на Марсе.rc" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

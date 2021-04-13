@@ -8,6 +8,7 @@ void Game::Saves::Load(Human& H, bool& IsExit) {
 	int Number, Temp;
 	double NumberDouble;
 	fin >> NewGame;
+	fin >> NightmareChance;
 	fin >> Number;
 	H.Set(HumanInfo::HP, 'N', Number);
 	fin >> Number;
@@ -60,6 +61,7 @@ void Game::Saves::Download(Human& H, bool IsExit) {
 	// Загрузка из файла
 	ofstream fout("Data\\Parameters.txt");
 	fout << NewGame << endl;
+	fout << NightmareChance << endl;
 	fout << H.GetI(HumanInfo::HP) << endl;
 	fout << H.GetI(HumanInfo::FP) << endl;
 	fout << H.GetI(HumanInfo::EP) << endl;

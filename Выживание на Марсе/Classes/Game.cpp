@@ -540,11 +540,13 @@ bool Game::Sleeping() {
 		H.EffectsTick();
 		Sleep(970);
 		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
-		if (rand() % 20 == 0 && NightmareNumber <= 4) {
+		if (rand() % (50 - NightmareChance) == 0 && NightmareNumber <= 6) {
 			Nightmare("Data\\Nightmares\\" + to_string(NightmareNumber++) + ".txt");
+			NightmareChance = 0;
 			return true;
 		}
 	}
+	NightmareChance = (NightmareChance + 5) % 50;
 	return false;
 }
 void Game::Escape(bool& Life, int& Hour, bool& IsBack) {
