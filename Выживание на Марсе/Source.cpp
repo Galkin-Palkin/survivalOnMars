@@ -10,6 +10,7 @@ Game::Human* Game::Consumable::H = nullptr;
 Game::Human* Game::Effect::H = nullptr;
 Game::Human* Game::Action::H = nullptr;
 Game::Human* Game::Room::H = nullptr;
+Game::Human* Game::Enemy::H = nullptr;
 vector<string> Game::NotesVector;
 vector<string> Game::DiaryVector;
 vector<Game::Book*> Game::BookVector;

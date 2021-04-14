@@ -158,9 +158,7 @@ void Game::Buildings::RoomSearching(Room& Room, string RoomName, int RoomVarType
 	}
 	Room.PlaceClear(RoomVarType - 1);
 }
-#pragma region Enters
-void Game::Buildings::EnterRoom(bool& Life, bool& Working, int RoomType, int& Hour)
-{
+void Game::Buildings::EnterRoom(bool& Life, bool& Working, int RoomType, int& Hour) {
 	string RoomDenyType; // Говорит, доступ в какое помещение невозможен
 	vector<string> RoomVarietyVector; // Вектор названий комнат помещения
 	string Temp;
@@ -182,6 +180,7 @@ void Game::Buildings::EnterRoom(bool& Life, bool& Working, int RoomType, int& Ho
 		int DenyType = 1 + rand() % 3;
 		DenyToGoIn(DenyType, RoomDenyType, Entering);
 	}
+	Battle();
 	if (Entering) {
 		int RoomVariety = 1 + rand() % 2;
 		RoomMap(RoomType, RoomVariety, RoomVarietyVector, Room, true);
@@ -199,7 +198,6 @@ void Game::Buildings::EnterRoom(bool& Life, bool& Working, int RoomType, int& Ho
 		}
 	}
 }
-#pragma endregion
 
 void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 	// Запрет на вход внутрь помещения
@@ -456,4 +454,21 @@ void Game::Buildings::LocationGeneration(bool& Life, bool& Working, int& Hour) {
 }
 void Game::Buildings::SetPointer(Human* Temp) {
 	H = Temp;
+}
+
+void Game::Buildings::Battle() {
+	string Path;
+	int Variety = rand() % 3;
+	switch (Variety) {
+	case 0: Path = "Data\\Enemies\\1.txt"; break;
+	case 1: Path = ""; break;
+	case 2: Path = ""; break;
+	}
+	Path = "Data\\Enemies\\1.txt";
+	Enemy En(Path);
+	while (true) {
+		En.Show();
+		Sleep(10000);
+	}
+	system("pause");
 }

@@ -641,6 +641,7 @@ Game::Game() {
 	Consumable::SetPointer(&H);
 	Effect::SetPointer(&H);
 	Action::SetPointer(&H);
+	Enemy::SetPointer(&H);
 	H.SetPointer(&S);
 	B.SetPointer(&H);
 	ConsumableMap["Aspirin"] = &I.Aspirin;

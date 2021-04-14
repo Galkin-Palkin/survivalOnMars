@@ -144,12 +144,16 @@
     <ClCompile Include="Classes\Building.cpp" />
     <ClCompile Include="Classes\Consumable.cpp" />
     <ClCompile Include="Classes\Effect.cpp" />
+    <ClCompile Include="Classes\Enemy.cpp" />
     <ClCompile Include="Classes\Game.cpp" />
     <ClCompile Include="Classes\Human.cpp" />
     <ClCompile Include="Classes\Inventory.cpp" />
+    <ClCompile Include="Classes\Obstacle.cpp" />
     <ClCompile Include="Classes\Room.cpp" />
     <ClCompile Include="Classes\Saves.cpp" />
     <ClCompile Include="Classes\Text.cpp" />
+    <ClCompile Include="Classes\Tool.cpp" />
+    <ClCompile Include="Classes\Weapon.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>

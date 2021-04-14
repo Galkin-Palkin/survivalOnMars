@@ -156,6 +156,48 @@ class Game {
 		int GetTotalPagesCount();
 		void SetIsBeing(bool);
 	};
+	class Obstacle {
+		vector<string> Text;
+		vector<string> Specialisation;
+		int DurPoints = 100;
+	public:
+		Obstacle() = default;
+	};
+	class Weapon : public Item {
+	protected:
+		int Damage = 0;
+		double Durability = 100.0;
+		double BreakPerUse = 2.0;
+		string Type;
+	public:
+		void SetParameters(string, string, double, int, double, double);
+		void Attack();
+	};
+	class Tool : public Weapon {
+		vector<string> Specialisation;
+		int DamageToObstacles = 0;
+	public:
+
+	};
+	class Enemy {
+		static Human* H;
+		string Name;
+		int HP = 100;
+		vector<HumanInfo> DamageType;
+		vector<double> DamageValue;
+		vector<string> Info;
+		int ChanceToHit = 50;
+		int ChanceToLeave = 10;
+	public:
+		Enemy() = default;
+		Enemy(string);
+		bool IsDead();
+		void Show();
+		int GetChanceToLeave();
+		void Damaged(int);
+		void Attack(bool&);
+		static void SetPointer(Human*);
+	};
 	static vector<Book*> BookVector;
 	static map<string, Book*> BookMap;
 	class Inventory {
@@ -255,6 +297,7 @@ class Game {
 		void RoomSearching(Room&, string, int);
 		void EnterRoom(bool&, bool&, int RoomType, int&);
 		void DenyToGoIn(int Type, string RoomType, bool& Entering);
+		void Battle();
 	public:
 		void GetPath();
 		void LocationGeneration(bool&, bool&, int&);
