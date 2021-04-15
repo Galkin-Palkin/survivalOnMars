@@ -181,6 +181,7 @@ class Game {
 	};
 	class Enemy {
 		static Human* H;
+		static Saves* S;
 		string Name;
 		int HP = 100;
 		vector<HumanInfo> DamageType;
@@ -195,8 +196,8 @@ class Game {
 		void Show();
 		int GetChanceToLeave();
 		void Damaged(int);
-		void Attack(bool&);
-		static void SetPointer(Human*);
+		void Attack(bool&, bool&);
+		static void SetPointer(Human*, Saves*);
 	};
 	static vector<Book*> BookVector;
 	static map<string, Book*> BookMap;
@@ -284,6 +285,7 @@ class Game {
 		// Здания
 		Inventory I;
 		Human* H = nullptr;
+		Saves* S = nullptr;
 		Text T;
 		vector<Room> rooms;
 		/// <summary>
@@ -297,11 +299,11 @@ class Game {
 		void RoomSearching(Room&, string, int);
 		void EnterRoom(bool&, bool&, int RoomType, int&);
 		void DenyToGoIn(int Type, string RoomType, bool& Entering);
-		void Battle();
+		void Battle(bool&, bool&);
 	public:
 		void GetPath();
 		void LocationGeneration(bool&, bool&, int&);
-		void SetPointer(Human*);
+		void SetPointer(Human*, Saves*);
 	};
 	Human H;
 	Buildings B;
@@ -347,7 +349,7 @@ class Game {
 	void Escape(bool& Life, int& Hour, bool&);
 	void Actions(int Choose, bool& Life, int& Hour, bool& IsBack, bool&);
 	void RoomLooking(Inventory& I);
-	static void Death(bool& Working);
+	static void Death(bool& Working, bool&);
 	void ChangesDay(bool IsExit);
 	void Back(int& Hour, bool& IsBack);
 	bool Statement(string, string);
@@ -358,7 +360,7 @@ public:
 	int Menu();
 	void GamingProcess(bool& Working);
 	void Menu_2(bool& Working);
-	void Menu_3(bool &Working);
+	void Menu_3(bool& Working);
 	void Menu_4(bool& Working);
 	void Menu_5(bool& Working);
 };

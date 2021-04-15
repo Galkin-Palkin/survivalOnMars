@@ -180,8 +180,8 @@ void Game::Buildings::EnterRoom(bool& Life, bool& Working, int RoomType, int& Ho
 		int DenyType = 1 + rand() % 3;
 		DenyToGoIn(DenyType, RoomDenyType, Entering);
 	}
-	Battle();
-	if (Entering) {
+	Battle(Working, Life);
+	if (Entering && Life) {
 		int RoomVariety = 1 + rand() % 2;
 		RoomMap(RoomType, RoomVariety, RoomVarietyVector, Room, true);
 		RoomVarietyPrint(RoomVarietyVector);
@@ -390,7 +390,7 @@ void Game::Buildings::LocationGeneration(bool& Life, bool& Working, int& Hour) {
 		case 5: RoomVector[i].second = "Пойти в лабораторию"; break;
 		}
 	}
-	while (CountOfRooms != 0) {
+	while (CountOfRooms != 0 && Life) {
 		system("cls");
 		T.PRC(3, "Ты находишься в помещении\n");
 		T.PRC(3, "Осталось неосмотренных отделов: ");
@@ -452,11 +452,12 @@ void Game::Buildings::LocationGeneration(bool& Life, bool& Working, int& Hour) {
 		CountOfRooms--;
 	}
 }
-void Game::Buildings::SetPointer(Human* Temp) {
+void Game::Buildings::SetPointer(Human* Temp, Saves* S) {
 	H = Temp;
+	this->S = S;
 }
 
-void Game::Buildings::Battle() {
+void Game::Buildings::Battle(bool &Working, bool &Life) {
 	string Path;
 	int Variety = rand() % 3;
 	switch (Variety) {
@@ -466,9 +467,47 @@ void Game::Buildings::Battle() {
 	}
 	Path = "Data\\Enemies\\1.txt";
 	Enemy En(Path);
-	while (true) {
+	int Choice = 0;
+	while (!En.IsDead() && Life) {
 		En.Show();
-		Sleep(10000);
+		Text::HV(13, 1, 15, "Нанести удар");
+		Text::V(4);
+		Text::HV(13, 2, 15, "Принять лекарства");
+		Text::V(4);
+		Text::HV(13, 3, 15, "Предпринять попытку убежать");
+		Text::V(4, 55);
+		while (true) {
+			int Click = _getch();
+			switch (Click) {
+			case 49: {
+				Choice = 1;
+				goto Choose;
+			}
+			case 50: {
+				Choice = 2;
+				goto Choose;
+			}
+			case 51: {
+				Choice = 3;
+				goto Choose;
+			}
+			}
+		}
+	Choose:
+		switch (Choice) {
+		case 1: {
+			En.Damaged(20);
+			En.Attack(Working, Life);
+			break;
+		}
+		case 2: break;
+		case 3: {
+			if (En.GetChanceToLeave() - rand() % 101 >= 0)
+				return;
+			else
+				En.Attack(Working, Life);
+			break;
+		}
+		}
 	}
-	system("pause");
 }

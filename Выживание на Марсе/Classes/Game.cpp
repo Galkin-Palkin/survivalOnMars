@@ -597,7 +597,7 @@ void Game::RoomLooking(Inventory& I) {
 	DiaryVector.push_back("Автором книги, которая лежит на столе, является Пол Рергард. Год издательства - 2061. Интересно, какой сейчас год?");
 	FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 }
-void Game::Death(bool& Working) {
+void Game::Death(bool& Working, bool &Life) {
 	system("cls");
 	Text::PRC(4, "Вы умерли\n");
 	Text::V(4, 35);
@@ -608,6 +608,7 @@ void Game::Death(bool& Working) {
 	Text::PRC(4, " (2) ");
 	Text::PRC(15, "Выйти из игры\n");
 	int Click;
+	Life = false;
 	while (true) {
 		Click = _getch();
 		if (Click == 49) {
@@ -641,9 +642,9 @@ Game::Game() {
 	Consumable::SetPointer(&H);
 	Effect::SetPointer(&H);
 	Action::SetPointer(&H);
-	Enemy::SetPointer(&H);
+	Enemy::SetPointer(&H, &S);
 	H.SetPointer(&S);
-	B.SetPointer(&H);
+	B.SetPointer(&H, &S);
 	ConsumableMap["Aspirin"] = &I.Aspirin;
 	ConsumableMap["BartonsDrug"] = &I.BartonsDrug;
 	ConsumableMap["CannedApple"] = &I.CannedApple;

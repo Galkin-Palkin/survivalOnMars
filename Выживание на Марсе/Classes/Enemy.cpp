@@ -98,10 +98,11 @@ void Game::Enemy::Show() {
 		Text::PRC(4, "Критическое\n");
 	Text::V(4, 55);
 }
-void Game::Enemy::SetPointer(Human* T) {
+void Game::Enemy::SetPointer(Human* T, Saves *T2) {
 	H = T;
+	S = T2;
 }
-void Game::Enemy::Attack(bool &Working) {
+void Game::Enemy::Attack(bool &Working, bool &Life) {
 	for (size_t i = 0; i < DamageValue.size(); i++) {
 		if (ChanceToHit - rand() % 101 >= 0) {
 			if (DamageType[i] == HumanInfo::DP)
@@ -112,8 +113,11 @@ void Game::Enemy::Attack(bool &Working) {
 			}
 		}
 	}
-	if (H->GetD(HumanInfo::DP) >= 100.0)
-		Game::Death(Working);
+	if (H->GetD(HumanInfo::DP) >= 100.0) {
+		S->SetNew(true);
+		S->Download(*H);
+		Game::Death(Working, Life);
+	}
 }
 int Game::Enemy::GetChanceToLeave() {
 	return ChanceToLeave;

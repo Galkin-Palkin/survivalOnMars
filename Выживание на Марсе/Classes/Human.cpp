@@ -194,12 +194,10 @@ void Game::Human::Changes(bool& Life, bool& Working) {
 	else if (PHP <= 30)
 		HalChance++;
 	Validate();
-	if (DP >= 100.0) {
-		Life = false;
-		Hour = 23;
+	if (DP >= 100.0 && Life) {
 		S->SetNew(true);
 		S->Download(*this);
-		Game::Death(Working);
+		Game::Death(Working, Life);
 	}
 }
 void Game::Human::Validate() {

@@ -1,9 +1,11 @@
-100
+800
 75
-10
+20
 Juk
+2
+HP
+10
+DP
+25.0
 1
-PHP
--10
-1
-Cool guy
+Cool guyà
