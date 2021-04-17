@@ -31,14 +31,27 @@ Game::Enemy::Enemy(string Path) {
 		fin >> ws;
 		getline(fin, Info[i]);
 	}
+	fin >> Size;
+	NotesToDiary.resize(Size);
+	for (int i = 0; i < Size; i++) {
+		fin >> ws;
+		getline(fin, NotesToDiary[i]);
+	}
 }
 bool Game::Enemy::IsDead() {
 	return HP <= 0;
 }
-void Game::Enemy::Show() {
+void Game::Enemy::Show(int Number, bool IsFirst) {
 	system("cls");
 	Text::PRC(15, "Противник: ");
-	Text::PRC(3, Name + '\n');
+	if (!SeenEnemies[(size_t)Number - 1]) {
+		Text::PRC(13, "???\n");
+		if (IsFirst) 
+			for (auto i : NotesToDiary)
+				DiaryVector.push_back(i);
+	}
+	else
+		Text::PRC(3, Name + '\n');
 	Text::V(4, 60);
 	for (auto i : Info)
 		Text::PRC(15, i + '\n');

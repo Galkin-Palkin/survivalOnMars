@@ -180,7 +180,7 @@ void Game::Buildings::EnterRoom(bool& Life, bool& Working, int RoomType, int& Ho
 		int DenyType = 1 + rand() % 3;
 		DenyToGoIn(DenyType, RoomDenyType, Entering);
 	}
-	else if (rand() % 10 == 0)
+	else if (rand() % 1 == 0)
 		Battle(Working, Life);
 	if (Entering && Life) {
 		int RoomVariety = 1 + rand() % 2;
@@ -459,11 +459,14 @@ void Game::Buildings::SetPointer(Human* Temp, Saves* S) {
 }
 
 void Game::Buildings::Battle(bool &Working, bool &Life) {
-	string Path = "Data\\Enemies\\" + to_string(1 + rand() % 3) + ".txt";
+	int Variety = 1 + rand() % 3;
+	string Path = "Data\\Enemies\\" + to_string(Variety) + ".txt";
+	bool IsFirst = true;
 	Enemy En(Path);
 	int Choice = 0;
 	while (!En.IsDead() && Life) {
-		En.Show();
+		En.Show(Variety, IsFirst);
+		IsFirst = false;
 		Text::HV(13, 1, 15, "Нанести удар");
 		Text::V(4);
 		Text::HV(13, 2, 15, "Принять лекарства");
@@ -504,4 +507,5 @@ void Game::Buildings::Battle(bool &Working, bool &Life) {
 		}
 		}
 	}
+	SeenEnemies[(size_t)Variety - 1] = true;
 }

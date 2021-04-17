@@ -646,6 +646,7 @@ Game::Game() {
 	Enemy::SetPointer(&H, &S);
 	H.SetPointer(&S);
 	B.SetPointer(&H, &S);
+	SeenEnemies.resize(3, false);
 	ConsumableMap["Aspirin"] = &I.Aspirin;
 	ConsumableMap["BartonsDrug"] = &I.BartonsDrug;
 	ConsumableMap["CannedApple"] = &I.CannedApple;

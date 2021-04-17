@@ -187,13 +187,14 @@ class Game {
 		vector<HumanInfo> DamageType;
 		vector<double> DamageValue;
 		vector<string> Info;
+		vector<string> NotesToDiary;
 		int ChanceToHit = 50;
 		int ChanceToLeave = 10;
 	public:
 		Enemy() = default;
 		Enemy(string);
 		bool IsDead();
-		void Show();
+		void Show(int, bool);
 		int GetChanceToLeave();
 		void Damaged(int);
 		void Attack(bool&, bool&);
@@ -334,6 +335,7 @@ class Game {
 	static int NightmareNumber;
 	static map<string, Effect> EffectMap;
 	static int NightmareChance;
+	static vector<bool> SeenEnemies;
 	void Introduction();
 	void InfoShowing(int HP, int FP, int EP, int PHP, double DP, int Sol, int Hour);
 	int NewGame();

@@ -144,6 +144,8 @@ void Game::Human::Null() {
 		it.second->SetCount(0);
 		it.second->SetPagesCount(it.second->GetTotalPagesCount());
 	}
+	for (auto i : SeenEnemies)
+		i = false;
 	ofstream fout("Data\\Notes.txt");
 	fout << "";
 	ConsumableCount = 0;

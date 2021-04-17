@@ -14,6 +14,7 @@ Game::Human* Game::Enemy::H = nullptr;
 Game::Saves* Game::Enemy::S = nullptr;
 vector<string> Game::NotesVector;
 vector<string> Game::DiaryVector;
+vector<bool> Game::SeenEnemies;
 vector<Game::Book*> Game::BookVector;
 map<string, Game::Book*> Game::BookMap;
 vector<pair<string, string>> Game::AchievementVector;

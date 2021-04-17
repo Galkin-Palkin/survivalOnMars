@@ -55,6 +55,10 @@ void Game::Saves::Load(Human& H, bool& IsExit) {
 		H.AddEffect(EffectMap[String].SetDuration(Temp));
 	}
 	fin >> NightmareNumber;
+	for (int i = 0; i < 3; i++) {
+		fin >> Temp;
+		SeenEnemies[i] = Temp;
+	}
 	fin >> IsExit;
 }
 void Game::Saves::Download(Human& H, bool IsExit) {
@@ -86,6 +90,8 @@ void Game::Saves::Download(Human& H, bool IsExit) {
 		fout << i.first << endl;
 	H.SaveEffects(fout);
 	fout << NightmareNumber << endl;
+	for (int i = 0; i < 3; i++)
+		fout << SeenEnemies[i] << endl;
 	fout << IsExit << endl;
 }
 bool Game::Saves::GetNew() {
