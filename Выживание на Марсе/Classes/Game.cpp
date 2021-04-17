@@ -546,7 +546,8 @@ bool Game::Sleeping() {
 			return true;
 		}
 	}
-	NightmareChance = (NightmareChance + 5) % 50;
+	if (NightmareChance < 45) 
+		NightmareChance += 9;
 	return false;
 }
 void Game::Escape(bool& Life, int& Hour, bool& IsBack) {

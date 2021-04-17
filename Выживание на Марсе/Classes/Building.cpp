@@ -180,7 +180,8 @@ void Game::Buildings::EnterRoom(bool& Life, bool& Working, int RoomType, int& Ho
 		int DenyType = 1 + rand() % 3;
 		DenyToGoIn(DenyType, RoomDenyType, Entering);
 	}
-	Battle(Working, Life);
+	else if (rand() % 10 == 0)
+		Battle(Working, Life);
 	if (Entering && Life) {
 		int RoomVariety = 1 + rand() % 2;
 		RoomMap(RoomType, RoomVariety, RoomVarietyVector, Room, true);
@@ -247,7 +248,7 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 					T.PRC(1, "У широкого входа есть компьютерный механизм. Он издаёт потрескивания. На пыльном, с паутиной мониторе требуют ввести код. Однако, твоё внимание привлекло другое: клавиатура была заляпана какой-то жёлтой вязкой\nжидкостью, из-за чего некоторые кнопки не работали. А ещё, похоже, кто-то пытался ввести код до тебя\n");
 					break;
 				case 4:
-					T.PRC(1, "Стальная дверь, отделяющая тебя " + RoomType + ", вся в царапинах. В нижней левой части виднеется вмятина, диаметр которой, как ты примерно представил, около 20 сантиметров\nИз электронных петель двери сверкали искры и издавалось характерное потрескивание. На мониторе, находящимся\nна стене чуть левее двери, серыми, еле заметными буквами требовало: \"Введите код\"\n");
+					T.PRC(1, "Стальная дверь, отделяющая тебя " + RoomType + ", вся в царапинах. В нижней левой части виднеется вмятина, диаметр которой, как ты примерно представил, около 20 сантиметров\nИз электронных петель двери сверкали искры и издавалось характерное потрескивание.\nНа мониторе, находящeмся на стене чуть левее двери, серыми, еле заметными буквами требовало: \"Введите код\"\n");
 					break;
 				}
 			}
@@ -458,14 +459,7 @@ void Game::Buildings::SetPointer(Human* Temp, Saves* S) {
 }
 
 void Game::Buildings::Battle(bool &Working, bool &Life) {
-	string Path;
-	int Variety = rand() % 3;
-	switch (Variety) {
-	case 0: Path = "Data\\Enemies\\1.txt"; break;
-	case 1: Path = ""; break;
-	case 2: Path = ""; break;
-	}
-	Path = "Data\\Enemies\\1.txt";
+	string Path = "Data\\Enemies\\" + to_string(1 + rand() % 3) + ".txt";
 	Enemy En(Path);
 	int Choice = 0;
 	while (!En.IsDead() && Life) {
