@@ -63,6 +63,7 @@ class Game {
 		string GetType();
 	};
 	class Saves;
+	class Weapon;
 	class Human {
 		int HP = 70 + (rand() % 5) * 5; // Очки здоровья
 		int FP = 30 + (rand() % 7) * 5; // Очки сытости
@@ -74,6 +75,7 @@ class Game {
 		int HalChance = rand() % 11; // Шанс словить галлюцинацию в %
 		Saves* S = nullptr;
 		vector<Effect> EffectsVector;
+		Weapon* CurrentWeapon = nullptr;
 		void EffectsAction();
 	public:
 		int GetI(HumanInfo);
@@ -86,9 +88,10 @@ class Game {
 		void Null(); // Обнуление данных
 		void Changes(bool&, bool&);
 		void Validate();
-		void SetPointer(Saves*);
+		void SetPointer(Saves*, Weapon*);
 		void ClearEffects();
 		void SaveEffects(ofstream&);
+		Weapon* GetCurrentWeapon();
 	};
 	class Item {
 	protected:
@@ -96,7 +99,7 @@ class Game {
 		int Count = 0;
 		double Weight = 0.0;
 	public:
-		virtual void SetNew(int count = 1) {
+		virtual void SetNew(int Count = 1) {
 
 		}
 	};
@@ -170,12 +173,12 @@ class Game {
 		double BreakPerUse = 2.0;
 		string Type;
 	public:
-		void SetParameters(string, string, double, int, double, double);
-		void Attack();
+		void SetParameters(string, string, double, int);
+		int Attack();
+		void SetNew(int Count = 1) override;
 	};
 	class Tool : public Weapon {
-		vector<string> Specialisation;
-		int DamageToObstacles = 0;
+		vector<pair<string, int>> Specialisation;
 	public:
 
 	};
@@ -205,6 +208,11 @@ class Game {
 	class Inventory {
 	public:
 		// Собственно, инвентарь
+
+		// Оружие
+		Weapon Knife;
+		Weapon Hand;
+		// Инструменты
 
 		// Медикаменты
 		Consumable Palont;
@@ -336,6 +344,7 @@ class Game {
 	static map<string, Effect> EffectMap;
 	static int NightmareChance;
 	static vector<bool> SeenEnemies;
+	static map<string, Weapon*> WeaponMap;
 	void Introduction();
 	void InfoShowing(int HP, int FP, int EP, int PHP, double DP, int Sol, int Hour);
 	int NewGame();

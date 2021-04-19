@@ -216,8 +216,9 @@ void Game::Human::Validate() {
 	if (HalChance > 100) HalChance = 100;
 	else if (HalChance < 0) HalChance = 0;
 }
-void Game::Human::SetPointer(Saves* P) {
+void Game::Human::SetPointer(Saves* P, Weapon *W) {
 	S = P;
+	CurrentWeapon = W;
 }
 void Game::Human::ClearEffects() {
 	EffectsVector.clear();
@@ -228,6 +229,9 @@ void Game::Human::SaveEffects(ofstream& fout) {
 		fout << i.GetType() << endl
 		<< i.GetDuration() << endl;
 	}
+}
+Game::Weapon* Game::Human::GetCurrentWeapon() {
+	return CurrentWeapon;
 }
 void Game::Human::AddEffect(Effect Ef) {
 	EffectsVector.push_back(Ef);

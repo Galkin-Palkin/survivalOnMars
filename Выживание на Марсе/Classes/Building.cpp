@@ -493,7 +493,7 @@ void Game::Buildings::Battle(bool &Working, bool &Life) {
 	Choose:
 		switch (Choice) {
 		case 1: {
-			En.Damaged(20);
+			En.Damaged(H->GetCurrentWeapon()->Attack());
 			En.Attack(Working, Life);
 			break;
 		}

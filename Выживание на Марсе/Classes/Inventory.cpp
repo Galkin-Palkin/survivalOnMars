@@ -2,6 +2,9 @@
 Game::Inventory::Inventory() {
 	// Обычные (рядовые) расходники имеют 1-2 типа. Редкие имеют 3 типа
 
+	Knife.SetParameters("Knife", "Кухонный нож", 0.3, 11);
+	Hand.SetParameters("Hand", "Кулаки", 0.0, 5);
+
 	Palont.Constructor("Palont", "Мазь \"Палонт\"", 0.1, 25, HumanInfo::DP, -2.0, HumanInfo::HP, 20);
 	Aspirin.Constructor("Aspirin", "Гранула аспирина", 0.025, 20, HumanInfo::DP, -0.5, HumanInfo::HP, 10);
 	Trivoclisine.Constructor("Trivoclisine", "Ампула с тривоклизином", 0.01, 10, HumanInfo::DP, -15.0, HumanInfo::EP, -70);
