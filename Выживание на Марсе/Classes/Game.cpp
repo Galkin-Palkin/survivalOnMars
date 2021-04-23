@@ -579,9 +579,7 @@ void Game::Actions(int Choose, bool& Life, int& Hour, bool& IsBack, bool& Workin
 	case 1: Outing(Life, Working, Hour, IsBack); break;
 	case 2: Eating(I, IsBack, Hour); break;
 	case 3: Workplace(Hour, IsBack); break;
-	case 4: {
-		break;
-	}
+	case 4: H.Set(HumanInfo::PHP, '-', 5); break;
 	case 5: Escape(Life, Hour, IsBack); break;
 	}
 }
@@ -681,6 +679,8 @@ Game::Game() {
 	EffectMap["Recovery"] = Effect("Data\\Effects\\Recovery.txt");
 	EffectMap["Satiety"] = Effect("Data\\Effects\\Satiety.txt");
 	EffectMap["Starvation"] = Effect("Data\\Effects\\Starvation.txt");
+	WeaponMap["Hand"] = &I.Hand;
+	WeaponMap["Knife"] = &I.Knife;
 }
 int Game::Menu() {
 	system("cls");

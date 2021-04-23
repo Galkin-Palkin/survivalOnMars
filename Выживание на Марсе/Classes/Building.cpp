@@ -180,7 +180,7 @@ void Game::Buildings::EnterRoom(bool& Life, bool& Working, int RoomType, int& Ho
 		int DenyType = 1 + rand() % 3;
 		DenyToGoIn(DenyType, RoomDenyType, Entering);
 	}
-	else if (rand() % 1 == 0)
+	else if (rand() % 8 == 0 && H->GetI(HumanInfo::Sol) > 2)
 		Battle(Working, Life);
 	if (Entering && Life) {
 		int RoomVariety = 1 + rand() % 2;

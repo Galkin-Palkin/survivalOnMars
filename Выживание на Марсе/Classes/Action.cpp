@@ -6,7 +6,7 @@
 #include <fstream>
 #include <string>
 
-Game::Action::Action(ifstream &fin) {
+Game::Action::Action(ifstream& fin) {
 	fin >> ws;
 	getline(fin, Name);
 	int size;
@@ -23,6 +23,12 @@ Game::Action::Action(ifstream &fin) {
 		fin >> Temp;
 		FoundedBooks[i] = BookMap[Temp]->Common();
 	}
+	fin >> size;
+	IsFound.resize(size, false);
+	for (int i = 0; i < size; i++) {
+		cin >> Temp;
+		FoundedWeapon.push_back(*(WeaponMap[Temp]));
+	}
 }
 string Game::Action::GetName() {
 	return Name;
@@ -34,6 +40,9 @@ void Game::Action::GenerateItems() {
 	for (size_t i = 0; i < FoundedBooks.size(); i++)
 		if (FoundedBooks[i].GetChance() - rand() % 101 >= 0)
 			FoundedBooks[i].SetCount(1);
+	for (size_t i = 0; i < FoundedWeapon.size(); i++)
+		if (FoundedWeapon[i].GetChance() - rand() % 101 >= 0)
+			IsFound[i] = true;
 }
 void Game::Action::FoundedItems() {
 	system("cls");
@@ -56,6 +65,15 @@ void Game::Action::FoundedItems() {
 			T.PRC(15, FoundedBooks[i].GetName() + " (" + char(48 + FoundedBooks[i].GetCount()) + ")\n");
 			(*BookMap[FoundedBooks[i].GetType()]).SetNew(FoundedBooks[i].GetCount());
 			H->Set(HumanInfo::PHP, '+', 5);
+		}
+	}
+	for (size_t i = 0; i < FoundedWeapon.size(); i++) {
+		if (IsFound[i]) {
+			IsEmpty = false;
+			T.PRC(3, " - ");
+			T.PRC(15, FoundedWeapon[i].GetName() + '\n');
+			Weapons[FoundedWeapon[i].GetType()].push_back(WeaponMap[FoundedWeapon[i].GetType()]);
+			H->Set(HumanInfo::PHP, '+', 10);
 		}
 	}
 	if (ConsumableMap["Aspirin"]->GetCount() >= 100 && !IsAchMap[Ach_Aspirin]) {

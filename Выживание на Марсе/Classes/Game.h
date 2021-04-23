@@ -171,11 +171,15 @@ class Game {
 		int Damage = 0;
 		double Durability = 100.0;
 		double BreakPerUse = 2.0;
+		int ChanceToFind = 5;
 		string Type;
 	public:
-		void SetParameters(string, string, double, int);
+		void SetParameters(string, string, double, int, int);
 		int Attack();
 		void SetNew(int Count = 1) override;
+		int GetChance();
+		string GetType();
+		string GetName();
 	};
 	class Tool : public Weapon {
 		vector<pair<string, int>> Specialisation;
@@ -254,6 +258,8 @@ class Game {
 		string Name;
 		vector<Consumable> SearchingResult;
 		vector<Book> FoundedBooks;
+		vector<Weapon> FoundedWeapon;
+		vector<bool> IsFound;
 	public:
 		Action(ifstream&);
 		Action() = default;
@@ -344,6 +350,7 @@ class Game {
 	static map<string, Effect> EffectMap;
 	static int NightmareChance;
 	static vector<bool> SeenEnemies;
+	static map<string, vector<Weapon*>> Weapons;
 	static map<string, Weapon*> WeaponMap;
 	void Introduction();
 	void InfoShowing(int HP, int FP, int EP, int PHP, double DP, int Sol, int Hour);
