@@ -164,7 +164,7 @@ void Game::Human::Changes(bool& Life, bool& Working) {
 		EP -= 5;
 		PHP -= 2;
 		DP += 0.2;
-		AddEffect(Effect("Data\\Effects\\Starvation.txt"));
+		AddEffect(EffectMap["Starvation"]);
 	}
 	if (HP > 75 && FP >= 30) {
 		DP--;
@@ -185,7 +185,7 @@ void Game::Human::Changes(bool& Life, bool& Working) {
 	else if (HP == 0) {
 		DP += 2.0;
 		PHP -= 5;
-		if (DP >= 90.0) AddEffect(Effect("Data\\Effects\\Agony.txt"));
+		if (DP >= 90.0) AddEffect(EffectMap["Agony"]);
 	}
 	if (PHP >= 80)
 		HalChance -= 3;

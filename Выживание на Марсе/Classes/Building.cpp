@@ -348,21 +348,20 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 
 
 void Game::Buildings::GetPath() {
-	rooms.emplace_back(Room("Data\\Buildings\\Barracks\\First.txt"));
-	rooms.emplace_back(Room("Data\\Buildings\\Barracks\\Second.txt"));
-	rooms.emplace_back(Room("Data\\Buildings\\Canteen\\First.txt"));
-	rooms.emplace_back(Room("Data\\Buildings\\Canteen\\Second.txt"));
-	rooms.emplace_back(Room("Data\\Buildings\\Warehouse\\First.txt"));
-	rooms.emplace_back(Room("Data\\Buildings\\Warehouse\\Second.txt"));
-	rooms.emplace_back(Room("Data\\Buildings\\Medical Centre\\First.txt"));
-	rooms.emplace_back(Room("Data\\Buildings\\Medical Centre\\Second.txt"));
-	rooms.emplace_back(Room("Data\\Buildings\\Laboratory\\First.txt"));
-	rooms.emplace_back(Room("Data\\Buildings\\Laboratory\\Second.txt"));
+	rooms.emplace_back(Room1);
+	rooms.emplace_back(Room2);
+	rooms.emplace_back(Room3);
+	rooms.emplace_back(Room4);
+	rooms.emplace_back(Room5);
+	rooms.emplace_back(Room6);
+	rooms.emplace_back(Room7);
+	rooms.emplace_back(Room8);
+	rooms.emplace_back(Room9);
+	rooms.emplace_back(Room10);
 }
 
 void Game::Buildings::LocationGeneration(bool& Life, bool& Working, int& Hour) {
 	// "Генерирует" помещения
-	GetPath();
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	system("cls");

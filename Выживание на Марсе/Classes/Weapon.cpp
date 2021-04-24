@@ -16,7 +16,8 @@ int Game::Weapon::Attack() {
 }
 
 void Game::Weapon::SetNew(int Count) {
-
+	Durability = 10.0 + (double)(rand() % 910) / 10.0;
+	BreakPerUse = 1.0 + (double)(rand() % 61) / 10.0;
 }
 string Game::Weapon::GetType() {
 	return Type;

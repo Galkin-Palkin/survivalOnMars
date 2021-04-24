@@ -279,6 +279,7 @@ class Game {
 		bool IsScare = false;
 	public:
 		Room(string);
+		Room() = default;
 		void Print();
 		void PrintRooms();
 		void PlacePrint(vector<Action>, string);
@@ -293,6 +294,7 @@ class Game {
 		vector<vector<Action>> GetVectorAction();
 		void SetVectorAction(vector<vector<Action>>);
 		static void SetPointer(Human*);
+		void Set(string);
 	};
 	static map<string, Consumable*> ConsumableMap;
 	class Buildings {
@@ -350,8 +352,18 @@ class Game {
 	static map<string, Effect> EffectMap;
 	static int NightmareChance;
 	static vector<bool> SeenEnemies;
-	static map<string, vector<Weapon*>> Weapons;
-	static map<string, Weapon*> WeaponMap;
+	static map<string, vector<Weapon>> Weapons;
+	static map<string, Weapon> WeaponMap;
+	static Room Room1;
+	static Room Room2;
+	static Room Room3;
+	static Room Room4;
+	static Room Room5;
+	static Room Room6;
+	static Room Room7;
+	static Room Room8;
+	static Room Room9;
+	static Room Room10;
 	void Introduction();
 	void InfoShowing(int HP, int FP, int EP, int PHP, double DP, int Sol, int Hour);
 	int NewGame();

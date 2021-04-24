@@ -679,8 +679,19 @@ Game::Game() {
 	EffectMap["Recovery"] = Effect("Data\\Effects\\Recovery.txt");
 	EffectMap["Satiety"] = Effect("Data\\Effects\\Satiety.txt");
 	EffectMap["Starvation"] = Effect("Data\\Effects\\Starvation.txt");
-	WeaponMap["Hand"] = &I.Hand;
-	WeaponMap["Knife"] = &I.Knife;
+	WeaponMap["Hand"] = I.Hand;
+	WeaponMap["Knife"] = I.Knife;
+	Room1.Set("Data\\Buildings\\Barracks\\First.txt");
+	Room2.Set("Data\\Buildings\\Barracks\\Second.txt");
+	Room3.Set("Data\\Buildings\\Canteen\\First.txt");
+	Room4.Set("Data\\Buildings\\Canteen\\Second.txt");
+	Room5.Set("Data\\Buildings\\Warehouse\\First.txt");
+	Room6.Set("Data\\Buildings\\Warehouse\\Second.txt");
+	Room7.Set("Data\\Buildings\\Medical Centre\\First.txt");
+	Room8.Set("Data\\Buildings\\Medical Centre\\Second.txt");
+	Room9.Set("Data\\Buildings\\Laboratory\\First.txt");
+	Room10.Set("Data\\Buildings\\Laboratory\\Second.txt");
+	B.GetPath();
 }
 int Game::Menu() {
 	system("cls");

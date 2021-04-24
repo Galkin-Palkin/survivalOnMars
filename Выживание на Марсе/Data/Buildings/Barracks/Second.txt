@@ -17,10 +17,12 @@
 CannedBeef
 RicePurge
 0
+0
 Сумка
 2
 Palont
 Aspirin
+0
 0
 Первый блок
 3
@@ -29,16 +31,19 @@ Aspirin
 EnergyBar
 Hardtack
 0
+0
 Стеллаж
 1
 Aspirin
 2
 Adventures
 ScienceFiction
+0
 Чемодан
 2
 Palont
 DarkChocolateBar
+0
 0
 Второй блок
 3
@@ -47,13 +52,16 @@ DarkChocolateBar
 CannedBeef
 RicePurge
 0
+0
 Стол
 2
 MeltedCheese
 Hardtack
 0
+0
 Тумбы
 2
 Hardtack
 Sedatives
+0
 0

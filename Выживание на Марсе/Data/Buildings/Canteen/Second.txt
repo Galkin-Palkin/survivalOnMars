@@ -20,15 +20,19 @@
 VegetableStew
 MeltedCheese
 0
+1
+Knife
 Духовка
 1
 FishSoup
+0
 0
 Коробки из-под консерв
 3
 CannedBeef
 CannedFish
 RicePurge
+0
 0
 Первый зал
 2
@@ -38,10 +42,12 @@ EnergyBar
 DarkChocolateBar
 Hardtack
 0
+0
 Столы
 2
 MeltedCheese
 Hardtack
+0
 0
 Второй зал
 2
@@ -49,8 +55,11 @@ Hardtack
 1
 MeltedCheese
 0
+1
+Knife
 Столы
 2
 Hardtack
 MushroomSoup
+0
 0

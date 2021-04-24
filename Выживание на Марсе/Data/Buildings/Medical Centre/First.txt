@@ -20,10 +20,12 @@ Sedatives
 2
 Adventures
 Thriller
+0
 Шкаф
 2
 DriedFruits
 CannedApple
+0
 0
 Склад медикаментов
 3
@@ -31,15 +33,18 @@ CannedApple
 1
 Syrup
 0
+0
 Тумба с таблетками
 3
 Aspirin
 Phenothan
 Sedatives
 0
+0
 Полка для мазей
 1
 Palont
+0
 0
 Регистратура
 2
@@ -48,8 +53,10 @@ Palont
 Syrup
 Phenothan
 0
+0
 Рабочий стол
 1
 Sedatives
 1
 ScienceFiction
+0

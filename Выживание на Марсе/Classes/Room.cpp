@@ -138,3 +138,25 @@ void Game::Room::PlacePrint(vector<Action> PlacesVector, string RoomName) {
 void Game::Room::SetPointer(Human *HPointer) {
 	H = HPointer;
 }
+void Game::Room::Set(string Path) {
+	ifstream fin(Path);
+	int size;
+	fin >> size;
+	floorPlan.resize(size);
+	for (int i = 0; i < size; ++i) {
+		getline(fin, floorPlan[i]);
+	}
+	fin >> ws;
+	getline(fin, Info);
+	fin >> size;
+	roomToName.resize(size);
+	roomToActions.resize(size);
+	for (int i = 0; i < size; ++i) {
+		fin >> ws;
+		getline(fin, roomToName[i]);
+		int countOfActions;
+		fin >> countOfActions;
+		for (int j = 0; j < countOfActions; j++)
+			roomToActions[i].emplace_back(Action(fin));
+	}
+}

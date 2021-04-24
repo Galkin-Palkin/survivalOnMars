@@ -18,14 +18,17 @@
 Trivoclisine
 Phenothan
 0
+0
 Полка
 1
 Aspirin
 1
 ScienceFiction
+0
 Коробки для инъекций
 1
 Gericline
+0
 0
 Лаборатория
 2
@@ -34,10 +37,12 @@ Gericline
 Sedatives
 EnergyBar
 0
+0
 Стенд с реактивами
 2
 Trivoclisine
 Syrup
+0
 0
 Хранилище реактивов
 2
@@ -46,10 +51,12 @@ Syrup
 Palont
 Phenothan
 0
+0
 Полка с образцами
 2
 Gericline
 Aspirin
+0
 0
 Проверочный центр
 1
@@ -58,3 +65,4 @@ Aspirin
 Sedatives
 1
 Adventures
+0

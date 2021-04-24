@@ -26,8 +26,8 @@ Game::Action::Action(ifstream& fin) {
 	fin >> size;
 	IsFound.resize(size, false);
 	for (int i = 0; i < size; i++) {
-		cin >> Temp;
-		FoundedWeapon.push_back(*(WeaponMap[Temp]));
+		fin >> Temp;
+		FoundedWeapon.push_back(WeaponMap[Temp]);
 	}
 }
 string Game::Action::GetName() {
@@ -62,7 +62,7 @@ void Game::Action::FoundedItems() {
 		if (FoundedBooks[i].GetCount() > 0) {
 			IsEmpty = false;
 			T.PRC(3, " - ");
-			T.PRC(15, FoundedBooks[i].GetName() + " (" + char(48 + FoundedBooks[i].GetCount()) + ")\n");
+			T.PRC(15, FoundedBooks[i].GetName() + '\n');
 			(*BookMap[FoundedBooks[i].GetType()]).SetNew(FoundedBooks[i].GetCount());
 			H->Set(HumanInfo::PHP, '+', 5);
 		}
@@ -73,6 +73,7 @@ void Game::Action::FoundedItems() {
 			T.PRC(3, " - ");
 			T.PRC(15, FoundedWeapon[i].GetName() + '\n');
 			Weapons[FoundedWeapon[i].GetType()].push_back(WeaponMap[FoundedWeapon[i].GetType()]);
+			Weapons[FoundedWeapon[i].GetType()][i].SetNew();
 			H->Set(HumanInfo::PHP, '+', 10);
 		}
 	}

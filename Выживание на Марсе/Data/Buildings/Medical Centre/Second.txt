@@ -21,10 +21,12 @@ Phenothan
 Sedatives
 1
 Comics
+0
 Порванная косметичка
 2
 DriedFruits
 Aspirin
+0
 0
 Картотека
 2
@@ -33,10 +35,12 @@ Aspirin
 Aspirin
 1
 ScienceFiction
+0
 Письменный стол
 2
 Syrup
 Sedatives
+0
 0
 Служебный отдел
 3
@@ -46,10 +50,12 @@ Palont
 Phenothan
 Trivoclisine
 0
+0
 Комнаты медперсонала
 2
 EnergyBar
 Aspirin
+0
 0
 Стеллаж
 1
@@ -57,6 +63,7 @@ DarkChocolateBar
 2
 Comics
 Adventures
+0
 Столовая
 3
 Кухня
@@ -65,13 +72,16 @@ Noodle
 FishSoup
 MeatBriquette
 0
+0
 Столы
 2
 MeltedCheese
 Hardtack
 0
+0
 Буфет
 2
 EnergyBar
 DriedFruits
+0
 0
