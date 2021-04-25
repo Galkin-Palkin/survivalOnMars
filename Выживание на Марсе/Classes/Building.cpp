@@ -346,7 +346,6 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 	system("pause");
 }
 
-
 void Game::Buildings::GetPath() {
 	rooms.emplace_back(Room1);
 	rooms.emplace_back(Room2);

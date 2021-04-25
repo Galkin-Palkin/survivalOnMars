@@ -110,6 +110,9 @@ void Game::Enemy::Show(int Number, bool IsFirst) {
 	else
 		Text::PRC(4, "Критическое\n");
 	Text::V(4, 55);
+	Text::PRC(13, "Оружие: ");
+	Text::PRC(15, H->GetCurrentWeapon()->GetName() + '\n');
+	Text::V(4, 55);
 }
 void Game::Enemy::SetPointer(Human* T, Saves *T2) {
 	H = T;

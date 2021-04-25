@@ -540,7 +540,7 @@ bool Game::Sleeping() {
 		H.EffectsTick();
 		Sleep(970);
 		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
-		if (rand() % (50 - NightmareChance) == 0 && NightmareNumber <= 6) {
+		if (rand() % (50 - NightmareChance) >= 0 && NightmareNumber <= 7) {
 			Nightmare("Data\\Nightmares\\" + to_string(NightmareNumber++) + ".txt");
 			NightmareChance = 0;
 			return true;
