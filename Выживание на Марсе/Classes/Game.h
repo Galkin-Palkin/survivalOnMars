@@ -63,7 +63,7 @@ class Game {
 		string GetType();
 	};
 	class Saves;
-	class Weapon;
+	class Tool;
 	class Human {
 		int HP = 70 + (rand() % 5) * 5; // Очки здоровья
 		int FP = 30 + (rand() % 7) * 5; // Очки сытости
@@ -75,7 +75,7 @@ class Game {
 		int HalChance = rand() % 11; // Шанс словить галлюцинацию в %
 		Saves* S = nullptr;
 		vector<Effect> EffectsVector;
-		Weapon* CurrentWeapon = nullptr;
+		Tool* CurrentTool = nullptr;
 		void EffectsAction();
 	public:
 		int GetI(HumanInfo);
@@ -88,10 +88,11 @@ class Game {
 		void Null(); // Обнуление данных
 		void Changes(bool&, bool&);
 		void Validate();
-		void SetPointer(Saves*, Weapon*);
+		void SetPointer(Saves*, Tool*);
 		void ClearEffects();
 		void SaveEffects(ofstream&);
-		Weapon* GetCurrentWeapon();
+		Tool* GetCurrentTool();
+		void SetTool();
 	};
 	class Item {
 	protected:
@@ -99,9 +100,7 @@ class Game {
 		int Count = 0;
 		double Weight = 0.0;
 	public:
-		virtual void SetNew(int Count = 1) {
-
-		}
+		virtual void SetNew(int Count = 1) = 0;
 	};
 	class Consumable;
 	static vector<Consumable*> ConsumableVector;
@@ -166,25 +165,21 @@ class Game {
 	public:
 		Obstacle() = default;
 	};
-	class Weapon : public Item {
-	protected:
+	class Tool : public Item {
 		int Damage = 0;
 		double Durability = 100.0;
 		double BreakPerUse = 2.0;
 		int ChanceToFind = 5;
 		string Type;
 	public:
-		void SetParameters(string, string, double, int, int);
+		vector<pair<string, int>> Specialisation;
+	public:
+		void SetParameters(string, string, double, int, int, string Path = "");
 		int Attack();
 		void SetNew(int Count = 1) override;
 		int GetChance();
 		string GetType();
 		string GetName();
-	};
-	class Tool : public Weapon {
-		vector<pair<string, int>> Specialisation;
-	public:
-
 	};
 	class Enemy {
 		static Human* H;
@@ -213,9 +208,11 @@ class Game {
 	public:
 		// Собственно, инвентарь
 
-		// Оружие
-		Weapon Knife;
-		Weapon Hand;
+		// Оружие и инструменты
+		Tool Knife;
+		Tool Hand;
+		Tool Axe;
+		Tool Hammer;
 		// Инструменты
 
 		// Медикаменты
@@ -258,7 +255,7 @@ class Game {
 		string Name;
 		vector<Consumable> SearchingResult;
 		vector<Book> FoundedBooks;
-		vector<Weapon> FoundedWeapon;
+		vector<Tool> FoundedTools;
 		vector<bool> IsFound;
 	public:
 		Action(ifstream&);
@@ -352,8 +349,8 @@ class Game {
 	static map<string, Effect> EffectMap;
 	static int NightmareChance;
 	static vector<bool> SeenEnemies;
-	static map<string, vector<Weapon>> Weapons;
-	static map<string, Weapon> WeaponMap;
+	static map<string, vector<Tool>> Tools;
+	static map<string, Tool> ToolMap;
 	static Room Room1;
 	static Room Room2;
 	static Room Room3;

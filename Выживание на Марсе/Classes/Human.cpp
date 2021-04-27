@@ -216,9 +216,9 @@ void Game::Human::Validate() {
 	if (HalChance > 100) HalChance = 100;
 	else if (HalChance < 0) HalChance = 0;
 }
-void Game::Human::SetPointer(Saves* P, Weapon *W) {
+void Game::Human::SetPointer(Saves* P, Tool *T) {
 	S = P;
-	CurrentWeapon = W;
+	CurrentTool = T;
 }
 void Game::Human::ClearEffects() {
 	EffectsVector.clear();
@@ -230,8 +230,23 @@ void Game::Human::SaveEffects(ofstream& fout) {
 		<< i.GetDuration() << endl;
 	}
 }
-Game::Weapon* Game::Human::GetCurrentWeapon() {
-	return CurrentWeapon;
+Game::Tool* Game::Human::GetCurrentTool() {
+	return CurrentTool;
+}
+void Game::Human::SetTool() {
+	if (Tools.size()) {
+		system("cls");
+		Text::PRC(1, "Выберите инструмент, который возьмёте с собой\n");
+		Text::V(4, 60);
+		int It = 0;
+		for (auto& i : Tools) {
+			Text::HV(13, ++It, 15, i.second[i.second.size() - 1].GetName());
+			if (Tools.size() - It)
+				Text::V(4);
+		}
+		Text::V(4, 60);
+		
+	}
 }
 void Game::Human::AddEffect(Effect Ef) {
 	EffectsVector.push_back(Ef);

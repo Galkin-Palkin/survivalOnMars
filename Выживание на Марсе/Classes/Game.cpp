@@ -282,6 +282,7 @@ void Game::Eating(Inventory& I, bool& IsBack, int& Hour) {
 }
 void Game::Outing(bool& Life, bool& Working, int& Hour, bool& IsBack) {
 	system("cls");
+	H.SetTool();
 	bool Condition = Hour <= 18 && H.GetI(HumanInfo::EP) >= 60 && H.GetI(HumanInfo::PHP) >= 50;
 	if (Condition) B.LocationGeneration(Life, Working, ++Hour);
 	else if (Hour > 18 && H.GetI(HumanInfo::EP) >= 60 && H.GetI(HumanInfo::PHP) >= 50)
@@ -540,7 +541,7 @@ bool Game::Sleeping() {
 		H.EffectsTick();
 		Sleep(970);
 		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
-		if (rand() % (50 - NightmareChance) >= 0 && NightmareNumber <= 7) {
+		if (rand() % (50 - NightmareChance) == 0 && NightmareNumber <= 7) {
 			Nightmare("Data\\Nightmares\\" + to_string(NightmareNumber++) + ".txt");
 			NightmareChance = 0;
 			return true;
@@ -679,8 +680,10 @@ Game::Game() {
 	EffectMap["Recovery"] = Effect("Data\\Effects\\Recovery.txt");
 	EffectMap["Satiety"] = Effect("Data\\Effects\\Satiety.txt");
 	EffectMap["Starvation"] = Effect("Data\\Effects\\Starvation.txt");
-	WeaponMap["Hand"] = I.Hand;
-	WeaponMap["Knife"] = I.Knife;
+	ToolMap["Hand"] = I.Hand;
+	ToolMap["Knife"] = I.Knife;
+	ToolMap["Axe"] = I.Axe;
+	ToolMap["Hammer"] = I.Hammer;
 	Room1.Set("Data\\Buildings\\Barracks\\First.txt");
 	Room2.Set("Data\\Buildings\\Barracks\\Second.txt");
 	Room3.Set("Data\\Buildings\\Canteen\\First.txt");

@@ -51,9 +51,6 @@
     <ClCompile Include="Classes\Book.cpp">
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Weapon.cpp">
-      <Filter>Файлы ресурсов</Filter>
-    </ClCompile>
     <ClCompile Include="Classes\Enemy.cpp">
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>

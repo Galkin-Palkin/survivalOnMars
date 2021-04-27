@@ -17,7 +17,9 @@
 CannedBeef
 RicePurge
 0
-0
+2
+Hammer
+Axe
 Сумка
 2
 Palont

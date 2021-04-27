@@ -153,7 +153,6 @@
     <ClCompile Include="Classes\Saves.cpp" />
     <ClCompile Include="Classes\Text.cpp" />
     <ClCompile Include="Classes\Tool.cpp" />
-    <ClCompile Include="Classes\Weapon.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>

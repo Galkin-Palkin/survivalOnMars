@@ -3,7 +3,26 @@
 #include <string>
 
 void Game::Enemy::Damaged(int Value) {
-	HP = (HP - Value > 0) ? HP - Value : 0;
+	if (H->GetI(HumanInfo::PHP) >= 80)
+		HP = (HP - Value > 0) ? HP - Value : 0;
+	else if (H->GetI(HumanInfo::PHP) >= 50 && rand() % 2 == 0)
+		HP = (HP - Value > 0) ? HP - Value : 0;
+	else if (H->GetI(HumanInfo::PHP) >= 30 && rand() % 4 == 0)
+		HP = (HP - Value > 0) ? HP - Value : 0;
+	else if (H->GetI(HumanInfo::PHP) < 30 && rand() % 8 == 0)
+		HP = (HP - Value > 0) ? HP - Value : 0;
+	else {
+		system("cls");
+		int Variable = rand() % 4;
+		switch (Variable) {
+		case 0: Text::PRC(3, "Твоя рука задрожала, и ты не смог нанести удар\n"); break;
+		case 1: Text::PRC(3, "Тварь оказалась достаточно вёрткой, и ты промахнулся\n"); break;
+		case 2: Text::PRC(3, "У тебя не хватило духа ударить, поэтому ты отступил\n"); break;
+		case 3: Text::PRC(3, "Твари удалось заблокировать твой удар\n"); break;
+		}
+		Text::V(4, 50);
+		system("pause");
+	}
 }
 Game::Enemy::Enemy(string Path) {
 	HIMap["HP"] = HumanInfo::HP;
@@ -111,7 +130,7 @@ void Game::Enemy::Show(int Number, bool IsFirst) {
 		Text::PRC(4, "Критическое\n");
 	Text::V(4, 55);
 	Text::PRC(13, "Оружие: ");
-	Text::PRC(15, H->GetCurrentWeapon()->GetName() + '\n');
+	Text::PRC(15, H->GetCurrentTool()->GetName() + '\n');
 	Text::V(4, 55);
 }
 void Game::Enemy::SetPointer(Human* T, Saves *T2) {

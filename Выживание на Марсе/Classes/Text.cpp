@@ -18,6 +18,7 @@ void Game::Text::V(int Number, int count) {
 			cout << "_";
 		}
 		cout << endl;
+		SetConsoleTextAttribute(h, 15);
 		break;
 	}
 	}

@@ -180,7 +180,7 @@ void Game::Buildings::EnterRoom(bool& Life, bool& Working, int RoomType, int& Ho
 		int DenyType = 1 + rand() % 3;
 		DenyToGoIn(DenyType, RoomDenyType, Entering);
 	}
-	else if (rand() % 8 == 0 && H->GetI(HumanInfo::Sol) > 2)
+	else if (rand() % 7 == 0 && H->GetI(HumanInfo::Sol) > 2)
 		Battle(Working, Life);
 	if (Entering && Life) {
 		int RoomVariety = 1 + rand() % 2;
@@ -491,7 +491,7 @@ void Game::Buildings::Battle(bool &Working, bool &Life) {
 	Choose:
 		switch (Choice) {
 		case 1: {
-			En.Damaged(H->GetCurrentWeapon()->Attack());
+			En.Damaged(H->GetCurrentTool()->Attack());
 			En.Attack(Working, Life);
 			break;
 		}

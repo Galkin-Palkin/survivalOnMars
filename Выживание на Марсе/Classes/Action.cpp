@@ -27,7 +27,7 @@ Game::Action::Action(ifstream& fin) {
 	IsFound.resize(size, false);
 	for (int i = 0; i < size; i++) {
 		fin >> Temp;
-		FoundedWeapon.push_back(WeaponMap[Temp]);
+		FoundedTools.push_back(ToolMap[Temp]);
 	}
 }
 string Game::Action::GetName() {
@@ -40,8 +40,8 @@ void Game::Action::GenerateItems() {
 	for (size_t i = 0; i < FoundedBooks.size(); i++)
 		if (FoundedBooks[i].GetChance() - rand() % 101 >= 0)
 			FoundedBooks[i].SetCount(1);
-	for (size_t i = 0; i < FoundedWeapon.size(); i++)
-		if (FoundedWeapon[i].GetChance() - rand() % 101 >= 0)
+	for (size_t i = 0; i < FoundedTools.size(); i++)
+		if (FoundedTools[i].GetChance() - rand() % 101 >= 0)
 			IsFound[i] = true;
 }
 void Game::Action::FoundedItems() {
@@ -67,13 +67,13 @@ void Game::Action::FoundedItems() {
 			H->Set(HumanInfo::PHP, '+', 5);
 		}
 	}
-	for (size_t i = 0; i < FoundedWeapon.size(); i++) {
+	for (size_t i = 0; i < FoundedTools.size(); i++) {
 		if (IsFound[i]) {
 			IsEmpty = false;
 			T.PRC(3, " - ");
-			T.PRC(15, FoundedWeapon[i].GetName() + '\n');
-			Weapons[FoundedWeapon[i].GetType()].push_back(WeaponMap[FoundedWeapon[i].GetType()]);
-			Weapons[FoundedWeapon[i].GetType()][i].SetNew();
+			T.PRC(15, FoundedTools[i].GetName() + '\n');
+			Tools[FoundedTools[i].GetType()].push_back(ToolMap[FoundedTools[i].GetType()]);
+			Tools[FoundedTools[i].GetType()][Tools[FoundedTools[i].GetType()].size() - 1].SetNew();
 			H->Set(HumanInfo::PHP, '+', 10);
 		}
 	}
