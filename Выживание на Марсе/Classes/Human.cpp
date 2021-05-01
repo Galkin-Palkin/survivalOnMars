@@ -146,6 +146,7 @@ void Game::Human::Null() {
 	}
 	for (auto i : SeenEnemies)
 		i = false;
+	Tools.clear();
 	ofstream fout("Data\\Notes.txt");
 	fout << "";
 	ConsumableCount = 0;
@@ -216,9 +217,10 @@ void Game::Human::Validate() {
 	if (HalChance > 100) HalChance = 100;
 	else if (HalChance < 0) HalChance = 0;
 }
-void Game::Human::SetPointer(Saves* P, Tool *T) {
+void Game::Human::SetPointer(Saves* P, Tool *T, Inventory *In) {
 	S = P;
 	CurrentTool = T;
+	I = In;
 }
 void Game::Human::ClearEffects() {
 	EffectsVector.clear();
@@ -245,8 +247,12 @@ void Game::Human::SetTool() {
 				Text::V(4);
 		}
 		Text::V(4, 60);
-		
+		for (auto &i : Tools) {
+			
+		}
+		cin >> It;
 	}
+	CurrentTool = &I->Hand;
 }
 void Game::Human::AddEffect(Effect Ef) {
 	EffectsVector.push_back(Ef);

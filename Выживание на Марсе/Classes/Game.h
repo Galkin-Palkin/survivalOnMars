@@ -64,6 +64,7 @@ class Game {
 	};
 	class Saves;
 	class Tool;
+	class Inventory;
 	class Human {
 		int HP = 70 + (rand() % 5) * 5; // Очки здоровья
 		int FP = 30 + (rand() % 7) * 5; // Очки сытости
@@ -76,6 +77,7 @@ class Game {
 		Saves* S = nullptr;
 		vector<Effect> EffectsVector;
 		Tool* CurrentTool = nullptr;
+		Inventory *I;
 		void EffectsAction();
 	public:
 		int GetI(HumanInfo);
@@ -88,7 +90,7 @@ class Game {
 		void Null(); // Обнуление данных
 		void Changes(bool&, bool&);
 		void Validate();
-		void SetPointer(Saves*, Tool*);
+		void SetPointer(Saves*, Tool*, Inventory*);
 		void ClearEffects();
 		void SaveEffects(ofstream&);
 		Tool* GetCurrentTool();
@@ -171,7 +173,6 @@ class Game {
 		double BreakPerUse = 2.0;
 		int ChanceToFind = 5;
 		string Type;
-	public:
 		vector<pair<string, int>> Specialisation;
 	public:
 		void SetParameters(string, string, double, int, int, string Path = "");
@@ -180,6 +181,10 @@ class Game {
 		int GetChance();
 		string GetType();
 		string GetName();
+		double GetDurability();
+		double GetBreakPerUse();
+		void SetDurability(double);
+		void SetBreakPerUse(double);
 	};
 	class Enemy {
 		static Human* H;
@@ -390,4 +395,6 @@ public:
 	void Menu_3(bool& Working);
 	void Menu_4(bool& Working);
 	void Menu_5(bool& Working);
+	friend ofstream& operator<<(ofstream&, Tool);
+	friend ifstream& operator>>(ifstream&, Tool&);
 };

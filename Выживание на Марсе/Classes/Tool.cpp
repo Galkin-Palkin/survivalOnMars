@@ -40,3 +40,19 @@ int Game::Tool::GetChance() {
 string Game::Tool::GetName() {
 	return Name;
 }
+
+double Game::Tool::GetDurability() {
+	return Durability;
+}
+
+double Game::Tool::GetBreakPerUse() {
+	return BreakPerUse;
+}
+
+void Game::Tool::SetDurability(double Value) {
+	Durability = Value;
+}
+
+void Game::Tool::SetBreakPerUse(double Value) {
+	BreakPerUse = Value;
+}

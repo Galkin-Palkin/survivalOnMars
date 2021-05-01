@@ -46,4 +46,9 @@ Game::Inventory::Inventory() {
 	Sedatives.AddEffect(Effect("Data\\Effects\\Calming.txt"));
 	Gericline.AddEffect(Effect("Data\\Effects\\Adrenaline.txt"));
 	BartonsDrug.AddEffect(Effect("Data\\Effects\\Recovery.txt"));
+
+	ToolMap["Hand"] = Hand;
+	ToolMap["Knife"] = Knife;
+	ToolMap["Axe"] = Axe;
+	ToolMap["Hammer"] = Hammer;
 }

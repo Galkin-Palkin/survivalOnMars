@@ -643,7 +643,7 @@ Game::Game() {
 	Effect::SetPointer(&H);
 	Action::SetPointer(&H);
 	Enemy::SetPointer(&H, &S);
-	H.SetPointer(&S, &I.Hand);
+	H.SetPointer(&S, &I.Hand, &I);
 	B.SetPointer(&H, &S);
 	SeenEnemies.resize(3, false);
 	ConsumableMap["Aspirin"] = &I.Aspirin;
@@ -680,10 +680,6 @@ Game::Game() {
 	EffectMap["Recovery"] = Effect("Data\\Effects\\Recovery.txt");
 	EffectMap["Satiety"] = Effect("Data\\Effects\\Satiety.txt");
 	EffectMap["Starvation"] = Effect("Data\\Effects\\Starvation.txt");
-	ToolMap["Hand"] = I.Hand;
-	ToolMap["Knife"] = I.Knife;
-	ToolMap["Axe"] = I.Axe;
-	ToolMap["Hammer"] = I.Hammer;
 	Room1.Set("Data\\Buildings\\Barracks\\First.txt");
 	Room2.Set("Data\\Buildings\\Barracks\\Second.txt");
 	Room3.Set("Data\\Buildings\\Canteen\\First.txt");
@@ -892,4 +888,19 @@ void Game::Validate() {
 	else if (H.GetI(HumanInfo::PHP) > 100) H.Set(HumanInfo::PHP, 'N', 100);
 	if (H.GetI(HumanInfo::HalChance) > 100) H.Set(HumanInfo::HalChance, 'N', 100);
 	else if (H.GetI(HumanInfo::HalChance) < 0) H.Set(HumanInfo::HalChance, 'N', 0);
+}
+
+ofstream& operator<<(ofstream& fout, Game::Tool T) {
+	fout << T.GetDurability() << endl;
+	fout << T.GetBreakPerUse();
+	return fout;
+}
+
+ifstream& operator>>(ifstream& fin, Game::Tool &T) {
+	double Temp;
+	fin >> Temp;
+	T.SetDurability(Temp);
+	fin >> Temp;
+	T.SetBreakPerUse(Temp);
+	return fin;
 }

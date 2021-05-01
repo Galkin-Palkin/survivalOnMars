@@ -59,6 +59,15 @@ void Game::Saves::Load(Human& H, bool& IsExit) {
 		fin >> Temp;
 		SeenEnemies[i] = Temp;
 	}
+	fin >> Number;
+	for (int i = 0; i < Number; i++) {
+		fin >> String >> Temp;
+		Tools[String].resize(Temp);
+		for (int j = 0; j < Temp; j++) {
+			Tools[String][j] = ToolMap[String];
+			fin >> Tools[String][j];
+		}
+	}
 	fin >> IsExit;
 }
 void Game::Saves::Download(Human& H, bool IsExit) {
@@ -92,6 +101,13 @@ void Game::Saves::Download(Human& H, bool IsExit) {
 	fout << NightmareNumber << endl;
 	for (int i = 0; i < 3; i++)
 		fout << SeenEnemies[i] << endl;
+	fout << Tools.size() << endl;
+	for (auto& i : Tools) {
+		fout << i.first << endl;
+		fout << i.second.size() << endl;
+		for (size_t j = 0; j < i.second.size(); j++)
+			fout << i.second[j] << endl;
+	}
 	fout << IsExit << endl;
 }
 bool Game::Saves::GetNew() {
