@@ -180,7 +180,7 @@ void Game::Buildings::EnterRoom(bool& Life, bool& Working, int RoomType, int& Ho
 		int DenyType = 1 + rand() % 3;
 		DenyToGoIn(DenyType, RoomDenyType, Entering);
 	}
-	else if (rand() % 7 == 0 && H->GetI(HumanInfo::Sol) > 2)
+	else if (rand() % 1 == 0 && H->GetI(HumanInfo::Sol) > 2)
 		Battle(Working, Life);
 	if (Entering && Life) {
 		int RoomVariety = 1 + rand() % 2;
@@ -467,7 +467,7 @@ void Game::Buildings::Battle(bool &Working, bool &Life) {
 		IsFirst = false;
 		Text::HV(13, 1, 15, "Нанести удар");
 		Text::V(4);
-		Text::HV(13, 2, 15, "Принять лекарства");
+		Text::HV(13, 2, 15, "Отступить и перевести дух");
 		Text::V(4);
 		Text::HV(13, 3, 15, "Предпринять попытку убежать");
 		Text::V(4, 55);
@@ -495,7 +495,28 @@ void Game::Buildings::Battle(bool &Working, bool &Life) {
 			En.Attack(Working, Life);
 			break;
 		}
-		case 2: break;
+		case 2: {
+			int Variety = rand() % 3;
+			if (En.GetChanceToLeave() - rand() % 101 >= 0) {
+				H->Set(HumanInfo::HP, '+', 2 + rand() % 2);
+				H->Set(HumanInfo::DP, '-', (1 + rand() % 5) / 10.0);
+				H->Set(HumanInfo::PHP, '+', 4 + rand() % 7);
+				switch (Variety) {
+				case 0: Text::Tab(3, "Тебе удалось спрятаться за угол и слегка передохнуть"); break;
+				case 1: Text::Tab(3, "Ты закрыл дверь. Пока тварь ломится в неё, есть время отдохнуть"); break;
+				case 2: Text::Tab(3, "Тварь потеряла тебя из виду. Воспользовавшись случаем, ты перевёл дух"); break;
+				}
+			}
+			else {
+				En.Attack(Working, Life);
+				switch (Variety) {
+				case 0: Text::Tab(3, "Твоя попытка спрятаться за ящиками провалилась с треском: тварь нашла тебя, задев левую руку"); break;
+				case 1: Text::Tab(3, "Ты хотел отступить, но споткнулся.. Существо настигло тебя"); break;
+				case 2: Text::Tab(3, "Наивно полагать, что хлипкая пластиковая дверь выдержит удар твари! Дверь была продырявлена, а существо приблизилось к тебе"); break;
+				}
+			}
+			break;
+		}
 		case 3: {
 			if (En.GetChanceToLeave() - rand() % 101 >= 0)
 				return;

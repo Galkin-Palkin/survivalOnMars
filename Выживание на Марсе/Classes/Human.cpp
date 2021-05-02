@@ -1,5 +1,7 @@
 #include "Game.h"
 #include <fstream>
+#include <conio.h>
+
 int Game::Human::GetI(HumanInfo Type) {
 	switch (Type)
 	{
@@ -247,10 +249,70 @@ void Game::Human::SetTool() {
 				Text::V(4);
 		}
 		Text::V(4, 60);
-		for (auto &i : Tools) {
-			
+		while (true) {
+			int Click = _getch();
+			switch (Click) {
+			case 49: {
+				It = 1;
+				goto Putting;
+			}
+			case 50: {
+				It = 2;
+				if (Tools.size() < 2)
+					break;
+				goto Putting;
+			}
+			case 51: {
+				It = 3;
+				if (Tools.size() < 3)
+					break;
+				goto Putting;
+			}
+			case 52: {
+				It = 4;
+				if (Tools.size() < 4)
+					break;
+				goto Putting;
+			}
+			case 53: {
+				It = 5;
+				if (Tools.size() < 5)
+					break;
+				goto Putting;
+			}
+			case 54: {
+				It = 6;
+				if (Tools.size() < 6)
+					break;
+				goto Putting;
+			}
+			case 55: {
+				It = 7;
+				if (Tools.size() < 7)
+					break;
+				goto Putting;
+			}
+			case 56: {
+				It = 8;
+				if (Tools.size() < 8)
+					break;
+				goto Putting;
+			}
+			case 57: {
+				It = 9;
+				if (Tools.size() < 9)
+					break;
+				goto Putting;
+			}
+			}
 		}
-		cin >> It;
+	Putting:
+		for (auto &i : Tools) {
+			if (--It)
+				continue;
+			CurrentTool = &Tools[i.first][Tools[i.first].size() - 1];
+			return;
+		}
 	}
 	CurrentTool = &I->Hand;
 }

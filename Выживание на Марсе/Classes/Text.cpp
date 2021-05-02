@@ -37,6 +37,13 @@ void Game::Text::PRC(int Colour, string String) {
 	SetConsoleTextAttribute(h, Colour);
 	cout << String;
 }
+void Game::Text::Tab(int Color, string Text) {
+	system("cls");
+	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+	PRC(Color, Text + '\n');
+	V(4, 60);
+	system("pause");
+}
 Game::Text::Text() {
 	
 }

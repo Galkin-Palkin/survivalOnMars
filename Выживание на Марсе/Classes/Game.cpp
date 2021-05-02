@@ -2,6 +2,7 @@
 #include <conio.h>
 #include <fstream>
 #include <string>
+#define NightmareCount 7
 void Game::Introduction() {
 	SetConsoleTextAttribute(h, 15);
 	system("cls");
@@ -541,7 +542,7 @@ bool Game::Sleeping() {
 		H.EffectsTick();
 		Sleep(970);
 		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
-		if (rand() % (50 - NightmareChance) == 0 && NightmareNumber <= 7) {
+		if (rand() % (50 - NightmareChance) == 0 && NightmareNumber <= NightmareCount) {
 			Nightmare("Data\\Nightmares\\" + to_string(NightmareNumber++) + ".txt");
 			NightmareChance = 0;
 			return true;

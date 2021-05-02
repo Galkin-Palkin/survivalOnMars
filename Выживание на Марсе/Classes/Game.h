@@ -42,6 +42,7 @@ class Game {
 		/// <param name="Colour">Цвет.</param>
 		/// <param name="String">Текст.</param>
 		static void PRC(int Colour, string String = "");
+		static void Tab(int, string);
 		Text();
 	};
 	class Human;
