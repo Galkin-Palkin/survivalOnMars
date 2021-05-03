@@ -240,6 +240,11 @@ Game::Tool* Game::Human::GetCurrentTool() {
 	return CurrentTool;
 }
 void Game::Human::SetTool() {
+	for (auto& i : Tools)
+		for (size_t j = 0; j < i.second.size(); j++)
+			for (size_t k = 0; k < i.second.size() - 1; k++)
+				if (i.second[k].GetDurability() > i.second[k + 1].GetDurability())
+					swap(i.second[k], i.second[k + 1]);
 	if (Tools.size()) {
 		system("cls");
 		Text::PRC(1, "Выберите инструмент, который возьмёте с собой\n");

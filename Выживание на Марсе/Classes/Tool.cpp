@@ -26,7 +26,9 @@ int Game::Tool::Attack() {
 		Tools[Temp].erase(Iterator + Last);
 		H->SetTool(&ToolMap["Hand"]);
 	}
-	if (!(Last + 1))
+	if (!Tools[Temp].size())
+		Tools.erase(Temp);
+	if (Temp == "Hand")
 		Tools.erase(Temp);
 	return Damage;
 }
