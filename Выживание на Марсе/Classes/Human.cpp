@@ -1,6 +1,8 @@
 #include "Game.h"
 #include <fstream>
 #include <conio.h>
+#include <string>
+#include <cmath>
 
 int Game::Human::GetI(HumanInfo Type) {
 	switch (Type)
@@ -244,7 +246,7 @@ void Game::Human::SetTool() {
 		Text::V(4, 60);
 		int It = 0;
 		for (auto& i : Tools) {
-			Text::HV(13, ++It, 15, i.second[i.second.size() - 1].GetName());
+			Text::HV(13, ++It, 15, i.second[i.second.size() - 1].GetName() + " (" + to_string((int)round(i.second[i.second.size() - 1].GetDurability())) + "%)");
 			if (Tools.size() - It)
 				Text::V(4);
 		}
@@ -311,6 +313,7 @@ void Game::Human::SetTool() {
 			if (--It)
 				continue;
 			CurrentTool = &Tools[i.first][Tools[i.first].size() - 1];
+			system("cls");
 			return;
 		}
 	}
@@ -343,4 +346,7 @@ void Game::Human::EffectsTick() {
 void Game::Human::EffectsAction() {
 	for (size_t i = 0; i < EffectsVector.size(); i++)
 		EffectsVector[i].EffectAction();
+}
+void Game::Human::SetTool(Tool* T) {
+	CurrentTool = T;
 }

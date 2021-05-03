@@ -32,6 +32,8 @@ Game::Room Game::Room7;
 Game::Room Game::Room8;
 Game::Room Game::Room9;
 Game::Room Game::Room10;
+Game::Inventory* Game::Tool::I = nullptr;
+Game::Human* Game::Tool::H = nullptr;
 int main() {
 	srand(time(NULL));
 	setlocale(LC_ALL, "Russian");

@@ -283,7 +283,6 @@ void Game::Eating(Inventory& I, bool& IsBack, int& Hour) {
 }
 void Game::Outing(bool& Life, bool& Working, int& Hour, bool& IsBack) {
 	system("cls");
-	H.SetTool();
 	bool Condition = Hour <= 18 && H.GetI(HumanInfo::EP) >= 60 && H.GetI(HumanInfo::PHP) >= 50;
 	if (Condition) B.LocationGeneration(Life, Working, ++Hour);
 	else if (Hour > 18 && H.GetI(HumanInfo::EP) >= 60 && H.GetI(HumanInfo::PHP) >= 50)
@@ -644,6 +643,7 @@ Game::Game() {
 	Effect::SetPointer(&H);
 	Action::SetPointer(&H);
 	Enemy::SetPointer(&H, &S);
+	Tool::SetPointer(&H, &I);
 	H.SetPointer(&S, &I.Hand, &I);
 	B.SetPointer(&H, &S);
 	SeenEnemies.resize(3, false);

@@ -13,21 +13,26 @@ void Game::Tool::SetParameters(string Type, string Name, double Weight, int Dama
 		fin >> Size;
 		Specialisation.resize(Size);
 		for (int i = 0; i < Size; i++)
-			cin >> Specialisation[i].first >> Specialisation[i].second;
+			fin >> Specialisation[i].first >> Specialisation[i].second;
 	}
 }
 
 int Game::Tool::Attack() {
 	Durability -= BreakPerUse;
-	if (Durability <= 0.0)
-		Tools[Type].erase(Tools[Type].begin() + Tools[Type].size() - 1);
-	if (!Tools[Type].size())
-		Tools.erase(Type);
+	int Last = (Type == "Hand") ? 1 : (int)Tools[Type].size() - 1;
+	string Temp = Type;
+	if (Durability <= 0.0) {
+		auto Iterator = Tools[Type].begin();
+		Tools[Temp].erase(Iterator + Last);
+		H->SetTool(&ToolMap["Hand"]);
+	}
+	if (!(Last + 1))
+		Tools.erase(Temp);
 	return Damage;
 }
 
 void Game::Tool::SetNew(int Count) {
-	Durability = 10.0 + (double)(rand() % 910) / 10.0;
+	Durability = 10.0 + (double)(rand() % 901) / 10.0;
 	BreakPerUse = 1.0 + (double)(rand() % 61) / 10.0;
 }
 string Game::Tool::GetType() {
@@ -55,4 +60,9 @@ void Game::Tool::SetDurability(double Value) {
 
 void Game::Tool::SetBreakPerUse(double Value) {
 	BreakPerUse = Value;
+}
+
+void Game::Tool::SetPointer(Human* HT, Inventory* IT) {
+	H = HT;
+	I = IT;
 }

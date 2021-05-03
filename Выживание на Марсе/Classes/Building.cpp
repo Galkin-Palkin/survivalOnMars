@@ -361,6 +361,7 @@ void Game::Buildings::GetPath() {
 
 void Game::Buildings::LocationGeneration(bool& Life, bool& Working, int& Hour) {
 	// "Генерирует" помещения
+	H->SetTool();
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	system("cls");

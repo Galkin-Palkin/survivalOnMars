@@ -78,7 +78,7 @@ class Game {
 		Saves* S = nullptr;
 		vector<Effect> EffectsVector;
 		Tool* CurrentTool = nullptr;
-		Inventory *I;
+		Inventory *I = nullptr;
 		void EffectsAction();
 	public:
 		int GetI(HumanInfo);
@@ -96,6 +96,7 @@ class Game {
 		void SaveEffects(ofstream&);
 		Tool* GetCurrentTool();
 		void SetTool();
+		void SetTool(Tool*);
 	};
 	class Item {
 	protected:
@@ -171,9 +172,11 @@ class Game {
 	class Tool : public Item {
 		int Damage = 0;
 		double Durability = 100.0;
-		double BreakPerUse = 2.0;
+		double BreakPerUse = 0.0;
 		int ChanceToFind = 5;
 		string Type;
+		static Human* H;
+		static Inventory* I;
 		vector<pair<string, int>> Specialisation;
 	public:
 		void SetParameters(string, string, double, int, int, string Path = "");
@@ -186,6 +189,7 @@ class Game {
 		double GetBreakPerUse();
 		void SetDurability(double);
 		void SetBreakPerUse(double);
+		static void SetPointer(Human*, Inventory*);
 	};
 	class Enemy {
 		static Human* H;
