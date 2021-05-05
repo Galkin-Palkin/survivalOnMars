@@ -176,11 +176,11 @@ void Game::Buildings::EnterRoom(bool& Life, bool& Working, int RoomType, int& Ho
 	case 5: RoomDenyType = "от лаборатории"; break;
 	}
 	bool Entering = true;
-	if (rand() % 1 == 0) {
-		int DenyType = /*1 + rand() %*/ 4;
+	if (rand() % 8 == 0) {
+		int DenyType = 1 + rand() % 4;
 		DenyToGoIn(DenyType, RoomDenyType, Entering);
 	}
-	else if (rand() % 8 == 0 && H->GetI(HumanInfo::Sol) > 2)
+	else if (rand() % 1 == 0 && H->GetI(HumanInfo::Sol) > 2)
 		Battle(Working, Life);
 	if (Entering && Life) {
 		int RoomVariety = 1 + rand() % 2;
@@ -467,7 +467,7 @@ void Game::Buildings::SetPointer(Human* Temp, Saves* S) {
 }
 
 void Game::Buildings::Battle(bool &Working, bool &Life) {
-	int Variety = 1 + rand() % 3;
+	int Variety = 1 + rand() % 5;
 	string Path = "Data\\Enemies\\" + to_string(Variety) + ".txt";
 	bool IsFirst = true;
 	Enemy En(Path);

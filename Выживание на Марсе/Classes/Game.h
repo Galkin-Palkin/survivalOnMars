@@ -231,11 +231,14 @@ class Game {
 		// Собственно, инвентарь
 
 		// Оружие и инструменты
-		Tool Knife;
 		Tool Hand;
+		Tool Knife;
 		Tool Axe;
 		Tool Hammer;
-		// Инструменты
+		Tool Crowbar;
+		Tool Screwdriver; // Отвёртка
+		Tool Wrench; // Гаечный ключ
+		Tool Chainsaw; // Бензопила
 
 		// Медикаменты
 		Consumable Palont;

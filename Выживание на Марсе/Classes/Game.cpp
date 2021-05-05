@@ -30,7 +30,7 @@ void Game::InfoShowing(int HP, int FP, int EP, int PHP, double DP, int Sol, int 
 		T.V(4, 15);
 		T.PRC(15, to_string(Hour) + ":00\n");
 	}
-	T.V(4, 50);
+	T.V(4, 45);
 
 	T.PRC(13, "Состояние здоровья: ");
 	if (!Hallucination) {
@@ -115,7 +115,7 @@ void Game::InfoShowing(int HP, int FP, int EP, int PHP, double DP, int Sol, int 
 		T.PRC(4, "Большая\n");
 	else
 		T.PRC(4, "Полная\n");
-	T.V(4, 50);
+	T.V(4, 45);
 }
 int Game::NewGame() {
 	system("cls");
@@ -647,7 +647,7 @@ Game::Game() {
 	Obstacle::SetPointer(&H);
 	H.SetPointer(&S, &I.Hand, &I);
 	B.SetPointer(&H, &S);
-	SeenEnemies.resize(3, false);
+	SeenEnemies.resize(5, false);
 	ConsumableMap["Aspirin"] = &I.Aspirin;
 	ConsumableMap["BartonsDrug"] = &I.BartonsDrug;
 	ConsumableMap["CannedApple"] = &I.CannedApple;
@@ -699,7 +699,7 @@ Game::Game() {
 int Game::Menu() {
 	system("cls");
 	T.PRC(13, "Выживание на Марсе\n");
-	T.V(4, 25);
+	T.V(4, 30);
 	T.HV(13, 1, 15, "Начать игру");
 	T.V(4, 5);
 	T.HV(13, 2, 15, "Помощь к игре");
@@ -709,8 +709,8 @@ int Game::Menu() {
 	T.HV(13, 4, 15, "Разработчики");
 	T.V(4, 5);
 	T.HV(13, 5, 15, "Выход из игры");
-	T.V(4, 25);
-	T.PRC(15, "v 0.2 closed beta-test\n");
+	T.V(4, 30);
+	T.PRC(15, "v 0.3 closed nofap beta-test\n");
 	int Variety = _getch();
 	switch (Variety) {
 	case 49: return 1;
