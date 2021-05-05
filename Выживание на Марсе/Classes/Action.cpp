@@ -72,8 +72,11 @@ void Game::Action::FoundedItems() {
 			IsEmpty = false;
 			T.PRC(3, " - ");
 			T.PRC(15, FoundedTools[i].GetName() + '\n');
+			string Temp = H->GetCurrentTool()->GetType();
 			Tools[FoundedTools[i].GetType()].push_back(ToolMap[FoundedTools[i].GetType()]);
 			Tools[FoundedTools[i].GetType()][Tools[FoundedTools[i].GetType()].size() - 1].SetNew();
+			if (Temp == FoundedTools[i].GetType())
+				H->SetTool(&Tools[FoundedTools[i].GetType()][Tools[FoundedTools[i].GetType()].size() - 2]);
 			H->Set(HumanInfo::PHP, '+', 10);
 		}
 	}

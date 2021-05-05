@@ -3,8 +3,8 @@ Game::Inventory::Inventory() {
 	// Обычные (рядовые) расходники имеют 1-2 типа. Редкие имеют 3 типа
 
 	Knife.SetParameters("Knife", "Кухонный нож", 0.3, 11, 600);
-	Hand.SetParameters("Hand", "Кулаки", 0.0, 5, 0);
-	Axe.SetParameters("Axe", "Пожарный топор", 3.0, 22, 300);
+	Hand.SetParameters("Hand", "Руки", 0.0, 5, 0, "Data\\Tools\\Hand.txt");
+	Axe.SetParameters("Axe", "Пожарный топор", 3.0, 22, 300, "Data\\Tools\\Axe.txt");
 	Hammer.SetParameters("Hammer", "Молоток", 1.2, 14, 500);
 
 	Palont.Constructor("Palont", "Мазь \"Палонт\"", 0.1, 25, HumanInfo::DP, -2.0, HumanInfo::HP, 20);

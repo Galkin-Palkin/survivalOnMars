@@ -176,11 +176,11 @@ void Game::Buildings::EnterRoom(bool& Life, bool& Working, int RoomType, int& Ho
 	case 5: RoomDenyType = "от лаборатории"; break;
 	}
 	bool Entering = true;
-	if (rand() % 8 == 0) {
-		int DenyType = 1 + rand() % 3;
+	if (rand() % 1 == 0) {
+		int DenyType = /*1 + rand() %*/ 4;
 		DenyToGoIn(DenyType, RoomDenyType, Entering);
 	}
-	else if (rand() % 1 == 0 && H->GetI(HumanInfo::Sol) > 2)
+	else if (rand() % 8 == 0 && H->GetI(HumanInfo::Sol) > 2)
 		Battle(Working, Life);
 	if (Entering && Life) {
 		int RoomVariety = 1 + rand() % 2;
@@ -253,7 +253,7 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 				}
 			}
 			else T.PRC(1, "Ты оказался перед дверью. Она была заперта, однако, экран, издававший звуки белого шума, просил ввести код\n");
-			T.PRC(13, "Чтобы войти внутрь, нужно ввести пин-код - четырёхзначное число\n");
+			T.PRC(1, "Чтобы войти внутрь, нужно ввести пин-код - четырёхзначное число\n");
 			T.V(4, 50);
 			T.PRC(13, "Осталось попыток: ");
 			T.PRC(15, to_string(CountOfTry) + '\n');
@@ -340,10 +340,19 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 		}
 		break;
 	}
+	case 4: {
+		int Size = rand() % Obstacles.size();
+		for (auto &i : Obstacles)
+			if (Size--) {
+				Entering = i.second.Clone().Creating();
+				break;
+			}
 	}
-	T.V(4, 40);
-	T.PRC(15);
-	system("pause");
+	}
+	if (Type != 4) {
+		T.V(4, 40);
+		system("pause");
+	}
 }
 
 void Game::Buildings::GetPath() {
@@ -500,7 +509,7 @@ void Game::Buildings::Battle(bool &Working, bool &Life) {
 			int Variety = rand() % 3;
 			if (En.GetChanceToLeave() - rand() % 101 >= 0) {
 				H->Set(HumanInfo::HP, '+', 2 + rand() % 2);
-				H->Set(HumanInfo::DP, '-', (1 + rand() % 5) / 10.0);
+				H->Set(HumanInfo::DP, '-', (double)(1 + rand() % 5) / 10.0);
 				H->Set(HumanInfo::PHP, '+', 4 + rand() % 7);
 				switch (Variety) {
 				case 0: Text::Tab(3, "Тебе удалось спрятаться за угол и слегка передохнуть"); break;

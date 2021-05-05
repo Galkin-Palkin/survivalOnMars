@@ -34,9 +34,11 @@ Game::Room Game::Room9;
 Game::Room Game::Room10;
 Game::Inventory* Game::Tool::I = nullptr;
 Game::Human* Game::Tool::H = nullptr;
+Game::Human* Game::Obstacle::H = nullptr;
+map<string, Game::Obstacle> Game::Obstacles;
 int main() {
 	srand(time(NULL));
-	setlocale(LC_ALL, "Russian");
+	setlocale(LC_ALL, "rus");
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	Game G;

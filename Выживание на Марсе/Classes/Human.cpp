@@ -240,6 +240,15 @@ Game::Tool* Game::Human::GetCurrentTool() {
 	return CurrentTool;
 }
 void Game::Human::SetTool() {
+	for (auto& i : Tools) {
+		for (size_t j = 0; j < i.second.size(); j++)
+			if (i.second[j].GetDurability() <= 0.0)
+				Tools[i.first].erase(i.second.begin() + j--);
+		if (!i.second.size())
+			Tools.erase(i.first);
+		if (!Tools.size())
+			break;
+	}
 	for (auto& i : Tools)
 		for (size_t j = 0; j < i.second.size(); j++)
 			for (size_t k = 0; k < i.second.size() - 1; k++)

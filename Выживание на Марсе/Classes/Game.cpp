@@ -644,6 +644,7 @@ Game::Game() {
 	Action::SetPointer(&H);
 	Enemy::SetPointer(&H, &S);
 	Tool::SetPointer(&H, &I);
+	Obstacle::SetPointer(&H);
 	H.SetPointer(&S, &I.Hand, &I);
 	B.SetPointer(&H, &S);
 	SeenEnemies.resize(3, false);
@@ -692,6 +693,8 @@ Game::Game() {
 	Room9.Set("Data\\Buildings\\Laboratory\\First.txt");
 	Room10.Set("Data\\Buildings\\Laboratory\\Second.txt");
 	B.GetPath();
+	Obstacles["Planks"] = Obstacle("Data\\Obstacles\\Planks.txt");
+	Obstacles["Boxes"] = Obstacle("Data\\Obstacles\\Boxes.txt");
 }
 int Game::Menu() {
 	system("cls");

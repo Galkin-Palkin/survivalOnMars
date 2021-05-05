@@ -68,3 +68,13 @@ void Game::Tool::SetPointer(Human* HT, Inventory* IT) {
 	H = HT;
 	I = IT;
 }
+
+pair<string, int> Game::Tool::operator[](unsigned int Index) {
+	if (Index >= Specialisation.size())
+		throw "Error: Tool's specialisation out of range!";
+	return Specialisation[Index];
+}
+
+int Game::Tool::Size() {
+	return (int)Specialisation.size();
+}

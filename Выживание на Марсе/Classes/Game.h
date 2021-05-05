@@ -4,6 +4,9 @@
 #include <vector>
 #include <ctime>
 #include <Windows.h>
+#include <fstream>
+#include <conio.h>
+
 using namespace std;
 class Game {
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -164,10 +167,17 @@ class Game {
 	};
 	class Obstacle {
 		vector<string> Text;
-		vector<string> Specialisation;
+		string Type;
+		string Name;
 		int DurPoints = 100;
+		int MaxDurPoints = 100;
+		static Human* H;
 	public:
 		Obstacle() = default;
+		Obstacle(string);
+		static void SetPointer(Human*);
+		bool Creating();
+		Obstacle Clone();
 	};
 	class Tool : public Item {
 		int Damage = 0;
@@ -190,6 +200,8 @@ class Game {
 		void SetDurability(double);
 		void SetBreakPerUse(double);
 		static void SetPointer(Human*, Inventory*);
+		int Size();
+		pair<string, int> operator[](unsigned int);
 	};
 	class Enemy {
 		static Human* H;
@@ -371,6 +383,7 @@ class Game {
 	static Room Room8;
 	static Room Room9;
 	static Room Room10;
+	static map<string, Obstacle> Obstacles;
 	void Introduction();
 	void InfoShowing(int HP, int FP, int EP, int PHP, double DP, int Sol, int Hour);
 	int NewGame();
