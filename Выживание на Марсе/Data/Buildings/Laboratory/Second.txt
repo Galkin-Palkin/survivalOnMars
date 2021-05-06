@@ -18,7 +18,8 @@
 Trivoclisine
 Phenothan
 0
-0
+1
+Scalpel
 Полка
 1
 Aspirin
@@ -37,7 +38,8 @@ Gericline
 Sedatives
 EnergyBar
 0
-0
+1
+Scalpel
 Стенд с реактивами
 2
 Trivoclisine

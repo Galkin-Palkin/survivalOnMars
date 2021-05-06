@@ -80,7 +80,8 @@ CannedApple
 EnergyBar
 Aspirin
 0
-0
+1
+Screwdriver
 Стойка для книг
 1
 DarkChocolateBar

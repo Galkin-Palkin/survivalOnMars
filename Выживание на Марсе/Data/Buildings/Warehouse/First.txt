@@ -41,8 +41,9 @@ Palont
 Noodle
 CannedApple
 0
-1
+2
 Knife
+Wrench
 Верхний сортировочный цех
 2
 Аптечка
@@ -57,7 +58,8 @@ CannedFish
 VegetableStew
 MeltedCheese
 0
-0
+1
+Crowbar
 Нижний сортировочный цех
 1
 Письменный стол

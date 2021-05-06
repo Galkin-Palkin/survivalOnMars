@@ -10,6 +10,7 @@ Game::Inventory::Inventory() {
 	Screwdriver.SetParameters("Screwdriver", "Крестовая отвёртка", 0.15, 9, 6, "Data\\Tools\\Screwdriver.txt");
 	Wrench.SetParameters("Wrench", "Гаечный ключ", 1.8, 15, 4, "Data\\Tools\\Wrench.txt");
 	Chainsaw.SetParameters("Chainsaw", "Цепная бензопила", 4.5, 31, 1, "Data\\Tools\\Chainsaw.txt");
+	Scalpel.SetParameters("Scalpel", "Скальпель", 0.1, 9, 8);
 
 	Palont.Constructor("Palont", "Мазь \"Палонт\"", 0.1, 25, HumanInfo::DP, -2.0, HumanInfo::HP, 20);
 	Aspirin.Constructor("Aspirin", "Гранула аспирина", 0.025, 20, HumanInfo::DP, -0.5, HumanInfo::HP, 10);
@@ -55,4 +56,9 @@ Game::Inventory::Inventory() {
 	ToolMap["Knife"] = Knife;
 	ToolMap["Axe"] = Axe;
 	ToolMap["Hammer"] = Hammer;
+	ToolMap["Screwdriver"] = Screwdriver;
+	ToolMap["Wrench"] = Wrench;
+	ToolMap["Crowbar"] = Crowbar;
+	ToolMap["Chainsaw"] = Chainsaw;
+	ToolMap["Scalpel"] = Scalpel;
 }

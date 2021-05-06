@@ -18,7 +18,8 @@
 MushroomSoup
 Hardtack
 0
-0
+1
+Hammer
 Коробки
 2
 VegetableStew
@@ -39,14 +40,18 @@ Comics
 EnergyBar
 DriedFruits
 0
-0
+1
+Screwdriver
 Основной зал
 3
 Стойка с инструментами
 1
 Palont
 0
-0
+3
+Chainsaw
+Wrench
+Crowbar
 Коробки из-под макарон
 2
 Noodle

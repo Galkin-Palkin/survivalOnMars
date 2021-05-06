@@ -44,7 +44,8 @@ CannedBeef
 CannedBeef
 CannedFish
 0
-0
+1
+Crowbar
 Кухня
 3
 Полки

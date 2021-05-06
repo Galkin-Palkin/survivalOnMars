@@ -50,7 +50,8 @@ Palont
 Phenothan
 Trivoclisine
 0
-0
+1
+Scalpel
 Комнаты медперсонала
 2
 EnergyBar
@@ -72,7 +73,8 @@ Noodle
 FishSoup
 MeatBriquette
 0
-0
+1
+Knife
 Столы
 2
 MeltedCheese

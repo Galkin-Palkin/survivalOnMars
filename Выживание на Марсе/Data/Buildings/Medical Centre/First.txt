@@ -45,7 +45,8 @@ Sedatives
 1
 Palont
 0
-0
+1
+Scalpel
 Регистратура
 2
 Выдвижной шкаф

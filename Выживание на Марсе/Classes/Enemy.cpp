@@ -138,8 +138,8 @@ void Game::Enemy::SetPointer(Human* T, Saves *T2) {
 	S = T2;
 }
 void Game::Enemy::Attack(bool &Working, bool &Life) {
-	for (size_t i = 0; i < DamageValue.size(); i++) {
-		if (ChanceToHit - rand() % 101 >= 0) {
+	if (ChanceToHit - rand() % 101 >= 0) {
+		for (size_t i = 0; i < DamageValue.size(); i++) {
 			if (DamageType[i] == HumanInfo::DP)
 				H->Set(DamageType[i], '+', DamageValue[i]);
 			else {

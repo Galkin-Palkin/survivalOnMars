@@ -239,6 +239,7 @@ class Game {
 		Tool Screwdriver; // Отвёртка
 		Tool Wrench; // Гаечный ключ
 		Tool Chainsaw; // Бензопила
+		Tool Scalpel;
 
 		// Медикаменты
 		Consumable Palont;

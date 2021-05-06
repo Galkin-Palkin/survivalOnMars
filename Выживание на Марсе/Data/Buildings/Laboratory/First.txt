@@ -39,7 +39,8 @@ Phenothan
 BartonsDrug
 Trivoclisine
 0
-0
+1
+Scalpel
 Испытательный сектор
 2
 Шкаф с реактивами
@@ -53,7 +54,8 @@ Syrup
 Gericline
 1
 ScienceFiction
-0
+1
+Scalpel
 Хранилище
 2
 Коробка с препаратами
@@ -68,4 +70,5 @@ Gericline
 Phenothan
 1
 ScienceFiction
-0
+1
+Screwdriver

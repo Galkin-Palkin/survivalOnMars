@@ -176,11 +176,11 @@ void Game::Buildings::EnterRoom(bool& Life, bool& Working, int RoomType, int& Ho
 	case 5: RoomDenyType = "от лаборатории"; break;
 	}
 	bool Entering = true;
-	if (rand() % 8 == 0) {
+	if (rand() % 6 == 0) {
 		int DenyType = 1 + rand() % 4;
 		DenyToGoIn(DenyType, RoomDenyType, Entering);
 	}
-	else if (rand() % 1 == 0 && H->GetI(HumanInfo::Sol) > 2)
+	else if (rand() % 6 == 0 && H->GetI(HumanInfo::Sol) > 2)
 		Battle(Working, Life);
 	if (Entering && Life) {
 		int RoomVariety = 1 + rand() % 2;
