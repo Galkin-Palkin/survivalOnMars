@@ -97,6 +97,8 @@ void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string>& RoomVar
 	default: T.PRC(4, "Отсутствует комната с таким номером\n"); break; // При отсутствии указанного типа комнаты выводит следующее
 	}
 	system("cls");
+	Text::PRC(15, room.GetBuildingName() + '\n');
+	Text::V(4, 50);
 	T.PRC(1, "План помещения:\n");
 	// Отрисовка плана помещения
 	T.PRC(15, "");
@@ -120,7 +122,7 @@ void Game::Buildings::RoomVarietyPrint(vector<string> RoomVarietyVector) {
 		if (Size - i - 1) T.V(4, 30);
 	}
 	T.V(4, 45);
-	T.PRC(15, "");
+	T.PRC(15);
 }
 int Game::Buildings::RoomChoose(vector<string>& RoomVarietyVector, string& Temp) {
 	while (true) {
@@ -180,7 +182,7 @@ void Game::Buildings::EnterRoom(bool& Life, bool& Working, int RoomType, int& Ho
 		int DenyType = 1 + rand() % 4;
 		DenyToGoIn(DenyType, RoomDenyType, Entering);
 	}
-	else if (rand() % 6 == 0 && H->GetI(HumanInfo::Sol) > 2)
+	if (rand() % 6 == 0 && H->GetI(HumanInfo::Sol) > 2)
 		Battle(Working, Life);
 	if (Entering && Life) {
 		int RoomVariety = 1 + rand() % 2;

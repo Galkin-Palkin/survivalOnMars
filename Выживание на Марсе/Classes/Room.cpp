@@ -42,12 +42,18 @@ string Game::Room::GetName(int Index) {
 	if (Index >= roomToName.size()) return "Выбрана несуществующая комната";
 	return roomToName[Index];
 }
+
+string Game::Room::GetBuildingName() {
+	return Name;
+}
+
 void Game::Room::PrintRooms() {
 	for (size_t i = 0; i < roomToName.size(); i++) {
 		T.HV(1, i + 1, 15, roomToName[i]);
 		if (roomToName.size() != i + 1) T.V(4, 40);
 	}
 }
+
 void Game::Room::ActionChoose(vector<Action>& RoomPlacesVector) {
 	while (true) {
 		int Click = _getch(); // Считываем аскии-код символа. У единицы он 49, у двойки - 50 и так далее
@@ -89,6 +95,7 @@ void Game::Room::operator=(Room R) {
 	this->Info = R.Info;
 	this->floorPlan = R.floorPlan;
 	this->roomToName = R.roomToName;
+	this->Name = R.Name;
 }
 vector<vector<Game::Action>> Game::Room::GetVectorAction() {
 	return roomToActions;
@@ -140,6 +147,8 @@ void Game::Room::SetPointer(Human *HPointer) {
 }
 void Game::Room::Set(string Path) {
 	ifstream fin(Path);
+	fin >> ws;
+	getline(fin, Name);
 	int size;
 	fin >> size;
 	floorPlan.resize(size);

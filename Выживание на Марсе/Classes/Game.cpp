@@ -2,7 +2,7 @@
 #include <conio.h>
 #include <fstream>
 #include <string>
-#define NightmareCount 7
+#define NightmareCount 8
 void Game::Introduction() {
 	SetConsoleTextAttribute(h, 15);
 	system("cls");

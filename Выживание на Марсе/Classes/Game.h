@@ -299,6 +299,7 @@ class Game {
 		vector<string> roomToName; // Названия комнат
 		vector<string> floorPlan; // Карта помещения
 		string Info;
+		string Name;
 		bool IsScare = false;
 	public:
 		Room(string);
@@ -310,6 +311,7 @@ class Game {
 		string GetInfo();
 		vector<Action> GetRoomPlaces(int);
 		string GetName(int);
+		string GetBuildingName();
 		void ActionChoose(vector<Action>&);
 		void SetActionVector(vector<Action>, int);
 		void PlaceClear(int);
