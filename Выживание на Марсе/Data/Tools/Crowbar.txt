@@ -1,5 +1,7 @@
-2
-Wood
+3
+Planks
 20
 Glass
 22
+Wending machine
+18

@@ -17,6 +17,7 @@
 Палаты
 2
 Тумбочки пациентов
+0
 2
 Phenothan
 Sedatives
@@ -24,6 +25,7 @@ Sedatives
 Comics
 0
 Порванная косметичка
+0
 2
 DriedFruits
 Aspirin
@@ -32,12 +34,14 @@ Aspirin
 Картотека
 2
 Шкаф с медкнигами
+0
 1
 Aspirin
 1
 ScienceFiction
 0
 Письменный стол
+0
 2
 Syrup
 Sedatives
@@ -46,6 +50,7 @@ Sedatives
 Служебный отдел
 3
 Хранилище медикаментов
+0
 3
 Palont
 Phenothan
@@ -54,12 +59,14 @@ Trivoclisine
 1
 Scalpel
 Комнаты медперсонала
+0
 2
 EnergyBar
 Aspirin
 0
 0
 Стеллаж
+0
 1
 DarkChocolateBar
 2
@@ -69,6 +76,7 @@ Adventures
 Столовая
 3
 Кухня
+0
 3
 Noodle
 FishSoup
@@ -77,12 +85,14 @@ MeatBriquette
 1
 Knife
 Столы
+0
 2
 MeltedCheese
 Hardtack
 0
 0
 Буфет
+0
 2
 EnergyBar
 DriedFruits

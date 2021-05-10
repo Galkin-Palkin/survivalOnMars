@@ -345,7 +345,7 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 	case 4: {
 		int Size = rand() % Obstacles.size();
 		for (auto &i : Obstacles)
-			if (Size--) {
+			if (!Size--) {
 				Entering = i.second.Clone().Creating();
 				break;
 			}

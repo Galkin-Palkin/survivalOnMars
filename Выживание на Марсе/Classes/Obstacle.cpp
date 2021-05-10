@@ -9,7 +9,8 @@ Game::Obstacle::Obstacle(string Path) {
 	DurPoints = MaxDurPoints - rand() % (MaxDurPoints / 2 + 1);
 	fin >> ws;
 	getline(fin, Name);
-	fin >> Type;
+	fin >> ws;
+	getline(fin, Type);
 	int Size;
 	fin >> Size;
 	Text.resize(Size);

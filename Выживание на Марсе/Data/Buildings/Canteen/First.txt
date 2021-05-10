@@ -15,25 +15,32 @@
 Главный зал
 3
 Столы
+0
 2
 CannedBeef
 Hardtack
 0
 0
 Брошенная сумка
+0
 2
 Phenothan
 MeltedCheese
 0
 0
-Мусорное ведро
+Аппарат со сладостями
 1
-Aspirin
+Wending machine
+3
+DriedFruits
+DarkChocolateBar
+EnergyBar
 0
 0
 Подсобное помещение
 2
 Холодильник
+0
 3
 MushroomSoup
 VegetableStew
@@ -41,6 +48,7 @@ CannedBeef
 0
 0
 Ящики
+0
 2
 CannedBeef
 CannedFish
@@ -50,6 +58,7 @@ Crowbar
 Кухня
 3
 Полки
+0
 2
 MeatBriquette
 Hardtack
@@ -57,6 +66,7 @@ Hardtack
 1
 Knife
 Шкаф
+0
 2
 MeltedCheese
 RicePurge
@@ -64,6 +74,7 @@ RicePurge
 1
 Knife
 Плита
+0
 2
 MeatBriquette
 FishSoup

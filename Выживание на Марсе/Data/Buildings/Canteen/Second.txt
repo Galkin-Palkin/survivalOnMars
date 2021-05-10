@@ -17,6 +17,7 @@
 Кухня
 3
 Холодильник
+0
 2
 VegetableStew
 MeltedCheese
@@ -24,11 +25,13 @@ MeltedCheese
 1
 Knife
 Духовка
+0
 1
 FishSoup
 0
 0
 Коробки из-под консерв
+0
 3
 CannedBeef
 CannedFish
@@ -38,6 +41,7 @@ RicePurge
 Первый зал
 2
 Буфет
+0
 3
 EnergyBar
 DarkChocolateBar
@@ -45,6 +49,7 @@ Hardtack
 0
 0
 Столы
+0
 2
 MeltedCheese
 Hardtack
@@ -53,12 +58,14 @@ Hardtack
 Второй зал
 2
 Стеллаж с посудой
+0
 1
 MeltedCheese
 0
 1
 Knife
 Столы
+0
 2
 Hardtack
 MushroomSoup

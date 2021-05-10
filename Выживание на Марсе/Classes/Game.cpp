@@ -470,14 +470,23 @@ void Game::ReadNotes(int& Hour, bool& IsBack) {
 	system("pause");
 }
 void Game::NotesWriting() {
-	ofstream fout("Data\\Notes.txt", ofstream::app);
+	ofstream fout1("Data\\Notes.txt", ofstream::app);
 	system("cls");
 	T.PRC(3, "Напишите заметку: ");
 	string Temp;
 	T.PRC(15);
 	cin >> ws;
 	getline(cin, Temp);
-	fout << "Сол " + to_string(H.GetI(HumanInfo::Sol)) + ", " + to_string(H.GetI(HumanInfo::Hour)) + ":00  " + Temp << endl;
+	if (Temp == "nofap") {
+		Temp = "Приветствую братьев-нофаперов!";
+		if (!IsAchMap[Ach_Nofap]) {
+			ofstream fout("Data\\Achievements.txt", ofstream::app);
+			fout << "Брат-нофапер\nБыть членом сообщества Nofap и принять участие в бета-тесте\n";
+			IsAchMap[Ach_Nofap] = true;
+			fout.close();
+		}
+	}
+	fout1 << "Сол " + to_string(H.GetI(HumanInfo::Sol)) + ", " + to_string(H.GetI(HumanInfo::Hour)) + ":00  " + Temp << endl;
 }
 bool Game::Statement(string Header, string Text) {
 	system("cls");
@@ -695,6 +704,12 @@ Game::Game() {
 	B.GetPath();
 	Obstacles["Planks"] = Obstacle("Data\\Obstacles\\Planks.txt");
 	Obstacles["Boxes"] = Obstacle("Data\\Obstacles\\Boxes.txt");
+	Obstacles["Bolts"] = Obstacle("Data\\Obstacles\\Bolts.txt");
+	Obstacles["Screws"] = Obstacle("Data\\Obstacles\\Screws.txt");
+	Obstacles["Window"] = Obstacle("Data\\Obstacles\\Window.txt");
+	Obstacles["Wooden door"] = Obstacle("Data\\Obstacles\\Wooden door.txt");
+
+	ActionObstacles["Wending machine"] = Obstacle("Data\\ActionObstacles\\Wending Machine.txt");
 }
 int Game::Menu() {
 	system("cls");
@@ -765,7 +780,9 @@ void Game::Menu_2(bool& Working) {
 		T.V(4, 15);
 		T.HV(13, 3, 15, "Чтение, дневник и заметки");
 		T.V(4, 15);
-		T.HV(13, 4, 15, "Вернуться в главное меню");
+		T.HV(13, 4, 15, "Враги и их воздействие на игрока");
+		T.V(4, 15);
+		T.HV(13, 5, 15, "Вернуться в главное меню");
 		T.V(4, 35);
 		while (true) {
 			int Variety = _getch();
@@ -775,14 +792,18 @@ void Game::Menu_2(bool& Working) {
 				goto Start;
 			}
 			case 50: {
-				if (Statement("Поиск и употребление", "У главного героя есть возможность выйти на поиски пищи и медикаментов в разнообразных помещениях со своими локациями\nПри нахождении продукта и возвращении назад, герой может употребить его, изменив свои определённые характеристики\nПереключение между страницами с пищей осуществляется посредством нажатия английских клавиш 'A' и 'D' для перехода влево и вправо соответственно\n")) return;
+				if (Statement("Поиск и употребление", "У главного героя есть возможность выйти на поиски пищи и медикаментов в разнообразных помещениях со своими локациями\nПри нахождении продукта и возвращении назад, герой может употребить его, изменив свои определённые характеристики\nИногда игроку могут попадасться препятствия, которые следует убирать с помощью инструментов\nПереключение между страницами с пищей осуществляется посредством нажатия английских клавиш 'A' и 'D' для перехода влево и вправо соответственно\n")) return;
 				goto Start;
 			}
 			case 51: {
-				if (Statement("Чтение, дневник и заметки", "Главный персонаж имеет возможность читать, просматривать свой дневник, а также оставлять заметки\nКниги можно найти при обыскивании стеллажей с книгами или других мест\n")) return;
+				if (Statement("Чтение, дневник и заметки", "Главный персонаж имеет возможность читать, просматривать свой дневник, а также оставлять заметки\nКниги можно найти при обыскивании стеллажей с книгами или других мест\nВ дневник персонаж записывает свои мысли и ощущения\n")) return;
 				goto Start;
 			}
 			case 52: {
+				if (Statement("Враги и их воздействие на игрока", "Иногда главному персонажу игры будут встречаться враги. Они будут мешать проходить в помещение.\nВраги могут атаковать, ухудшая здоровье или психическое состояние игрока\nВраги могут быть убитыми кулаками или инструментами\n")) return;
+				goto Start;
+			}
+			case 53: {
 				Menu = false;
 				return;
 			}

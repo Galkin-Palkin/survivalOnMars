@@ -9,6 +9,11 @@
 Game::Action::Action(ifstream& fin) {
 	fin >> ws;
 	getline(fin, Name);
+	fin >> IsObstacle;
+	if (IsObstacle) {
+		fin >> ws;
+		getline(fin, ObstacleType);
+	}
 	int size;
 	string Temp;
 	fin >> size;
@@ -30,9 +35,11 @@ Game::Action::Action(ifstream& fin) {
 		FoundedTools.push_back(ToolMap[Temp]);
 	}
 }
+
 string Game::Action::GetName() {
 	return Name;
 }
+
 void Game::Action::GenerateItems() {
 	for (int i = 0; i < SearchingResult.size(); i++)
 		if (SearchingResult[i].GetChance() - rand() % 101 >= 0)
@@ -44,6 +51,7 @@ void Game::Action::GenerateItems() {
 		if (FoundedTools[i].GetChance() - rand() % 101 >= 0)
 			IsFound[i] = true;
 }
+
 void Game::Action::FoundedItems() {
 	system("cls");
 	T.PRC(1, "Вы нашли:\n");
@@ -113,6 +121,15 @@ void Game::Action::FoundedItems() {
 	T.PRC(15, "");
 	system("pause");
 }
+
+string Game::Action::GetObstacleType() {
+	return ObstacleType;
+}
+
 void Game::Action::SetPointer(Human* Temp) {
 	H = Temp;
+}
+
+bool Game::Action::GetIsObstacle() {
+	return IsObstacle;
 }

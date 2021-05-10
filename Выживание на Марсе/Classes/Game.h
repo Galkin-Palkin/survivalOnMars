@@ -279,6 +279,8 @@ class Game {
 		Text T;
 		static Human* H;
 		string Name;
+		bool IsObstacle = false;
+		string ObstacleType;
 		vector<Consumable> SearchingResult;
 		vector<Book> FoundedBooks;
 		vector<Tool> FoundedTools;
@@ -289,6 +291,8 @@ class Game {
 		string GetName();
 		void GenerateItems();
 		void FoundedItems();
+		string GetObstacleType();
+		bool GetIsObstacle();
 		static void SetPointer(Human*);
 	};
 	class Room {
@@ -366,7 +370,8 @@ class Game {
 		Ach_Plushkin,
 		Ach_Hacker,
 		Ach_Chocolate,
-		Ach_BookWorm
+		Ach_BookWorm,
+		Ach_Nofap
 	};
 	Saves S;
 	static vector<string> DiaryVector;
@@ -390,6 +395,7 @@ class Game {
 	static Room Room9;
 	static Room Room10;
 	static map<string, Obstacle> Obstacles;
+	static map<string, Obstacle> ActionObstacles;
 	void Introduction();
 	void InfoShowing(int HP, int FP, int EP, int PHP, double DP, int Sol, int Hour);
 	int NewGame();

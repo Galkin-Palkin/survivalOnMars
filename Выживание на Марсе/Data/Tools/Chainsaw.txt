@@ -1,3 +1,5 @@
-1
+2
 Wood
 57
+Planks
+65

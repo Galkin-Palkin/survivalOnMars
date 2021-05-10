@@ -1,5 +1,9 @@
-2
+4
 Glass
 25
 Screw
 1
+Planks
+17
+Wending machine
+25

@@ -14,12 +14,14 @@
 Пункт охраны
 2
 Тумбочка
+0
 2
 Aspirin
 EnergyBar
 0
 0
 Выдвижной ящик стола
+0
 2
 Sedatives
 DriedFruits
@@ -29,12 +31,14 @@ CriminalDrama
 Блок для синтезирования
 2
 Стенд с колбами
+0
 2
 Gericline
 Trivoclisine
 0
 0
 Стальной ящик
+0
 3
 Phenothan
 BartonsDrug
@@ -45,12 +49,14 @@ Scalpel
 Испытательный сектор
 2
 Шкаф с реактивами
+0
 2
 Trivoclisine
 Syrup
 0
 0
 Полка
+0
 1
 Gericline
 1
@@ -60,12 +66,14 @@ Scalpel
 Хранилище
 2
 Коробка с препаратами
+0
 2
 Sedatives
 Palont
 0
 0
 Стеллаж
+0
 2
 Gericline
 Phenothan

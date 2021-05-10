@@ -13,8 +13,9 @@
 Помещение больницы. Справа находится регистратура и хранилище медикаментов. В левом крыле находятся палаты 
 3
 Отделение с палатами
-2
+3
 Тумбочки
+0
 2
 Aspirin
 Sedatives
@@ -23,19 +24,31 @@ Adventures
 Thriller
 0
 Шкаф
+0
 2
 DriedFruits
 CannedApple
 0
 0
+Аппарат с таблетками
+1
+Wending machine
+3
+Phenothan
+Sedatives
+Aspirin
+0
+0
 Склад медикаментов
 3
 Ящик с сиропом
+0
 1
 Syrup
 0
 0
 Тумба с таблетками
+0
 3
 Aspirin
 Phenothan
@@ -43,6 +56,7 @@ Sedatives
 0
 0
 Полка для мазей
+0
 1
 Palont
 0
@@ -51,12 +65,14 @@ Scalpel
 Регистратура
 2
 Выдвижной шкаф
+0
 2
 Syrup
 Phenothan
 0
 0
 Рабочий стол
+0
 1
 Sedatives
 1

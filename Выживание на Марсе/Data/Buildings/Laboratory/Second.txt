@@ -15,6 +15,7 @@
 Химический отдел
 3
 Стеклянный шкаф
+0
 2
 Trivoclisine
 Phenothan
@@ -22,12 +23,14 @@ Phenothan
 1
 Scalpel
 Полка
+0
 1
 Aspirin
 1
 ScienceFiction
 0
 Коробки для инъекций
+0
 1
 Gericline
 0
@@ -35,6 +38,7 @@ Gericline
 Лаборатория
 2
 Рабочий стол
+0
 2
 Sedatives
 EnergyBar
@@ -42,6 +46,7 @@ EnergyBar
 1
 Scalpel
 Стенд с реактивами
+0
 2
 Trivoclisine
 Syrup
@@ -50,12 +55,14 @@ Syrup
 Хранилище реактивов
 2
 Никелевые ящики
+0
 2
 Palont
 Phenothan
 0
 0
 Полка с образцами
+0
 2
 Gericline
 Aspirin
@@ -64,6 +71,7 @@ Aspirin
 Проверочный центр
 1
 Письменный стол
+0
 1
 Sedatives
 1

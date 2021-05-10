@@ -15,6 +15,7 @@
 Первый блок
 2
 Шкаф
+0
 2
 MushroomSoup
 Hardtack
@@ -22,6 +23,7 @@ Hardtack
 1
 Hammer
 Коробки
+0
 2
 VegetableStew
 CannedApple
@@ -30,6 +32,7 @@ CannedApple
 Техническое помещение
 2
 Выдвижной ящик
+0
 2
 Aspirin
 Sedatives
@@ -37,6 +40,7 @@ Sedatives
 Comics
 0
 Рюкзак
+0
 2
 EnergyBar
 DriedFruits
@@ -46,6 +50,7 @@ Screwdriver
 Основной зал
 3
 Стойка с инструментами
+0
 1
 Palont
 0
@@ -54,12 +59,14 @@ Chainsaw
 Wrench
 Crowbar
 Коробки из-под макарон
+0
 2
 Noodle
 MeltedCheese
 0
 0
 Стелла с книгами
+0
 1
 Aspirin
 3

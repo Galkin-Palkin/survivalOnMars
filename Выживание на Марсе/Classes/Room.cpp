@@ -57,30 +57,47 @@ void Game::Room::PrintRooms() {
 void Game::Room::ActionChoose(vector<Action>& RoomPlacesVector) {
 	while (true) {
 		int Click = _getch(); // Считываем аскии-код символа. У единицы он 49, у двойки - 50 и так далее
+		bool IsReachable = true;
 		switch (Click) {
 		case 49:
 			if (RoomPlacesVector.size() < 1) break;
-  			RoomPlacesVector[0].GenerateItems();
-			RoomPlacesVector[0].FoundedItems();
-			RoomPlacesVector.erase(RoomPlacesVector.begin());
+			if (RoomPlacesVector[0].GetIsObstacle())
+				IsReachable = ActionObstacles[RoomPlacesVector[0].GetObstacleType()].Clone().Creating();
+			if (IsReachable) {
+				RoomPlacesVector[0].GenerateItems();
+				RoomPlacesVector[0].FoundedItems();
+				RoomPlacesVector.erase(RoomPlacesVector.begin());
+			}
 			return;
 		case 50:
 			if (RoomPlacesVector.size() < 2) break;
-			RoomPlacesVector[1].GenerateItems();
-			RoomPlacesVector[1].FoundedItems();
-			RoomPlacesVector.erase(RoomPlacesVector.begin() + 1);
+			if (RoomPlacesVector[1].GetIsObstacle())
+				IsReachable = ActionObstacles[RoomPlacesVector[1].GetObstacleType()].Clone().Creating();
+			if (IsReachable) {
+				RoomPlacesVector[1].GenerateItems();
+				RoomPlacesVector[1].FoundedItems();
+				RoomPlacesVector.erase(RoomPlacesVector.begin() + 1);
+			}
 			return;
 		case 51:
 			if (RoomPlacesVector.size() < 3) break; // Проверка на то, есть ли достаточное количество мест для поиска в комнате
-			RoomPlacesVector[2].GenerateItems();
-			RoomPlacesVector[2].FoundedItems();
-			RoomPlacesVector.erase(RoomPlacesVector.begin() + 2);
+			if (RoomPlacesVector[2].GetIsObstacle())
+				IsReachable = ActionObstacles[RoomPlacesVector[2].GetObstacleType()].Clone().Creating();
+			if (IsReachable) {
+				RoomPlacesVector[2].GenerateItems();
+				RoomPlacesVector[2].FoundedItems();
+				RoomPlacesVector.erase(RoomPlacesVector.begin() + 2);
+			}
 			return;
 		case 52:
 			if (RoomPlacesVector.size() < 4) break;
-			RoomPlacesVector[3].GenerateItems();
-			RoomPlacesVector[3].FoundedItems();
-			RoomPlacesVector.erase(RoomPlacesVector.begin() + 3);
+			if (RoomPlacesVector[3].GetIsObstacle())
+				IsReachable = ActionObstacles[RoomPlacesVector[3].GetObstacleType()].Clone().Creating();
+			if (IsReachable) {
+				RoomPlacesVector[3].GenerateItems();
+				RoomPlacesVector[3].FoundedItems();
+				RoomPlacesVector.erase(RoomPlacesVector.begin() + 3);
+			}
 			return;
 		}
 	}

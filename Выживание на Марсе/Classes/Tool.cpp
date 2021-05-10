@@ -1,5 +1,6 @@
 #include "Game.h"
 #include <fstream>
+#include <string>
 
 void Game::Tool::SetParameters(string Type, string Name, double Weight, int Damage, int Chance, string Path) {
 	this->Type = Type;
@@ -12,8 +13,11 @@ void Game::Tool::SetParameters(string Type, string Name, double Weight, int Dama
 		int Size;
 		fin >> Size;
 		Specialisation.resize(Size);
-		for (int i = 0; i < Size; i++)
-			fin >> Specialisation[i].first >> Specialisation[i].second;
+		for (int i = 0; i < Size; i++) {
+			fin >> ws;
+			getline(fin, Specialisation[i].first);
+			fin >> Specialisation[i].second;
+		}
 	}
 }
 

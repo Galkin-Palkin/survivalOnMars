@@ -15,6 +15,7 @@
 Первый блок
 3
 Тумбочка
+0
 2
 Hardtack
 Aspirin
@@ -22,6 +23,7 @@ Aspirin
 Comics
 0
 Армейский рюкзак
+0
 3
 RicePurge
 CannedBeef
@@ -29,6 +31,7 @@ DarkChocolateBar
 0
 0
 Аптечка
+0
 2
 Aspirin
 Phenothan
@@ -37,18 +40,21 @@ Phenothan
 Второй блок
 3
 Тумбочка
+0
 2
 Aspirin
 EnergyBar
 0
 0
 Шкаф
+0
 2
 CannedBeef
 DriedFruits
 0
 0
 Стальной ящик
+0
 2
 RicePurge
 CannedApple
@@ -57,18 +63,21 @@ CannedApple
 Третий блок
 3
 Шкаф
+0
 2
 CannedBeef
 Hardtack
 0
 0
 Тумбочка
+0
 2
 Aspirin
 EnergyBar
 0
 0
 Стальной ящик
+0
 2
 RicePurge
 CannedApple
@@ -77,6 +86,7 @@ CannedApple
 Офис охраны
 2
 Столешница
+0
 2
 EnergyBar
 Aspirin
@@ -84,6 +94,7 @@ Aspirin
 1
 Screwdriver
 Стойка для книг
+0
 1
 DarkChocolateBar
 2

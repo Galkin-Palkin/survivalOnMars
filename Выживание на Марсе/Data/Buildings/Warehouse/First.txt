@@ -17,12 +17,14 @@
 Первое отделение
 2
 Стенд с коробками
+0
 2
 RicePurge
 CannedFish
 0
 0
 Ящики с продовольствием
+0
 2
 MeatBriquette
 CannedBeef
@@ -31,12 +33,14 @@ CannedBeef
 Второе отделение
 2
 Спортивная сумка
+0
 2
 Aspirin
 DriedFruits
 0
 0
 Цинковые контейнеры
+0
 3
 Palont
 Noodle
@@ -48,12 +52,14 @@ Wrench
 Верхний сортировочный цех
 2
 Аптечка
+0
 2
 Syrup
 Phenothan
 0
 0
 Опрокинутый ящик
+0
 3
 CannedFish
 VegetableStew
@@ -64,6 +70,7 @@ Crowbar
 Нижний сортировочный цех
 1
 Письменный стол
+0
 2
 Sedatives
 EnergyBar

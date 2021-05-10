@@ -14,6 +14,7 @@
 Техническое помещение
 2
 Стальной шкаф
+0
 2
 CannedBeef
 RicePurge
@@ -22,6 +23,7 @@ RicePurge
 Hammer
 Axe
 Сумка
+0
 2
 Palont
 Aspirin
@@ -30,12 +32,14 @@ Aspirin
 Первый блок
 3
 Железные шкафчики
+0
 2
 EnergyBar
 Hardtack
 0
 0
 Стеллаж
+0
 1
 Aspirin
 2
@@ -43,6 +47,7 @@ Adventures
 ScienceFiction
 0
 Чемодан
+0
 2
 Palont
 DarkChocolateBar
@@ -51,18 +56,21 @@ DarkChocolateBar
 Второй блок
 3
 Деревянный ящик
+0
 2
 CannedBeef
 RicePurge
 0
 0
 Стол
+0
 2
 MeltedCheese
 Hardtack
 0
 0
 Тумбы
+0
 2
 Hardtack
 Sedatives

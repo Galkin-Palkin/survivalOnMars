@@ -1,3 +1,5 @@
-1
+2
 Bolt
 1
+Wending machine
+60
