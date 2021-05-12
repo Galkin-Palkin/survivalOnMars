@@ -66,8 +66,8 @@ void Game::Room::ActionChoose(vector<Action>& RoomPlacesVector) {
 			if (IsReachable) {
 				RoomPlacesVector[0].GenerateItems();
 				RoomPlacesVector[0].FoundedItems();
-				RoomPlacesVector.erase(RoomPlacesVector.begin());
 			}
+			RoomPlacesVector.erase(RoomPlacesVector.begin());
 			return;
 		case 50:
 			if (RoomPlacesVector.size() < 2) break;
@@ -76,8 +76,8 @@ void Game::Room::ActionChoose(vector<Action>& RoomPlacesVector) {
 			if (IsReachable) {
 				RoomPlacesVector[1].GenerateItems();
 				RoomPlacesVector[1].FoundedItems();
-				RoomPlacesVector.erase(RoomPlacesVector.begin() + 1);
 			}
+			RoomPlacesVector.erase(RoomPlacesVector.begin() + 1);
 			return;
 		case 51:
 			if (RoomPlacesVector.size() < 3) break; // Проверка на то, есть ли достаточное количество мест для поиска в комнате
@@ -86,8 +86,8 @@ void Game::Room::ActionChoose(vector<Action>& RoomPlacesVector) {
 			if (IsReachable) {
 				RoomPlacesVector[2].GenerateItems();
 				RoomPlacesVector[2].FoundedItems();
-				RoomPlacesVector.erase(RoomPlacesVector.begin() + 2);
 			}
+			RoomPlacesVector.erase(RoomPlacesVector.begin() + 2);
 			return;
 		case 52:
 			if (RoomPlacesVector.size() < 4) break;
@@ -96,8 +96,8 @@ void Game::Room::ActionChoose(vector<Action>& RoomPlacesVector) {
 			if (IsReachable) {
 				RoomPlacesVector[3].GenerateItems();
 				RoomPlacesVector[3].FoundedItems();
-				RoomPlacesVector.erase(RoomPlacesVector.begin() + 3);
 			}
+			RoomPlacesVector.erase(RoomPlacesVector.begin() + 3);
 			return;
 		}
 	}
