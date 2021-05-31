@@ -18,7 +18,9 @@
 0
 2
 Aspirin
+0
 Sedatives
+0
 2
 Adventures
 Thriller
@@ -27,7 +29,9 @@ Thriller
 0
 2
 DriedFruits
+0
 CannedApple
+0
 0
 0
 Аппарат с таблетками
@@ -35,8 +39,11 @@ CannedApple
 Wending machine
 3
 Phenothan
+0
 Sedatives
+2
 Aspirin
+3
 0
 0
 Склад медикаментов
@@ -47,18 +54,23 @@ Aspirin
 Syrup
 0
 0
+0
 Тумба с таблетками
 0
 3
 Aspirin
+0
 Phenothan
+0
 Sedatives
+0
 0
 0
 Полка для мазей
 0
 1
 Palont
+0
 0
 1
 Scalpel
@@ -68,13 +80,16 @@ Scalpel
 0
 2
 Syrup
+0
 Phenothan
+0
 0
 0
 Рабочий стол
 0
 1
 Sedatives
+0
 1
 ScienceFiction
 0

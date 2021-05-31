@@ -733,6 +733,7 @@ int Game::Menu() {
 	case 51: return 3;
 	case 52: return 4;
 	case 53: return 5;
+	case 27: return 5;
 	}
 	return -1;
 }
@@ -803,10 +804,10 @@ void Game::Menu_2(bool& Working) {
 				if (Statement("Враги и их воздействие на игрока", "Иногда главному персонажу игры будут встречаться враги. Они будут мешать проходить в помещение.\nВраги могут атаковать, ухудшая здоровье или психическое состояние игрока\nВраги могут быть убитыми кулаками или инструментами\n")) return;
 				goto Start;
 			}
-			case 53: {
-				Menu = false;
+			case 53:
 				return;
-			}
+			case 27:
+				return;
 			}
 		}
 	}
@@ -857,7 +858,10 @@ Menu:
 				}
 			}
 		}
-		case 50: return;
+		case 50: 
+			return;
+		case 27:
+			return;
 		}
 	}
 }
@@ -883,6 +887,7 @@ void Game::Menu_4(bool& Working) {
 		switch (Variety) {
 		case 49: return;
 		case 50: Working = false; return;
+		case 27: return;
 		}
 	}
 }
@@ -897,6 +902,7 @@ void Game::Menu_5(bool& Working) {
 		switch (Variety) {
 		case 49: Working = false; return;
 		case 50: return;
+		case 27: return;
 		}
 	}
 }

@@ -19,8 +19,8 @@ Game::Action::Action(ifstream& fin) {
 	fin >> size;
 	SearchingResult.resize(size);
 	for (int i = 0; i < size; i++) {
-		fin >> Temp;
-		SearchingResult[i] = (*ConsumableMap[Temp]).Null();
+		fin >> Temp >> SearchingResult[i].second;
+		SearchingResult[i].first = (*ConsumableMap[Temp]).Null();
 	}
 	fin >> size;
 	FoundedBooks.resize(size);
@@ -41,12 +41,17 @@ string Game::Action::GetName() {
 }
 
 void Game::Action::GenerateItems() {
-	for (int i = 0; i < SearchingResult.size(); i++)
-		if (SearchingResult[i].GetChance() - rand() % 101 >= 0)
-			SearchingResult[i].SetCount(1 + (rand() % 10 == 0));
+	for (size_t i = 0; i < SearchingResult.size(); i++) {
+		int Count = SearchingResult[i].second + 1 + (rand() % 10 == 0);
+		for (int j = 0; j < Count; j++)
+			if (SearchingResult[i].first.GetChance() - rand() % 101 >= 0)
+				SearchingResult[i].first.SetCount(SearchingResult[i].first.GetCount() + 1);
+	}
+
 	for (size_t i = 0; i < FoundedBooks.size(); i++)
 		if (FoundedBooks[i].GetChance() - rand() % 101 >= 0)
 			FoundedBooks[i].SetCount(1);
+
 	for (size_t i = 0; i < FoundedTools.size(); i++)
 		if (FoundedTools[i].GetChance() - rand() % 101 >= 0)
 			IsFound[i] = true;
@@ -58,12 +63,12 @@ void Game::Action::FoundedItems() {
 	T.V(4, 60);
 	bool IsEmpty = true;
 	for (int i = 0; i < SearchingResult.size(); i++) {
-		if (SearchingResult[i].GetCount() > 0) {
+		if (SearchingResult[i].first.GetCount() > 0) {
 			IsEmpty = false;
 			T.PRC(3, " - ");
-			T.PRC(15, SearchingResult[i].GetName() + " (" + char(48 + SearchingResult[i].GetCount()) + ")\n");
-			(*ConsumableMap[SearchingResult[i].GetType()]).SetNew(SearchingResult[i].GetCount());
-			H->Set(HumanInfo::PHP, '+', 3 * SearchingResult[i].GetCount());
+			T.PRC(15, SearchingResult[i].first.GetName() + " (" + char(48 + SearchingResult[i].first.GetCount()) + ")\n");
+			(*ConsumableMap[SearchingResult[i].first.GetType()]).SetNew(SearchingResult[i].first.GetCount());
+			H->Set(HumanInfo::PHP, '+', 3 * SearchingResult[i].first.GetCount());
 		}
 	}
 	for (size_t i = 0; i < FoundedBooks.size(); i++) {

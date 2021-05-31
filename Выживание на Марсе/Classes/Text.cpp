@@ -23,6 +23,7 @@ void Game::Text::V(int Number, int count) {
 	}
 	}
 }
+
 void Game::Text::HV(int Color1, int Number, int Color2, string String) {
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 	// Для оформления одного пункта меню. Нужно указать сначала цвет цифры, затем цифру, а потом цвет текста и сам текст
@@ -31,12 +32,14 @@ void Game::Text::HV(int Color1, int Number, int Color2, string String) {
 	SetConsoleTextAttribute(h, Color2);
 	cout << String << endl;
 }
+
 void Game::Text::PRC(int Colour, string String) {
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 	// Для вывода цветного текста
 	SetConsoleTextAttribute(h, Colour);
 	cout << String;
 }
+
 void Game::Text::Tab(int Color, string Text) {
 	system("cls");
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -44,6 +47,7 @@ void Game::Text::Tab(int Color, string Text) {
 	V(4, 60);
 	system("pause");
 }
+
 Game::Text::Text() {
 	
 }

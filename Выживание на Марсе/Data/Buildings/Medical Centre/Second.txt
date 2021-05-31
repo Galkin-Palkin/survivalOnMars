@@ -20,7 +20,9 @@
 0
 2
 Phenothan
+0
 Sedatives
+0
 1
 Comics
 0
@@ -28,7 +30,9 @@ Comics
 0
 2
 DriedFruits
+0
 Aspirin
+0
 0
 0
 Картотека
@@ -37,6 +41,7 @@ Aspirin
 0
 1
 Aspirin
+0
 1
 ScienceFiction
 0
@@ -44,7 +49,9 @@ ScienceFiction
 0
 2
 Syrup
+0
 Sedatives
+0
 0
 0
 Служебный отдел
@@ -53,8 +60,11 @@ Sedatives
 0
 3
 Palont
+0
 Phenothan
+0
 Trivoclisine
+0
 0
 1
 Scalpel
@@ -62,13 +72,16 @@ Scalpel
 0
 2
 EnergyBar
+0
 Aspirin
+0
 0
 0
 Стеллаж
 0
 1
 DarkChocolateBar
+0
 2
 Comics
 Adventures
@@ -79,8 +92,11 @@ Adventures
 0
 3
 Noodle
+0
 FishSoup
+0
 MeatBriquette
+0
 0
 1
 Knife
@@ -88,13 +104,17 @@ Knife
 0
 2
 MeltedCheese
+0
 Hardtack
+0
 0
 0
 Буфет
 0
 2
 EnergyBar
+0
 DriedFruits
+0
 0
 0

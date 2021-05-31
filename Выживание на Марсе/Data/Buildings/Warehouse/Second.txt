@@ -18,7 +18,9 @@
 0
 2
 MushroomSoup
+0
 Hardtack
+0
 0
 1
 Hammer
@@ -26,7 +28,9 @@ Hammer
 0
 2
 VegetableStew
+0
 CannedApple
+0
 0
 0
 Техническое помещение
@@ -35,7 +39,9 @@ CannedApple
 0
 2
 Aspirin
+0
 Sedatives
+0
 1
 Comics
 0
@@ -43,7 +49,9 @@ Comics
 0
 2
 EnergyBar
+0
 DriedFruits
+0
 0
 1
 Screwdriver
@@ -54,6 +62,7 @@ Screwdriver
 1
 Palont
 0
+0
 3
 Chainsaw
 Wrench
@@ -62,13 +71,16 @@ Crowbar
 0
 2
 Noodle
+0
 MeltedCheese
+0
 0
 0
 Стелла с книгами
 0
 1
 Aspirin
+0
 3
 CriminalDrama
 Thriller

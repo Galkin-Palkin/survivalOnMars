@@ -281,7 +281,7 @@ class Game {
 		string Name;
 		bool IsObstacle = false;
 		string ObstacleType;
-		vector<Consumable> SearchingResult;
+		vector<pair<Consumable, int>> SearchingResult;
 		vector<Book> FoundedBooks;
 		vector<Tool> FoundedTools;
 		vector<bool> IsFound;

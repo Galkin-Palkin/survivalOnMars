@@ -18,14 +18,18 @@
 0
 2
 CannedBeef
+0
 Hardtack
+0
 0
 0
 Брошенная сумка
 0
 2
 Phenothan
+0
 MeltedCheese
+0
 0
 0
 Аппарат со сладостями
@@ -33,8 +37,11 @@ MeltedCheese
 Wending machine
 3
 DriedFruits
+2
 DarkChocolateBar
+0
 EnergyBar
+2
 0
 0
 Подсобное помещение
@@ -43,15 +50,20 @@ EnergyBar
 0
 3
 MushroomSoup
+0
 VegetableStew
+0
 CannedBeef
+0
 0
 0
 Ящики
 0
 2
 CannedBeef
+0
 CannedFish
+0
 0
 1
 Crowbar
@@ -61,7 +73,9 @@ Crowbar
 0
 2
 MeatBriquette
+0
 Hardtack
+0
 0
 1
 Knife
@@ -69,7 +83,9 @@ Knife
 0
 2
 MeltedCheese
+0
 RicePurge
+0
 0
 1
 Knife
@@ -77,6 +93,8 @@ Knife
 0
 2
 MeatBriquette
+0
 FishSoup
+0
 0
 0

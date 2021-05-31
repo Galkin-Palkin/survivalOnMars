@@ -24,6 +24,7 @@ void Game::Enemy::Damaged(int Value) {
 		system("pause");
 	}
 }
+
 Game::Enemy::Enemy(string Path) {
 	HIMap["HP"] = HumanInfo::HP;
 	HIMap["FP"] = HumanInfo::FP;
@@ -57,9 +58,11 @@ Game::Enemy::Enemy(string Path) {
 		getline(fin, NotesToDiary[i]);
 	}
 }
+
 bool Game::Enemy::IsDead() {
 	return HP <= 0;
 }
+
 void Game::Enemy::Show(int Number, bool IsFirst) {
 	system("cls");
 	Text::PRC(15, "Противник: ");

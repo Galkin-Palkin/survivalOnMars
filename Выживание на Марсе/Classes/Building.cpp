@@ -110,6 +110,7 @@ void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string>& RoomVar
 		room.SetVectorAction(rooms[RoomNumber].GetVectorAction());
 	}
 }
+
 void Game::Buildings::RoomVarietyPrint(vector<string> RoomVarietyVector) {
 	T.PRC(1, "Выберите отдел помещения:\n");
 	T.V(4, 45);
@@ -124,6 +125,7 @@ void Game::Buildings::RoomVarietyPrint(vector<string> RoomVarietyVector) {
 	T.V(4, 45);
 	T.PRC(15);
 }
+
 int Game::Buildings::RoomChoose(vector<string>& RoomVarietyVector, string& Temp) {
 	while (true) {
 		int Click = _getch(); // Считываем аскии-код символа. У единицы он 49, у двойки - 50 и так далее
@@ -151,6 +153,7 @@ int Game::Buildings::RoomChoose(vector<string>& RoomVarietyVector, string& Temp)
 		}
 	}
 }
+
 void Game::Buildings::RoomSearching(Room& Room, string RoomName, int RoomVarType) {
 	system("cls");
 	vector<Action> RoomPlacesVector = Room.GetRoomPlaces(RoomVarType - 1);
@@ -160,6 +163,7 @@ void Game::Buildings::RoomSearching(Room& Room, string RoomName, int RoomVarType
 	}
 	Room.PlaceClear(RoomVarType - 1);
 }
+
 void Game::Buildings::EnterRoom(bool& Life, bool& Working, int RoomType, int& Hour) {
 	string RoomDenyType; // Говорит, доступ в какое помещение невозможен
 	vector<string> RoomVarietyVector; // Вектор названий комнат помещения
@@ -456,6 +460,7 @@ void Game::Buildings::LocationGeneration(bool& Life, bool& Working, int& Hour) {
 						return;
 					break;
 				}
+				case 27: return;
 				}
 			}
 		}
@@ -463,6 +468,7 @@ void Game::Buildings::LocationGeneration(bool& Life, bool& Working, int& Hour) {
 		CountOfRooms--;
 	}
 }
+
 void Game::Buildings::SetPointer(Human* Temp, Saves* S) {
 	H = Temp;
 	this->S = S;

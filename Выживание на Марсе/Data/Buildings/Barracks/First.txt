@@ -18,7 +18,9 @@
 0
 2
 Hardtack
+0
 Aspirin
+0
 1
 Comics
 0
@@ -26,15 +28,20 @@ Comics
 0
 3
 RicePurge
+0
 CannedBeef
+0
 DarkChocolateBar
+0
 0
 0
 Аптечка
 0
 2
 Aspirin
+0
 Phenothan
+0
 0
 0
 Второй блок
@@ -43,21 +50,27 @@ Phenothan
 0
 2
 Aspirin
+0
 EnergyBar
+0
 0
 0
 Шкаф
 0
 2
 CannedBeef
+0
 DriedFruits
+0
 0
 0
 Стальной ящик
 0
 2
 RicePurge
+0
 CannedApple
+0
 0
 0
 Третий блок
@@ -66,21 +79,27 @@ CannedApple
 0
 2
 CannedBeef
+0
 Hardtack
+0
 0
 0
 Тумбочка
 0
 2
 Aspirin
+0
 EnergyBar
+0
 0
 0
 Стальной ящик
 0
 2
 RicePurge
+0
 CannedApple
+0
 0
 0
 Офис охраны
@@ -89,7 +108,9 @@ CannedApple
 0
 2
 EnergyBar
+0
 Aspirin
+0
 0
 1
 Screwdriver
@@ -97,6 +118,7 @@ Screwdriver
 0
 1
 DarkChocolateBar
+0
 2
 Thriller
 CriminalDrama

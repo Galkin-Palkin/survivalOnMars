@@ -1,4 +1,5 @@
 #include "Game.h"
+
 bool Game::Consumable::Taking() {
 	// Употребление
 	if (this->Count > 0) {
@@ -13,6 +14,7 @@ bool Game::Consumable::Taking() {
 	if (this->Count <= 0 && this->IsBeing) this->Clear();
 	return true;
 }
+
 void Game::Consumable::SetNew(int Count) {
 	// Добавление нового объекта
 	if (!this->Count) {
@@ -22,6 +24,7 @@ void Game::Consumable::SetNew(int Count) {
 	}
 	this->Count += Count;
 }
+
 void Game::Consumable::Clear() {
 	for (int i = 0; i < ConsumableCount; i++) {
 		if ((*ConsumableVector[i]).GetID() > this->ID) (*ConsumableVector[i]).GetIDP()--;
@@ -31,6 +34,7 @@ void Game::Consumable::Clear() {
 	this->Count = 0;
 	this->IsBeing = false;
 }
+
 void Game::Consumable::Show(Text& T, size_t Page) {
 	// Показ списка
 	system("cls");
@@ -41,12 +45,12 @@ void Game::Consumable::Show(Text& T, size_t Page) {
 	size_t TotalPage = (ConsumableCount % 9 == 0) ? ConsumableCount / 9 : ConsumableCount / 9 + 1;
 	for (size_t i = 0; i < Size; i++) {
 		T.PRC(10, "[");
-		T.PRC(15, "");
+		T.PRC(15);
 		cout << i + 1;
 		T.PRC(10, "] ");
 		T.PRC(1, (*ConsumableVector[i + Page * (size_t)9]).GetName());
 		T.PRC(6, " x");
-		T.PRC(15, "");
+		T.PRC(15);
 		cout << (*ConsumableVector[i + Page * (size_t)9]).GetCount() << "    ";
 		cout << (*ConsumableVector[i + Page * (size_t)9]).GetWeight() * (*ConsumableVector[i + Page * (size_t)9]).GetCount();
 		T.PRC(8, " кг\n");
@@ -58,15 +62,19 @@ void Game::Consumable::Show(Text& T, size_t Page) {
 	else if (Page == TotalPage - 1 && TotalPage > 1) T.PRC(15, "  <-------------------  \n");
 	else if (Page > 0 && Page < TotalPage - 1) T.PRC(15, "  <-------------------                ------------------->  \n");
 }
+
 string Game::Consumable::GetType() {
 	return this->Type;
 }
+
 int Game::Consumable::GetCount() {
 	return this->Count;
 }
+
 void Game::Consumable::SetCount(int Value) {
 	this->Count = Value;
 }
+
 void Game::Consumable::Constructor(string Type, string Name, double Weight, int Chance, Game::HumanInfo FirstType, double FirstNumber, HumanInfo SecondType, int SecondNumber, HumanInfo ThirdType, int ThirdNumber) {
 	// Обычный конструктор нельзя вызвать в классе вне функции, поэтому есть такой аналог
 	ConsumableCount = 0;
@@ -85,6 +93,7 @@ void Game::Consumable::Constructor(string Type, string Name, double Weight, int 
 		this->ThirdNumber = ThirdNumber;
 	}
 }
+
 void Game::Consumable::Constructor(string Type, string Name, double Weight, int Chance, HumanInfo FirstType, int FirstNumber, HumanInfo SecondType, int SecondNumber, HumanInfo ThirdType, int ThirdNumber) {
 	ConsumableCount = 0;
 	this->Type = Type;

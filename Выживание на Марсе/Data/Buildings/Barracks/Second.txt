@@ -17,7 +17,9 @@
 0
 2
 CannedBeef
+0
 RicePurge
+0
 0
 2
 Hammer
@@ -26,7 +28,9 @@ Axe
 0
 2
 Palont
+0
 Aspirin
+0
 0
 0
 Первый блок
@@ -35,13 +39,16 @@ Aspirin
 0
 2
 EnergyBar
+0
 Hardtack
+0
 0
 0
 Стеллаж
 0
 1
 Aspirin
+0
 2
 Adventures
 ScienceFiction
@@ -50,7 +57,9 @@ ScienceFiction
 0
 2
 Palont
+0
 DarkChocolateBar
+0
 0
 0
 Второй блок
@@ -59,20 +68,26 @@ DarkChocolateBar
 0
 2
 CannedBeef
+0
 RicePurge
+0
 0
 0
 Стол
 0
 2
 MeltedCheese
+0
 Hardtack
+0
 0
 0
 Тумбы
 0
 2
 Hardtack
+0
 Sedatives
+0
 0
 0

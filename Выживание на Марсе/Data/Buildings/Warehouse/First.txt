@@ -20,14 +20,18 @@
 0
 2
 RicePurge
+0
 CannedFish
+0
 0
 0
 ящики с продовольствием
 0
 2
 MeatBriquette
+0
 CannedBeef
+0
 0
 0
 ¬торое отделение
@@ -36,15 +40,20 @@ CannedBeef
 0
 2
 Aspirin
+0
 DriedFruits
+0
 0
 0
 ÷инковые контейнеры
 0
 3
 Palont
+0
 Noodle
+0
 CannedApple
+0
 0
 2
 Knife
@@ -55,15 +64,20 @@ Wrench
 0
 2
 Syrup
+0
 Phenothan
+0
 0
 0
 ќпрокинутый €щик
 0
 3
 CannedFish
+0
 VegetableStew
+0
 MeltedCheese
+0
 0
 1
 Crowbar
@@ -73,6 +87,8 @@ Crowbar
 0
 2
 Sedatives
+0
 EnergyBar
+0
 0
 0

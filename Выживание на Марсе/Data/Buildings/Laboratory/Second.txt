@@ -18,7 +18,9 @@
 0
 2
 Trivoclisine
+0
 Phenothan
+0
 0
 1
 Scalpel
@@ -26,6 +28,7 @@ Scalpel
 0
 1
 Aspirin
+0
 1
 ScienceFiction
 0
@@ -35,13 +38,16 @@ ScienceFiction
 Gericline
 0
 0
+0
 Лаборатория
 2
 Рабочий стол
 0
 2
 Sedatives
+0
 EnergyBar
+0
 0
 1
 Scalpel
@@ -49,7 +55,9 @@ Scalpel
 0
 2
 Trivoclisine
+0
 Syrup
+0
 0
 0
 Хранилище реактивов
@@ -58,14 +66,18 @@ Syrup
 0
 2
 Palont
+0
 Phenothan
+0
 0
 0
 Полка с образцами
 0
 2
 Gericline
+0
 Aspirin
+0
 0
 0
 Проверочный центр
@@ -74,6 +86,7 @@ Aspirin
 0
 1
 Sedatives
+0
 1
 Adventures
 0
