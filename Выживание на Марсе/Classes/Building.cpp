@@ -2,112 +2,34 @@
 #include <conio.h>
 #include <string>
 #include <fstream>
-void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string>& RoomVarietyVector, Room& room, bool IsFirst) {
-	int RoomNumber = 0;
-	switch (RoomType) { // Проверка на тип комнаты
-	// Казармы
-	case 1: {
-		switch (Variety) {
-		case 1: { // Первая разновидность казарм
-			room = rooms[0];
-			RoomNumber = 0;
-			break;
-		}
-		case 2: { // Вторая разновидность казарм
-			room = rooms[1];
-			RoomNumber = 1;
-			break;
-		}
-		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break; // При указании варианта комнаты, которого нет, нам выведет это сообщение
-		}
-		break;
-	}
-		  // Столовая
-	case 2: {
+#define RoomsCount 10
 
-		switch (Variety) {
-		case 1: {
-			room = rooms[2];
-			RoomNumber = 2;
-			break;
+void Game::Buildings::RoomMap(int RoomType, int Variety, vector<string>& RoomVarietyVector, Room& Room, bool IsFirst) {
+	try {
+		int RoomNumber = 2 * RoomType + Variety - 3;
+		if (RoomNumber >= RoomsCount || RoomNumber < 0)
+			throw "Несуществующая комната!";
+		Room = rooms[RoomNumber];
+		system("cls");
+		Text::PRC(15, Room.GetBuildingName() + '\n');
+		Text::V(4, 50);
+		T.PRC(1, "План помещения:\n");
+		// Отрисовка плана помещения
+		T.PRC(15);
+		Room.Print();
+		T.PRC(3, Room.GetInfo() + '\n');
+		T.V(4, 90);
+		if (IsFirst) {
+			Room.AddRoomsTo(RoomVarietyVector);
+			Room.SetVectorAction(rooms[RoomNumber].GetVectorAction());
 		}
-		case 2: {
-			room = rooms[3];
-			RoomNumber = 3;
-			break;
-		}
-		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break;
-		}
-		break;
 	}
-		  // Склад
-	case 3: {
-
-		switch (Variety) {
-		case 1: {
-			room = rooms[4];
-			RoomNumber = 4;
-			break;
-		}
-		case 2: {
-			room = rooms[5];
-			RoomNumber = 5;
-			break;
-		}
-		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break;
-		}
-		break;
-	}
-		  // Медпункт
-	case 4: {
-
-		switch (Variety) {
-		case 1: {
-			room = rooms[6];
-			RoomNumber = 6;
-			break;
-		}
-		case 2: {
-			room = rooms[7];
-			RoomNumber = 7;
-			break;
-		}
-		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break;
-		}
-		break;
-	}
-		  // Лаборатория
-	case 5: {
-
-		switch (Variety) {
-		case 1: {
-			room = rooms[8];
-			RoomNumber = 8;
-			break;
-		}
-		case 2: {
-			room = rooms[9];
-			RoomNumber = 9;
-			break;
-		}
-		default: T.PRC(4, "Отсутствует разновидность данной комнаты с таким номером\n"); break;
-		}
-		break;
-	}
-	default: T.PRC(4, "Отсутствует комната с таким номером\n"); break; // При отсутствии указанного типа комнаты выводит следующее
-	}
-	system("cls");
-	Text::PRC(15, room.GetBuildingName() + '\n');
-	Text::V(4, 50);
-	T.PRC(1, "План помещения:\n");
-	// Отрисовка плана помещения
-	T.PRC(15, "");
-	room.Print();
-	T.PRC(3, room.GetInfo() + '\n');
-	T.V(4, 90);
-	if (IsFirst) {
-		room.AddRoomsTo(RoomVarietyVector);
-		room.SetVectorAction(rooms[RoomNumber].GetVectorAction());
+	catch (string Error) {
+		system("cls");
+		Text::PRC(4, "Ошибка: \n");
+		Text::PRC(15, Error + '\n');
+		Text::V(4, 50);
+		system("pause");
 	}
 }
 
@@ -398,11 +320,21 @@ void Game::Buildings::LocationGeneration(bool& Life, bool& Working, int& Hour) {
 		else
 			RoomVector[i].first = 1;
 		switch (RoomVector[i].first) {
-		case 1: RoomVector[i].second = "Пойти в казармы"; break;
-		case 2: RoomVector[i].second = "Пойти в столовую"; break;
-		case 3: RoomVector[i].second = "Пойти на склад"; break;
-		case 4: RoomVector[i].second = "Пойти в медпункт"; break;
-		case 5: RoomVector[i].second = "Пойти в лабораторию"; break;
+		case 1:
+			RoomVector[i].second = "Пойти в казармы";
+			break;
+		case 2:
+			RoomVector[i].second = "Пойти в столовую";
+			break;
+		case 3:
+			RoomVector[i].second = "Пойти на склад";
+			break;
+		case 4:
+			RoomVector[i].second = "Пойти в медпункт";
+			break;
+		case 5:
+			RoomVector[i].second = "Пойти в лабораторию";
+			break;
 		}
 	}
 	while (CountOfRooms != 0 && Life) {
@@ -419,10 +351,8 @@ void Game::Buildings::LocationGeneration(bool& Life, bool& Working, int& Hour) {
 		}
 		T.HV(13, RoomVector.size() + 1, 15, "Вернуться домой");
 		if (!RoomVector.size()) {
-			while (true) {
-				int Click = _getch();
-				if (Click == 49) return;
-			}
+			while (_getch() != 49);
+			return;
 		}
 		else {
 			bool Clicking = true;

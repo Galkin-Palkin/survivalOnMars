@@ -4,7 +4,8 @@
 void Game::Effect::EffectAction() {
 	for (size_t i = 0; i < ParametrsNames.size(); i++) {
 		if (Duration) {
-			if (ParametrsNames[i] == HumanInfo::DP) (*H).Set(ParametrsNames[i], '+', ParametrsValues[i]);
+			if (ParametrsNames[i] == HumanInfo::DP)
+				(*H).Set(ParametrsNames[i], '+', ParametrsValues[i]);
 			else {
 				int Value = ParametrsValues[i];
 				(*H).Set(ParametrsNames[i], '+', Value);

@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 #define NightmareCount 8
+
 void Game::Introduction() {
 	SetConsoleTextAttribute(h, 15);
 	system("cls");
@@ -13,9 +14,9 @@ void Game::Introduction() {
 	cout << "\"Интересная технология, такого я ранее не видел\", - подумал ты" << endl;
 	cout << "Ты сел на стоящее рядом кресло и протёр глаза" << endl;
 	T.V(4, 55);
-	SetConsoleTextAttribute(h, 15);
 	system("pause");
 }
+
 void Game::InfoShowing(int HP, int FP, int EP, int PHP, double DP, int Sol, int Hour) {
 	// Показывает состояние
 	bool Hallucination = H.GetI(HumanInfo::HalChance) - rand() % 101 >= 0 && H.GetI(HumanInfo::PHP) <= 20;
@@ -117,23 +118,26 @@ void Game::InfoShowing(int HP, int FP, int EP, int PHP, double DP, int Sol, int 
 		T.PRC(4, "Полная\n");
 	T.V(4, 45);
 }
+
 int Game::NewGame() {
 	system("cls");
 	T.PRC(13);
 	T.V(1);
 	T.V(4, 30);
 	T.HV(13, 1, 15, "Начать новую игру");
-	if (S.GetNew() != true) {
+	if (!S.GetNew()) {
 		T.V(4, 20);
 		T.HV(13, 2, 15, "Продолжить игру");
 	}
-	S.SetNew(false);
 	while (true) {
 		int Click = _getch();
-		if (Click == 49) return 1;
-		else if (S.GetNew() != true && Click == 50) return 2;
+		if (Click == 49)
+			return 1;
+		else if (!S.GetNew() && Click == 50)
+			return 2;
 	}
 }
+
 int Game::ActionsChoose(int Sol, int Hour) {
 	SetConsoleTextAttribute(h, 10);
 	T.V(1);
@@ -154,13 +158,19 @@ int Game::ActionsChoose(int Sol, int Hour) {
 	}
 	while (true) {
 		int Click = _getch();
-		if (Click == 49 && FirstAction) return 0;
+		if (Click == 49 && FirstAction)
+			return 0;
 		else {
-			if (Click == 49 && !FirstAction) return 1;
-			else if (Click == 50 && !FirstAction) return 2;
-			else if (Click == 51 && !FirstAction) return 3;
-			else if (Click == 52 && !FirstAction) return 4;
-			else if (Click == 27) return 5;
+			if (Click == 49 && !FirstAction)
+				return 1;
+			else if (Click == 50 && !FirstAction)
+				return 2;
+			else if (Click == 51 && !FirstAction)
+				return 3;
+			else if (Click == 52 && !FirstAction)
+				return 4;
+			else if (Click == 27)
+				return 5;
 		}
 	}
 	FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
@@ -178,113 +188,105 @@ void Game::Eating(Inventory& I, bool& IsBack, int& Hour) {
 			return;
 		}
 		switch (Click) {
-		case 27: {
+		case 27:
 			Back(Hour, IsBack);
 			return;
-		}
-		case 49: {
+		case 49:
 			if (Size >= 1) {
 				(*ConsumableVector[(size_t)0 + CurrentPage * (size_t)9]).Taking();
 				return;
 			}
 			break;
-		}
-		case 50: {
+		case 50:
 			if (Size >= 2) {
 				(*ConsumableVector[(size_t)1 + CurrentPage * (size_t)9]).Taking();
 				return;
 			}
 			break;
-		}
-		case 51: {
+		case 51:
 			if (Size >= 3) {
 				(*ConsumableVector[(size_t)2 + (size_t)CurrentPage * 9]).Taking();
 				return;
 			}
 			break;
-		}
-		case 52: {
+		case 52:
 			if (Size >= 4) {
 				(*ConsumableVector[(size_t)3 + (size_t)CurrentPage * 9]).Taking();
 				return;
 			}
 			break;
-		}
-		case 53: {
+		case 53:
 			if (Size >= 5) {
 				(*ConsumableVector[4 + (size_t)CurrentPage * 9]).Taking();
 				return;
 			}
 			break;
-		}
-		case 54: {
+		case 54:
 			if (Size >= 6) {
 				(*ConsumableVector[5 + (size_t)CurrentPage * 9]).Taking();
 				return;
 			}
 			break;
-		}
-		case 55: {
+		case 55:
 			if (Size >= 7) {
 				(*ConsumableVector[6 + (size_t)CurrentPage * 9]).Taking();
 				return;
 			}
 			break;
-		}
-		case 56: {
+		case 56:
 			if (Size >= 8) {
 				(*ConsumableVector[7 + (size_t)CurrentPage * 9]).Taking();
 				return;
 			}
 			break;
-		}
-		case 57: {
+		case 57:
 			if (Size >= 9) {
 				(*ConsumableVector[8 + (size_t)CurrentPage * 9]).Taking();
 				return;
 			}
 			break;
-		}
-		case 65: {
-			if (CurrentPage) CurrentPage--;
+		case 65:
+			if (CurrentPage)
+				CurrentPage--;
+		    break;
+		case 68:
+			if (CurrentPage < TotalPage - 1)
+				CurrentPage++;
 			break;
-		}
-		case 68: {
-			if (CurrentPage < TotalPage - 1) CurrentPage++;
+		case 97:
+			if (CurrentPage)
+				CurrentPage--;
 			break;
-		}
-		case 97: {
-			if (CurrentPage) CurrentPage--;
+		case 100:
+			if (CurrentPage < TotalPage - 1)
+				CurrentPage++;
 			break;
-		}
-		case 100: {
-			if (CurrentPage < TotalPage - 1) CurrentPage++;
+		case 194:
+			if (CurrentPage < TotalPage - 1)
+				CurrentPage++;
 			break;
-		}
-		case 194: {
-			if (CurrentPage < TotalPage - 1) CurrentPage++;
+		case 212:
+			if (CurrentPage)
+				CurrentPage--;
 			break;
-		}
-		case 212: {
-			if (CurrentPage) CurrentPage--;
+		case 226: 
+			if (CurrentPage < TotalPage - 1)
+				CurrentPage++;
 			break;
-		}
-		case 226: {
-			if (CurrentPage < TotalPage - 1) CurrentPage++;
+		case 244:
+			if (CurrentPage)
+				CurrentPage--;
 			break;
-		}
-		case 244: {
-			if (CurrentPage) CurrentPage--;
-			break;
-		}
 		}
 	}
 	FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 }
+
 void Game::Outing(bool& Life, bool& Working, int& Hour, bool& IsBack) {
 	system("cls");
 	bool Condition = Hour <= 18 && H.GetI(HumanInfo::EP) >= 60 && H.GetI(HumanInfo::PHP) >= 50;
-	if (Condition) B.LocationGeneration(Life, Working, ++Hour);
+	if (Condition)
+		B.LocationGeneration(Life, Working, ++Hour);
 	else if (Hour > 18 && H.GetI(HumanInfo::EP) >= 60 && H.GetI(HumanInfo::PHP) >= 50)
 		T.PRC(3, "\"Я готов пойти на поиски, но уже поздно\", - промелькнула мысль в твоей голове, и ты отошёл от двери\n");
 	else if (Hour <= 18 && H.GetI(HumanInfo::EP) < 60 && H.GetI(HumanInfo::PHP) >= 50)
@@ -306,6 +308,7 @@ void Game::Outing(bool& Life, bool& Working, int& Hour, bool& IsBack) {
 		system("pause");
 	}
 }
+
 void Game::Workplace(int& Hour, bool& IsBack) {
 	system("cls");
 	T.PRC(1, "Выберите действие:\n");
@@ -341,12 +344,21 @@ void Game::Workplace(int& Hour, bool& IsBack) {
 	}
 End:
 	switch (Click) {
-	case 1: BookReading(Hour, IsBack); break;
-	case 2: DiaryReading(Hour, IsBack); break;
-	case 3: ReadNotes(Hour, IsBack); break;
-	case 4: NotesWriting(); break;
+	case 1:
+		BookReading(Hour, IsBack);
+		break;
+	case 2:
+		DiaryReading(Hour, IsBack);
+		break;
+	case 3:
+		ReadNotes(Hour, IsBack);
+		break;
+	case 4:
+		NotesWriting();
+		break;
 	}
 }
+
 void Game::BookReading(int& Hour, bool& IsBack) {
 	system("cls");
 	T.PRC(1, "Литература\n");
@@ -428,6 +440,7 @@ void Game::BookReading(int& Hour, bool& IsBack) {
 		BookVector[Click]->Taking();
 	}
 }
+
 void Game::DiaryReading(int& Hour, bool& IsBack) {
 	system("cls");
 	T.PRC(13, "Сол ");
@@ -446,6 +459,7 @@ void Game::DiaryReading(int& Hour, bool& IsBack) {
 	T.PRC(15);
 	system("pause");
 }
+
 void Game::ReadNotes(int& Hour, bool& IsBack) {
 	ifstream fin("Data\\Notes.txt");
 	string Temp;
@@ -462,13 +476,13 @@ void Game::ReadNotes(int& Hour, bool& IsBack) {
 		T.PRC(3, "Заметки отстутствуют\n");
 		Back(Hour, IsBack);
 	}
-	for (size_t i = 0; i < NotesVector.size(); i++) {
+	for (size_t i = 0; i < NotesVector.size(); i++)
 		T.PRC(15, NotesVector[i] + '\n');
-	}
 	T.V(4, 60);
 	T.PRC(15);
 	system("pause");
 }
+
 void Game::NotesWriting() {
 	ofstream fout1("Data\\Notes.txt", ofstream::app);
 	system("cls");
@@ -488,6 +502,7 @@ void Game::NotesWriting() {
 	}
 	fout1 << "Сол " + to_string(H.GetI(HumanInfo::Sol)) + ", " + to_string(H.GetI(HumanInfo::Hour)) + ":00  " + Temp << endl;
 }
+
 bool Game::Statement(string Header, string Text) {
 	system("cls");
 	T.PRC(1, Header + '\n');
@@ -499,15 +514,17 @@ bool Game::Statement(string Header, string Text) {
 	while (true) {
 		int Click = _getch();
 		switch (Click) {
-		case 49: return false; break;
-		case 50: return true; break;
+		case 49:
+			return false;
+		case 50:
+			return true;
 		}
 	}
 }
+
 void Game::Nightmare(string Path) {
 	ifstream fin(Path);
 	int Size;
-	bool IsRed = false;
 	string Temp;
 	fin >> Size;
 	vector<vector<pair<int, string>>> Text(Size);
@@ -537,6 +554,7 @@ void Game::Nightmare(string Path) {
 		system("pause");
 	}
 }
+
 bool Game::Sleeping() {
 	int Counter = 0;
 	int HoursN = 23;
@@ -556,10 +574,11 @@ bool Game::Sleeping() {
 			return true;
 		}
 	}
-	if (NightmareChance < 45) 
+	if (NightmareChance < 45)
 		NightmareChance += 9;
 	return false;
 }
+
 void Game::Escape(bool& Life, int& Hour, bool& IsBack) {
 	system("cls");
 	T.PRC(1, "Вернуться в главное меню?\n");
@@ -579,20 +598,35 @@ void Game::Escape(bool& Life, int& Hour, bool& IsBack) {
 	}
 	FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 }
+
 void Game::Back(int& Hour, bool& IsBack) {
 	Hour--;
 	IsBack = true;
 }
+
 void Game::Actions(int Choose, bool& Life, int& Hour, bool& IsBack, bool& Working) {
 	switch (Choose) {
-	case 0: RoomLooking(I); break;
-	case 1: Outing(Life, Working, Hour, IsBack); break;
-	case 2: Eating(I, IsBack, Hour); break;
-	case 3: Workplace(Hour, IsBack); break;
-	case 4: H.Set(HumanInfo::PHP, '-', 5); break;
-	case 5: Escape(Life, Hour, IsBack); break;
+	case 0:
+		RoomLooking(I);
+		break;
+	case 1:
+		Outing(Life, Working, Hour, IsBack);
+		break;
+	case 2:
+		Eating(I, IsBack, Hour);
+		break;
+	case 3:
+		Workplace(Hour, IsBack);
+		break;
+	case 4:
+		H.Set(HumanInfo::PHP, '-', 5);
+		break;
+	case 5:
+		Escape(Life, Hour, IsBack);
+		break;
 	}
 }
+
 void Game::RoomLooking(Inventory& I) {
 	system("cls");
 	T.PRC(15, "Ты осмотрел комнату. Это - как ты понял - больничная палата. В тумбе лежали галеты и сухофрукты. Две гранулы аспирина небрежно валялись на кровати.\nПользуясь своим статусом, ты получил элитную палату, отличавшуюся от обычной, однако, только наличием стола со светильником. На нём пылилась какая-то книга\nОт коридора тебя отделяла массивная металлическая дверь. \"Думаю, стоит выглянуть наружу\", - сказал ты\n");
@@ -606,7 +640,8 @@ void Game::RoomLooking(Inventory& I) {
 	DiaryVector.push_back("Автором книги, которая лежит на столе, является Пол Рергард. Год издательства - 2061. Интересно, какой сейчас год?");
 	FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 }
-void Game::Death(bool& Working, bool &Life) {
+
+void Game::Death(bool& Working, bool& Life) {
 	system("cls");
 	Text::PRC(4, "Вы умерли\n");
 	Text::V(4, 35);
@@ -630,8 +665,10 @@ void Game::Death(bool& Working, bool &Life) {
 		}
 	}
 	FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
-	if (Click == 2) Working = false;
+	if (Click == 2)
+		Working = false;
 }
+
 void Game::ChangesDay(bool IsExit) {
 	// Изменения, проходящие после каждой ночи
 	H.Set(HumanInfo::Sol, '+', 1);
@@ -646,6 +683,7 @@ void Game::ChangesDay(bool IsExit) {
 		Validate();
 	}
 }
+
 Game::Game() {
 	Room::SetPointer(&H);
 	Consumable::SetPointer(&H);
@@ -711,6 +749,7 @@ Game::Game() {
 
 	ActionObstacles["Wending machine"] = Obstacle("Data\\ActionObstacles\\Wending Machine.txt");
 }
+
 int Game::Menu() {
 	system("cls");
 	T.PRC(13, "Выживание на Марсе\n");
@@ -728,15 +767,22 @@ int Game::Menu() {
 	T.PRC(15, "v 0.3 closed nofap beta-test\n");
 	int Variety = _getch();
 	switch (Variety) {
-	case 49: return 1;
-	case 50: return 2;
-	case 51: return 3;
-	case 52: return 4;
-	case 53: return 5;
-	case 27: return 5;
+	case 49:
+		return 1;
+	case 50:
+		return 2;
+	case 51:
+		return 3;
+	case 52:
+		return 4;
+	case 53:
+		return 5;
+	case 27:
+		return 5;
 	}
 	return -1;
 }
+
 void Game::GamingProcess(bool& Working) {
 	// Основная функция, именно в ней всё и происходит
 	bool isExit = false;
@@ -751,7 +797,7 @@ void Game::GamingProcess(bool& Working) {
 		S.Download(H, isExit);
 		ChangesDay(isExit);
 		isExit = false;
-		if (H.GetI(HumanInfo::Hour) >= 23) H.Set(HumanInfo::Hour, 'N', 7);
+		if (H.GetI(HumanInfo::Hour) >= 23) H.Set(HumanInfo::Hour, '=', 7);
 		for (; H.GetI(HumanInfo::Hour) <= 22; H.Set(HumanInfo::Hour, '+', 1)) {
 			if (!Life) {
 				H.Set(HumanInfo::Hour, '-', 1);
@@ -763,11 +809,13 @@ void Game::GamingProcess(bool& Working) {
 			int Hour = H.GetI(HumanInfo::Hour);
 			bool IsBack = false;
 			Actions(Choose, Life, Hour, IsBack, Working);
-			H.Set(HumanInfo::Hour, 'N', Hour);
-			if (!(H.GetI(HumanInfo::Sol) == 1 && Hour == 7) && !IsBack) H.Changes(Life, Working);
+			H.Set(HumanInfo::Hour, '=', Hour);
+			if (!(H.GetI(HumanInfo::Sol) == 1 && Hour == 7) && !IsBack)
+				H.Changes(Life, Working);
 		}
 	}
 }
+
 void Game::Menu_2(bool& Working) {
 	bool Menu = true;
 	while (Menu) {
@@ -812,6 +860,7 @@ void Game::Menu_2(bool& Working) {
 		}
 	}
 }
+
 void Game::Menu_3(bool& Working) {
 	ifstream fin("Data\\Achievements.txt");
 	string Temp1, Temp2;
@@ -854,17 +903,19 @@ Menu:
 					IsAchMap.clear();
 					return;
 				}
-				case 50: goto Menu;
+				case 50:
+					goto Menu;
 				}
 			}
 		}
-		case 50: 
+		case 50:
 			return;
 		case 27:
 			return;
 		}
 	}
 }
+
 void Game::Menu_4(bool& Working) {
 	system("cls");
 	T.PRC(13, "Разработчики\n");
@@ -877,20 +928,25 @@ void Game::Menu_4(bool& Working) {
 	T.PRC(13, "Тестировка:\n");
 	T.PRC(15, "- Programming Harius\n");
 	T.V(4, 45);
-	T.PRC(15, "");
+	T.PRC(15);
 	T.V(3);
 	T.V(2);
 	T.V(4, 25);
-	T.PRC(15, "");
+	T.PRC(15);
 	while (true) {
 		int Variety = _getch();
 		switch (Variety) {
-		case 49: return;
-		case 50: Working = false; return;
-		case 27: return;
+		case 49:
+			return;
+		case 50:
+			Working = false;
+			return;
+		case 27:
+			return;
 		}
 	}
 }
+
 void Game::Menu_5(bool& Working) {
 	system("cls");
 	T.PRC(13, "Вы точно хотите выйти?\n");
@@ -900,25 +956,42 @@ void Game::Menu_5(bool& Working) {
 	while (true) {
 		int Variety = _getch();
 		switch (Variety) {
-		case 49: Working = false; return;
-		case 50: return;
-		case 27: return;
+		case 49:
+			Working = false;
+			return;
+		case 50:
+			return;
+		case 27:
+			return;
 		}
 	}
 }
+
 void Game::Validate() {
-	if (H.GetI(HumanInfo::HP) > 100) H.Set(HumanInfo::HP, 'N', 100);
-	else if (H.GetI(HumanInfo::HP) < 0) H.Set(HumanInfo::HP, '0', 0);
-	if (H.GetI(HumanInfo::FP) > 100) H.Set(HumanInfo::FP, 'N', 100);
-	else if (H.GetI(HumanInfo::FP) < 0) H.Set(HumanInfo::FP, '0', 0);
-	if (H.GetI(HumanInfo::EP) > 100) H.Set(HumanInfo::EP, 'N', 100);
-	else if (H.GetI(HumanInfo::EP) < 0) H.Set(HumanInfo::EP, '0', 0);
-	if (H.GetD(HumanInfo::DP) > 100) H.Set(HumanInfo::DP, 'N', 100.0);
-	else if (H.GetD(HumanInfo::DP) < 0) H.Set(HumanInfo::DP, '0', 0.0);
-	if (H.GetI(HumanInfo::PHP) < 0) H.Set(HumanInfo::PHP, '0', 0);
-	else if (H.GetI(HumanInfo::PHP) > 100) H.Set(HumanInfo::PHP, 'N', 100);
-	if (H.GetI(HumanInfo::HalChance) > 100) H.Set(HumanInfo::HalChance, 'N', 100);
-	else if (H.GetI(HumanInfo::HalChance) < 0) H.Set(HumanInfo::HalChance, 'N', 0);
+	if (H.GetI(HumanInfo::HP) > 100)
+		H.Set(HumanInfo::HP, '=', 100);
+	else if (H.GetI(HumanInfo::HP) < 0)
+		H.Set(HumanInfo::HP, '=', 0);
+	if (H.GetI(HumanInfo::FP) > 100)
+		H.Set(HumanInfo::FP, '=', 100);
+	else if (H.GetI(HumanInfo::FP) < 0)
+		H.Set(HumanInfo::FP, '=', 0);
+	if (H.GetI(HumanInfo::EP) > 100)
+		H.Set(HumanInfo::EP, '=', 100);
+	else if (H.GetI(HumanInfo::EP) < 0)
+		H.Set(HumanInfo::EP, '=', 0);
+	if (H.GetD(HumanInfo::DP) > 100)
+		H.Set(HumanInfo::DP, '=', 100.0);
+	else if (H.GetD(HumanInfo::DP) < 0)
+		H.Set(HumanInfo::DP, '=', 0.0);
+	if (H.GetI(HumanInfo::PHP) < 0)
+		H.Set(HumanInfo::PHP, '=', 0);
+	else if (H.GetI(HumanInfo::PHP) > 100)
+		H.Set(HumanInfo::PHP, '=', 100);
+	if (H.GetI(HumanInfo::HalChance) > 100)
+		H.Set(HumanInfo::HalChance, '=', 100);
+	else if (H.GetI(HumanInfo::HalChance) < 0)
+		H.Set(HumanInfo::HalChance, '=', 0);
 }
 
 ofstream& operator<<(ofstream& fout, Game::Tool T) {
@@ -927,7 +1000,7 @@ ofstream& operator<<(ofstream& fout, Game::Tool T) {
 	return fout;
 }
 
-ifstream& operator>>(ifstream& fin, Game::Tool &T) {
+ifstream& operator>>(ifstream& fin, Game::Tool& T) {
 	double Temp;
 	fin >> Temp;
 	T.SetDurability(Temp);

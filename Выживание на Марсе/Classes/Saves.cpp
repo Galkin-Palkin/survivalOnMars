@@ -1,6 +1,8 @@
 #include "Game.h"
 #include <map>
 #include <fstream>
+#define EnemiesCount 5
+
 void Game::Saves::Load(Human& H, bool& IsExit) {
 	// Загрузка в файл
 	ifstream fin("Data\\Parameters.txt");
@@ -10,21 +12,21 @@ void Game::Saves::Load(Human& H, bool& IsExit) {
 	fin >> NewGame;
 	fin >> NightmareChance;
 	fin >> Number;
-	H.Set(HumanInfo::HP, 'N', Number);
+	H.Set(HumanInfo::HP, '=', Number);
 	fin >> Number;
-	H.Set(HumanInfo::FP, 'N', Number);
+	H.Set(HumanInfo::FP, '=', Number);
 	fin >> Number;
-	H.Set(HumanInfo::EP, 'N', Number);
+	H.Set(HumanInfo::EP, '=', Number);
 	fin >> Number;
-	H.Set(HumanInfo::PHP, 'N', Number);
+	H.Set(HumanInfo::PHP, '=', Number);
 	fin >> NumberDouble;
-	H.Set(HumanInfo::DP, 'N', NumberDouble);
+	H.Set(HumanInfo::DP, '=', NumberDouble);
 	fin >> Number;
-	H.Set(HumanInfo::HalChance, 'N', Number);
+	H.Set(HumanInfo::HalChance, '=', Number);
 	fin >> Number;
-	H.Set(HumanInfo::Sol, 'N', Number);
+	H.Set(HumanInfo::Sol, '=', Number);
 	fin >> Number;
-	H.Set(HumanInfo::Hour, 'N', Number);
+	H.Set(HumanInfo::Hour, '=', Number);
 	fin >> Number;
 	ConsumableCount = Number;
 	for (int i = 0; i < ConsumableCount; i++) {
@@ -55,7 +57,7 @@ void Game::Saves::Load(Human& H, bool& IsExit) {
 		H.AddEffect(EffectMap[String].SetDuration(Temp));
 	}
 	fin >> NightmareNumber;
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < EnemiesCount; i++) {
 		fin >> Temp;
 		SeenEnemies[i] = Temp;
 	}
@@ -70,6 +72,7 @@ void Game::Saves::Load(Human& H, bool& IsExit) {
 	}
 	fin >> IsExit;
 }
+
 void Game::Saves::Download(Human& H, bool IsExit) {
 	// Загрузка из файла
 	ofstream fout("Data\\Parameters.txt");
@@ -99,7 +102,7 @@ void Game::Saves::Download(Human& H, bool IsExit) {
 		fout << i.first << endl;
 	H.SaveEffects(fout);
 	fout << NightmareNumber << endl;
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < EnemiesCount; i++)
 		fout << SeenEnemies[i] << endl;
 	fout << Tools.size() << endl;
 	for (auto& i : Tools) {
@@ -110,9 +113,11 @@ void Game::Saves::Download(Human& H, bool IsExit) {
 	}
 	fout << IsExit << endl;
 }
+
 bool Game::Saves::GetNew() {
 	return NewGame;
 }
+
 void Game::Saves::SetNew(bool Truelness) {
 	NewGame = Truelness;
 }

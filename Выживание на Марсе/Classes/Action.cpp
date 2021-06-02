@@ -1,7 +1,3 @@
-//
-// Created by wildt on 14.02.2021.
-//
-
 #include "Game.h"
 #include <fstream>
 #include <string>
@@ -14,23 +10,23 @@ Game::Action::Action(ifstream& fin) {
 		fin >> ws;
 		getline(fin, ObstacleType);
 	}
-	int size;
+	int Size;
 	string Temp;
-	fin >> size;
-	SearchingResult.resize(size);
-	for (int i = 0; i < size; i++) {
+	fin >> Size;
+	SearchingResult.resize(Size);
+	for (int i = 0; i < Size; i++) {
 		fin >> Temp >> SearchingResult[i].second;
 		SearchingResult[i].first = (*ConsumableMap[Temp]).Null();
 	}
-	fin >> size;
-	FoundedBooks.resize(size);
-	for (int i = 0; i < size; i++) {
+	fin >> Size;
+	FoundedBooks.resize(Size);
+	for (int i = 0; i < Size; i++) {
 		fin >> Temp;
 		FoundedBooks[i] = BookMap[Temp]->Common();
 	}
-	fin >> size;
-	IsFound.resize(size, false);
-	for (int i = 0; i < size; i++) {
+	fin >> Size;
+	IsFound.resize(Size, false);
+	for (int i = 0; i < Size; i++) {
 		fin >> Temp;
 		FoundedTools.push_back(ToolMap[Temp]);
 	}
@@ -123,7 +119,7 @@ void Game::Action::FoundedItems() {
 		H->Set(HumanInfo::PHP, '-', 3);
 	}
 	T.V(4, 60);
-	T.PRC(15, "");
+	T.PRC(15);
 	system("pause");
 }
 

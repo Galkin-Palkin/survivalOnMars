@@ -48,6 +48,7 @@ string Game::Tool::GetType() {
 int Game::Tool::GetChance() {
 	return ChanceToFind;
 }
+
 string Game::Tool::GetName() {
 	return Name;
 }

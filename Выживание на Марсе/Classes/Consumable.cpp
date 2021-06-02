@@ -3,15 +3,21 @@
 bool Game::Consumable::Taking() {
 	// Употребление
 	if (this->Count > 0) {
-		if (this->FirstType != HumanInfo::DP) (*H).Set(this->FirstType, '+', this->FirstNumber);
-		else (*H).Set(HumanInfo::DP, '+', this->DFirstNumber);
-		if (this->SecondType != HumanInfo::Null) (*H).Set(this->SecondType, '+', this->SecondNumber);
-		if (this->ThirdType != HumanInfo::Null) (*H).Set(this->ThirdType, '+', this->ThirdNumber);
+		if (this->FirstType != HumanInfo::DP)
+			(*H).Set(this->FirstType, '+', this->FirstNumber);
+		else
+			(*H).Set(HumanInfo::DP, '+', this->DFirstNumber);
+		if (this->SecondType != HumanInfo::Null)
+			(*H).Set(this->SecondType, '+', this->SecondNumber);
+		if (this->ThirdType != HumanInfo::Null)
+			(*H).Set(this->ThirdType, '+', this->ThirdNumber);
 		this->Count--;
 		EffectsToHuman();
 	}
-	else return false;
-	if (this->Count <= 0 && this->IsBeing) this->Clear();
+	else
+		return false;
+	if (this->Count <= 0 && this->IsBeing)
+		Clear();
 	return true;
 }
 
@@ -26,9 +32,9 @@ void Game::Consumable::SetNew(int Count) {
 }
 
 void Game::Consumable::Clear() {
-	for (int i = 0; i < ConsumableCount; i++) {
-		if ((*ConsumableVector[i]).GetID() > this->ID) (*ConsumableVector[i]).GetIDP()--;
-	}
+	for (int i = 0; i < ConsumableCount; i++)
+		if ((*ConsumableVector[i]).GetID() > this->ID)
+			(*ConsumableVector[i]).GetIDP()--;
 	ConsumableVector.erase(ConsumableVector.begin() + this->ID);
 	ConsumableCount--;
 	this->Count = 0;
@@ -41,7 +47,8 @@ void Game::Consumable::Show(Text& T, size_t Page) {
 	T.PRC(13, "Пища и медикаменты\n");
 	T.V(4, 60);
 	int Size = (ConsumableCount - Page * 9 > 8) ? 9 : ConsumableCount - Page * 9;
-	if (ConsumableCount < 9) Size = ConsumableCount;
+	if (ConsumableCount < 9)
+		Size = ConsumableCount;
 	size_t TotalPage = (ConsumableCount % 9 == 0) ? ConsumableCount / 9 : ConsumableCount / 9 + 1;
 	for (size_t i = 0; i < Size; i++) {
 		T.PRC(10, "[");
@@ -54,13 +61,18 @@ void Game::Consumable::Show(Text& T, size_t Page) {
 		cout << (*ConsumableVector[i + Page * (size_t)9]).GetCount() << "    ";
 		cout << (*ConsumableVector[i + Page * (size_t)9]).GetWeight() * (*ConsumableVector[i + Page * (size_t)9]).GetCount();
 		T.PRC(8, " кг\n");
-		if (i != (size_t)Size - 1) T.V(4, 50);
+		if (i != (size_t)Size - 1)
+			T.V(4, 50);
 	}
-	if (!Size) T.PRC(3, "Пища и медикаменты отсутствуют\n");
+	if (!Size)
+		T.PRC(3, "Пища и медикаменты отсутствуют\n");
 	T.V(4, 60);
-	if (!Page && TotalPage > 1) T.PRC(15, "  ------------------->  \n");
-	else if (Page == TotalPage - 1 && TotalPage > 1) T.PRC(15, "  <-------------------  \n");
-	else if (Page > 0 && Page < TotalPage - 1) T.PRC(15, "  <-------------------                ------------------->  \n");
+	if (!Page && TotalPage > 1)
+		T.PRC(15, "  ------------------->  \n");
+	else if (Page == TotalPage - 1 && TotalPage > 1)
+		T.PRC(15, "  <-------------------  \n");
+	else if (Page > 0 && Page < TotalPage - 1)
+		T.PRC(15, "  <-------------------                ------------------->  \n");
 }
 
 string Game::Consumable::GetType() {
@@ -145,9 +157,8 @@ int& Game::Consumable::GetIDP() {
 	return ID;
 }
 void Game::Consumable::EffectsToHuman() {
-	for (size_t i = 0; i < GiveEffect.size(); i++) {
+	for (size_t i = 0; i < GiveEffect.size(); i++)
 		(*H).AddEffect(GiveEffect[i]);
-	}
 }
 void Game::Consumable::SetBeing(bool Value) {
 	IsBeing = Value;
