@@ -24,6 +24,7 @@ int Game::Human::GetI(HumanInfo Type) {
 		return -100000;
 	}
 }
+
 double Game::Human::GetD(HumanInfo Type) {
 	switch (Type) {
 	case HumanInfo::DP:
@@ -139,6 +140,7 @@ void Game::Human::Set(HumanInfo Type, char Sign, int Value) {
 	}
 	}
 }
+
 void Game::Human::Set(HumanInfo Type, char Sign, double Number) {
 	switch (Type) {
 	case HumanInfo::DP:
