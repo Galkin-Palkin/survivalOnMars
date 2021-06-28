@@ -316,7 +316,7 @@ void Game::Human::SetTool() {
 		Text::V(4, 60);
 		while (true) {
 			int Click = _getch();
-			if (isdigit(Click) && Click <= Tools.size()) {
+			if (isdigit(Click) && Click - 48 <= Tools.size()) {
 				It = Click - 48;
 				break;
 			}

@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <string>
 #include <map>
 #include <vector>
 #include <ctime>
@@ -21,7 +22,7 @@ class Game {
 		DP,
 		HalChance
 	};
-	static map<string, HumanInfo> HIMap;
+
 	class Text {
 		// Служебный класс для более удобного оформления в консоли
 	public:
@@ -55,20 +56,32 @@ class Game {
 		static Human* H;
 		vector<HumanInfo> ParametrsNames;
 		vector<double> ParametrsValues;
+
 	public:
 		void EffectAction();
+
 		int GetDuration();
+
 		Effect& SetDuration(int);
+
 		void Tick();
+
 		static void SetPointer(Human*);
+
 		Effect();
+
 		Effect(string);
+
 		bool operator==(Effect&);
+
 		string GetType();
 	};
 	class Saves;
+
 	class Tool;
+
 	class Inventory;
+
 	class Human {
 		int HP = 70 + (rand() % 5) * 5; // Очки здоровья
 		int FP = 30 + (rand() % 7) * 5; // Очки сытости
@@ -85,21 +98,37 @@ class Game {
 		void EffectsAction();
 	public:
 		int GetI(HumanInfo);
+
 		double GetD(HumanInfo);
+
 		int GetEffectsCount();
+
 		void Set(HumanInfo, char, int);
+
 		void Set(HumanInfo, char, double);
+
 		void AddEffect(Effect);
+
 		void EffectsTick();
+
 		void Null(); // Обнуление данных
+
 		void Changes(bool&, bool&);
+
 		void Validate();
+
 		void SetPointer(Saves*, Tool*, Inventory*);
+
 		void ClearEffects();
+
 		void SaveEffects(ofstream&);
+
 		Tool* GetCurrentTool();
+
 		void SetTool();
+
 		void SetTool(Tool*);
+
 	};
 	class Item {
 	protected:
@@ -109,6 +138,54 @@ class Game {
 	public:
 		virtual void SetNew(int Count = 1) = 0;
 	};
+
+	class PlotItem {
+		string Name;
+		vector<string> Info;
+
+	public:
+		PlotItem(string Path) {
+			try {
+				ifstream fin(Path);
+				if (!fin.is_open())
+					throw "Файл с сюжетным предметом не существует!";
+				cin >> ws;
+				getline(cin, Name);
+				int Size;
+				fin >> Size;
+				Info.resize(Size);
+
+				for (int i = 0; i < Size; i++) {
+					cin >> ws;
+					getline(cin, Info[i]);
+				}
+			}
+			catch (string Error) {
+				Text::Tab(15, "Ошибка:\n" + Error);
+			}
+		}
+	};
+
+	class Diary {
+		string Title;
+		vector<vector<string>> DiaryPages;
+	public:
+		Diary(string Path) {
+			ifstream fin(Path);
+
+			try {
+				if (!fin.is_open())
+					throw "Файл с дневником отсутствует!";
+			}
+			catch (string Error) {
+
+			}
+		}
+	};
+
+	static vector<PlotItem> PlotItems;
+	static vector<Diary> OtherDiary;
+
 	class Consumable;
 	static vector<Consumable*> ConsumableVector;
 	static int ConsumableCount;
@@ -130,39 +207,68 @@ class Game {
 		void EffectsToHuman();
 	public:
 		virtual bool Taking();
+
 		virtual void SetNew(int Count = 1) override;
+
 		virtual void Clear();
+
 		static void Show(Text& T, size_t Page);
+
 		string GetType();
+
 		int GetCount();
+
 		void SetCount(int Value);
+
 		void Constructor(string Type, string Name, double Weight, int Chance, HumanInfo FirstType, double FirstNumber, HumanInfo SecondType = HumanInfo::Null, int SecondNumber = -10000, HumanInfo ThirdType = HumanInfo::Null, int ThirdNumber = -10000);
+		
 		void Constructor(string Type, string Name, double Weight, int Chance, HumanInfo FirstType, int FirstNumber, HumanInfo SecondType = HumanInfo::Null, int SecondNumber = -10000, HumanInfo ThirdType = HumanInfo::Null, int ThirdNumber = -10000);
+		
 		int GetChance();
+
 		void SetChance(int);
+
 		string GetName();
+
 		void SetName(string);
+
 		int GetID();
+
 		int& GetIDP();
+
 		double GetWeight();
+
 		static void SetPointer(Human*);
+
 		Consumable Null();
+
 		void AddEffect(Effect);
+
 		void SetBeing(bool Value = true);
+
 		void SetID(int);
 	};
+
 	class Book : public Consumable {
 		int PagesCount = 0;
 		int TotalPagesCount = 0;
 	public:
 		void SetParametrs(string Type, string Name, double Weight, int Chance, int PagesCount, HumanInfo FirstType, int FirstNumber, HumanInfo SecondType = HumanInfo::Null, int SecondNumber = -10000, HumanInfo ThirdType = HumanInfo::Null, int ThirdNumber = -10000);
+		
 		bool Taking() override;
+		
 		void SetNew(int Count = 1) override;
+		
 		void Clear() override;
+		
 		Book Common();
+		
 		int GetPagesCount();
+		
 		Book& SetPagesCount(int);
+		
 		int GetTotalPagesCount();
+		
 		void SetIsBeing(bool);
 	};
 	class Obstacle {
@@ -174,9 +280,13 @@ class Game {
 		static Human* H;
 	public:
 		Obstacle() = default;
+		
 		Obstacle(string);
+		
 		static void SetPointer(Human*);
+		
 		bool Creating();
+		
 		Obstacle Clone();
 	};
 	class Tool : public Item {
@@ -190,19 +300,32 @@ class Game {
 		vector<pair<string, int>> Specialisation;
 	public:
 		void SetParameters(string, string, double, int, int, string Path = "");
+		
 		int Attack();
+		
 		void SetNew(int Count = 1) override;
+		
 		int GetChance();
+		
 		string GetType();
+		
 		string GetName();
+		
 		double GetDurability();
+		
 		double GetBreakPerUse();
+		
 		void SetDurability(double);
+		
 		void SetBreakPerUse(double);
+		
 		static void SetPointer(Human*, Inventory*);
+		
 		int Size();
+		
 		pair<string, int> operator[](unsigned int);
 	};
+
 	class Enemy {
 		static Human* H;
 		static Saves* S;
@@ -216,14 +339,22 @@ class Game {
 		int ChanceToLeave = 10;
 	public:
 		Enemy() = default;
+		
 		Enemy(string);
+		
 		bool IsDead();
+		
 		void Show(int, bool);
+		
 		int GetChanceToLeave();
+		
 		void Damaged(int);
+		
 		void Attack(bool&, bool&);
+		
 		static void SetPointer(Human*, Saves*);
 	};
+
 	static vector<Book*> BookVector;
 	static map<string, Book*> BookMap;
 	class Inventory {
@@ -274,6 +405,7 @@ class Game {
 		Consumable FishSoup;
 		Inventory();
 	};
+
 	class Action {
 	private:
 		Text T;
@@ -287,14 +419,22 @@ class Game {
 		vector<bool> IsFound;
 	public:
 		Action(ifstream&);
+		
 		Action() = default;
+		
 		string GetName();
+		
 		void GenerateItems();
+		
 		void FoundedItems();
+		
 		string GetObstacleType();
+		
 		bool GetIsObstacle();
+		
 		static void SetPointer(Human*);
 	};
+
 	class Room {
 	private:
 		Text T;
@@ -307,22 +447,39 @@ class Game {
 		bool IsScare = false;
 	public:
 		Room(string);
+		
 		Room() = default;
+		
 		void Print();
+		
 		void PrintRooms();
+		
 		void PlacePrint(vector<Action>, string);
+		
 		void AddRoomsTo(vector<string>& arr);
+		
 		string GetInfo();
+		
 		vector<Action> GetRoomPlaces(int);
+		
 		string GetName(int);
+		
 		string GetBuildingName();
+		
 		void ActionChoose(vector<Action>&);
+		
 		void SetActionVector(vector<Action>, int);
+		
 		void PlaceClear(int);
+		
 		void operator= (Room);
+		
 		vector<vector<Action>> GetVectorAction();
+		
 		void SetVectorAction(vector<vector<Action>>);
+		
 		static void SetPointer(Human*);
+		
 		void Set(string);
 	};
 	static map<string, Consumable*> ConsumableMap;
@@ -374,6 +531,7 @@ class Game {
 		Ach_Nofap
 	};
 	Saves S;
+	static map<string, HumanInfo> HIMap;
 	static vector<string> DiaryVector;
 	static vector<string> NotesVector;
 	static vector<pair<string, string>> AchievementVector;

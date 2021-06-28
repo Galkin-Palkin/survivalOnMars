@@ -665,8 +665,8 @@ void Game::Death(bool& Working, bool& Life) {
 		}
 	}
 	FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
-	if (Click == 2)
-		Working = false;
+	
+	Working = Click != 2;
 }
 
 void Game::ChangesDay(bool IsExit) {
@@ -764,7 +764,7 @@ int Game::Menu() {
 	T.V(4, 5);
 	T.HV(13, 5, 15, "Выход из игры");
 	T.V(4, 30);
-	T.PRC(15, "v 0.3 closed nofap beta-test\n");
+	T.PRC(15, "v 0.3 closed beta-test\n");
 	int Variety = _getch();
 	switch (Variety) {
 	case 49:
