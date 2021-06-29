@@ -779,6 +779,10 @@ int Game::Menu() {
 		return 5;
 	case 27:
 		return 5;
+	case 54: {
+		Diary d("Data\\Diaries\\Peter Novell.txt");
+		d.Read();
+	}
 	}
 	return -1;
 }

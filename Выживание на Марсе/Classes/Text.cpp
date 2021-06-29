@@ -33,10 +33,10 @@ void Game::Text::HV(int Color1, int Number, int Color2, string String) {
 	cout << String << endl;
 }
 
-void Game::Text::PRC(int Colour, string String) {
+void Game::Text::PRC(int Colour, string String, int Background) {
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 	// Для вывода цветного текста
-	SetConsoleTextAttribute(h, Colour);
+	SetConsoleTextAttribute(h, (WORD)((Background << 4) | Colour));
 	cout << String;
 }
 
@@ -46,6 +46,13 @@ void Game::Text::Tab(int Color, string Text) {
 	PRC(Color, Text + '\n');
 	V(4, 60);
 	system("pause");
+}
+
+void Game::Text::PRC(int Colour, char String, int Background) {
+	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+	// Для вывода цветного текста
+	SetConsoleTextAttribute(h, (WORD)((Background << 4) | Colour));
+	cout << String;
 }
 
 Game::Text::Text() {

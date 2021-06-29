@@ -45,8 +45,9 @@ class Game {
 		/// </summary>
 		/// <param name="Colour">Цвет.</param>
 		/// <param name="String">Текст.</param>
-		static void PRC(int Colour, string String = "");
+		static void PRC(int Colour, string String = "", int Background = 0);
 		static void Tab(int, string);
+		static void PRC(int Colour, char String, int Background);
 		Text();
 	};
 	class Human;
@@ -144,43 +145,16 @@ class Game {
 		vector<string> Info;
 
 	public:
-		PlotItem(string Path) {
-			try {
-				ifstream fin(Path);
-				if (!fin.is_open())
-					throw "Файл с сюжетным предметом не существует!";
-				cin >> ws;
-				getline(cin, Name);
-				int Size;
-				fin >> Size;
-				Info.resize(Size);
-
-				for (int i = 0; i < Size; i++) {
-					cin >> ws;
-					getline(cin, Info[i]);
-				}
-			}
-			catch (string Error) {
-				Text::Tab(15, "Ошибка:\n" + Error);
-			}
-		}
+		PlotItem(string Path);
 	};
 
 	class Diary {
 		string Title;
 		vector<vector<string>> DiaryPages;
 	public:
-		Diary(string Path) {
-			ifstream fin(Path);
+		Diary(string Path);
 
-			try {
-				if (!fin.is_open())
-					throw "Файл с дневником отсутствует!";
-			}
-			catch (string Error) {
-
-			}
-		}
+		void Read();
 	};
 
 	static vector<PlotItem> PlotItems;
