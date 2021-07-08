@@ -25,6 +25,7 @@ Sedatives
 Adventures
 Thriller
 0
+zero
 Шкаф
 0
 2
@@ -34,6 +35,7 @@ CannedApple
 0
 0
 0
+zero
 Аппарат с таблетками
 1
 Wending machine
@@ -46,6 +48,7 @@ Aspirin
 3
 0
 0
+zero
 Склад медикаментов
 3
 Ящик с сиропом
@@ -55,6 +58,7 @@ Syrup
 0
 0
 0
+zero
 Тумба с таблетками
 0
 3
@@ -66,6 +70,7 @@ Sedatives
 0
 0
 0
+zero
 Полка для мазей
 0
 1
@@ -74,6 +79,7 @@ Palont
 0
 1
 Scalpel
+zero
 Регистратура
 2
 Выдвижной шкаф
@@ -85,6 +91,7 @@ Phenothan
 0
 0
 0
+zero
 Рабочий стол
 0
 1
@@ -93,3 +100,4 @@ Sedatives
 1
 ScienceFiction
 0
+zero

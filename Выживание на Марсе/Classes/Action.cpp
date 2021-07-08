@@ -30,6 +30,13 @@ Game::Action::Action(ifstream& fin) {
 		fin >> Temp;
 		FoundedTools.push_back(ToolMap[Temp]);
 	}
+	fin >> ws;
+	getline(fin, Temp);
+	if (Temp.find("zero") == string::npos) {
+		fin >> Size;
+		if (Size - rand() % 101 >= 0)
+			FoundedDiary = Diary(Temp, Size);
+	}
 }
 
 string Game::Action::GetName() {
@@ -89,6 +96,18 @@ void Game::Action::FoundedItems() {
 			H->Set(HumanInfo::PHP, '+', 10);
 		}
 	}
+
+	if (FoundedDiary.GetChance() - rand() % 101 >= 0 && FoundedDiary.GetTitle().size() > 0) {
+		bool IsIn = false;
+
+		for (size_t i = 0; i < Diaries.size() && !IsIn; i++)
+			if (Diaries[i] == (FoundedDiary))
+				IsIn = true;
+
+		if (!IsIn)
+			Diaries.push_back(FoundedDiary);
+	}
+
 	if (ConsumableMap["Aspirin"]->GetCount() >= 100 && !IsAchMap[Ach_Aspirin]) {
 		ofstream fout("Data\\Achievements.txt", ofstream::app);
 		fout << "Аспирин - панацея от всех болезней!\nСобрать 100 гранул аспирина\n";

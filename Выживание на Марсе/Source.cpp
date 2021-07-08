@@ -37,6 +37,8 @@ Game::Human* Game::Tool::H = nullptr;
 Game::Human* Game::Obstacle::H = nullptr;
 map<string, Game::Obstacle> Game::Obstacles;
 map<string, Game::Obstacle> Game::ActionObstacles;
+vector<Game::Diary> Game::Diaries;
+
 int main() {
 	srand(time(NULL));
 	setlocale(LC_ALL, "rus");

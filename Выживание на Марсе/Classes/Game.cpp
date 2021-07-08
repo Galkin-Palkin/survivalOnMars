@@ -13,7 +13,7 @@ void Game::Introduction() {
 	cout << "После нажатия на кнопку раздался гул фанфар и экран вспыхнул, показав состояние здоровья и время" << endl;
 	cout << "\"Интересная технология, такого я ранее не видел\", - подумал ты" << endl;
 	cout << "Ты сел на стоящее рядом кресло и протёр глаза" << endl;
-	T.V(4, 55);
+	Text::V(4, 55);
 	system("pause");
 }
 
@@ -21,113 +21,113 @@ void Game::InfoShowing(int HP, int FP, int EP, int PHP, double DP, int Sol, int 
 	// Показывает состояние
 	bool Hallucination = H.GetI(HumanInfo::HalChance) - rand() % 101 >= 0 && H.GetI(HumanInfo::PHP) <= 20;
 	if (Hallucination) {
-		T.PRC(3, "29.11.1979\n");
-		T.V(4, 15);
-		T.PRC(15, to_string(rand() % 24) + ':' + to_string(10 + rand() % 50) + '\n');
+		Text::PRC(3, "29.11.1979\n");
+		Text::V(4, 15);
+		Text::PRC(15, to_string(rand() % 24) + ':' + to_string(10 + rand() % 50) + '\n');
 	}
 	else {
-		T.PRC(3, "Сол ");
-		T.PRC(15, to_string(H.GetI(HumanInfo::Sol)) + '\n');
-		T.V(4, 15);
-		T.PRC(15, to_string(Hour) + ":00\n");
+		Text::PRC(3, "Сол ");
+		Text::PRC(15, to_string(H.GetI(HumanInfo::Sol)) + '\n');
+		Text::V(4, 15);
+		Text::PRC(15, to_string(Hour) + ":00\n");
 	}
-	T.V(4, 45);
+	Text::V(4, 45);
 
-	T.PRC(13, "Состояние здоровья: ");
+	Text::PRC(13, "Состояние здоровья: ");
 	if (!Hallucination) {
 		if (HP >= 90)
-			T.PRC(1, "Идеальное\n");
+			Text::PRC(1, "Идеальное\n");
 		else if (HP >= 70)
-			T.PRC(3, "Отличное\n");
+			Text::PRC(3, "Отличное\n");
 		else if (HP >= 50)
-			T.PRC(10, "Хорошее\n");
+			Text::PRC(10, "Хорошее\n");
 		else if (HP >= 30)
-			T.PRC(6, "Плохое\n");
+			Text::PRC(6, "Плохое\n");
 		else if (HP >= 20)
-			T.PRC(4, "Ужасное\n");
+			Text::PRC(4, "Ужасное\n");
 		else
-			T.PRC(4, "Критическое\n");
+			Text::PRC(4, "Критическое\n");
 	}
 	else
-		T.PRC(4, "Кома\n");
-	T.V(4, 45);
+		Text::PRC(4, "Кома\n");
+	Text::V(4, 45);
 
-	T.PRC(13, "Истощение организма: ");
+	Text::PRC(13, "Истощение организма: ");
 	if (!Hallucination) {
 		if (DP >= 90.0)
-			T.PRC(4, "Предсмертное\n");
+			Text::PRC(4, "Предсмертное\n");
 		else if (DP >= 75.0 && DP < 90)
-			T.PRC(4, "Очень серьёзное\n");
+			Text::PRC(4, "Очень серьёзное\n");
 		else if (DP >= 50.0 && DP < 75.0)
-			T.PRC(4, "Серьёзное\n");
+			Text::PRC(4, "Серьёзное\n");
 		else if (DP >= 25.0 && DP < 50.0)
-			T.PRC(6, "Среднее\n");
+			Text::PRC(6, "Среднее\n");
 		else if (DP > 0.0 && DP < 25.0)
-			T.PRC(10, "Слабое\n");
+			Text::PRC(10, "Слабое\n");
 		else
-			T.PRC(1, "Отсутствует\n");
+			Text::PRC(1, "Отсутствует\n");
 	}
 	else
-		T.PRC(4, "Кома\n");
-	T.V(4, 45);
+		Text::PRC(4, "Кома\n");
+	Text::V(4, 45);
 
-	T.PRC(13, "Состояние психического здоровья: ");
+	Text::PRC(13, "Состояние психического здоровья: ");
 	if (!Hallucination) {
 		if (PHP >= 90)
-			T.PRC(1, "Идеальное\n");
+			Text::PRC(1, "Идеальное\n");
 		else if (PHP >= 70)
-			T.PRC(3, "Отличное\n");
+			Text::PRC(3, "Отличное\n");
 		else if (PHP >= 50)
-			T.PRC(10, "Хорошее\n");
+			Text::PRC(10, "Хорошее\n");
 		else if (PHP >= 30)
-			T.PRC(6, "Плохое\n");
+			Text::PRC(6, "Плохое\n");
 		else if (PHP >= 20)
-			T.PRC(4, "Ужасное\n");
+			Text::PRC(4, "Ужасное\n");
 		else
-			T.PRC(4, "Критическое\n");
+			Text::PRC(4, "Критическое\n");
 	}
 	else
-		T.PRC(4, "Шизофрения\n");
-	T.V(4, 45);
+		Text::PRC(4, "Шизофрения\n");
+	Text::V(4, 45);
 
-	T.PRC(13, "Степень сытости: ");
+	Text::PRC(13, "Степень сытости: ");
 	if (FP >= 90)
-		T.PRC(1, "Полная\n");
+		Text::PRC(1, "Полная\n");
 	else if (FP >= 75)
-		T.PRC(3, "Хорошая\n");
+		Text::PRC(3, "Хорошая\n");
 	else if (FP >= 50)
-		T.PRC(10, "Средняя\n");
+		Text::PRC(10, "Средняя\n");
 	else if (FP >= 25)
-		T.PRC(6, "Удовлетворительная\n");
+		Text::PRC(6, "Удовлетворительная\n");
 	else if (FP < 25)
-		T.PRC(4, "Голод\n");
-	T.V(4, 45);
+		Text::PRC(4, "Голод\n");
+	Text::V(4, 45);
 
-	T.PRC(13, "Степень усталости: ");
+	Text::PRC(13, "Степень усталости: ");
 	if (EP >= 100)
-		T.PRC(1, "Нулевая\n");
+		Text::PRC(1, "Нулевая\n");
 	else if (EP >= 80)
-		T.PRC(3, "Крайне малая\n");
+		Text::PRC(3, "Крайне малая\n");
 	else if (EP >= 60)
-		T.PRC(10, "Малая\n");
+		Text::PRC(10, "Малая\n");
 	else if (EP >= 40)
-		T.PRC(6, "Средняя\n");
+		Text::PRC(6, "Средняя\n");
 	else if (EP >= 20)
-		T.PRC(4, "Большая\n");
+		Text::PRC(4, "Большая\n");
 	else
-		T.PRC(4, "Полная\n");
-	T.V(4, 45);
+		Text::PRC(4, "Полная\n");
+	Text::V(4, 45);
 }
 
 int Game::NewGame() {
 	system("cls");
-	T.PRC(13);
-	T.V(1);
-	T.V(4, 30);
-	T.HV(13, 1, 15, "Начать новую игру");
+	Text::PRC(13);
+	Text::V(1);
+	Text::V(4, 30);
+	Text::HV(13, 1, 15, "Начать новую игру");
 	if (!S.GetNew()) {
-		T.V(4, 20);
-		T.HV(13, 2, 15, "Продолжить игру");
+		Text::V(4, 20);
+		Text::HV(13, 2, 15, "Продолжить игру");
 	}
 	while (true) {
 		int Click = _getch();
@@ -140,21 +140,21 @@ int Game::NewGame() {
 
 int Game::ActionsChoose(int Sol, int Hour) {
 	SetConsoleTextAttribute(h, 10);
-	T.V(1);
-	T.V(4, 30);
+	Text::V(1);
+	Text::V(4, 30);
 	bool FirstAction = false;
 	if (Sol == 1 && Hour == 7) {
 		FirstAction = true;
-		T.HV(13, 1, 15, "Осмотреть помещение");
+		Text::HV(13, 1, 15, "Осмотреть помещение");
 	}
 	else {
-		T.HV(13, 1, 15, "Выйти наружу");
-		T.V(4, 15);
-		T.HV(13, 2, 15, "Принять пищу");
-		T.V(4, 15);
-		T.HV(13, 3, 15, "Сесть за рабочий стол");
-		T.V(4, 15);
-		T.HV(13, 4, 15, "Ничего не делать");
+		Text::HV(13, 1, 15, "Выйти наружу");
+		Text::V(4, 15);
+		Text::HV(13, 2, 15, "Принять пищу");
+		Text::V(4, 15);
+		Text::HV(13, 3, 15, "Сесть за рабочий стол");
+		Text::V(4, 15);
+		Text::HV(13, 4, 15, "Ничего не делать");
 	}
 	while (true) {
 		int Click = _getch();
@@ -288,39 +288,44 @@ void Game::Outing(bool& Life, bool& Working, int& Hour, bool& IsBack) {
 	if (Condition)
 		B.LocationGeneration(Life, Working, ++Hour);
 	else if (Hour > 18 && H.GetI(HumanInfo::EP) >= 60 && H.GetI(HumanInfo::PHP) >= 50)
-		T.PRC(3, "\"Я готов пойти на поиски, но уже поздно\", - промелькнула мысль в твоей голове, и ты отошёл от двери\n");
+		Text::PRC(3, "\"Я готов пойти на поиски, но уже поздно\", - промелькнула мысль в твоей голове, и ты отошёл от двери\n");
 	else if (Hour <= 18 && H.GetI(HumanInfo::EP) < 60 && H.GetI(HumanInfo::PHP) >= 50)
-		T.PRC(3, "\"Хоть ещё есть время, да и настрой нужный - сил нет... Не могу... \", - сказал ты себе и с сожалением отошёл\n");
+		Text::PRC(3, "\"Хоть ещё есть время, да и настрой нужный - сил нет... Не могу... \", - сказал ты себе и с сожалением отошёл\n");
 	else if (Hour > 18 && H.GetI(HumanInfo::EP) < 60 && H.GetI(HumanInfo::PHP) >= 50)
-		T.PRC(3, "\"Я хотел бы сходить, но мои ноги думают иначе. Да и ночь уже недалёко\", - произнёс ты, плюхнувся на кресло\n");
+		Text::PRC(3, "\"Я хотел бы сходить, но мои ноги думают иначе. Да и ночь уже недалёко\", - произнёс ты, плюхнувся на кресло\n");
 	else if (Hour > 18 && H.GetI(HumanInfo::EP) < 60 && H.GetI(HumanInfo::PHP) < 50)
-		T.PRC(3, "\"Я никуда не пойду! У меня ломит ноги, никакого желания нет, так ещё и вечер наступил!\", - злобно произнёс ты, стукнув по стальной двери\n");
+		Text::PRC(3, "\"Я никуда не пойду! У меня ломит ноги, никакого желания нет, так ещё и вечер наступил!\", - злобно произнёс ты, стукнув по стальной двери\n");
 	else if (Hour > 18 && H.GetI(HumanInfo::EP) >= 60 && H.GetI(HumanInfo::PHP) < 50)
-		T.PRC(3, "\"У меня есть силы, но нет желания и времени\", - со вздохом заметил ты\n");
+		Text::PRC(3, "\"У меня есть силы, но нет желания и времени\", - со вздохом заметил ты\n");
 	else if (Hour <= 18 && H.GetI(HumanInfo::EP) < 60 && H.GetI(HumanInfo::PHP) < 50)
-		T.PRC(3, "\"Время ещё есть, но усталость и нехотение сделали выбор за меня - я никуда не пойду\", - со вздохом сказал ты\n");
+		Text::PRC(3, "\"Время ещё есть, но усталость и нехотение сделали выбор за меня - я никуда не пойду\", - со вздохом сказал ты\n");
 	else if (Hour <= 18 && H.GetI(HumanInfo::EP) >= 60 && H.GetI(HumanInfo::PHP) < 50)
-		T.PRC(3, "\"Нет желания куда-либо идти\", - пробормотал ты\n");
+		Text::PRC(3, "\"Нет желания куда-либо идти\", - пробормотал ты\n");
 	if (!Condition) {
-		T.V(4, 40);
+		Text::V(4, 40);
 		Back(Hour, IsBack);
-		T.PRC(15);
+		Text::PRC(15);
 		system("pause");
 	}
 }
 
 void Game::Workplace(int& Hour, bool& IsBack) {
 	system("cls");
-	T.PRC(1, "Выберите действие:\n");
-	T.V(4, 40);
-	T.HV(13, 1, 15, "Почитать книги");
-	T.V(4, 10);
-	T.HV(13, 2, 15, "Просмотреть дневник");
-	T.V(4, 10);
-	T.HV(13, 3, 15, "Просмотреть заметки");
-	T.V(4, 10);
-	T.HV(13, 4, 15, "Написать заметку");
-	T.V(4, 40);
+	Text::PRC(1, "Выберите действие:\n");
+	Text::V(4, 40);
+	Text::HV(13, 1, 15, "Почитать книги");
+	Text::V(4, 10);
+	Text::HV(13, 2, 15, "Просмотреть дневник");
+	Text::V(4, 10);
+	Text::HV(13, 3, 15, "Просмотреть заметки");
+	Text::V(4, 10);
+	Text::HV(13, 4, 15, "Написать заметку");
+	if (Diaries.size() > 0) {
+		Text::HV(13, 3, 15, "Почитать дневники сотрудников");
+		Text::V(4, 10);
+	}
+
+	Text::V(4, 40);
 	int Click;
 	while (true) {
 		Click = _getch();
@@ -337,6 +342,12 @@ void Game::Workplace(int& Hour, bool& IsBack) {
 		case 52:
 			Click = 4;
 			goto End;
+		case 53:
+			if (Diaries.size() > 0) {
+				Click = 5;
+				goto End;
+			}
+			break;
 		case 27:
 			Back(Hour, IsBack);
 			goto End;
@@ -356,25 +367,28 @@ End:
 	case 4:
 		NotesWriting();
 		break;
+	case 5:
+		OthersDiaryReading();
+		break;
 	}
 }
 
 void Game::BookReading(int& Hour, bool& IsBack) {
 	system("cls");
-	T.PRC(1, "Литература\n");
-	T.V(4, 70);
+	Text::PRC(1, "Литература\n");
+	Text::V(4, 70);
 	for (size_t i = 0; i < BookVector.size(); i++)
-		T.HV(13, i + 1, 15, BookVector[i]->GetName());
+		Text::HV(13, i + 1, 15, BookVector[i]->GetName());
 	if (!BookVector.size()) {
-		T.PRC(3, "Литература отсутствует\n");
-		T.V(4, 70);
-		T.PRC(15);
+		Text::PRC(3, "Литература отсутствует\n");
+		Text::V(4, 70);
+		Text::PRC(15);
 		Back(Hour, IsBack);
 		system("pause");
 	}
 	else {
 		int Click;
-		T.V(4, 70);
+		Text::V(4, 70);
 		while (true) {
 			Click = _getch();
 			switch (Click) {
@@ -443,20 +457,20 @@ void Game::BookReading(int& Hour, bool& IsBack) {
 
 void Game::DiaryReading(int& Hour, bool& IsBack) {
 	system("cls");
-	T.PRC(13, "Сол ");
-	T.PRC(15, to_string(H.GetI(HumanInfo::Sol)) + '\n');
-	T.V(4, 60);
+	Text::PRC(13, "Сол ");
+	Text::PRC(15, to_string(H.GetI(HumanInfo::Sol)) + '\n');
+	Text::V(4, 60);
 	for (size_t i = 0; i < DiaryVector.size(); i++) {
-		T.PRC(1, " - ");
-		T.PRC(15, DiaryVector[i] + "\n\n");
-		if (i + 1 == DiaryVector.size()) T.V(4, 60);
+		Text::PRC(1, " - ");
+		Text::PRC(15, DiaryVector[i] + "\n\n");
+		if (i + 1 == DiaryVector.size()) Text::V(4, 60);
 	}
 	if (!DiaryVector.size()) {
-		T.PRC(15, "Отсутствуют записи за сегодняшний день\n");
-		T.V(4, 60);
+		Text::PRC(15, "Отсутствуют записи за сегодняшний день\n");
+		Text::V(4, 60);
 		Back(Hour, IsBack);
 	}
-	T.PRC(15);
+	Text::PRC(15);
 	system("pause");
 }
 
@@ -470,25 +484,25 @@ void Game::ReadNotes(int& Hour, bool& IsBack) {
 			NotesVector.push_back(Temp);
 	}
 	system("cls");
-	T.PRC(1, "Заметки\n");
-	T.V(4, 60);
+	Text::PRC(1, "Заметки\n");
+	Text::V(4, 60);
 	if (!NotesVector.size()) {
-		T.PRC(3, "Заметки отстутствуют\n");
+		Text::PRC(3, "Заметки отстутствуют\n");
 		Back(Hour, IsBack);
 	}
 	for (size_t i = 0; i < NotesVector.size(); i++)
-		T.PRC(15, NotesVector[i] + '\n');
-	T.V(4, 60);
-	T.PRC(15);
+		Text::PRC(15, NotesVector[i] + '\n');
+	Text::V(4, 60);
+	Text::PRC(15);
 	system("pause");
 }
 
 void Game::NotesWriting() {
 	ofstream fout1("Data\\Notes.txt", ofstream::app);
 	system("cls");
-	T.PRC(3, "Напишите заметку: ");
+	Text::PRC(3, "Напишите заметку: ");
 	string Temp;
-	T.PRC(15);
+	Text::PRC(15);
 	cin >> ws;
 	getline(cin, Temp);
 	if (Temp == "nofap") {
@@ -505,12 +519,12 @@ void Game::NotesWriting() {
 
 bool Game::Statement(string Header, string Text) {
 	system("cls");
-	T.PRC(1, Header + '\n');
-	T.V(4, 60);
-	T.PRC(15, Text);
-	T.V(4, 60);
-	T.HV(13, 1, 15, "Вернуться назад");
-	T.HV(13, 2, 15, "Вернуться в главное меню");
+	Text::PRC(1, Header + '\n');
+	Text::V(4, 60);
+	Text::PRC(15, Text);
+	Text::V(4, 60);
+	Text::HV(13, 1, 15, "Вернуться назад");
+	Text::HV(13, 2, 15, "Вернуться в главное меню");
 	while (true) {
 		int Click = _getch();
 		switch (Click) {
@@ -548,9 +562,9 @@ void Game::Nightmare(string Path) {
 	for (size_t i = 0; i < Text.size(); i++) {
 		system("cls");
 		for (size_t j = 0; j < Text[i].size(); j++)
-			T.PRC(Text[i][j].first, Text[i][j].second + '\n');
-		T.V(4, 70);
-		T.PRC(15);
+			Text::PRC(Text[i][j].first, Text[i][j].second + '\n');
+		Text::V(4, 70);
+		Text::PRC(15);
 		system("pause");
 	}
 }
@@ -560,9 +574,9 @@ bool Game::Sleeping() {
 	int HoursN = 23;
 	while (Counter != 8) {
 		system("cls");
-		T.PRC(13, "Ты спишь...\n");
-		T.V(4, 30);
-		T.PRC(3, to_string(HoursN++) + ":00\n");
+		Text::PRC(13, "Ты спишь...\n");
+		Text::V(4, 30);
+		Text::PRC(3, to_string(HoursN++) + ":00\n");
 		if (HoursN == 24) HoursN = 0;
 		Counter++;
 		H.EffectsTick();
@@ -581,8 +595,8 @@ bool Game::Sleeping() {
 
 void Game::Escape(bool& Life, int& Hour, bool& IsBack) {
 	system("cls");
-	T.PRC(1, "Вернуться в главное меню?\n");
-	T.V(2);
+	Text::PRC(1, "Вернуться в главное меню?\n");
+	Text::V(2);
 	while (true) {
 		int Click = _getch();
 		if (Click == 49) {
@@ -629,9 +643,9 @@ void Game::Actions(int Choose, bool& Life, int& Hour, bool& IsBack, bool& Workin
 
 void Game::RoomLooking(Inventory& I) {
 	system("cls");
-	T.PRC(15, "Ты осмотрел комнату. Это - как ты понял - больничная палата. В тумбе лежали галеты и сухофрукты. Две гранулы аспирина небрежно валялись на кровати.\nПользуясь своим статусом, ты получил элитную палату, отличавшуюся от обычной, однако, только наличием стола со светильником. На нём пылилась какая-то книга\nОт коридора тебя отделяла массивная металлическая дверь. \"Думаю, стоит выглянуть наружу\", - сказал ты\n");
-	T.V(4, 45);
-	T.PRC(15);
+	Text::PRC(15, "Ты осмотрел комнату. Это - как ты понял - больничная палата. В тумбе лежали галеты и сухофрукты. Две гранулы аспирина небрежно валялись на кровати.\nПользуясь своим статусом, ты получил элитную палату, отличавшуюся от обычной, однако, только наличием стола со светильником. На нём пылилась какая-то книга\nОт коридора тебя отделяла массивная металлическая дверь. \"Думаю, стоит выглянуть наружу\", - сказал ты\n");
+	Text::V(4, 45);
+	Text::PRC(15);
 	system("pause");
 	I.Aspirin.SetNew(2);
 	I.Hardtack.SetNew(rand() % 2 + 1);
@@ -752,19 +766,19 @@ Game::Game() {
 
 int Game::Menu() {
 	system("cls");
-	T.PRC(13, "Выживание на Марсе\n");
-	T.V(4, 30);
-	T.HV(13, 1, 15, "Начать игру");
-	T.V(4, 5);
-	T.HV(13, 2, 15, "Помощь к игре");
-	T.V(4, 5);
-	T.HV(13, 3, 15, "Достижения");
-	T.V(4, 5);
-	T.HV(13, 4, 15, "Разработчики");
-	T.V(4, 5);
-	T.HV(13, 5, 15, "Выход из игры");
-	T.V(4, 30);
-	T.PRC(15, "v 0.3 closed beta-test\n");
+	Text::PRC(13, "Выживание на Марсе\n");
+	Text::V(4, 30);
+	Text::HV(13, 1, 15, "Начать игру");
+	Text::V(4, 5);
+	Text::HV(13, 2, 15, "Помощь к игре");
+	Text::V(4, 5);
+	Text::HV(13, 3, 15, "Достижения");
+	Text::V(4, 5);
+	Text::HV(13, 4, 15, "Разработчики");
+	Text::V(4, 5);
+	Text::HV(13, 5, 15, "Выход из игры");
+	Text::V(4, 30);
+	Text::PRC(15, "v 0.4 beta-test\n");
 	int Variety = _getch();
 	switch (Variety) {
 	case 49:
@@ -779,10 +793,6 @@ int Game::Menu() {
 		return 5;
 	case 27:
 		return 5;
-	case 54: {
-		Diary d("Data\\Diaries\\Peter Novell.txt");
-		d.Read();
-	}
 	}
 	return -1;
 }
@@ -825,18 +835,18 @@ void Game::Menu_2(bool& Working) {
 	while (Menu) {
 	Start:
 		system("cls");
-		T.PRC(13, "Помощь к игре\n");
-		T.V(4, 35);
-		T.HV(13, 1, 15, "Здоровье и другие характеристики персонажа");
-		T.V(4, 15);
-		T.HV(13, 2, 15, "Поиск и употребление");
-		T.V(4, 15);
-		T.HV(13, 3, 15, "Чтение, дневник и заметки");
-		T.V(4, 15);
-		T.HV(13, 4, 15, "Враги и их воздействие на игрока");
-		T.V(4, 15);
-		T.HV(13, 5, 15, "Вернуться в главное меню");
-		T.V(4, 35);
+		Text::PRC(13, "Помощь к игре\n");
+		Text::V(4, 35);
+		Text::HV(13, 1, 15, "Здоровье и другие характеристики персонажа");
+		Text::V(4, 15);
+		Text::HV(13, 2, 15, "Поиск и употребление");
+		Text::V(4, 15);
+		Text::HV(13, 3, 15, "Чтение, дневник и заметки");
+		Text::V(4, 15);
+		Text::HV(13, 4, 15, "Враги и их воздействие на игрока");
+		Text::V(4, 15);
+		Text::HV(13, 5, 15, "Вернуться в главное меню");
+		Text::V(4, 35);
 		while (true) {
 			int Variety = _getch();
 			switch (Variety) {
@@ -880,25 +890,25 @@ void Game::Menu_3(bool& Working) {
 	}
 Menu:
 	system("cls");
-	T.PRC(13, "Достижения\n");
-	T.V(4, 60);
+	Text::PRC(13, "Достижения\n");
+	Text::V(4, 60);
 	for (size_t i = 0; i < AchievementVector.size(); i++) {
-		T.HV(1, i + 1, 15, AchievementVector[i].first);
-		T.PRC(3, '[' + AchievementVector[i].second + "]\n");
-		if (AchievementVector.size() - i - 1) T.V(4, 35);
+		Text::HV(1, i + 1, 15, AchievementVector[i].first);
+		Text::PRC(3, '[' + AchievementVector[i].second + "]\n");
+		if (AchievementVector.size() - i - 1) Text::V(4, 35);
 	}
 	if (!AchievementVector.size())
-		T.PRC(3, "Достижения отсутствуют\n");
-	T.V(4, 60);
-	T.HV(13, 1, 15, "Сбросить достижения");
-	T.HV(13, 2, 15, "Вернуться в главное меню");
+		Text::PRC(3, "Достижения отсутствуют\n");
+	Text::V(4, 60);
+	Text::HV(13, 1, 15, "Сбросить достижения");
+	Text::HV(13, 2, 15, "Вернуться в главное меню");
 	while (true) {
 		int Variety = _getch();
 		switch (Variety) {
 		case 49: {
 			system("cls");
-			T.PRC(13, "Вы точно хотите сбросить достижения?\n");
-			T.V(2);
+			Text::PRC(13, "Вы точно хотите сбросить достижения?\n");
+			Text::V(2);
 			while (true) {
 				int Click = _getch();
 				switch (Click) {
@@ -922,21 +932,21 @@ Menu:
 
 void Game::Menu_4(bool& Working) {
 	system("cls");
-	T.PRC(13, "Разработчики\n");
-	T.V(4, 45);
-	T.PRC(13, "Ответственные за разработку:\n");
-	T.PRC(15, "- Programming Harius\n");
-	T.PRC(15, "- DobbikoV\n");
-	T.PRC(15, "- GoogeTan\n");
-	T.V(4, 25);
-	T.PRC(13, "Тестировка:\n");
-	T.PRC(15, "- Programming Harius\n");
-	T.V(4, 45);
-	T.PRC(15);
-	T.V(3);
-	T.V(2);
-	T.V(4, 25);
-	T.PRC(15);
+	Text::PRC(13, "Разработчики\n");
+	Text::V(4, 45);
+	Text::PRC(13, "Ответственные за разработку:\n");
+	Text::PRC(15, "- Programming Harius\n");
+	Text::PRC(15, "- DobbikoV\n");
+	Text::PRC(15, "- GoogeTan\n");
+	Text::V(4, 25);
+	Text::PRC(13, "Тестировка:\n");
+	Text::PRC(15, "- Programming Harius\n");
+	Text::V(4, 45);
+	Text::PRC(15);
+	Text::V(3);
+	Text::V(2);
+	Text::V(4, 25);
+	Text::PRC(15);
 	while (true) {
 		int Variety = _getch();
 		switch (Variety) {
@@ -953,10 +963,10 @@ void Game::Menu_4(bool& Working) {
 
 void Game::Menu_5(bool& Working) {
 	system("cls");
-	T.PRC(13, "Вы точно хотите выйти?\n");
-	T.V(2);
-	T.V(4, 25);
-	T.PRC(15);
+	Text::PRC(13, "Вы точно хотите выйти?\n");
+	Text::V(2);
+	Text::V(4, 25);
+	Text::PRC(15);
 	while (true) {
 		int Variety = _getch();
 		switch (Variety) {
@@ -1011,4 +1021,8 @@ ifstream& operator>>(ifstream& fin, Game::Tool& T) {
 	fin >> Temp;
 	T.SetBreakPerUse(Temp);
 	return fin;
+}
+
+void Game::OthersDiaryReading() {
+
 }

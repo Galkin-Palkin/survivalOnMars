@@ -24,6 +24,7 @@ Aspirin
 1
 Comics
 0
+zero
 Армейский рюкзак
 0
 3
@@ -35,6 +36,7 @@ DarkChocolateBar
 0
 0
 0
+zero
 Аптечка
 0
 2
@@ -44,6 +46,7 @@ Phenothan
 0
 0
 0
+zero
 Второй блок
 3
 Тумбочка
@@ -55,6 +58,7 @@ EnergyBar
 0
 0
 0
+zero
 Шкаф
 0
 2
@@ -64,6 +68,7 @@ DriedFruits
 0
 0
 0
+zero
 Стальной ящик
 0
 2
@@ -73,6 +78,7 @@ CannedApple
 0
 0
 0
+zero
 Третий блок
 3
 Шкаф
@@ -84,6 +90,7 @@ Hardtack
 0
 0
 0
+zero
 Тумбочка
 0
 2
@@ -93,6 +100,7 @@ EnergyBar
 0
 0
 0
+zero
 Стальной ящик
 0
 2
@@ -102,6 +110,7 @@ CannedApple
 0
 0
 0
+zero
 Офис охраны
 2
 Столешница
@@ -114,6 +123,7 @@ Aspirin
 0
 1
 Screwdriver
+zero
 Стойка для книг
 0
 1
@@ -123,3 +133,4 @@ DarkChocolateBar
 Thriller
 CriminalDrama
 0
+zero

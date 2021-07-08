@@ -153,6 +153,7 @@ void Game::Buildings::DenyToGoIn(int Type, string RoomType, bool& Entering) {
 	}
 		  //иной случай
 	case 3: {
+		system("color F7");
 		int CountOfTry = 3 + rand() % 8;
 		bool UsedDoor = CountOfTry < 10;
 		int Thousands = 1 + rand() % 9;

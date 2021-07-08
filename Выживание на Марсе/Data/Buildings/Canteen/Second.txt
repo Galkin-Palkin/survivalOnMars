@@ -26,6 +26,7 @@ MeltedCheese
 0
 1
 Knife
+zero
 Духовка
 0
 1
@@ -33,6 +34,7 @@ FishSoup
 0
 0
 0
+zero
 Коробки из-под консерв
 0
 3
@@ -44,6 +46,7 @@ RicePurge
 0
 0
 0
+zero
 Первый зал
 2
 Буфет
@@ -57,6 +60,8 @@ Hardtack
 0
 0
 0
+Peter Novell
+10
 Столы
 0
 2
@@ -66,6 +71,7 @@ Hardtack
 0
 0
 0
+zero
 Второй зал
 2
 Стеллаж с посудой
@@ -76,6 +82,7 @@ MeltedCheese
 0
 1
 Knife
+zero
 Столы
 0
 2
@@ -85,3 +92,4 @@ MushroomSoup
 0
 0
 0
+zero

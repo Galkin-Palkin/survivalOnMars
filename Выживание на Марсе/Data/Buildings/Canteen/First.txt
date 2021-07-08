@@ -23,6 +23,7 @@ Hardtack
 0
 0
 0
+zero
 Брошенная сумка
 0
 2
@@ -32,6 +33,7 @@ MeltedCheese
 0
 0
 0
+zero
 Аппарат со сладостями
 1
 Wending machine
@@ -44,6 +46,7 @@ EnergyBar
 2
 0
 0
+zero
 Подсобное помещение
 2
 Холодильник
@@ -57,6 +60,7 @@ CannedBeef
 0
 0
 0
+zero
 Ящики
 0
 2
@@ -67,6 +71,7 @@ CannedFish
 0
 1
 Crowbar
+zero
 Кухня
 3
 Полки
@@ -79,6 +84,7 @@ Hardtack
 0
 1
 Knife
+zero
 Шкаф
 0
 2
@@ -89,6 +95,7 @@ RicePurge
 0
 1
 Knife
+zero
 Плита
 0
 2
@@ -98,3 +105,4 @@ FishSoup
 0
 0
 0
+zero

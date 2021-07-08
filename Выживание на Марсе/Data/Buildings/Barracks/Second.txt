@@ -24,6 +24,7 @@ RicePurge
 2
 Hammer
 Axe
+zero
 Сумка
 0
 2
@@ -33,6 +34,7 @@ Aspirin
 0
 0
 0
+zero
 Первый блок
 3
 Железные шкафчики
@@ -44,6 +46,7 @@ Hardtack
 0
 0
 0
+zero
 Стеллаж
 0
 1
@@ -53,6 +56,7 @@ Aspirin
 Adventures
 ScienceFiction
 0
+zero
 Чемодан
 0
 2
@@ -62,6 +66,7 @@ DarkChocolateBar
 0
 0
 0
+zero
 Второй блок
 3
 Деревянный ящик
@@ -73,6 +78,7 @@ RicePurge
 0
 0
 0
+zero
 Стол
 0
 2
@@ -82,6 +88,7 @@ Hardtack
 0
 0
 0
+zero
 Тумбы
 0
 2
@@ -91,3 +98,4 @@ Sedatives
 0
 0
 0
+zero

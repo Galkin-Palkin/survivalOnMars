@@ -24,6 +24,7 @@ Phenothan
 0
 1
 Scalpel
+zero
 Полка
 0
 1
@@ -32,6 +33,7 @@ Aspirin
 1
 ScienceFiction
 0
+zero
 Коробки для инъекций
 0
 1
@@ -39,6 +41,7 @@ Gericline
 0
 0
 0
+zero
 Лаборатория
 2
 Рабочий стол
@@ -51,6 +54,8 @@ EnergyBar
 0
 1
 Scalpel
+Potty Wakers
+5
 Стенд с реактивами
 0
 2
@@ -60,6 +65,7 @@ Syrup
 0
 0
 0
+zero
 Хранилище реактивов
 2
 Никелевые ящики
@@ -71,6 +77,7 @@ Phenothan
 0
 0
 0
+zero
 Полка с образцами
 0
 2
@@ -80,6 +87,7 @@ Aspirin
 0
 0
 0
+zero
 Проверочный центр
 1
 Письменный стол
@@ -90,3 +98,4 @@ Sedatives
 1
 Adventures
 0
+zero

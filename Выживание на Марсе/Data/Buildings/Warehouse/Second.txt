@@ -24,6 +24,7 @@ Hardtack
 0
 1
 Hammer
+zero
 Коробки
 0
 2
@@ -33,6 +34,7 @@ CannedApple
 0
 0
 0
+zero
 Техническое помещение
 2
 Выдвижной ящик
@@ -45,6 +47,7 @@ Sedatives
 1
 Comics
 0
+zero
 Рюкзак
 0
 2
@@ -55,6 +58,7 @@ DriedFruits
 0
 1
 Screwdriver
+zero
 Основной зал
 3
 Стойка с инструментами
@@ -67,6 +71,7 @@ Palont
 Chainsaw
 Wrench
 Crowbar
+zero
 Коробки из-под макарон
 0
 2
@@ -76,6 +81,7 @@ MeltedCheese
 0
 0
 0
+zero
 Стелла с книгами
 0
 1
@@ -86,3 +92,4 @@ CriminalDrama
 Thriller
 Adventures
 0
+zero

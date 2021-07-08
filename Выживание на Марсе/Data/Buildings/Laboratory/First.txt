@@ -22,6 +22,7 @@ EnergyBar
 0
 0
 0
+zero
 Выдвижной ящик стола
 0
 2
@@ -32,6 +33,7 @@ DriedFruits
 1
 CriminalDrama
 0
+zero
 Блок для синтезирования
 2
 Стенд с колбами
@@ -43,6 +45,8 @@ Trivoclisine
 0
 0
 0
+Theodor Mellow
+5
 Стальной ящик
 0
 3
@@ -55,6 +59,7 @@ Trivoclisine
 0
 1
 Scalpel
+zero
 Испытательный сектор
 2
 Шкаф с реактивами
@@ -66,6 +71,7 @@ Syrup
 0
 0
 0
+zero
 Полка
 0
 1
@@ -75,6 +81,7 @@ Gericline
 ScienceFiction
 1
 Scalpel
+zero
 Хранилище
 2
 Коробка с препаратами
@@ -86,6 +93,7 @@ Palont
 0
 0
 0
+zero
 Стеллаж
 0
 2
@@ -97,3 +105,4 @@ Phenothan
 ScienceFiction
 1
 Screwdriver
+zero

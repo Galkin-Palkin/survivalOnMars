@@ -1,8 +1,9 @@
 #include "Game.h"
 using namespace std;
 
-Game::Diary::Diary(string Path) {
-	ifstream fin(Path);
+Game::Diary::Diary(string Path, int Chance) {
+	ifstream fin("Data\\Diaries\\" + Path + ".txt");
+	DropChance = Chance;
 
 	try {
 		if (!fin.is_open())
@@ -38,7 +39,13 @@ Start:
 		for (size_t j = 0; j < DiaryPages[CurrentPage][i].size(); j++) {
 			switch (DiaryPages[CurrentPage][i][j]) {
 			case '#':
-				Text::PRC(0, ' ', 4);
+				Text::PRC(0, ' ', 12);
+				break;
+			case '~':
+				Text::PRC(0, ' ', 0);
+				break;
+			case '@':
+				Text::PRC(0, ' ', 14);
 				break;
 			default:
 				Text::PRC(0, DiaryPages[CurrentPage][i][j], 15);
@@ -64,4 +71,21 @@ Start:
 			return;
 		}
 	}
+}
+
+bool Game::Diary::operator==(Diary diary) {
+	if (diary.Title != Title || diary.DiaryPages.size() != DiaryPages.size())
+		return false;
+	for (size_t i = 0; i < DiaryPages.size(); i++)
+		if (DiaryPages[i] != diary.DiaryPages[i])
+			return false;
+	return true;
+}
+
+int Game::Diary::GetChance() {
+	return DropChance;
+}
+
+string Game::Diary::GetTitle() {
+	return Title;
 }

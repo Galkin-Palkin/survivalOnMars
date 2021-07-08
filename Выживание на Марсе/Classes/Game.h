@@ -151,10 +151,19 @@ class Game {
 	class Diary {
 		string Title;
 		vector<vector<string>> DiaryPages;
+		int DropChance = 5;
 	public:
-		Diary(string Path);
+		Diary() = default;
+
+		Diary(string Path, int Chance = 5);
 
 		void Read();
+
+		bool operator==(Diary);
+
+		int GetChance();
+
+		string GetTitle();
 	};
 
 	static vector<PlotItem> PlotItems;
@@ -384,6 +393,7 @@ class Game {
 	private:
 		Text T;
 		static Human* H;
+		Diary FoundedDiary;
 		string Name;
 		bool IsObstacle = false;
 		string ObstacleType;
@@ -528,6 +538,7 @@ class Game {
 	static Room Room10;
 	static map<string, Obstacle> Obstacles;
 	static map<string, Obstacle> ActionObstacles;
+	static vector<Diary> Diaries;
 	void Introduction();
 	void InfoShowing(int HP, int FP, int EP, int PHP, double DP, int Sol, int Hour);
 	int NewGame();
@@ -549,6 +560,7 @@ class Game {
 	bool Statement(string, string);
 	void Nightmare(string);
 	void Validate();
+	void OthersDiaryReading();
 public:
 	Game();
 	int Menu();
