@@ -1024,5 +1024,45 @@ ifstream& operator>>(ifstream& fin, Game::Tool& T) {
 }
 
 void Game::OthersDiaryReading() {
+	size_t CurrentPage = 0;
+	size_t TotalPages = Diaries.size() / 9 + Diaries.size() % 9 != 0;
 
+_Start:
+	size_t Size = (Diaries.size() - CurrentPage * 9 > 8) ? 9 : Diaries.size() - CurrentPage * 9;
+
+	system("cls");
+	Text::PRC(13, "\n");
+	Text::V(4, 50);
+	
+	for (size_t i = 0; i < Size; i++) {
+		Text::HV(3, i + 1, 15, Diaries[CurrentPage * 9 + i].GetTitle());
+		Text::V(4);
+	}
+
+	while (true) {
+		int Click = _getch();
+		
+		if (isdigit(Click)) {
+			Diaries[CurrentPage * 9 + Click - 48].Read();
+			goto _Start;
+		}
+
+		switch (Click) {
+		case 75:
+			if (CurrentPage > 0)
+				CurrentPage--;
+		case 77:
+			if (CurrentPage < TotalPages - 1)
+				CurrentPage++;
+		}
+	}
+
+	Text::V(4, 50);
+
+	if (!CurrentPage && TotalPages > 1)
+		Text::PRC(15, "  ------------------->  \n");
+	else if (CurrentPage == TotalPages - 1 && TotalPages > 1)
+		Text::PRC(15, "  <-------------------  \n");
+	else if (CurrentPage > 0 && CurrentPage < TotalPages - 1)
+		Text::PRC(15, "  <-------------------                ------------------->  \n");
 }

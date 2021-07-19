@@ -47,8 +47,6 @@ void Game::Consumable::Show(Text& T, size_t Page) {
 	T.PRC(13, "Пища и медикаменты\n");
 	T.V(4, 60);
 	int Size = (ConsumableCount - Page * 9 > 8) ? 9 : ConsumableCount - Page * 9;
-	if (ConsumableCount < 9)
-		Size = ConsumableCount;
 	size_t TotalPage = (ConsumableCount % 9 == 0) ? ConsumableCount / 9 : ConsumableCount / 9 + 1;
 	for (size_t i = 0; i < Size; i++) {
 		T.PRC(10, "[");
