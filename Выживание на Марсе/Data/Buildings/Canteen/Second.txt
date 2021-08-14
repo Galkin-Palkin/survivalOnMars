@@ -61,7 +61,7 @@ Hardtack
 0
 0
 Peter Novell
-10
+100
 Столы
 0
 2

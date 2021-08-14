@@ -321,8 +321,8 @@ void Game::Workplace(int& Hour, bool& IsBack) {
 	Text::V(4, 10);
 	Text::HV(13, 4, 15, "Написать заметку");
 	if (Diaries.size() > 0) {
-		Text::HV(13, 3, 15, "Почитать дневники сотрудников");
 		Text::V(4, 10);
+		Text::HV(13, 5, 15, "Почитать дневники сотрудников");
 	}
 
 	Text::V(4, 40);
@@ -1031,19 +1031,20 @@ _Start:
 	size_t Size = (Diaries.size() - CurrentPage * 9 > 8) ? 9 : Diaries.size() - CurrentPage * 9;
 
 	system("cls");
-	Text::PRC(13, "\n");
+	Text::PRC(13, "Найденные дневники\n");
 	Text::V(4, 50);
 	
 	for (size_t i = 0; i < Size; i++) {
 		Text::HV(3, i + 1, 15, Diaries[CurrentPage * 9 + i].GetTitle());
-		Text::V(4);
+		if (Size - i - 1)
+			Text::V(4);
 	}
 
 	while (true) {
 		int Click = _getch();
 		
-		if (isdigit(Click)) {
-			Diaries[CurrentPage * 9 + Click - 48].Read();
+		if (isdigit(Click) && (CurrentPage * 9 + Click - 49) < Diaries.size()) {
+			Diaries[CurrentPage * 9 + Click - 49].Read();
 			goto _Start;
 		}
 
