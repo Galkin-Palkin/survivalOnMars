@@ -16,6 +16,8 @@ void Game::Saves::Load(Human& H, bool& IsExit) {
 	fin >> Number;
 	H.Set(HumanInfo::FP, '=', Number);
 	fin >> Number;
+	H.Set(HumanInfo::WP, '=', Number);
+	fin >> Number;
 	H.Set(HumanInfo::EP, '=', Number);
 	fin >> Number;
 	H.Set(HumanInfo::PHP, '=', Number);
@@ -80,6 +82,7 @@ void Game::Saves::Download(Human& H, bool IsExit) {
 	fout << NightmareChance << endl;
 	fout << H.GetI(HumanInfo::HP) << endl;
 	fout << H.GetI(HumanInfo::FP) << endl;
+	fout << H.GetI(HumanInfo::WP) << endl;
 	fout << H.GetI(HumanInfo::EP) << endl;
 	fout << H.GetI(HumanInfo::PHP) << endl;
 	fout << H.GetD(HumanInfo::DP) << endl;

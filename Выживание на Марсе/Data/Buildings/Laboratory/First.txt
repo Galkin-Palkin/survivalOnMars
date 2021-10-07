@@ -15,10 +15,12 @@
 2
 Тумбочка
 0
-2
+3
 Aspirin
 0
 EnergyBar
+0
+EnergyDrink
 0
 0
 0
@@ -38,10 +40,12 @@ zero
 2
 Стенд с колбами
 0
-2
+3
 Gericline
 0
 Trivoclisine
+0
+BottledWater
 0
 0
 0

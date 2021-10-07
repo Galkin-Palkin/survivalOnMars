@@ -10,6 +10,8 @@ int Game::Human::GetI(HumanInfo Type) {
 		return HP;
 	case HumanInfo::FP:
 		return FP;
+	case HumanInfo::WP:
+		return WP;
 	case HumanInfo::EP:
 		return EP;
 	case HumanInfo::PHP:
@@ -64,6 +66,20 @@ void Game::Human::Set(HumanInfo Type, char Sign, int Value) {
 			break;
 		case '=':
 			FP = Value;
+			break;
+		}
+		break;
+	}
+	case HumanInfo::WP: {
+		switch (Sign) {
+		case '+':
+			WP += Value;
+			break;
+		case '-':
+			WP -= Value;
+			break;
+		case '=':
+			WP = Value;
 			break;
 		}
 		break;
@@ -161,6 +177,7 @@ void Game::Human::Set(HumanInfo Type, char Sign, double Number) {
 void Game::Human::Null() {
 	HP = 70 + (rand() % 5) * 5;
 	FP = 30 + (rand() % 7) * 5;
+	WP = 50 + rand() % 3 * 10;
 	EP = 100;
 	PHP = 30 + (rand() % 7) * 5;
 	DP = rand() % 21;
@@ -186,6 +203,7 @@ void Game::Human::Null() {
 
 void Game::Human::Changes(bool& Life, bool& Working) {
 	FP -= 5;
+	WP -= 7;
 	Validate();
 	EffectsTick();
 	if (FP >= 75)
@@ -201,11 +219,17 @@ void Game::Human::Changes(bool& Life, bool& Working) {
 		DP += 0.2;
 		AddEffect(EffectMap["Starvation"]);
 	}
-	if (HP > 75 && FP >= 30) {
+	if (WP == 0) {
+		HP -= 2;
+		EP -= 5;
+		DP += 0.25;
+		PHP -= 3;
+	}
+	if (HP > 75 && FP >= 30 && WP >= 30) {
 		DP--;
 		PHP += 2;
 	}
-	else if (HP > 50 && FP >= 30) {
+	else if (HP > 50 && FP >= 30 && WP >= 30) {
 		DP -= 0.5;
 		PHP++;
 	}
@@ -248,6 +272,10 @@ void Game::Human::Validate() {
 		FP = 100;
 	else if (FP < 0)
 		FP = 0;
+	if (WP > 100)
+		WP = 100;
+	else if (WP < 0)
+		WP = 0;
 	if (EP > 100)
 		EP = 100;
 	else if (EP < 0)
@@ -337,12 +365,13 @@ void Game::Human::AddEffect(Effect Ef) {
 	EffectsVector.push_back(Ef);
 	for (size_t i = 0; i < EffectsVector.size(); i++) {
 		for (size_t j = 0; j < EffectsVector.size(); j++) {
-			if (i == j) break;
-			if (i != j && EffectsVector[i] == EffectsVector[j] && EffectsVector[i].GetDuration() > EffectsVector[j].GetDuration()) {
+			if (i == j)
+				break;
+			if (EffectsVector[i] == EffectsVector[j] && EffectsVector[i].GetDuration() > EffectsVector[j].GetDuration()) {
 				EffectsVector.erase(EffectsVector.begin() + j--);
 				break;
 			}	
-			else if (i != j && EffectsVector[i] == EffectsVector[j] && EffectsVector[i].GetDuration() < EffectsVector[j].GetDuration()) {
+			else if (EffectsVector[i] == EffectsVector[j] && EffectsVector[i].GetDuration() < EffectsVector[j].GetDuration()) {
 				EffectsVector.erase(EffectsVector.begin() + i--);
 				break;
 			}

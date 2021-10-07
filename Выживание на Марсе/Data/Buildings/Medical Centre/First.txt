@@ -16,10 +16,12 @@
 3
 Тумбочки
 0
-2
+3
 Aspirin
 0
 Sedatives
+0
+OrangeJuice
 0
 2
 Adventures
@@ -84,10 +86,12 @@ zero
 2
 Выдвижной шкаф
 0
-2
+3
 Syrup
 0
 Phenothan
+0
+EnergyDrink
 0
 0
 0

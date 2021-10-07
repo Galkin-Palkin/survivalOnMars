@@ -16,10 +16,12 @@
 3
 Тумбочка
 0
-2
+3
 Hardtack
 0
 Aspirin
+0
+OrangeJuice
 0
 1
 Comics
@@ -61,10 +63,12 @@ EnergyBar
 zero
 Шкаф
 0
-2
+3
 CannedBeef
 0
 DriedFruits
+0
+EnergyDrink
 0
 0
 0

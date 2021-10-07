@@ -39,10 +39,12 @@ zero
 3
 Железные шкафчики
 0
-2
+3
 EnergyBar
 0
 Hardtack
+0
+BottledWater
 0
 0
 0

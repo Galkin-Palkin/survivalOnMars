@@ -75,10 +75,12 @@ Scalpel
 zero
 Комнаты медперсонала
 0
-2
+3
 EnergyBar
 0
 Aspirin
+0
+EnergyDrink
 0
 0
 0
@@ -97,12 +99,14 @@ zero
 3
 Кухня
 0
-3
+4
 Noodle
 0
 FishSoup
 0
 MeatBriquette
+0
+BottledWater
 0
 0
 1
@@ -120,10 +124,12 @@ Hardtack
 zero
 Буфет
 0
-2
+3
 EnergyBar
 0
 DriedFruits
+0
+OrangeJuice
 0
 0
 0

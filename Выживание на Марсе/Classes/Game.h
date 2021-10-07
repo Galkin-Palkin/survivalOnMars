@@ -15,6 +15,7 @@ class Game {
 		Null,
 		HP,
 		FP,
+		WP,
 		EP,
 		PHP,
 		Sol,
@@ -86,6 +87,7 @@ class Game {
 	class Human {
 		int HP = 70 + (rand() % 5) * 5; // Очки здоровья
 		int FP = 30 + (rand() % 7) * 5; // Очки сытости
+		int WP = 50 + (rand() % 3) * 10; // Очки насыщения водой
 		int EP = 100; // Очки энергии
 		int PHP = 30 + (rand() % 3) * 10; // Очки психологического состояния (тут имею в виду настрой персонажа, само психологическое состояние реализую позже, от него должна зависеть концовка)
 		double DP = (rand() % 21) / 1.0; // Очки истощения
@@ -364,6 +366,7 @@ class Game {
 		Consumable Sedatives;
 		Consumable Syrup;
 		// Пища
+
 		Consumable CannedBeef;
 		Consumable Hardtack;
 		Consumable EnergyBar;
@@ -376,6 +379,10 @@ class Game {
 		Consumable Noodle;
 		Consumable VegetableStew;
 		Consumable DriedFruits;
+		Consumable BottledWater;
+		Consumable EnergyDrink;
+		Consumable OrangeJuice;
+
 		// Литература
 		Book ScienceFiction;
 		Book CriminalDrama;

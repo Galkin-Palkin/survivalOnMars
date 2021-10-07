@@ -51,12 +51,14 @@ zero
 2
 Αστες
 0
-3
+4
 EnergyBar
 0
 DarkChocolateBar
 0
 Hardtack
+0
+OrangeJuice
 0
 0
 0

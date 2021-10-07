@@ -103,6 +103,19 @@ void Game::InfoShowing(int HP, int FP, int EP, int PHP, double DP, int Sol, int 
 		Text::PRC(4, "Голод\n");
 	Text::V(4, 45);
 
+	Text::PRC(13, "Степень обезвоживания: ");
+	if (H.GetI(HumanInfo::WP) >= 90)
+		Text::PRC(1, "Нулевая\n");
+	else if (H.GetI(HumanInfo::WP) >= 75)
+		Text::PRC(3, "Крайне низкая\n");
+	else if (H.GetI(HumanInfo::WP) >= 50)
+		Text::PRC(10, "Низкая\n");
+	else if (H.GetI(HumanInfo::WP) >= 25)
+		Text::PRC(6, "Жажда\n");
+	else if (H.GetI(HumanInfo::WP) < 25)
+		Text::PRC(4, "Обезвоживание\n");
+	Text::V(4, 45);
+
 	Text::PRC(13, "Степень усталости: ");
 	if (EP >= 100)
 		Text::PRC(1, "Нулевая\n");
@@ -643,11 +656,12 @@ void Game::Actions(int Choose, bool& Life, int& Hour, bool& IsBack, bool& Workin
 
 void Game::RoomLooking(Inventory& I) {
 	system("cls");
-	Text::PRC(15, "Ты осмотрел комнату. Это - как ты понял - больничная палата. В тумбе лежали галеты и сухофрукты. Две гранулы аспирина небрежно валялись на кровати.\nПользуясь своим статусом, ты получил элитную палату, отличавшуюся от обычной, однако, только наличием стола со светильником. На нём пылилась какая-то книга\nОт коридора тебя отделяла массивная металлическая дверь. \"Думаю, стоит выглянуть наружу\", - сказал ты\n");
+	Text::PRC(15, "Ты осмотрел комнату. Это - как ты понял - больничная палата. В тумбе лежали галеты и сухофрукты. Две гранулы аспирина небрежно валялись на кровати.\nПользуясь своим статусом, ты получил элитную палату, отличавшуюся от обычной, однако, только наличием стола со светильником. На нём пылилась какая-то книга и две бутылки воды\nОт коридора тебя отделяла массивная металлическая дверь. \"Думаю, стоит выглянуть наружу\", - сказал ты\n");
 	Text::V(4, 45);
 	Text::PRC(15);
 	system("pause");
 	I.Aspirin.SetNew(2);
+	I.BottledWater.SetNew(2);
 	I.Hardtack.SetNew(rand() % 2 + 1);
 	I.DriedFruits.SetNew(rand() % 2 + 1);
 	I.ScienceFiction.SetNew();
@@ -694,6 +708,7 @@ void Game::ChangesDay(bool IsExit) {
 		H.Set(HumanInfo::DP, '-', 1.0);
 		H.Set(HumanInfo::EP, '+', 50);
 		H.Set(HumanInfo::FP, '-', 15);
+		H.Set(HumanInfo::WP, '-', 20);
 		Validate();
 	}
 }
@@ -731,6 +746,10 @@ Game::Game() {
 	ConsumableMap["Sedatives"] = &I.Sedatives;
 	ConsumableMap["Syrup"] = &I.Syrup;
 	ConsumableMap["VegetableStew"] = &I.VegetableStew;
+	ConsumableMap["BottledWater"] = &I.BottledWater;
+	ConsumableMap["EnergyDrink"] = &I.EnergyDrink;
+	ConsumableMap["OrangeJuice"] = &I.OrangeJuice;
+	
 	BookMap["Comics"] = &I.Comics;
 	BookMap["Adventures"] = &I.Adventures;
 	BookMap["CriminalDrama"] = &I.CriminalDrama;
@@ -990,6 +1009,10 @@ void Game::Validate() {
 		H.Set(HumanInfo::FP, '=', 100);
 	else if (H.GetI(HumanInfo::FP) < 0)
 		H.Set(HumanInfo::FP, '=', 0);
+	if (H.GetI(HumanInfo::WP) > 100)
+		H.Set(HumanInfo::WP, '=', 100);
+	else if (H.GetI(HumanInfo::WP) < 0)
+		H.Set(HumanInfo::WP, '=', 0);
 	if (H.GetI(HumanInfo::EP) > 100)
 		H.Set(HumanInfo::EP, '=', 100);
 	else if (H.GetI(HumanInfo::EP) < 0)

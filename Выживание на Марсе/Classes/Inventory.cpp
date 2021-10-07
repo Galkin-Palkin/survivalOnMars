@@ -32,6 +32,9 @@ Game::Inventory::Inventory() {
 	Noodle.Constructor("Noodle", "Макароны", 0.3, 15, HumanInfo::FP, 25, HumanInfo::EP, 10);
 	VegetableStew.Constructor("VegetableStew", "Овощное рагу в консервах", 0.2, 15, HumanInfo::FP, 15, HumanInfo::EP, 25);
 	DriedFruits.Constructor("DriedFruits", "Сухофрукты", 0.1, 15, HumanInfo::FP, 10, HumanInfo::EP, 10);
+	BottledWater.Constructor("BottledWater", "Бутылированная вода", 0.5, 25, HumanInfo::WP, 50, HumanInfo::HP, 5);
+	EnergyDrink.Constructor("EnergyDrink", "Энергетик", 0.3, 10, HumanInfo::WP, 30, HumanInfo::EP, 50);
+	OrangeJuice.Constructor("OrangeJuice", "Апельсиновый сок", 0.25, 15, HumanInfo::WP, 30, HumanInfo::HP, 5, HumanInfo::EP, 5);
 
 	ScienceFiction.SetParametrs("ScienceFiction", "Научная фантастика", 0.4, 8, 125, HumanInfo::PHP, 6);
 	CriminalDrama.SetParametrs("CriminalDrama", "Криминальная драма", 0.5, 5, 150, HumanInfo::PHP, 8, HumanInfo::HalChance, 1);
