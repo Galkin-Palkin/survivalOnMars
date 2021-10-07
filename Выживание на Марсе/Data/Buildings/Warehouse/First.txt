@@ -18,11 +18,13 @@
 2
 Стенд с коробками
 0
-2
+3
 RicePurge
 0
 CannedFish
 0
+BottledWater
+1
 0
 0
 zero
@@ -40,10 +42,12 @@ zero
 2
 Спортивная сумка
 0
-2
+3
 Aspirin
 0
 DriedFruits
+0
+BottledWater
 0
 0
 0

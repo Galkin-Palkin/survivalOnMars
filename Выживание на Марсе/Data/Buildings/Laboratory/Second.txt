@@ -55,13 +55,15 @@ EnergyBar
 1
 Scalpel
 Potty Wakers
-5
+10
 Стенд с реактивами
 0
-2
+3
 Trivoclisine
 0
 Syrup
+0
+BottledWater
 0
 0
 0
@@ -96,6 +98,7 @@ zero
 Sedatives
 0
 OrangeJuice
+0
 1
 Adventures
 0

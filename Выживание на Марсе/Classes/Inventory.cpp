@@ -18,21 +18,21 @@ Game::Inventory::Inventory() {
 	Gericline.Constructor("Gericline", "Укол гериклина", 0.1, 10, HumanInfo::DP, 2.0, HumanInfo::EP, 75);
 	Phenothan.Constructor("Phenothan", "Таблетки фенотана", 0.05, 15, HumanInfo::DP, -1.0, HumanInfo::HP, 20);
 	Sedatives.Constructor("Sedatives", "Таблетки успокоительного", 0.05, 15, HumanInfo::HP, -2, HumanInfo::PHP, 50, HumanInfo::HalChance, -10);
-	Syrup.Constructor("Syrup", "Сироп", 0.175, 15, HumanInfo::HP, 5, HumanInfo::EP, 10);
+	Syrup.Constructor("Syrup", "Сироп", 0.175, 15, HumanInfo::HP, 5, HumanInfo::EP, 10, HumanInfo::WP, 10);
 
-	CannedBeef.Constructor("CannedBeef", "Консервированная говядина", 0.25, 15, HumanInfo::FP, 30, HumanInfo::EP, 20);
-	Hardtack.Constructor("Hardtack", "Пачка галет", 0.15, 20, HumanInfo::FP, 20);
+	CannedBeef.Constructor("CannedBeef", "Консервированная говядина", 0.25, 15, HumanInfo::FP, 30, HumanInfo::EP, 20, HumanInfo::WP, 10);
+	Hardtack.Constructor("Hardtack", "Пачка галет", 0.15, 20, HumanInfo::FP, 20, HumanInfo::WP, -5);
 	EnergyBar.Constructor("EnergyBar", "Энергетический батончик", 0.05, 15, HumanInfo::FP, 10, HumanInfo::EP, 30);
-	MushroomSoup.Constructor("MushroomSoup", "Грибной суп в тюбиках", 0.3, 15, HumanInfo::FP, 40, HumanInfo::EP, 20);
-	CannedApple.Constructor("CannedApple", "Законсервированное яблоко", 0.2, 10, HumanInfo::FP, 20, HumanInfo::EP, 20);
-	RicePurge.Constructor("RicePurge", "Консервы с рисом", 0.3, 15, HumanInfo::FP, 30, HumanInfo::EP, 20);
-	MeatBriquette.Constructor("MeatBriquette", "Мясной брикет", 0.3, 10, HumanInfo::FP, 25, HumanInfo::EP, 40);
+	MushroomSoup.Constructor("MushroomSoup", "Грибной суп в тюбиках", 0.3, 15, HumanInfo::FP, 40, HumanInfo::EP, 20, HumanInfo::WP, 5);
+	CannedApple.Constructor("CannedApple", "Законсервированное яблоко", 0.2, 10, HumanInfo::FP, 20, HumanInfo::EP, 20, HumanInfo::WP, 15);
+	RicePurge.Constructor("RicePurge", "Консервы с рисом", 0.3, 15, HumanInfo::FP, 30, HumanInfo::EP, 20, HumanInfo::WP, -5);
+	MeatBriquette.Constructor("MeatBriquette", "Мясной брикет", 0.3, 10, HumanInfo::FP, 25, HumanInfo::EP, 40, HumanInfo::WP, -10);
 	MeltedCheese.Constructor("MeltedCheese", "Упаковка плавленного сыра", 0.15, 20, HumanInfo::FP, 20);
 	CannedFish.Constructor("CannedFish", "Консервированная горбуша", 0.25, 10, HumanInfo::FP, 30, HumanInfo::EP, 20);
 	Noodle.Constructor("Noodle", "Макароны", 0.3, 15, HumanInfo::FP, 25, HumanInfo::EP, 10);
-	VegetableStew.Constructor("VegetableStew", "Овощное рагу в консервах", 0.2, 15, HumanInfo::FP, 15, HumanInfo::EP, 25);
-	DriedFruits.Constructor("DriedFruits", "Сухофрукты", 0.1, 15, HumanInfo::FP, 10, HumanInfo::EP, 10);
-	BottledWater.Constructor("BottledWater", "Бутылированная вода", 0.5, 25, HumanInfo::WP, 50, HumanInfo::HP, 5);
+	VegetableStew.Constructor("VegetableStew", "Овощное рагу в консервах", 0.2, 15, HumanInfo::FP, 15, HumanInfo::EP, 25, HumanInfo::WP, 5);
+	DriedFruits.Constructor("DriedFruits", "Сухофрукты", 0.1, 15, HumanInfo::FP, 10, HumanInfo::EP, 10, HumanInfo::WP, -5);
+	BottledWater.Constructor("BottledWater", "Бутылированная вода", 0.5, 30, HumanInfo::WP, 50, HumanInfo::HP, 5);
 	EnergyDrink.Constructor("EnergyDrink", "Энергетик", 0.3, 10, HumanInfo::WP, 30, HumanInfo::EP, 50);
 	OrangeJuice.Constructor("OrangeJuice", "Апельсиновый сок", 0.25, 15, HumanInfo::WP, 30, HumanInfo::HP, 5, HumanInfo::EP, 5);
 
@@ -42,7 +42,7 @@ Game::Inventory::Inventory() {
 	Adventures.SetParametrs("Adventures", "Приключенческий роман", 0.7, 4, 250, HumanInfo::PHP, 6);
 	Thriller.SetParametrs("Thriller", "Триллер", 0.6, 6, 175, HumanInfo::PHP, 5, HumanInfo::HalChance, 1);
 
-	FishSoup.Constructor("FishSoup", "Похлёбка из трески", 0.4, 1, HumanInfo::DP, -5.0, HumanInfo::FP, 40, HumanInfo::EP, 55);
+	FishSoup.Constructor("FishSoup", "Похлёбка из трески", 0.4, 1, HumanInfo::WP, 50, HumanInfo::FP, 40, HumanInfo::EP, 55);
 	DarkChocolateBar.Constructor("DarkChocolateBar", "Плитка горького шоколада", 0.1, 1, HumanInfo::FP, 25, HumanInfo::EP, 40, HumanInfo::PHP, 30);
 	BartonsDrug.Constructor("BartonsDrug", "Сыворотка профессора Бартона", 0.4, 1, HumanInfo::DP, -10.0, HumanInfo::HP, 40, HumanInfo::EP, 20);
 

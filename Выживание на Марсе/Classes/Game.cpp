@@ -297,22 +297,22 @@ void Game::Eating(Inventory& I, bool& IsBack, int& Hour) {
 
 void Game::Outing(bool& Life, bool& Working, int& Hour, bool& IsBack) {
 	system("cls");
-	bool Condition = Hour <= 18 && H.GetI(HumanInfo::EP) >= 60 && H.GetI(HumanInfo::PHP) >= 50;
+	bool Condition = Hour <= 18 && H.GetI(HumanInfo::EP) >= 60 && H.GetI(HumanInfo::PHP) >= 30;
 	if (Condition)
 		B.LocationGeneration(Life, Working, ++Hour);
-	else if (Hour > 18 && H.GetI(HumanInfo::EP) >= 60 && H.GetI(HumanInfo::PHP) >= 50)
+	else if (Hour > 18 && H.GetI(HumanInfo::EP) >= 60 && H.GetI(HumanInfo::PHP) >= 30)
 		Text::PRC(3, "\"я готов пойти на поиски, но уже поздно\", - промелькнула мысль в твоей голове, и ты отошЄл от двери\n");
-	else if (Hour <= 18 && H.GetI(HumanInfo::EP) < 60 && H.GetI(HumanInfo::PHP) >= 50)
+	else if (Hour <= 18 && H.GetI(HumanInfo::EP) < 60 && H.GetI(HumanInfo::PHP) >= 30)
 		Text::PRC(3, "\"’оть ещЄ есть врем€, да и настрой нужный - сил нет... Ќе могу... \", - сказал ты себе и с сожалением отошЄл\n");
-	else if (Hour > 18 && H.GetI(HumanInfo::EP) < 60 && H.GetI(HumanInfo::PHP) >= 50)
+	else if (Hour > 18 && H.GetI(HumanInfo::EP) < 60 && H.GetI(HumanInfo::PHP) >= 30)
 		Text::PRC(3, "\"я хотел бы сходить, но мои ноги думают иначе. ƒа и ночь уже недалЄко\", - произнЄс ты, плюхнувс€ на кресло\n");
-	else if (Hour > 18 && H.GetI(HumanInfo::EP) < 60 && H.GetI(HumanInfo::PHP) < 50)
+	else if (Hour > 18 && H.GetI(HumanInfo::EP) < 60 && H.GetI(HumanInfo::PHP) < 30)
 		Text::PRC(3, "\"я никуда не пойду! ” мен€ ломит ноги, никакого желани€ нет, так ещЄ и вечер наступил!\", - злобно произнЄс ты, стукнув по стальной двери\n");
-	else if (Hour > 18 && H.GetI(HumanInfo::EP) >= 60 && H.GetI(HumanInfo::PHP) < 50)
+	else if (Hour > 18 && H.GetI(HumanInfo::EP) >= 60 && H.GetI(HumanInfo::PHP) < 30)
 		Text::PRC(3, "\"” мен€ есть силы, но нет желани€ и времени\", - со вздохом заметил ты\n");
-	else if (Hour <= 18 && H.GetI(HumanInfo::EP) < 60 && H.GetI(HumanInfo::PHP) < 50)
+	else if (Hour <= 18 && H.GetI(HumanInfo::EP) < 60 && H.GetI(HumanInfo::PHP) < 30)
 		Text::PRC(3, "\"¬рем€ ещЄ есть, но усталость и нехотение сделали выбор за мен€ - € никуда не пойду\", - со вздохом сказал ты\n");
-	else if (Hour <= 18 && H.GetI(HumanInfo::EP) >= 60 && H.GetI(HumanInfo::PHP) < 50)
+	else if (Hour <= 18 && H.GetI(HumanInfo::EP) >= 60 && H.GetI(HumanInfo::PHP) < 30)
 		Text::PRC(3, "\"Ќет желани€ куда-либо идти\", - пробормотал ты\n");
 	if (!Condition) {
 		Text::V(4, 40);
@@ -1072,6 +1072,8 @@ _Start:
 		}
 
 		switch (Click) {
+		case 27:
+			return;
 		case 75:
 			if (CurrentPage > 0)
 				CurrentPage--;

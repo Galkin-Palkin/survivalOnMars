@@ -50,10 +50,12 @@ Comics
 zero
 аўъчръ
 0
-2
+3
 EnergyBar
 0
 DriedFruits
+0
+EnergyDrink
 0
 0
 1

@@ -205,6 +205,8 @@ void Game::Human::Changes(bool& Life, bool& Working) {
 	FP -= 5;
 	WP -= 7;
 	Validate();
+	if (WP > 0)
+		WDP = 0.0;
 	EffectsTick();
 	if (FP >= 75)
 		EP += 10;
@@ -220,9 +222,10 @@ void Game::Human::Changes(bool& Life, bool& Working) {
 		AddEffect(EffectMap["Starvation"]);
 	}
 	if (WP == 0) {
+		WDP += 0.1;
 		HP -= 2;
 		EP -= 5;
-		DP += 0.25;
+		DP += WDP;
 		PHP -= 3;
 	}
 	if (HP > 75 && FP >= 30 && WP >= 30) {

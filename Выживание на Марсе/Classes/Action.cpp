@@ -104,8 +104,12 @@ void Game::Action::FoundedItems() {
 			if (Diaries[i] == (FoundedDiary))
 				IsIn = true;
 
-		if (!IsIn)
+		if (!IsIn) {
+			T.PRC(3, " - ");
+			T.PRC(15, FoundedDiary.GetTitle() + '\n');
+			IsEmpty = false;
 			Diaries.push_back(FoundedDiary);
+		}
 	}
 
 	if (ConsumableMap["Aspirin"]->GetCount() >= 100 && !IsAchMap[Ach_Aspirin]) {
@@ -135,7 +139,7 @@ void Game::Action::FoundedItems() {
 	}
 	if (IsEmpty) {
 		T.PRC(3, "Вы ничего не нашли\n");
-		H->Set(HumanInfo::PHP, '-', 3);
+		H->Set(HumanInfo::PHP, '-', 2);
 	}
 	T.V(4, 60);
 	T.PRC(15);
